@@ -114,7 +114,7 @@ class ApiController extends SiteController {
 		$input = Input::all();
 		$listGameBlack = $this->blackListGame();
 		if ($input['keyword'] == '') {
-			$listGame = Game::whereNotNull('parent_id')
+			$listGame = Game::where('parent_id', GAMEHTML5)
 				->whereNotIn('id', $listGameBlack)
 				->get();
 		}
@@ -126,7 +126,7 @@ class ApiController extends SiteController {
 					$query = $query->where('slug', 'like', '%'.$inputSlug.'%');
 				}
 			})
-			->whereNotNull('parent_id')
+			->where('parent_id', GAMEHTML5)
 			->whereNotIn('id', $listGameBlack)
 			->get();
 		}
