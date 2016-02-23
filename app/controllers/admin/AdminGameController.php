@@ -43,7 +43,7 @@ class AdminGameController extends AdminController {
 			'name' => 'required|unique:games',
 			'parent_id' => 'required'
 		);
-		if(empty(Input::get('link_download'))) {
+		if(Input::get('parent_id') == GAMEOFFLINE && empty(Input::get('link_download')) ) {
 			$rules['link_download'] = 'required';
 		}
 		if(in_array(Input::get('parent_id'), [GAMEHTML5, GAMEFLASH])) {
@@ -135,7 +135,7 @@ class AdminGameController extends AdminController {
 				'name' => 'required',
 				'parent_id' => 'required'
 			);
-			if(empty(Input::get('link_download'))) {
+			if(Input::get('parent_id') == GAMEOFFLINE && empty(Input::get('link_download')) ) {
 				$rules['link_download'] = 'required';
 			}
 			if(in_array(Input::get('parent_id'), [GAMEHTML5, GAMEFLASH])) {
