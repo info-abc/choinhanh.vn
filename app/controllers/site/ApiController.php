@@ -13,8 +13,8 @@ class ApiController extends SiteController {
 		$typeIdBlack = array(3);
 		$types = Type::whereNotIn('id', $typeIdBlack)->get();
 		foreach ($types as $key => $type) {
-		$data[$key]['type_name'] = $type->name;
-		$data[$key]['data_type'] = $this->getGame($type);
+			$data[$key]['type_name'] = $type->name;
+			$data[$key]['data_type'] = $this->getGame($type);
 		}
 		$data = array(
 		   [
@@ -91,96 +91,48 @@ class ApiController extends SiteController {
 	{
 		$now = Carbon\Carbon::now();
 		$typeIdBlack = array(3);
-		$listGameBlack = array(84, 79, 76, 81, 24, 80, 68, 21, 74, 71, 69, 70, 28, 220, 209, 37, 26, 83, 86, 85, 46);
-		$list = array();
+		$listGameBlack = $this->blackListGame();
 		$listGame = DB::table('games')
-		                    ->join('game_types', 'game_types.game_id', '=', 'games.id')
-		                    ->join('types', 'types.id', '=', 'game_types.type_id')
-		                    ->select('games.name', 'games.link_url', 'games.image_url', 'games.screen')
-		                    ->distinct()
-		                    ->where('types.id', $type->id)
-		                    ->whereNull('games.deleted_at')
-		                    ->where('games.status', ENABLED)
-		                    ->where('games.parent_id', '=', GAMEHTML5)
-		                    ->where('games.start_date', '<=', $now)
-		                    ->whereNotIn('types.id', $typeIdBlack)
-		                    ->whereNotIn('games.id', $listGameBlack)
-		                    ->get();
-		    foreach ($listGame as $key => $value) {
-		     $avatar = url(UPLOAD_GAME_AVATAR. '/' .$value->image_url);
-		     $list[$key]['game_url'] = url(UPLOAD_GAME. '/' . $value->link_url);
-		     $list[$key]['game_name'] = $value->name;
-		     $list[$key]['game_avatar'] = $avatar;
-		     $list[$key]['game_screen'] = $value->screen;
-		    }
+			->join('game_types', 'game_types.game_id', '=', 'games.id')
+			->join('types', 'types.id', '=', 'game_types.type_id')
+			->select('games.name', 'games.link_url', 'games.image_url', 'games.screen')
+			->distinct()
+			->where('types.id', $type->id)
+			->whereNull('games.deleted_at')
+			->where('games.status', ENABLED)
+			->where('games.parent_id', '=', GAMEHTML5)
+			->where('games.start_date', '<=', $now)
+			->whereNotIn('types.id', $typeIdBlack)
+			->whereNotIn('games.id', $listGameBlack)
+			->get();
+		$list = $this->commonGame($listGame);
 		return $list;
 	}
-	
+
 	public function search()
-	 {
-	  $input = Input::all();
-	  $listGameBlack = $this->blackListGame();
-	  if ($input['keyword'] == '') {
-	   $listGame = Game::where('parent_id', GAMEHTML5)
-		->whereNotIn('id', $listGameBlack)
-		->get();
-	  }
-	  else {
-	   $listGame = Game::where(function ($query) use ($input) {
-		if ($input['keyword'] != '') {
-		 $inputSlug = convert_string_vi_to_en($input['keyword']);
-		 $inputSlug = strtolower( preg_replace('/[^a-zA-Z0-9]+/i', '-', $inputSlug) );
-		 $query = $query->where('slug', 'like', '%'.$inputSlug.'%');
-		}
-	   })
-	   ->where('parent_id', GAMEHTML5)
-	   ->whereNotIn('id', $listGameBlack)
-	   ->get();
-	  }
-	  $data = $this->commonGame($listGame);
-	  return Response::json(array('code' => 'ok', 'data' => $data));
-
-	 }
-
-
-	 /**
-	  * Store a newly created resource in storage.
-	  *
-	  * @return Response
-	  */
-	 public function commonGame($listGame)
-	 {
-	  $list = array();
-	  foreach ($listGame as $key => $value) {
-	   $avatar = url(UPLOAD_GAME_AVATAR. '/' .$value->image_url);
-	   $list[$key]['game_url'] = url(UPLOAD_GAME. '/' . $value->link_url);
-	   $list[$key]['game_name'] = $value->name;
-	   $list[$key]['game_avatar'] = $avatar;
-	   $list[$key]['game_screen'] = $value->screen;
-	  }
-	  return $list;
-	 }
-
-
-	 /**
-	  * Display the specified resource.
-	  *
-	  * @param  int  $id
-	  * @return Response
-	  */
-	 public function blackListGame()
-	 {
-	  return array(84, 79, 76, 81, 24, 80, 68, 21, 74, 71, 69, 70, 28, 220, 209, 37, 26, 83, 86, 85, 46);
-	 }
-	 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
 	{
-		//
+		$input = Input::all();
+		$listGameBlack = $this->blackListGame();
+		if ($input['keyword'] == '') {
+			$listGame = Game::where('parent_id', GAMEHTML5)
+				->whereNotIn('id', $listGameBlack)
+				->get();
+		}
+		else {
+			$listGame = Game::where(function ($query) use ($input) {
+				if ($input['keyword'] != '') {
+					$inputSlug = convert_string_vi_to_en($input['keyword']);
+					$inputSlug = strtolower( preg_replace('/[^a-zA-Z0-9]+/i', '-', $inputSlug) );
+					$query = $query->where('slug', 'like', '%'.$inputSlug.'%');
+				}
+			})
+			->where('parent_id', GAMEHTML5)
+			->whereNotIn('id', $listGameBlack)
+			->get();
+		}
+		$data = $this->commonGame($listGame);
+		return Response::json(array('code' => 'ok', 'data' => $data));
+
 	}
 
 
@@ -189,9 +141,17 @@ class ApiController extends SiteController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function commonGame($listGame)
 	{
-		//
+		$list = array();
+		foreach ($listGame as $key => $value) {
+			$avatar = url(UPLOAD_GAME_AVATAR. '/' .$value->image_url);
+			$list[$key]['game_url'] = url(UPLOAD_GAME. '/' . $value->link_url);
+			$list[$key]['game_name'] = $value->name;
+			$list[$key]['game_avatar'] = $avatar;
+			$list[$key]['game_screen'] = $value->screen;
+		}
+		return $list;
 	}
 
 
@@ -201,9 +161,9 @@ class ApiController extends SiteController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function blackListGame()
 	{
-		//
+		return array(84, 79, 76, 81, 24, 80, 68, 21, 74, 71, 69, 70, 28, 220, 209, 37, 26, 83, 86, 85, 46);
 	}
 
 
