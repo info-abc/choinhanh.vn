@@ -146,6 +146,7 @@ Route::get('/testgame', array('uses' =>  'TestGameController@index', 'as' => 'ad
 Route::post('/testgame/{testId}', array('uses' =>  'TestGameController@updateTest', 'as' => 'admin.testgame.update'));
 
 Route::get('/api/list', array('uses' => 'ApiController@index', 'as' => 'api'));
+Route::get('/api/search', array('uses' => 'ApiController@search', 'as' => 'api_search'));
 
 Route::get('/changepassword', array('uses' => 'PasswordController@changePass', 'as' => 'password.changepass'));
 Route::resource('/resetpassword', 'PasswordController', array('only'=>array('store', 'index')));
