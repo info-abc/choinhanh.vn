@@ -1,0 +1,143 @@
+body { margin:0;padding:0;width:100%;height:100%;overflow:hidden;background-color:#00547c;}
+#footad{position:absolute;bottom:0;width:100%;height:50px;text-align:center;z-index:100;background-color:#00547c;}
+
+#settingImg{position:absolute; cursor:pointer;top:0;left:0;z-index:100;}
+#helpImg{position:absolute; cursor:pointer;top:0;right:0;z-index:100;}
+#help{
+	background-color:#ffdeb3;
+	position:absolute;
+	top:0px;
+	right: 10%;
+	width:80%;
+	height:auto;
+	display:none;
+	z-index:1000;
+	text-align:center;
+	padding-bottom: 20px;
+	/*border-radius: 5px;*/
+}
+#TheGameDiv{
+	position:absolute;
+	z-index:10;
+	top:0;
+	width:100%;
+	height:100%;
+	margin:auto;
+	background-color:#00547c;
+}
+#similargames_container{
+	background-color:#00547c;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	display:none;
+	z-index:1000;
+	text-align:center;
+}
+#similargames{
+	width:800px;
+	margin:auto;
+}
+.similargames_title{
+	height:40px; background-color:#056194; width:100%;
+}
+	.similargames_title_home{padding:0 0 0 5px;font-size:18px;color:#FFFFFF;line-height:40px;}
+	.similargames_title_home img{padding:5px 0 0 0;}
+	.similargames_title_home a{color:#FFFFFF;}
+	.similargames_title_logo{text-align:center;}
+	.similargames_title_icons{padding:0px 10px 0 0;}
+	#CloseSimilarGamesImg{cursor:pointer;}
+	#VoteGameDiv{
+		float:center;
+		overflow:hidden;
+		color:#FFF;
+		line-height:40px;
+	}
+	#VoteGameDiv img{
+		padding-top:8px;
+		width:24px;
+		height:24px;
+	}
+#similargames_content{
+	height:40px; background-color:#00547c;text-align:center;
+}
+
+#adsContainer{
+	position:absolute;
+	top:0;
+	bottom: 0;
+	right: 0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:1000;
+	text-align:center;
+	background-color:#00547c;
+	overflow: hidden;
+}
+#adTitle {
+	height: 100px;
+	position: relative;
+	text-align: center;
+	display:none;
+}
+#adTitle .titleText {
+	vertical-align: middle;
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	right: 0
+}
+#adContainer_logo {
+	display:none;
+}
+#adContainer {
+	position: relative
+}
+#videoElement {
+	width: 0;
+	height: 0
+}
+
+
+.help_help{
+	height: 30px;
+	width: 100%;
+	background:  #fa7e3e;
+	font-size: 16px;
+	color: #fff;
+	font-weight: 700;
+	line-height: 30px;
+	position: relative;
+}
+.close_help{
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	right: 0px;
+	top: 0px;
+}
+.help_desc{
+	width: 90%;
+	margin: 0px 5%;
+	float: left;margin-top: 5px;
+	overflow: hidden;
+}
+#help .title{
+	width: 100%;
+	font-size: 16px;
+	font-weight: 700;
+	color: #fa7e3e;
+	float: left;
+}
+#help .desc_con{
+	float: left;
+	line-height: 25px;
+	color: #000;
+	text-align: left;
+	width: 100%;
+	height: auto;
+	font-size: 13px;
+}

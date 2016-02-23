@@ -1,0 +1,318 @@
+/*search*/
+
+.search1 form {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-align: left !important;
+}
+.search1 input[type=text] {
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid #2b74a1;
+    border-left: 8px solid #2b74a1;
+    color: #000;
+    font-size: 14px;
+    font-style: italic;
+    height: 30px;
+    letter-spacing: 1px;
+    max-width: 100%;
+    padding: 7px 13px;
+    width: 100%;
+    text-align: left !important;
+}
+.search1 input[type=submit] {
+    background: rgba(0, 0, 0, 0) url("../images/search-icon.png") no-repeat scroll center center;
+    border: medium none;
+    font-size: 0;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    text-align: left !important;
+}
+
+.menu-hide {
+    background: #2b74a1;
+    text-align: center;
+}
+.menu-hide a {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    line-height: 2 !important;
+    text-align: left !important;
+}
+.menu-hide a i.fa {
+    font-size: 14px;
+}
+.menu-show a,
+.menu-hide a {
+    text-decoration: none;
+    cursor: pointer;
+}
+.menu-show a:hover,
+.menu-show a:focus {
+    border-bottom-color: transparent !important;
+}
+.menu-show a i.fa {
+    color: #888;
+    font-size: 20px;
+}
+.menushow {
+    display: block !important;
+    /*visibility: visible !important;*/
+}
+a.menu_show_list {
+    color: #fff;
+    cursor: pointer;
+    font-size: 30px;
+    margin-left: 0;
+    padding: 5px;
+    text-align: left !important;
+    opacity: 0.5;
+}
+
+#cssmenu {
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 1px 3px #888;
+    display: none;
+    right: 0;
+    position: absolute !important;
+    top: 0;
+    width: 200px;
+    z-index: 99999999 !important;
+    text-align: left !important;
+}
+#cssmenu, #cssmenu ul, #cssmenu li, #cssmenu a {
+    border: 0 none;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 0;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-decoration: none;
+}
+#cssmenu a {
+    line-height: 1.5;
+    padding: 10px;
+    text-align: left !important;
+}
+#cssmenu > ul {
+    overflow-y: auto;
+}
+#cssmenu > ul > li {
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid #2b74a1;
+    cursor: pointer;
+    text-align: left !important;
+}
+#cssmenu > ul > li:last-child {
+    border-bottom: 1px solid #2b74a1;
+}
+#cssmenu > ul > li > a {
+    background: #fff none repeat scroll 0 0;
+    border-left: 8px solid #2b74a1;
+    color: #888;
+    display: block;
+    text-align: left !important;
+}
+#cssmenu > ul > li > a:hover {
+    text-decoration: none;
+}
+#cssmenu > ul > li.active {
+
+}
+#cssmenu > ul > li.active > a {
+
+}
+#cssmenu > ul > li.has-sub > a::after {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: transparent transparent transparent #2b74a1;
+    border-image: none;
+    border-style: solid;
+    border-width: 5px;
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+#cssmenu > ul > li.has-sub.active > a::after {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #2b74a1 transparent transparent;
+    border-image: none;
+    border-style: solid;
+    border-width: 5px;
+    right: 14px;
+    top: 18px;
+}
+#cssmenu ul ul {
+    padding: 0;
+    overflow-y: auto;
+    text-align: left !important;
+}
+#cssmenu ul ul a {
+    background: #ebebeb none repeat scroll 0 0;
+    border-left: 8px solid #2b74a1;
+    color: #888;
+    display: block;
+    text-align: left !important;
+    font-family: Arial,sans-serif !important;
+}
+#cssmenu ul ul li {
+    border-bottom: 1px solid #ccc;
+}
+#cssmenu ul ul li.odd a {
+
+}
+#cssmenu ul ul li:last-child {
+    border: medium none;
+}
+
+#cssmenu > ul > li > a > i.fa {
+    font-size: 15px;
+}
+#cssmenu > ul > li > a > span {
+
+}
+
+.menu-button-home {
+    display: inline-block !important;
+    width: 75px;
+}
+
+.menu-button-back {
+    display: inline-block !important;
+    background: #fff !important;
+    border-left-width: 1px !important;
+    width: 65px;
+}
+
+.menu-button-close {
+    background: #2b74a1;
+    display: inline-block;
+    position: absolute;
+    right: 200px;
+    top: 0;
+    text-align: left !important;
+    z-index: 99999999 !important;
+    width: 30px;
+    height: 30px;
+}
+.menu-button-close i.fa {
+    color: #fff;
+    width: 30px;
+    position: absolute;
+    font-size: 20px;
+    height: 30px;
+    top: 5px;
+    left: 10px;
+}
+
+.menu-button {
+    background: rgba(0, 0, 0, 0.25) none repeat scroll 0 0;
+    display: inline-block;
+    position: fixed;
+    right: 0;
+    top: 0;
+    text-align: left !important;
+    z-index: 99999999 !important;
+}
+
+.menu-import {
+    max-height: 100%;
+    text-align: left !important;
+    z-index: 99999999 !important;
+    color: #333;
+    font-family: Arial,sans-serif !important;
+    font-size: 14px;
+    line-height: 1.42857;
+}
+
+@media (min-width: 960px) {
+    .search1 input[type=text] {
+        font-size: 35px;
+        height: 75px;
+    }
+    .search1 input[type=submit] {
+        height: 90px;
+        width: 90px;
+    }
+    .menu-hide a i.fa {
+        font-size: 30px;
+    }
+    .menu-show a i.fa {
+        font-size: 30px;
+    }
+    a.menu_show_list {
+        font-size: 90px;
+    }
+    #cssmenu {
+        width: 500px;
+    }
+    #cssmenu, #cssmenu ul, #cssmenu li, #cssmenu a {
+        font-size: 35px;
+    }
+    #cssmenu > ul > li > a > i.fa {
+        font-size: 30px;
+    }
+    .menu-button a {
+        padding: 10px;
+    }
+    .menu-button-home {
+        width: 200px;
+    }
+    .menu-button-back {
+        width: 200px;
+    }
+
+    .menu-button-close {
+        right: 500px;
+        width: 90px;
+        height: 90px;
+    }
+    .menu-button-close i.fa {
+        width: 90px;
+        font-size: 50px;
+        height: 90px;
+        top: 20px;
+        left: 25px;
+    }
+
+    .menu-import {
+        font-size: 30px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .search1 form {
+        position: relative;
+        display: inline-block;
+    }
+    #cssmenu {
+        width: 200px;
+        z-index: 99999999 !important;
+        max-height: 100% !important;
+    }
+    #cssmenu a {
+        padding: 5px 10px;
+        font-family: Arial,sans-serif !important;
+    }
+
+}
+
+div {
+    -webkit-transform: none !important;
+}

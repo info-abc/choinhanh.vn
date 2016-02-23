@@ -1,0 +1,68 @@
+/*chart score*/
+
+.import-charts {
+    color: #333;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857;
+
+    border: 2px solid #ed933b;
+    margin-bottom: 10px;
+
+    width: 200px;
+    position: fixed;
+    top: 70px;
+    right: 0;
+    background: #fff;
+    z-index: 9998;
+}
+.import-charts > h3 {
+    background: #ed933b;
+    padding: 10px;
+    color: #fff;
+    margin-top: 0;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 18px;
+}
+.import-charts ul {
+    list-style: outside none none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.import-charts ul li {
+    border-bottom: 1px dashed #2b74a1;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.import-charts ul li:last-child {
+    border-bottom: none;
+}
+.import-charts-image {
+    width: 30px;
+    display: inline-block;
+}
+.import-charts-image img {
+    max-width: 100%;
+    height: auto;
+}
+.import-charts-text {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+}
+.import-charts-text strong {
+    color: #2b74a1;
+    display: block;
+    font-size: 16px;
+}
+.import-charts-text span {
+    color: #ed933b;
+    font-size: 16px;
+}
+
+@media (max-width: 800px) {
+    .import-charts {
+        display: none;
+    }
+}

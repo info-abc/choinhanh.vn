@@ -1,0 +1,1 @@
+<img src="{{ url('/maintance.jpg') }}" style="max-width: 100%;" >
