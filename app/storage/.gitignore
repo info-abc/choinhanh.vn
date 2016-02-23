@@ -3,3 +3,5 @@ services.manifest
 /sessions
 /meta
 /logs
+/cache
+/debugbar
