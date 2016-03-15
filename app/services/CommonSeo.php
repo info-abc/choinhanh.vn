@@ -59,7 +59,7 @@ class CommonSeo
 		$inputSeoImage = AdminSeo::where('model_name',$modelName)
 									->where('model_id', $modelId)
 									->first();
-		if ($inputSeoImage->image_url_fb) {
+		if ($inputSeoImage) {
 			return $inputSeoImage->image_url_fb;
 		}
 		

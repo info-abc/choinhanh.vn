@@ -1,7 +1,11 @@
 @extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo('AdminNew', $inputNew->id), 'seoImage' => FOLDER_SEO_NEWS . '/' . $inputNew->id))
 
 @section('title')
-{{ $title = $inputNew->title }}
+	@if($title = CommonSite::getMetaSeo('AdminNew', $inputNew->id)->title_site)
+		{{ $title = $title }}
+	@else
+		{{ $title = $inputNew->title }}
+	@endif
 @stop
 
 @section('content')

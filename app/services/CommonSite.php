@@ -121,26 +121,29 @@ class CommonSite
         $seoMeta = AdminSeo::where('model_name', $modelName)
                 ->where('model_id', $modelId)
                 ->first();
-        $meta = $modelName::find($modelId);
-        if($seoMeta->title_site == '') {
-            $seoMeta->title_site = $meta->name;
+        if($seoMeta) {
+            $meta = $modelName::find($modelId);
+            if($seoMeta->title_site == '') {
+                $seoMeta->title_site = $meta->name;
+            }
+            if($seoMeta->description_site == '') {
+                $seoMeta->description_site = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
+            }
+            if($seoMeta->keyword_site == '') {
+                $seoMeta->keyword_site = 'Game '.$meta->name.', trò chơi '.$meta->name.', game cho mobile hay nhất tại choinhanh.vn';
+            }
+            if($seoMeta->title_fb == '') {
+                $seoMeta->title_fb = $meta->name;
+            }
+            if($seoMeta->description_fb == '') {
+                $seoMeta->description_fb = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
+            }
+            // if($seoMeta->image_url_fb == '') {
+            //     $seoMeta->image_url_fb = url(UPLOAD_GAME_AVATAR . '/' . $meta->image_url);
+            // }
+            return $seoMeta;
         }
-        if($seoMeta->description_site == '') {
-            $seoMeta->description_site = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
-        }
-        if($seoMeta->keyword_site == '') {
-            $seoMeta->keyword_site = 'Game '.$meta->name.', trò chơi '.$meta->name.', game cho mobile hay nhất tại choinhanh.vn';
-        }
-        if($seoMeta->title_fb == '') {
-            $seoMeta->title_fb = $meta->name;
-        }
-        if($seoMeta->description_fb == '') {
-            $seoMeta->description_fb = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
-        }
-        // if($seoMeta->image_url_fb == '') {
-        //     $seoMeta->image_url_fb = url(UPLOAD_GAME_AVATAR . '/' . $meta->image_url);
-        // }
-        return $seoMeta;
+        return null;
     }
 
     public static function uploadImg($path, $folder, $imageUrl, $imageCurrent = NULL)

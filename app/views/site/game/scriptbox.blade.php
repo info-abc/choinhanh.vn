@@ -43,7 +43,9 @@
 	        paginationClickable: $(this).find('.swiper-pagination'),
 	        paginationBulletRender: function (index, className) {
 	            return '<span class="' + className + '">' + (index + 1) + '</span>';
-	        }
+	        },
+			preventClicks: false,
+	        preventClicksPropagation: false,
         })
         swiper[index].on('slideChangeStart', function (){
 		    abc = $el.find('.swiper-pagination-bullet-active').text();
