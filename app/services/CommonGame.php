@@ -330,7 +330,7 @@ class CommonGame
 								, 'games.parent_id', 'games.type_main', 'games.image_url'
 								, 'types.name as type_name', 'types.slug as type_slug', 'games.count_play', 'category.slug as category_slug')
 						->distinct()
-						//->where('games.parent_id', $game->id)
+						->where('games.parent_id', $game->id)
 						->whereNull('games.deleted_at')
 						->where('games.status', ENABLED)
 						->where('games.start_date', '<=', $now);
