@@ -262,8 +262,7 @@ class CommonGame
 					$listGame = Game::whereIn('id', $games)
 						->where('status', ENABLED)
 						->where('start_date', '<=', $now)
-						->where('parent_id', '=', GAMEHTML5)
-						->orWhere('parent_id', '=', GAMEFLASH)
+						->whereIn('parent_id', [GAMEHTML5, GAMEFLASH])
 						->orderBy('id', 'desc')
 						->paginate(PAGINATE_LISTGAME);
 				}
@@ -277,8 +276,7 @@ class CommonGame
 					$listGame = Game::whereIn('id', $games)
 						->where('status', ENABLED)
 						->where('start_date', '<=', $now)
-						->where('parent_id', '=', GAMEHTML5)
-						->orWhere('parent_id', '=', GAMEFLASH);
+						->whereIn('parent_id', [GAMEHTML5, GAMEFLASH]);
 				}
 			}
 			return $listGame;
@@ -332,7 +330,7 @@ class CommonGame
 								, 'games.parent_id', 'games.type_main', 'games.image_url'
 								, 'types.name as type_name', 'types.slug as type_slug', 'games.count_play', 'category.slug as category_slug')
 						->distinct()
-						->where('games.parent_id', $game->id)
+						//->where('games.parent_id', $game->id)
 						->whereNull('games.deleted_at')
 						->where('games.status', ENABLED)
 						->where('games.start_date', '<=', $now);
@@ -370,7 +368,7 @@ class CommonGame
 				return $url = url('/' . $game->category_slug . '/' . $game->slug);
 			}
 			if($game->type_name && $game->type_slug) {
-				$url = url('/' . $game->type_slug . '/' . $game->slug);
+				$url = url('/game-' . $game->type_slug . '/' . $game->slug);
 				return $url;
 			} else {
 				dd('Đường dẫn sai');
@@ -402,7 +400,7 @@ class CommonGame
 				Cache::put('type'.$game->type_main, $type, CACHETIME);
 			}
 			if($type) {
-				$url = url('/' . $type->slug . '/' . $game->slug);
+				$url = url('game-' . $type->slug . '/' . $game->slug);
 				return $url;
 			} else {
 				dd('Đường dẫn sai');

@@ -54,7 +54,7 @@ class CommonSite
                 $common_model = CommonModel::where(array('model_name' => $modelName, 'model_id' => $modelId))->first();
                 Cache::put('common_model'.$modelName.$modelId, $common_model, CACHETIME);
             }
-            if ($common_model) {
+            if (isset($common_model)) {
                 $common_model_id = $common_model->id;
                 if (Cache::has('advertisement_id'.$common_model_id))
                 {
@@ -63,7 +63,7 @@ class CommonSite
                     $advertisement_id = AdvertisePosition::where(array('common_model_id' => $common_model_id, 'status' => ENABLED))->first();
                     Cache::put('advertisement_id'.$common_model_id, $advertisement_id, CACHETIME);
                 }
-                if($advertisement_id) {
+                if(isset($advertisement_id)) {
                     if (Cache::has('ad'.$advertisement_id))
                     {
                         $ad = Cache::get('ad'.$advertisement_id);

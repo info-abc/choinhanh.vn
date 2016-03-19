@@ -22,11 +22,11 @@
 				<a class="menu-button-home" href="/"><i class="fa fa-home"></i> <span>Trang chủ</span></a>
 				<a class="menu-button-back" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i> Quay lại</a>
 			</li>
-			<li><a href="/ban-gai"><span>Bạn gái</span></a></li>
-			<li><a href="/dua-xe"><span>Đua xe</span></a></li>
-			<li><a href="/hanh-dong"><span>Hành động</span></a></li>
-			<li><a href="/tri-tue"><span>Trí tuệ</span></a></li>
-			<li><a href="/nau-an"><span>Nấu ăn</span></a></li>
+			<li><a href="/game-ban-gai"><span>Bạn gái</span></a></li>
+			<li><a href="/game-dua-xe"><span>Đua xe</span></a></li>
+			<li><a href="/game-hanh-dong"><span>Hành động</span></a></li>
+			<li><a href="/game-tri-tue"><span>Trí tuệ</span></a></li>
+			<li><a href="/game-nau-an"><span>Nấu ăn</span></a></li>
 		</ul>
 		<div class="menu-hide"><a onclick="javascript:document.getElementById('cssmenu').style.display = 'none';"><i class="fa fa-times-circle-o"></i> Đóng lại</a></div>
 	</div>

@@ -205,8 +205,8 @@ Route::get('/home', 'SiteIndexController@home');
 
 Route::resource('/', 'SiteIndexController');
 
-Route::get('/{slug}', 'GameController@listgame');
+Route::get('/game-{slug}', 'GameController@listgame');
 
-Route::get('/{type}/{slug}', 'GameController@detailGame');
+Route::get('/game-{type}/{slug}', 'GameController@detailGame');
 
 Route::get('/{type}/{slug}/{word}', 'GameController@getPage404');

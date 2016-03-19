@@ -44,7 +44,7 @@
 				<li class='has-sub'><a href= '#' class="color2"><span>{{ $value->name }}</span></a>
 					<ul>
 					@foreach(SiteIndex::getTypeOfParent($value->id) as $k => $v)
-						<li><a href="{{ url('/' . SiteIndex::getFieldByType($v, 'slug')) }}"><span>{{ SiteIndex::getFieldByType($v, 'name') }}</span></a></li>
+						<li><a href="{{ url('game-' . SiteIndex::getFieldByType($v, 'slug')) }}"><span>{{ SiteIndex::getFieldByType($v, 'name') }}</span></a></li>
 					@endforeach
 					</ul>
 				</li>
