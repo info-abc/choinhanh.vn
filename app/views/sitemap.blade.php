@@ -5,7 +5,7 @@
     </url>
     @foreach(SiteMap::getTypeUrlSiteMap() as $type)
     <url>
-    	<loc>{{ url().'/'.$type->slug }}</loc>
+    	<loc>{{ url().'/game-'.$type->slug }}</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
     </url>
@@ -13,7 +13,7 @@
 
     @foreach(SiteMap::getGameUrlSiteMap() as $game)
 	    <url>
-	    	<loc>{{ url().'/'.Type::find($game->type_main)->slug.'/'.$game->slug }}</loc>
+	    	<loc>{{ url().'/game-'.Type::find($game->type_main)->slug.'/'.$game->slug }}</loc>
 			<lastmod>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $game->start_date)->format('Y-m-d') }}</lastmod>
 			<changefreq>weekly</changefreq>
 			<priority>0.5</priority>

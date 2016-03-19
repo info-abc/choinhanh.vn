@@ -212,9 +212,9 @@ class CommonGame
 		if($game) {
 			if($paginate) {
 				if(getDevice() == MOBILE) {
-					$listGame = Game::where('parent_id', $game->id)
+					$listGame = Game::where('parent_id', '!=', GAMEFLASH)
 						->where('status', ENABLED)
-						->where('parent_id', '!=', GAMEFLASH)
+						->where('parent_id', $game->id)
 						->where('start_date', '<=', $now)
 						->orderBy($arrange, 'desc')
 						->paginate(PAGINATE_LISTGAME);
@@ -227,9 +227,9 @@ class CommonGame
 				}
 			} else {
 				if(getDevice() == MOBILE) {
-					$listGame = Game::where('parent_id', $game->id)
+					$listGame = Game::where('parent_id', '!=', GAMEFLASH)
 						->where('status', ENABLED)
-						->where('parent_id', '!=', GAMEFLASH)
+						->where('parent_id', $game->id)
 						->where('start_date', '<=', $now)
 						->orderBy($arrange, 'desc');
 				} else {
@@ -291,9 +291,9 @@ class CommonGame
 		$game = $data->games->first();
 		if($game) {
 			if(getDevice() == MOBILE) {
-				if (Cache::has('listGame'.$game->id.$arrange))
+				if (Cache::has('listGameMobile'.$game->id.$arrange))
 				{
-					$listGame = Cache::get('listGame'.$game->id.$arrange);
+					$listGame = Cache::get('listGameMobile'.$game->id.$arrange);
 				} else {
 					$listGame = DB::table('games')
 						->join('types', 'types.id', '=', 'games.type_main')
@@ -303,11 +303,11 @@ class CommonGame
 								, 'types.name as type_name', 'types.slug as type_slug'
 								, 'category.slug as category_slug')
 						->distinct()
-						->where('games.parent_id', $game->id)
-						->whereNull('games.deleted_at')
-						->where('games.status', ENABLED)
 						->where('games.parent_id', '!=', GAMEFLASH)
-						->where('games.start_date', '<=', $now);
+						->where('games.parent_id', $game->id)
+						->where('games.status', ENABLED)
+						->where('games.start_date', '<=', $now)
+						->whereNull('games.deleted_at');
 				if($data->arrange == GAME_NEWEST){
 					$listGame = $listGame->orderBy('games.'.$arrange, 'desc')
 						->get();
@@ -315,12 +315,12 @@ class CommonGame
 				else{
 					$listGame = $listGame->orderByRaw(DB::raw("games.weight_number = '0', games.weight_number"))->orderBy('games.'.$arrange, 'desc')->get();
 					}
-					Cache::put('listGame'.$game->id.$arrange, $listGame, CACHETIME);
+					Cache::put('listGameMobile'.$game->id.$arrange, $listGame, CACHETIME);
 				}
 			} else {
-				if (Cache::has('listGame'.$game->id.$arrange))
+				if (Cache::has('listGamePC'.$game->id.$arrange))
 				{
-					$listGame = Cache::get('listGame'.$game->id.$arrange);
+					$listGame = Cache::get('listGamePC'.$game->id.$arrange);
 				} else {
 					if (in_array($game->id, [GAMEFLASH, GAMEHTML5])) {
 						$listGame = DB::table('games')
@@ -330,10 +330,11 @@ class CommonGame
 								, 'games.parent_id', 'games.type_main', 'games.image_url'
 								, 'types.name as type_name', 'types.slug as type_slug', 'games.count_play', 'category.slug as category_slug')
 						->distinct()
-						->where('games.parent_id', $game->id)
-						->whereNull('games.deleted_at')
+						// ->where('games.parent_id', $game->id)
 						->where('games.status', ENABLED)
-						->where('games.start_date', '<=', $now);
+						->where('games.start_date', '<=', $now)
+						->whereIn('games.parent_id', [GAMEFLASH, GAMEHTML5])
+						->whereNull('games.deleted_at');
 					}
 					else{
 						$listGame = DB::table('games')
@@ -343,9 +344,9 @@ class CommonGame
 								, 'games.count_play', 'category.slug as category_slug')
 						->distinct()
 						->where('games.parent_id', $game->id)
-						->whereNull('games.deleted_at')
 						->where('games.status', ENABLED)
-						->where('games.start_date', '<=', $now);
+						->where('games.start_date', '<=', $now)
+						->whereNull('games.deleted_at');
 					}
 					if($data->arrange == GAME_NEWEST){
 						$listGame = $listGame->orderBy('games.'.$arrange, 'desc')
@@ -353,7 +354,7 @@ class CommonGame
 					} else{
 						$listGame = $listGame->orderByRaw(DB::raw("games.weight_number = '0', games.weight_number"))->orderBy('games.'.$arrange, 'desc')->get();
 					}
-					Cache::put('listGame'.$game->id.$arrange, $listGame, CACHETIME);
+					Cache::put('listGamePC'.$game->id.$arrange, $listGame, CACHETIME);
 				}
 			}
 			return $listGame;
