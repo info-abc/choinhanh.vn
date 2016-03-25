@@ -199,7 +199,8 @@ Route::get('/game-choi-nhieu', 'GameController@getListGameplay');
 Route::post('/import-menu', 'GameController@importMenu');
 Route::post('/import-bxh', 'GameController@importBxh');
 
-Route::get('/listg5', 'GameController@listGameHtml5');
+Route::get('/list_g5', 'GameController@listGameHtml5');
+Route::get('/list_flash', 'GameController@listGameFlash');
 
 Route::get('/home', 'SiteIndexController@home');
 

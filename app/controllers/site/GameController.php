@@ -453,13 +453,22 @@ class GameController extends SiteController {
                 ->get();
         foreach($games as $key => $game) {
         	$url = CommonGame::getUrlGame($game);
-        	echo $key+1 . '.<a href="'. $url .'">' . $game->name . '</a><br>';
-        	if($key == 32) {
-        		echo '- end 1->33 -<br>';
-        	}
-        	if($key == 65) {
-        		echo '- end 33->66 -<br>';
-        	}
+        	$url2 = url('games/'.$game->link_url.'/game.html');
+        	echo $key+1 . '.<a href="'. $url .'">' . $game->name . '</a> - ' . $url2 . '<br>';
+        }
+        return 'end';
+    }
+
+    public function listGameFlash()
+    {
+    	$games = Game::whereNotNull('parent_id')
+                ->where('parent_id', GAMEFLASH)
+                ->orderBy('id', 'desc')
+                ->get();
+        foreach($games as $key => $game) {
+        	// $url = CommonGame::getUrlGame($game);
+        	$url = url('games-flash/'.$game->link_url);
+        	echo $key+1 . '.<a href="'. $url .'">' . $game->name . '</a> - ' . $url . '<br>';
         }
         return 'end';
     }
