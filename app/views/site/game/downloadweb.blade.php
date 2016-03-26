@@ -24,7 +24,7 @@
 	<div class="web">
 
 		<div class="game_avatar">
-			<img alt="{{ $game->name }}" src="{{ url(UPLOAD_GAME_AVATAR . '/' . $game->image_url) }}" />
+			<img alt="{{ $game->slug }}" src="{{ url(UPLOAD_GAME_AVATAR . '/' . $game->image_url) }}" />
 		</div>
 		<div class="game_title">
 

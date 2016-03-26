@@ -16,7 +16,7 @@
 			<div class="list-item">
 				<div class="list-image">
 					<a href="{{ CommonGame::getUrlGame($value) }}">
-						<img class="image_avata_game" src="{{ url(UPLOADIMG . '/game_avatar'. '/' . $value->image_url) }}" />
+						<img class="image_avata_game" src="{{ url(UPLOADIMG . '/game_avatar'. '/' . $value->image_url) }}" alt="{{ $value->slug }}" />
 					</a>
 				</div>
 				<div class="list-text">

@@ -18,7 +18,7 @@
 	<div class="row mobile">
 
 		<div class="mobile_avatar">
-			<img alt="{{ $game->name }}" src="{{ url(UPLOAD_GAME_AVATAR . '/' . $game->image_url) }}" />
+			<img alt="{{ $game->slug }}" src="{{ url(UPLOAD_GAME_AVATAR . '/' . $game->image_url) }}" />
 		</div>
 		<div class="mobile_title">
 

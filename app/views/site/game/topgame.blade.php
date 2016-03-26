@@ -5,7 +5,7 @@
 			<?php $url = CommonGame::getUrlGame($value); ?>
 			<li>
 				<div class="topgame-image">
-					<img src="{{ url(UPLOAD_GAME_AVATAR . '/' .  $value->image_url) }}" alt="{{ $value->name }}" />
+					<img src="{{ url(UPLOAD_GAME_AVATAR . '/' .  $value->image_url) }}" alt="{{ $value->slug }}" />
 				</div>
 				<div class="topgame-text">
 					<a href="{{ $url }}">{{ limit_text($value->name, TEXTLENGH) }}</a>
