@@ -612,4 +612,19 @@ class CommonGame
 		return $games;
 	}
 
+	public static function getUrlCategoryParent($id)
+	{
+		if($id == GAME_NEW) {
+			return action('GameController@getListGamenew');
+		}
+		if($id == GAME_ANDROID) {
+			return action('GameController@getListGameAndroid');
+		}
+		if($id == GAME_PLAY_MANY) {
+			return action('GameController@getListGameplay');
+		}
+
+		return '#';
+	}
+
 }

@@ -8,7 +8,7 @@
 			
 	    </div>
 	    <div class="item-title">
-			<a href="{{ $url }}">{{ limit_text($game->name, TEXTLENGH) }}</a>
+			<h2><a href="{{ $url }}">{{ limit_text($game->name, TEXTLENGH) }}</a></h2>
 		</div>
 	    {{-- @include('site.game.item-play', array('game' => $game)) --}}
 	</div>

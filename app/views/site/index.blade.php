@@ -19,7 +19,7 @@
 <div class="box">
 	@foreach($menu as $value)
 		@if($value->position == CONTENT)
-		<h3>{{ $value->name }}</h3>
+		<h3><a href="{{ CommonGame::getUrlCategoryParent($value->id) }}">{{ $value->name }}</a></h3>
 		@if($games = CommonGame::boxGameByCategoryParentIndex($value))
 			<?php $count = ceil(count($games)/PAGINATE_BOXGAME);
 				$count = getCount($count);

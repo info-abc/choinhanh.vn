@@ -1,13 +1,13 @@
 @extends('site.layout.default')
 
 @section('title')
-{{ $title = 'Game chơi nhiều nhất'}}
+{{ $title = 'Game hay nhất'}}
 @stop
 
 @section('content')
 
 <div class="box">
-	<h1>Game chơi nhiều nhất</h1>
+	<h1>Game hay nhất</h1>
 	<?php
 		$games = CommonGame::getListGame('play');
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
@@ -40,7 +40,7 @@
 @include('site.common.ad', array('adPosition' => CHILD_PAGE_RELATION))
 
 <div class="box">
-	<h1>Game bình chọn nhiều</h1>
+	<h3>Game bình chọn nhiều</h3>
 	<?php
 		$games = CommonGame::getListGame('play');
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);

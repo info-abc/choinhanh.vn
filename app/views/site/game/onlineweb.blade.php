@@ -15,7 +15,7 @@
 	@include('site.game.breadcrumbgame', array('game' => $game))
 
 	<div class="playgame">
-		<h3>Game {{ $game->name }}</h3>
+		<h1>Game {{ $game->name }}</h1>
 		<div class="playbox">
 			{{ CommonGame::getLinkGame($game) }}
 			<div class="social-box">
@@ -41,7 +41,7 @@
 						</div>
 						<div class="game_title">
 
-							<h1 class="title">{{ $game->name }}</h1>
+							<h2 class="title">{{ $game->name }}</h2>
 
 							@include('site.common.rate', array('vote_average' => $game->vote_average))
 

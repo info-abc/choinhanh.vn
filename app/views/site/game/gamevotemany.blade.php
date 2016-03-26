@@ -40,7 +40,7 @@
 @include('site.common.ad', array('adPosition' => CHILD_PAGE_RELATION))
 
 <div class="box">
-	<h1>Game chơi nhiều nhất</h1>
+	<h3>Game hay nhất</h3>
 	<?php
 		$games = CommonGame::getListGame('vote');
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);

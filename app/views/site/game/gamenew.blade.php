@@ -1,19 +1,15 @@
-@extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', $categoryParent->id), 'seoImage' => FOLDER_SEO_PARENT . '/' . $categoryParent->id))
+@extends('site.layout.default')
 
 @section('title')
-	@if($title = CommonSite::getMetaSeo('CategoryParent', $categoryParent->id)->title_site)
-		{{ $title= $title }}
-	@else
-		{{ $title = $categoryParent->name }}
-	@endif
+{{ $title = 'Game mới nhất'}}
 @stop
 
 @section('content')
 
 <div class="box">
-	<h1>{{ $categoryParent->name }} hay nhất</h1>
+	<h1>Game mới nhất</h1>
 	<?php
-		$games = CommonGame::boxGameByCategoryParent($categoryParent);
+		$games = CommonGame::getListGame('play');
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	?>
 	<div class="swiper-container">
@@ -22,7 +18,7 @@
 				<div class="swiper-slide boxgame">
 					<div class="row">
 					<?php
-						$listGame = $games->orderBy('count_play', 'desc')->orderBy('start_date', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
+						$listGame = $games->orderBy('start_date', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
 					?>
 						@foreach($listGame as $game)
 							@include('site.game.gameitem', array('game' => $game))
@@ -44,9 +40,9 @@
 @include('site.common.ad', array('adPosition' => CHILD_PAGE_RELATION))
 
 <div class="box">
-	<h3>{{ $categoryParent->name }} mới nhất</h3>
+	<h3>Game hay nhất</h3>
 	<?php
-		$games = CommonGame::boxGameByCategoryParent($categoryParent);
+		$games = CommonGame::getListGame('play');
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	?>
 	<div class="swiper-container">
@@ -55,7 +51,7 @@
 				<div class="swiper-slide boxgame">
 					<div class="row">
 					<?php
-						$listGame = $games->orderBy('start_date', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
+						$listGame = $games->orderBy('count_play', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
 					?>
 						@foreach($listGame as $game)
 							@include('site.game.gameitem', array('game' => $game))

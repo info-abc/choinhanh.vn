@@ -138,7 +138,7 @@ define('UPLOAD_USER_AVATAR', '/user_avatar');
 define('ERROR_TYPE_404', 1);
 define('ERROR_TYPE_MISSING', 2);
 //define cache time
-define('CACHETIME', 2);
+define('CACHETIME', 60);
 //define game top
 define('GAMETOP', 30);
 define('GAMETOP_LIMITED', 6);
@@ -147,3 +147,11 @@ define('GAME_VERTICAL', 1);
 define('GAME_HORIZONTAL', 2);
 
 define('CHOINHANH', 'choinhanh.vn');
+
+//category parent id for fix url
+// game moi nhat
+define('GAME_NEW', 7);
+// game android
+define('GAME_ANDROID', 8);
+// game hay nhat (choi nhieu)
+define('GAME_PLAY_MANY', 9);

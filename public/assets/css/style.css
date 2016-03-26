@@ -127,6 +127,7 @@ a.icongoogleplus {
     padding-right: 30px;
 }
 .box > h3,
+.box > h2,
 .box > h1 {
     border-bottom: 2px solid #2b74a1;
     color: #2b74a1;
@@ -138,6 +139,7 @@ a.icongoogleplus {
     position: relative;
 }
 .box > h3 > a,
+.box > h2 > a,
 .box > h1 > a {
     color: #2b74a1;
     font-size: 18px;
@@ -233,6 +235,10 @@ a.icongoogleplus {
     color: #888;
     display: block;
     padding: 5px 3px;
+}
+.item-title h2 {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .item-title a {
     color: #888;
@@ -1033,7 +1039,8 @@ label.star:before {
     height: auto;
 }
 
-h1.title {
+h1.title,
+h2.title {
     border: medium none;
     color: #000;
     display: inline-block;
@@ -1529,7 +1536,8 @@ h1.title {
     border-radius: 10px;
     padding: 15px 10px 10px 10px;
 }
-.playgame h3 {
+.playgame h3,
+.playgame h1 {
     color: #fff;
     font-size: 16px;
     font-weight: bold;
@@ -1634,6 +1642,12 @@ input.fullscreen {
     margin-top: 0;
     padding: 10px;
     text-align: center;
+}
+.topgame > h3 > a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
 }
 .topgame ul {
     background: #fff none repeat scroll 0 0;

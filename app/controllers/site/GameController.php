@@ -222,15 +222,20 @@ class GameController extends SiteController {
     {
     	return View::make('site.game.showlistandroid');
     }
-
+    // binh chon nhieu
     public function getListGameVote()
     {
     	return View::make('site.game.gamevotemany');
     }
-
+    // choi nhieu
     public function getListGameplay()
     {
     	return View::make('site.game.gameplaymany');
+    }
+    // moi nhat
+    public function getListGamenew()
+    {
+    	return View::make('site.game.gamenew');
     }
 
     public function countPlay()
