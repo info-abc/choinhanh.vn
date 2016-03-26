@@ -124,13 +124,25 @@ class CommonSite
         if($seoMeta) {
             $meta = $modelName::find($modelId);
             if($seoMeta->title_site == '') {
-                $seoMeta->title_site = $meta->name;
+                if($modelName == 'Game') {
+                    $seoMeta->title_site = 'Chơi game '.$meta->name.' | Choinhanh.vn'; 
+                } else {
+                    $seoMeta->title_site = $meta->name;
+                }
             }
             if($seoMeta->description_site == '') {
-                $seoMeta->description_site = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
+                if($modelName == 'Game') {
+                    $seoMeta->description_site = convert_string_vi_to_en($meta->name).' - Trò chơi game '. $meta->name.' chọn lọc hay mới nhất 24h tại choinhanh.vn'; 
+                } else {
+                    $seoMeta->description_site = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
+                }
             }
             if($seoMeta->keyword_site == '') {
-                $seoMeta->keyword_site = 'Game '.$meta->name.', trò chơi '.$meta->name.', game cho mobile hay nhất tại choinhanh.vn';
+                if($modelName == 'Game') {
+                    $seoMeta->keyword_site = 'chơi game '.$meta->name.', tro choi '.convert_string_vi_to_en($meta->name).', game '.convert_string_vi_to_en($meta->name).' hay, '.convert_string_vi_to_en($meta->name).' 24h'; 
+                } else {
+                    $seoMeta->keyword_site = 'Game '.$meta->name.', trò chơi '.$meta->name.', game cho mobile hay nhất tại choinhanh.vn';
+                }
             }
             if($seoMeta->title_fb == '') {
                 $seoMeta->title_fb = $meta->name;

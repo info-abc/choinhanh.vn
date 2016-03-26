@@ -14,6 +14,7 @@
 	@if(isset($seoMeta))
 		<meta name="description" content="{{ html_entity_decode($seoMeta->description_site) }}">
 		<meta name="keywords" content="{{ $seoMeta->keyword_site }}">
+		<meta name="title" content="{{ $seoMeta->title_site }}">
 
 		<meta property="og:url" content="{{ Request::url() }}" />
 		<meta property="og:title" content="{{ $seoMeta->title_fb }}" />
