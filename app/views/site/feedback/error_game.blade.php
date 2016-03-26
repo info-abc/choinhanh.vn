@@ -9,18 +9,22 @@
 
 <div class="box">
 	<h3>Báo lỗi game</h3>
-	@if (Session::has('message'))
+	@if ($message != '')
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-4">
-			@include('site.common.message')
+			<div class="alert alert-success">
+		        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		        <strong><center>{{ $message }}</center></strong>
+		    </div>
 		</div>
 	</div>
-	<script>setTimeout(function(){history.back();}, 3000);</script>
+	<?php $url = CommonGame::getUrlGame($input_errorGame); ?>
+	<script>setTimeout(function(){location.href = '<?php echo $url ?>';}, 3000);</script>
 	@endif
 	<div class="clearfix"></div>
 	<div class="col-xs-12">
-	{{ Form::open(array('action' => array('SiteFeedbackController@createErrorGame', $input_errorGame->id), 'method' => 'PUT', 'class' => 'form-horizontal')) }}
-
+	{{ Form::open(array('action' => array('SiteFeedbackController@createErrorGame'), 'method' => 'PUT', 'class' => 'form-horizontal')) }}
+		{{ Form::hidden('gameId', $input_errorGame->id) }}
 		<div class="form-group">
 			<label for="username" class="col-sm-4 control-label label-text">Tên game:</label>
 			<div class="col-sm-4">

@@ -3,7 +3,7 @@
 	<div class="item">
 	    <div class="item-image">
 			<a href="{{ $url }}">
-				<img src="{{ url(UPLOAD_GAME_AVATAR . '/' .  $game->image_url) }}" alt="{{ $game->name }}" />
+				<img src="{{ url(UPLOAD_GAME_AVATAR . '/' .  $game->image_url) }}" alt="{{ $game->slug }}" />
 			</a>
 			
 	    </div>

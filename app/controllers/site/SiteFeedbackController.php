@@ -112,11 +112,12 @@ class SiteFeedbackController extends SiteController {
 	* @param int $id
 	* @return Response
 	*/
-	public function errorGame($id)
+	public function errorGame()
 	{
-
-		$input_errorGame = Game::find($id);
-		return View::make('site.feedback.error_game')->with(compact('input_errorGame'));
+		$input = Input::all();
+		$input_errorGame = Game::find($input['gameId']);
+		$message = '';
+		return View::make('site.feedback.error_game')->with(compact('input_errorGame', 'message'));
 	}
 
 	/**
@@ -125,7 +126,7 @@ class SiteFeedbackController extends SiteController {
 	* @param int $id
 	* @return Response
 	*/
-	public function createErrorGame($id)
+	public function createErrorGame()
 	{
 		$input = Input::except('_token');
 		$rules = array(
@@ -133,17 +134,18 @@ class SiteFeedbackController extends SiteController {
 		);
 		$validator = Validator::make($input,$rules);
 		if($validator->fails()) {
-			return Redirect::action('SiteFeedbackController@errorGame', $id)
+			return Redirect::action('SiteFeedbackController@errorGame', $input['gameId'])
 	            ->withErrors($validator);
         } else {
-
-        	$input['game_id'] = $id;
+        	$input['game_id'] = $input['gameId'];
       		$input['status'] = INACTIVE;
       		$input['ip'] = getIpAddress();
       		$input['device'] = getDevice();
         	$id_errorgame = CommonNormal::create($input, 'feedback_game');
         	if($id_errorgame) {
-        		return Redirect::action('SiteFeedbackController@errorGame',$id)->with('message', 'Báo lỗi game thành công!');
+        		$input_errorGame = Game::find($input['gameId']);
+        		$message = 'Báo lỗi game thành công!';
+        		return View::make('site.feedback.error_game')->with(compact('input_errorGame', 'message'));
         	} else {
         		dd('Error');
         	}

@@ -177,8 +177,8 @@ Route::put('/thong-tin-tai-khoan', array('uses' => 'AccountController@doAccount'
 
 Route::get('/gop-y', array('uses' => 'SiteFeedbackController@create', 'as' =>'feedback'));
 Route::post('/gop-y', array('uses' => 'SiteFeedbackController@store'));
-Route::get('/bao-loi-game/{id}', array('uses' => 'SiteFeedbackController@errorGame', 'as' =>'error_game'));
-Route::put('/bao-loi-game/{id}', array('uses' => 'SiteFeedbackController@createErrorGame'));
+Route::post('/bao-loi-game', array('uses' => 'SiteFeedbackController@errorGame', 'as' =>'error_game'));
+Route::put('/bao-loi-game', array('uses' => 'SiteFeedbackController@createErrorGame'));
 Route::get('/chinh-sach', array('uses' => 'SiteFeedbackController@policy', 'as' =>'policy'));
 
 Route::post('/send-error-game', array('uses' => 'SiteFeedbackController@sendErrorGame'));
