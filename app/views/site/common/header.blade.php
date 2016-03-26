@@ -6,6 +6,11 @@
 	<meta property="fb:admins" content="{{ APP_ADMIN }}"/>
 	<title>@yield('title')</title>
 
+	<meta name="robots" content="noodp,index,follow" />
+	<meta name='revisit-after' content='1 days' />
+	<meta http-equiv="content-language" content="vi"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
 	@if(isset($seoMeta))
 		<meta name="description" content="{{ html_entity_decode($seoMeta->description_site) }}">
 		<meta name="keywords" content="{{ $seoMeta->keyword_site }}">
