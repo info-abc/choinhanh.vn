@@ -65,27 +65,42 @@ class CommonNormal
 		if ($name == 'log_edit') {
 			return 'LogEdit';
 		}
-		if($name == 'relation')
+		if($name == 'relation') {
 			return 'Relation';
-		if($name == 'comment')
+		}
+		if($name == 'comment') {
 			return 'Comment';
-		if($name == 'feedback')
+		}
+		if($name == 'feedback') {
 			return 'Feedback';
-		if($name == 'feedback_game')
+		}
+		if($name == 'feedback_game') {
 			return 'GameErrors';
-		if($name == 'seo')
+		}
+		if($name == 'seo') {
 			return 'AdminSeo';
-		if($name == 'user')
+		}
+		if($name == 'user') {
 			return 'User';
-		if($name == 'policy')
+		}
+		if($name == 'policy') {
 			return 'Policy';
-		if($name == 'GameVote')
+		}
+		if($name == 'GameVote') {
 			return 'GameVote';
-		if($name == 'score')
+		}
+		if($name == 'score') {
 			return 'Score';
-		if($name == 'AdminError')
+		}
+		if($name == 'AdminError') {
 			return 'AdminError';
-		if($name == 'AdminErrorLog')
+		}
+		if($name == 'AdminErrorLog') {
 			return 'AdminErrorLog';
+		}
+		if($name == 'tags') {
+			return 'AdminTag';
+		}
+		
 	}
 }
