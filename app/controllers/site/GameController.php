@@ -126,6 +126,12 @@ class GameController extends SiteController {
         }
 		$play = Input::get('play');
 		if($game) {
+			if(getDevice() == MOBILE) {
+				if($game->parent_id == GAMEFLASH) {
+					return Redirect::to($game->link_game_redirect);
+				}
+			}
+
 			$count_view = $game->count_view+1;
 			$game->update(array('count_view' => $count_view));
 			if(getDevice() == COMPUTER) {

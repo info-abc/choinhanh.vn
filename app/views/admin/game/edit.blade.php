@@ -146,6 +146,11 @@
 						</div>
 
 						<div class="form-group">
+							<label>Link game redirect</label>
+							{{ Form::text('link_game_redirect', $inputGame->link_game_redirect , textParentCategory('')) }}
+						</div>
+
+						<div class="form-group">
 			                <label>Kiểu xoay màn hình</label>
 			                {{ Form::select('screen', selectScreenGame(), $inputGame->screen, array('class' => 'form-control')) }}
 		              	</div>

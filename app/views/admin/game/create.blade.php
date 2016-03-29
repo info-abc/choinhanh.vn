@@ -29,14 +29,14 @@
 							{{ Form::text('name', null , textParentCategory('Tên game','','name_game')) }}
 						</div>
 						<div class="form-group">
-			                <label>Lịch xuất bản</label>
-			                <input type="text" class="form-control" maxlength="10" name="start_date" id="start_date" placeholder="Ngày đăng" />
-		              	</div>
+							<label>Lịch xuất bản</label>
+							<input type="text" class="form-control" maxlength="10" name="start_date" id="start_date" placeholder="Ngày đăng" />
+						</div>
 						<div class="form-group">
-			                <label>Chọn category</label>
-			                {{ Form::select('parent_id', Game::where('parent_id', NULL)->lists('name', 'id'), NULL, array('class' => 'form-control', 'onchange' => 'getFormGameOffline()')) }}
-		              	</div>
-		              	<div class="form-group">
+							<label>Chọn category</label>
+							{{ Form::select('parent_id', Game::where('parent_id', NULL)->lists('name', 'id'), NULL, array('class' => 'form-control', 'onchange' => 'getFormGameOffline()')) }}
+						</div>
+						<div class="form-group">
 							<label>Upload avatar</label>
 							{{ Form::file('image_url') }}
 						</div>
@@ -56,7 +56,7 @@
 									<tr>
 										<td>{{ $value->name }}</td>
 										<td>
-										 	<input type="radio" name="type_main" value="{{ $value->id }}" id="type_main_{{ $value->id }}" onclick="checkTypeMain({{ $value->id }});" />
+											<input type="radio" name="type_main" value="{{ $value->id }}" id="type_main_{{ $value->id }}" onclick="checkTypeMain({{ $value->id }});" />
 										</td>
 										<td>
 											<input type="checkbox" name="type_id[]" value="{{ $value->id }}" id="type_id_{{ $value->id }}" onclick="checkType({{ $value->id }});" />
@@ -68,11 +68,11 @@
 					</div>
 				</div>
 
-		        <div class="col-sm-12">
+				<div class="col-sm-12">
 					<div class="box-body">
 						<div class="form-group">
 							<label>Mô tả</label>
-					        {{ Form::textarea('description',"", array('class' => 'form-control',"rows"=>6, 'id' => 'editor1')) }}
+							{{ Form::textarea('description',"", array('class' => 'form-control',"rows"=>6, 'id' => 'editor1')) }}
 						</div>
 					</div>
 				</div>
@@ -110,18 +110,18 @@
 							{{ Form::text('gname', null , textParentCategory('Gname')) }}
 						</div>
 
-		              	<div class="form-group">
-			                <label>Trạng thái</label>
-			                {{ Form::select('status', selectStatusGame(), '', array('class' => 'form-control')) }}
-		              	</div>
+						<div class="form-group">
+							<label>Trạng thái</label>
+							{{ Form::select('status', selectStatusGame(), '', array('class' => 'form-control')) }}
+						</div>
 
-		              	<div class="ui-widget">
-			                <label>Slide</label>
-			                <!-- {{ Form::select('slide_id', ['' => 'No slide'] +CommonGame::getSlide()) }} -->
-			                {{ Form::select('slide_id', ['' => 'No slide'] +CommonGame::getSlide(), '', array('id' => 'combobox')) }}
-		              	</div>
+						<div class="ui-widget">
+							<label>Slide</label>
+							<!-- {{ Form::select('slide_id', ['' => 'No slide'] +CommonGame::getSlide()) }} -->
+							{{ Form::select('slide_id', ['' => 'No slide'] +CommonGame::getSlide(), '', array('id' => 'combobox')) }}
+						</div>
 
-		              	<div class="box-body table-responsive">
+						<div class="box-body table-responsive">
 							<h4>Khung game</h4>
 							<div class="overflow-box">
 								<table class="table table-bordered">
@@ -142,9 +142,14 @@
 						</div>
 
 						<div class="form-group">
-			                <label>Kiểu xoay màn hình</label>
-			                {{ Form::select('screen', selectScreenGame(), '', array('class' => 'form-control')) }}
-		              	</div>
+							<label>Link game redirect</label>
+							{{ Form::text('link_game_redirect', null , textParentCategory('')) }}
+						</div>
+
+						<div class="form-group">
+							<label>Kiểu xoay màn hình</label>
+							{{ Form::select('screen', selectScreenGame(), '', array('class' => 'form-control')) }}
+						</div>
 
 						<hr />
 						<h1>SEO META</h1>
