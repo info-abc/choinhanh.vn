@@ -137,6 +137,7 @@ a.icongoogleplus {
     margin-top: 10px;
     padding-bottom: 5px;
     position: relative;
+    text-transform: uppercase;
 }
 .box > h3 > a,
 .box > h2 > a,
@@ -1858,4 +1859,7 @@ input.fullscreen {
 .btn-green:focus {
     background-color: #538E2D;
     border-color: #538E2D;
+}
+a.vehicle-text {
+    color: #474747;
 }

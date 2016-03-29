@@ -50,8 +50,8 @@
 			</div> --}}
 
 			<div class="form-group">
-				<div class="col-sm-offset-4 col-sm-6">
-					<input type="checkbox" name="vehicle" id="vehicle" value="check" required> <a href="{{ action('SiteFeedbackController@policy') }}">Tôi đồng ý với các quy định trong bản thỏa thuận sử dụng</a>
+				<div class="col-sm-offset-4 col-sm-4">
+					<input type="checkbox" name="vehicle" id="vehicle" value="check" required> <a class="vehicle-text" href="{{ action('SiteFeedbackController@policy') }}">Tôi đồng ý với các quy định trong bản thỏa thuận sử dụng</a>
 					<br>
 
 				</div>
