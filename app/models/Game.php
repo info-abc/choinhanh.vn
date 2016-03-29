@@ -17,7 +17,7 @@ class Game extends Eloquent implements SluggableInterface
 	     'weight_number', 'score_status', 'start_date', 'status',
          'support_detail', 'gname', 'link_download',
          'link_upload_game', 'slide_id', 'slug', 'type_main','width','height','total_play_download_before_weekly','total_play_download_current_weekly',
-         'total_play_dowload_before_month','total_play_dowload_current_month','update_week', 'screen'];
+         'total_play_dowload_before_month','total_play_dowload_current_month','update_week', 'screen', 'link_game_redirect'];
     protected $dates = ['deleted_at'];
 
     protected $sluggable = array(
@@ -62,6 +62,16 @@ class Game extends Eloquent implements SluggableInterface
     public function users()
     {
         return $this->belongsToMany('User', 'game_histories', 'game_id', 'user_id');
+    }
+
+    public function gameTags()
+    {
+        return $this->hasMany('GameTag', 'game_id', 'id');
+    }
+
+    public function tags() 
+    {
+        return $this->belongsToMany('AdminTag', 'game_tags', 'game_id', 'tag_id');
     }
 
 }
