@@ -11,7 +11,7 @@ a {
 }
 .logo {
     display: inline-block;
-    margin-left: 30px;
+    margin-left: 10px;
     max-width: 100px;
 }
 .logo img {
@@ -145,6 +145,7 @@ a.icongoogleplus {
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
+    text-transform: uppercase;
 }
 .box > h4 {
     color: #538e3e;
@@ -312,8 +313,8 @@ i.play {
     border-bottom-color: #538e3e;
 }
 .copyright {
-    background: #ebebeb none repeat scroll 0 0;
-    color: #474747;
+    background: #474747 none repeat scroll 0 0;
+    color: #fff;
     padding-bottom: 12px;
     padding-top: 18px;
     text-align: center;
@@ -1418,6 +1419,7 @@ h2.title {
     margin-top: 0;
 }
 .list-text h3 a {
+    color: #474747;
     font-weight: bold;
     font-size: 15px;
     text-decoration: none;
@@ -1682,7 +1684,7 @@ h2.title {
 }
 
 .playgame {
-    background: #7EA8C1;
+    background: #ed933b;
     border-radius: 10px;
     padding: 15px 10px 10px 10px;
 }
@@ -1725,7 +1727,7 @@ input.fullscreen {
     text-decoration: none;
 }
 .social-box .social {
-    border: 5px solid #f7b137;
+    border: 5px solid #474747;
     border-radius: 5px;
     display: inline-block;
     padding: 15px 30px;
@@ -1740,6 +1742,7 @@ input.fullscreen {
 }
 .gamenav li a {
     border-radius: 10px 10px 0 0;
+    color: #474747;
     font-weight: bold;
     padding-bottom: 5px;
     padding-top: 5px;
@@ -1776,14 +1779,14 @@ input.fullscreen {
 }
 
 .topgame {
-    background: #F7AA28 none repeat scroll 0 0;
+    background: #474747 none repeat scroll 0 0;
     border-radius: 10px;
     margin-bottom: 10px;
     margin-top: 45px;
     padding: 7px 7px 4px;
 }
 .topgame > h3 {
-    background: #F7AA28 none repeat scroll 0 0;
+    background: #474747 none repeat scroll 0 0;
     border-radius: 10px 10px 0 0;
     color: #fff;
     font-size: 16px;

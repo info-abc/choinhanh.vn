@@ -1,6 +1,6 @@
 <textarea class="form-control" name="description" rows="3" placeholder="Nội dung báo lỗi" id="description" required></textarea>
 <br />
-<input type="submit" class="btn btn-primary" value="Gửi" onclick="sendErrorGame()" />
+<input type="submit" class="btn btn-primary btn-green" value="Gửi" onclick="sendErrorGame()" />
 <input type="reset"  class="btn btn-default" value="Nhập lại" />
 
 <div id="modal-senderror-alert" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-default btn-green" data-dismiss="modal">Đóng</button>
             </div>
         </div>
     </div>
