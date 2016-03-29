@@ -107,6 +107,8 @@ class AdminTagController extends AdminController {
 	 */
 	public function destroy($id)
 	{
+		$data = AdminTag::find($id);
+		RelationBox::deleteRelationship($data, 'games');
 		CommonNormal::delete($id);
 		return Redirect::action('AdminTagController@index');
 	}

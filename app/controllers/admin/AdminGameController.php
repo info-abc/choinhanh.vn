@@ -76,6 +76,7 @@ class AdminGameController extends AdminController {
 			if($data) {
 				RelationBox::insertRelationship($data, 'types', Input::get('type_id'));
 				// RelationBox::insertRelationship($data, 'categoryparents', Input::get('category_parent_id'));
+				RelationBox::insertRelationship($data, 'tags', Input::get('tag_id'));
 			}
 			//insert histories: model_name, model_id, last_time, device, last_ip
 			$history_id = CommonLog::insertHistory('Game', $id);
@@ -170,6 +171,7 @@ class AdminGameController extends AdminController {
 				if($data) {
 					RelationBox::updateRelationship($data, 'types', Input::get('type_id'));
 					// RelationBox::updateRelationship($data, 'categoryparents', Input::get('category_parent_id'));
+					RelationBox::updateRelationship($data, 'tags', Input::get('tag_id'));
 				}
 			}
 
@@ -202,6 +204,7 @@ class AdminGameController extends AdminController {
 
 			RelationBox::deleteRelationship($data, 'types');
 			RelationBox::deleteRelationship($data, 'categoryparents');
+			RelationBox::deleteRelationship($data, 'tags');
 
 			CommonNormal::delete($id);
 

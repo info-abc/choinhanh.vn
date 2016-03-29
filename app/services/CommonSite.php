@@ -35,43 +35,22 @@ class CommonSite
     {
         // Header & Footer
         if($modelName == null && $modelId == null) {
-            if (Cache::has('ad'.$position))
-            {
-                $ad = Cache::get('ad'.$position);
-            } else {
-                $ad = Advertise::where(array('position' => $position, 'status' => ENABLED))->first();
-                Cache::put('ad'.$position, $ad, CACHETIME);
-            }
-            return $ad;
+            $ad = Advertise::where(array('position' => $position, 'status' => ENABLED))->first();
+			if(isset($ad)) {
+				return $ad;
+			} else {
+				return null;
+			}
         }
         // Content
         else {
             //check Common models
-            if (Cache::has('common_model'.$modelName.$modelId))
-            {
-                $common_model = Cache::get('common_model'.$modelName.$modelId);
-            } else {
-                $common_model = CommonModel::where(array('model_name' => $modelName, 'model_id' => $modelId))->first();
-                Cache::put('common_model'.$modelName.$modelId, $common_model, CACHETIME);
-            }
+            $common_model = CommonModel::where(array('model_name' => $modelName, 'model_id' => $modelId))->first();
             if (isset($common_model)) {
                 $common_model_id = $common_model->id;
-                if (Cache::has('advertisement_id'.$common_model_id))
-                {
-                    $advertisement_id = Cache::get('advertisement_id'.$common_model_id);
-                } else {
-                    $advertisement_id = AdvertisePosition::where(array('common_model_id' => $common_model_id, 'status' => ENABLED))->first();
-                    Cache::put('advertisement_id'.$common_model_id, $advertisement_id, CACHETIME);
-                }
+				$advertisement_id = AdvertisePosition::where(array('common_model_id' => $common_model_id, 'status' => ENABLED))->first();
                 if(isset($advertisement_id)) {
-                    if (Cache::has('ad'.$advertisement_id))
-                    {
-                        $ad = Cache::get('ad'.$advertisement_id);
-                    } else {
-                        $advertisement_id = AdvertisePosition::where(array('common_model_id' => $common_model_id, 'status' => ENABLED))->first()->advertisement_id;
-                        $ad = Advertise::find($advertisement_id);
-                        Cache::put('ad'.$advertisement_id, $advertisement_id, CACHETIME);
-                    }
+					$ad = Advertise::find($advertisement_id->advertisement_id);
                     return $ad;
                 }
                 return null;

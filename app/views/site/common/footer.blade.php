@@ -11,3 +11,11 @@
 		<p>Tel: (84-4) 3.775.4334 - Fax: (84-4) 3512 1804</p> --}}
 	</div>
 </div>
+<div class="tags">
+	<ul>
+	@foreach(AdminTag::all() as $value)
+		<li><a href="{{ url('tag/'.$value->slug) }}">{{ $value->name }}</a></li>
+	@endforeach
+	</ul>
+	<div class="clearfix"></div>
+</div>

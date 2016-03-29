@@ -1863,3 +1863,22 @@ input.fullscreen {
 a.vehicle-text {
     color: #474747;
 }
+.tags {
+    background: #474747;
+}
+.tags ul {
+    padding-left: 0;
+    overflow: hidden;
+    text-align: center;
+}
+.tags ul li {
+    list-style: none;
+    width: auto;
+    display: inline-block;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.tags ul li a {
+    color: #fff;
+    text-decoration: none;
+}

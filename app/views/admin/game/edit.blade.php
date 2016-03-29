@@ -155,6 +155,11 @@
 			                {{ Form::select('screen', selectScreenGame(), $inputGame->screen, array('class' => 'form-control')) }}
 		              	</div>
 
+		              	<div class="form-group">
+							<label>Tags</label>
+							{{ Form::select('tag_id[]', AdminTag::orderBy('id', 'desc')->lists('name', 'id'), GameTag::where('game_id', $inputGame->id)->lists('tag_id'), array('class' => 'form-control', 'multiple' => true, 'style' => 'height: 200px;')) }}
+						</div>
+
 						<hr />
 						<h1>SEO META</h1>
 
