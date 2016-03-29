@@ -36,6 +36,7 @@ define('UPLOAD_FLASH', '/games-flash');
 define('UPLOAD_GAMEOFFLINE', '/games-offline');
 //url upload news
 define('UPLOAD_NEWS', '/news');
+define('UPLOAD_GAME_TYPE', '/gametype');
 //folder upload image facebook
 define('FOLDER_SEO_GAME', 'fb_game');
 define('FOLDER_SEO_GAMETYPE', 'fb_gametype');

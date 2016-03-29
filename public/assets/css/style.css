@@ -1,16 +1,17 @@
 body {
-    background: #ecf0f1;
+    /*background: #ecf0f1;*/
+    background: url('/assets/images/bg.jpg') no-repeat fixed;
 }
 a {
     text-decoration: none;
 }
 .top {
-    background: rgba(0, 0, 0, 0) url("../images/topbg.jpg") no-repeat scroll 100% 100%;
-    padding-bottom: 5px;
-    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 .logo {
     display: inline-block;
+    margin-left: 30px;
     max-width: 100px;
 }
 .logo img {
@@ -21,9 +22,9 @@ a {
 .search {
     float: right;
     margin-top: 10px;
+    margin-bottom: 5px;
     text-align: right;
     width: auto;
-
 }
 .search form {
     position: relative;
@@ -38,20 +39,20 @@ a {
     font-size: 14px;
     letter-spacing: 1px;
     max-width: 100%;
-    padding: 7px 13px;
+    padding: 0 30px 0 10px;
     width: 100%;
-	height: 39px;
+	height: 34px;
 	font-style: italic;
 }
 .search input[type=submit] {
     background: rgba(0, 0, 0, 0) url("../images/search-icon.png") no-repeat scroll center center;
     border: medium none;
     font-size: 0;
-    height: 39px;
+    height: 34px;
     position: absolute;
     right: 0;
     top: 0;
-    width: 39px;
+    width: 34px;
 }
 
 /*search*/
@@ -63,15 +64,15 @@ a {
 }
 .search1 input[type=text] {
     background: #fff none repeat scroll 0 0;
-    border-left: 8px solid #2b74a1;
-    border-bottom: 1px solid #2b74a1;
+    border-left: 8px solid #538e3e;
+    border-bottom: 1px solid #538e3e;
     color: #000;
     font-size: 14px;
     letter-spacing: 1px;
     max-width: 100%;
     padding: 7px 13px;
     width: 100%;
-    height: 39px;
+    height: 34px;
     font-style: italic;
 }
 .search1 input[type=submit] {
@@ -82,7 +83,7 @@ a {
     position: absolute;
     right: 0;
     top: 0;
-    width: 39px;
+    width: 34px;
 }
 #iconseach{
     display: none;
@@ -90,7 +91,7 @@ a {
 
 a.iconfacebook,
 a.icongoogleplus {
-    color: #fff;
+    color: #538e3e;
     cursor: pointer;
     font-size: 24px;
     padding: 5px 8px;
@@ -100,7 +101,6 @@ a.icongoogleplus {
 /* main */
 .main {
     background: #fff;
-    padding-top: 5px;
 }
 
 .title_center {
@@ -129,8 +129,8 @@ a.icongoogleplus {
 .box > h3,
 .box > h2,
 .box > h1 {
-    border-bottom: 2px solid #2b74a1;
-    color: #2b74a1;
+    border-bottom: 2px solid #474747;
+    color: #538e3e;
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -141,17 +141,17 @@ a.icongoogleplus {
 .box > h3 > a,
 .box > h2 > a,
 .box > h1 > a {
-    color: #2b74a1;
+    color: #538e3e;
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
 }
 .box > h4 {
-    color: #2b74a1;
+    color: #538e3e;
     text-transform: uppercase;
 }
 .box a.box-more {
-    background: #2b74a1 none repeat scroll 0 0;
+    background: #538e3e none repeat scroll 0 0;
     border-radius: 30px 0 0;
     color: #fff;
     float: right;
@@ -171,7 +171,7 @@ a.icongoogleplus {
 }
 
 .item {
-    border: 1px solid #c8c8c8;
+    border: 1px solid #474747;
     margin-bottom: 10px;
     height: 140px;
 }
@@ -186,7 +186,7 @@ a.icongoogleplus {
     max-width: 100%;
 }
 .item-image strong {
-    color: #888;
+    color: #474747;
     display: block;
     font-size: 13px;
     font-weight: bold;
@@ -232,7 +232,7 @@ a.icongoogleplus {
     text-decoration: none;
 }
 .item-title {
-    color: #888;
+    color: #474747;
     display: block;
     padding: 5px 3px;
 }
@@ -241,9 +241,10 @@ a.icongoogleplus {
     margin-bottom: 0;
 }
 .item-title a {
-    color: #888;
+    color: #474747;
     font-size: 13px;
     text-align: center;
+    font-weight: bold;
 }
 .item-play {
 
@@ -282,7 +283,7 @@ i.play {
 }
 .footer ul {
     background: #fff none repeat scroll 0 0;
-    border-bottom: 1px solid #2b74a1;
+    border-bottom: 1px solid #538e3e;
     list-style: outside none none;
     margin-bottom: 0;
     padding-left: 0;
@@ -298,7 +299,7 @@ i.play {
 .footer ul li a {
     display: block;
     padding-bottom: 10px;
-    color: #888;
+    color: #474747;
     text-align: center;
     text-transform: uppercase;
     border-bottom: 4px solid transparent;
@@ -306,13 +307,13 @@ i.play {
 .footer ul li a:hover,
 .footer ul li a:focus,
 .footer ul li a.active {
-    color: #2b74a1;
+    color: #538e3e;
     text-decoration: none;
-    border-bottom-color: #2b74a1;
+    border-bottom-color: #538e3e;
 }
 .copyright {
     background: #ebebeb none repeat scroll 0 0;
-    color: #888;
+    color: #474747;
     padding-bottom: 12px;
     padding-top: 18px;
     text-align: center;
@@ -324,7 +325,9 @@ i.play {
 
 /*menu*/
 .menu-top {
-    background: #2b74a1 none repeat scroll 0 0;
+    background: #538e3e none repeat scroll 0 0;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .menu-static {
     padding-bottom: 0;
@@ -367,7 +370,7 @@ i.play {
 }
 
 .menu-hide {
-    background: #2b74a1;
+    background: #538e3e;
     text-align: center;
 }
 .menu-hide a {
@@ -390,7 +393,7 @@ i.play {
     border-bottom-color: transparent !important;
 }
 .menu-show a i.fa {
-    color: #888;
+    color: #474747;
     font-size: 20px;
 }
 .menushow {
@@ -398,15 +401,14 @@ i.play {
     visibility: visible !important;
 }
 a.menu_show_list {
-
-    color: #fff;
+    color: #538e3e;
     font-size: 24px;
     cursor: pointer;
     margin-left: 22px;
 }
 /*menu box*/
 .menu-account {
-    background: #888 none repeat scroll 0 0;
+    background: #474747 none repeat scroll 0 0;
 }
 a.account-name,
 a.game-favorite,
@@ -450,14 +452,14 @@ a.signout {
 
 }
 .menu-login a.signin {
-    background: #888 none repeat scroll 0 0;
+    background: #474747 none repeat scroll 0 0;
 }
 .menu-login a.signup {
     background: #a9a8a6 none repeat scroll 0 0;
 }
 #cssmenu {
     background: #fff none repeat scroll 0 0;
-    box-shadow: 0 1px 3px #888;
+    box-shadow: 0 1px 3px #474747;
     /*display: none;*/
     visibility: hidden;
     right: 0;
@@ -483,16 +485,16 @@ a.signout {
 }
 #cssmenu > ul > li {
     background: #000 none repeat scroll 0 0;
-    border-bottom: 1px solid #2b74a1;
+    border-bottom: 1px solid #538e3e;
     cursor: pointer;
 }
 #cssmenu > ul > li:last-child {
-    border-bottom: 1px solid #2b74a1;
+    border-bottom: 1px solid #538e3e;
 }
 #cssmenu > ul > li > a {
     background: #fff none repeat scroll 0 0;
-    border-left: 8px solid #2b74a1;
-    color: #888;
+    border-left: 8px solid #538e3e;
+    color: #474747;
     display: block;
 }
 #cssmenu > ul > li > a:hover {
@@ -509,7 +511,7 @@ a.signout {
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    border-color: transparent transparent transparent #2b74a1;
+    border-color: transparent transparent transparent #538e3e;
     border-image: none;
     border-style: solid;
     border-width: 5px;
@@ -523,7 +525,7 @@ a.signout {
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    border-color: #2b74a1 transparent transparent;
+    border-color: #538e3e transparent transparent;
     border-image: none;
     border-style: solid;
     border-width: 5px;
@@ -536,8 +538,8 @@ a.signout {
 }
 #cssmenu ul ul a {
     background: #ebebeb none repeat scroll 0 0;
-    border-left: 8px solid #2b74a1;
-    color: #888;
+    border-left: 8px solid #538e3e;
+    color: #474747;
     display: block;
 }
 #cssmenu ul ul li {
@@ -557,7 +559,7 @@ a.signout {
 
 }
 .color1 {
-    color: #2b74a1 !important;
+    color: #538e3e !important;
 }
 .color2 {
     color: #a3ca39 !important;
@@ -596,7 +598,7 @@ a.signout {
 }
 .charts ul li {
     background: #fff none repeat scroll 0 0;
-    border-bottom: 1px solid #2b74a1;
+    border-bottom: 1px solid #538e3e;
     border-radius: 10px;
     margin-bottom: 5px;
     padding: 5px 10px;
@@ -618,7 +620,7 @@ a.signout {
     vertical-align: middle;
 }
 .charts-text strong {
-    color: #2b74a1;
+    color: #538e3e;
     display: block;
     font-size: 16px;
 }
@@ -636,12 +638,12 @@ a.edit-password {
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
-    color: #888;
+    color: #474747;
     margin-top: 3px;
 }
 a.edit-email:hover,
 a.edit-password:hover {
-    color: #888;
+    color: #474747;
 }
 a.edit-email i.fa,
 a.edit-password i.fa {
@@ -718,7 +720,7 @@ a.download i.fa {
 }
 
 .cachar {
-    background: #2b74a1;
+    background: #538e3e;
     border-radius: 0px;
     color: #fff;
     text-align: center;
@@ -731,6 +733,153 @@ a.download i.fa {
 #code{
     width: 50%;
 }
+
+/* style giao dien moi */
+
+.top-pc {
+
+}
+.top-pc .logo {
+    float: left;
+    width: auto;
+}
+.top-image {
+    float: left;
+    width: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.top-image > img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+.top-ad {
+    float: left;
+    width: auto;
+}
+.top-right {
+    float: right;
+    width: auto;
+    margin-right: 10px;
+    text-align: right;
+}
+.top-right .search form {
+    vertical-align: top;
+    width: 240px;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.top-right-login > span {
+    font-size: 12px;
+    margin-right: 15px;
+    color: #888;
+}
+.top-right-login a.account-name {
+    color: #474747;
+    display: inline-block;
+}
+.top-right-login a.signout {
+    background: #474747;
+    font-size: 12px;
+    color: #fff;
+    padding: 4px 10px;
+    margin-left: 10px;
+    display: inline-block;
+    text-align: center;
+    width: 100px;
+    line-height: normal !important;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.top-right-login a.signin {
+    background: #538e3e;
+    font-size: 12px;
+    color: #fff;
+    margin-right: 10px;
+    padding: 3px 5px;
+    display: inline-block;
+    text-align: center;
+    width: 95px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.top-right-login a.signup {
+    background: #474747;
+    font-size: 12px;
+    color: #fff;
+    padding: 3px 5px;
+    display: inline-block;
+    text-align: center;
+    width: 95px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.menu-top-pc {
+    background: transparent;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #538e3e;
+}
+.menu-top-pc .menu-static {
+    padding-bottom: 0;
+    background: #538e3e none repeat scroll 0 0;
+    padding-top: 0;
+}
+.menu-top-pc ul.nav-type {
+    padding-left: 0;
+    overflow: hidden;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+.menu-top-pc ul.nav-type li {
+    list-style: none;
+    float: left;
+    width: 11%;
+    text-align: center;
+}
+.menu-top-pc ul.nav-type li img {
+    width: 20px;
+    height: 20px;
+}
+.menu-top-pc ul.nav-type li a {
+    color: #474747;
+    text-decoration: none;
+}
+.menu-top-pc ul.nav-type li a.active {
+    color: #538e3e;
+}
+.menu-top-pc .menu-static ul li a {
+    padding-bottom: 7px;
+    padding-top: 7px;
+}
+
+/*sharing button*/
+.sharing {
+    margin: 0;
+    overflow-x: auto;
+    display: inline-block;
+}
+.sharing_tab {
+    float: left;
+    padding-top: 5px;
+    width: auto;
+}
+.sharing > span {
+    display: inline-block;
+    font-size: 10px;
+    vertical-align: top;
+}
+.facebook_comment {
+    margin: 25px 0 10px;
+    overflow-x: auto;
+}
+/*fanpage*/
+.fb-like-box {
+    overflow-x: auto;
+    width: 100%;
+}
+
+
 /*responsive for mobile screen < 768px*/
 @media (max-width: 500px) {
 
@@ -765,7 +914,7 @@ a.download i.fa {
     }
 
     .top {
-        /*background: #2b74a1;*/
+        /*background: #538e3e;*/
         padding-top: 10px;
         padding-bottom: 8px;
     }
@@ -1006,7 +1155,7 @@ label.star {
   float: right;
   padding: 2px 3px;
   font-size: 24px;
-  color: #888;
+  color: #474747;
   margin: 0;
   transition: all .2s;
 }
@@ -1051,7 +1200,7 @@ h2.title {
 }
 
 .comment .nav-tabs {
-    border: 1px solid #2b74a1;
+    border: 1px solid #538e3e;
     margin-bottom: 10px;
 }
 .comment .nav-tabs > li {
@@ -1059,6 +1208,7 @@ h2.title {
     margin: 0;
 }
 .comment .nav-tabs > li > a {
+    color: #538e3e;
     border: none;
     border-radius: 0;
     font-size: 18px;
@@ -1068,12 +1218,12 @@ h2.title {
     margin: 0;
 }
 .comment .nav-tabs > li > a:hover {
-    border-color: #2b74a1;
+    border-color: #538e3e;
 }
 .comment .nav-tabs > li.active > a,
 .comment .nav-tabs > li.active > a:focus,
 .comment .nav-tabs > li.active > a:hover {
-    background: #2b74a1 none repeat scroll 0 0;
+    background: #538e3e none repeat scroll 0 0;
     border: none;
     color: #fff;
 }
@@ -1274,7 +1424,7 @@ h2.title {
 }
 .list-text span {
     font-size: 13px;
-    color: #888;
+    color: #474747;
 }
 .list-text p {
     text-align: justify;
@@ -1382,7 +1532,7 @@ h2.title {
 /*breadcrumb*/
 .breadcrumb {
     background: transparent none repeat scroll 0 0;
-    border-bottom: 2px solid #2b74a1;
+    border-bottom: 2px solid #538e3e;
     border-radius: 0;
     margin: 0 0 15px;
     padding-left: 0;
@@ -1397,11 +1547,11 @@ h2.title {
     display: inline-block;
 }
 .breadcrumb ul li a {
-    color: #2b74a1;
+    color: #538e3e;
     font-size: 13px;
 }
 .breadcrumb i.fa {
-    color: #2b74a1;
+    color: #538e3e;
     padding-left: 10px;
     padding-right: 5px;
 }
@@ -1490,7 +1640,7 @@ h2.title {
 .comment-user span {
     font-size: 14px;
     font-weight: bold;
-    color: #2B74A1;
+    color: #538e3e;
 }
 .comment-desc {
     display: block;
@@ -1562,7 +1712,7 @@ h2.title {
 }
 a.fullscreen,
 input.fullscreen {
-    background: #2b74a1 none repeat scroll 0 0;
+    background: #538e3e none repeat scroll 0 0;
     border: medium none;
     border-radius: 5px;
     color: #fff;
@@ -1595,18 +1745,18 @@ input.fullscreen {
     padding-top: 5px;
 }
 .gamenav li.active > a {
-    background: #2b74a1 none repeat scroll 0 0;
+    background: #538e3e none repeat scroll 0 0;
     border-radius: 10px 10px 0 0;
     color: #fff;
 }
 .gamenav li.active > a:hover,
 .gamenav li.active > a:focus {
-    background: #2B74A1;
+    background: #538e3e;
     color: #fff;
 }
 .gamecontent .web,
 .gamecontent .gameerror {
-    border: 2px solid #2B74A1;
+    border: 2px solid #538e3e;
     padding: 10px;
     border-radius: 10px;
 }
@@ -1618,7 +1768,7 @@ input.fullscreen {
 }
 */
 .gamecontent h4 {
-    color: #2b74a1;
+    color: #538e3e;
     text-transform: uppercase;
 }
 .gamecontent-right {
@@ -1681,7 +1831,7 @@ input.fullscreen {
     vertical-align: middle;
 }
 .topgame-text strong {
-    color: #2b74a1;
+    color: #538e3e;
     display: block;
     font-size: 16px;
 }
@@ -1694,4 +1844,15 @@ input.fullscreen {
     color: #808080;
     font-weight: bold;
     text-decoration: none;
+}
+
+/*button*/
+.btn-green {
+    background-color: #538e3e;
+    border-color: #538e3e;
+}
+.btn-green:hover,
+.btn-green:focus {
+    background-color: #538E2D;
+    border-color: #538E2D;
 }

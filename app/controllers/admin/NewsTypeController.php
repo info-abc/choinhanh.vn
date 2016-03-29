@@ -93,7 +93,7 @@ class NewsTypeController extends AdminController {
 	            ->withErrors($validator);
         } else {
         	$inputNameTypeNew = Input::only('name');
-        	CommonNormal::update($id,$inputNameTypeNew);
+        	CommonNormal::update($id, $inputNameTypeNew);
 			return Redirect::action('NewsTypeController@index');
         }
 	}

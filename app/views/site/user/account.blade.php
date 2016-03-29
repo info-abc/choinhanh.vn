@@ -86,7 +86,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-4">
-				<input type="submit" class="btn btn-primary col-sm-12" value="Cập nhật" id="edit-account" />
+				<input type="submit" class="btn btn-primary btn-green col-sm-12" value="Cập nhật" id="edit-account" />
 			</div>
 		</div>
 	{{ Form::close() }}

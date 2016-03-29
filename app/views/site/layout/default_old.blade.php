@@ -3,29 +3,24 @@
 	@include('site.common.header')
 	<body>
 
+		@include('site.common.menu')
+		@include('site.common.topbar')
+		@include('site.common.navbar')
+
 		<div class="container">
 			<div class="row">
 
-				<div class="main">
+			<div class="main">
 
-					@if(getDevice() == MOBILE)
-						@include('site.common.menu')
-						@include('site.common.topbar_mobile')
-						@include('site.common.navbar_mobile')
-					@else
-						@include('site.common.topbar_pc')
-						@include('site.common.navbar_pc')
-					@endif
+				@include('site.common.ad', array('adPosition' => HEADER))
 
-					@include('site.common.ad', array('adPosition' => HEADER))
+				@yield('content')
 
-					@yield('content')
+				@include('site.common.ad', array('adPosition' => Footer))
 
-					@include('site.common.ad', array('adPosition' => Footer))
+			</div>
 
-				</div>
-
-				@include('site.common.footer')
+			@include('site.common.footer')
 
 			</div>
 	  	</div>

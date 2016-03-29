@@ -30,7 +30,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-sm-4">
-					<input type="submit" class="btn btn-primary form-control" value="Đăng nhập" />
+					<input type="submit" class="btn btn-primary form-control btn-green" value="Đăng nhập" />
 				</div>
 			</div>
 			<div class="form-group">

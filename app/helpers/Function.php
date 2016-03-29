@@ -601,3 +601,39 @@ function convert_string_vi_to_en($str){
     }
     return $str;
 }
+
+function show_date_vn()
+{
+    $day_array = array(
+        'Monday' => 'Thứ hai',
+        'Tuesday' => 'Thứ ba',
+        'Wednesday' => 'Thứ tư',
+        'Thursday' => 'Thứ năm',
+        'Friday' => 'Thứ sáu',
+        'Saturday' => 'Thứ bảy',
+        'Sunday' => 'Chủ nhật',
+    );
+    $day = $day_array[date('l')];
+
+    // $hour = date('G');
+    // if(in_array($hour, array('0','1','2')))
+    // {
+    //     $apm = 'Khuya';
+    // }elseif(in_array($hour, array('3','4','5','6','7','8','9','10')))
+    // {
+    //     $apm = 'Sáng';
+    // }elseif(in_array($hour, array('11','12','13')))
+    // {
+    //     $apm = 'Trưa';
+    // }elseif(in_array($hour, array('14','15','16','17','18')))
+    // {
+    //     $apm = 'Chiều';
+    // }elseif(in_array($hour, array('19','20','21','22','23')))
+    // {
+    //     $apm = 'Tối';
+    // }else{
+    //     $apm = '';
+    // }
+    // echo $day . ', ' . date('d/m/Y - h:i') . ' ' . $apm . ' (GMT +7)';
+    echo $day . ', ' . date('d/m/Y | h:i') . ' GMT+7';
+}

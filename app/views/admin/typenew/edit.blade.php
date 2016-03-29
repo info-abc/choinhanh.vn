@@ -12,24 +12,24 @@
 	<div class="col-xs-12">
 		<div class="box box-primary">
 			<!-- form start -->
-			{{ Form::open(array('action' => array('NewsTypeController@update', $inputTypeNew->id) , 'method' => 'PUT')) }}
-			<div class="box-body">
-				<div class="form-group">
-					<label for="name">Tên thể loại</label>
-					<div class="row">
-						<div class="col-sm-6">	                  	
-						   {{ Form::text('name', $inputTypeNew->name , textParentCategory('Tên thể loại tin')) }}
+			{{ Form::open(array('action' => array('NewsTypeController@update', $inputTypeNew->id) , 'method' => 'PUT', 'files'=> true)) }}
+				<div class="box-body">
+					<div class="form-group">
+						<label for="name">Tên thể loại</label>
+						<div class="row">
+							<div class="col-sm-6">	                  	
+							   {{ Form::text('name', $inputTypeNew->name , textParentCategory('Tên thể loại tin')) }}
+							</div>
 						</div>
 					</div>
-				</div>
-			  <!-- /.box-body -->
-
-			  <div class="box-footer">
-				{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
-			  </div>
+				  	<!-- /.box-body -->
+					<div class="box-footer">
+						{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
+					</div>
+			  	</div>
 			{{ Form::close() }}
-		  </div>
-		  <!-- /.box -->
+	  	</div>
+	  	<!-- /.box -->
 	</div>
 </div>
 @stop

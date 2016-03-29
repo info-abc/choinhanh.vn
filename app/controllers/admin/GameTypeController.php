@@ -47,6 +47,10 @@ class GameTypeController extends AdminController {
         } else {
 			$id = CommonNormal::create($input);
 
+			//upload image new
+			$input['image_url'] = CommonSeo::uploadImage($id, UPLOADIMG, 'image_url', UPLOAD_GAME_TYPE);
+			CommonNormal::update($id, ['image_url' => $input['image_url']] );
+
 			CommonSeo::createSeo('Type', $id, FOLDER_SEO_GAMETYPE);
 
 			return Redirect::action('GameTypeController@index') ;
@@ -106,6 +110,12 @@ class GameTypeController extends AdminController {
         	if(!Admin::isSeo()) {
 				$inputCategory = Input::only('name');
 				CommonNormal::update($id,$inputCategory);
+
+				//update upload image
+				$imageType = Type::find($id);
+				$input['image_url'] = CommonSeo::uploadImage($id, UPLOADIMG, 'image_url', UPLOAD_GAME_TYPE, $imageType->image_url);
+				CommonNormal::update($id, ['image_url' => $input['image_url']] );
+				
 			}
 
 			CommonSeo::updateSeo('Type', $id, FOLDER_SEO_GAMETYPE);

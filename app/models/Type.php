@@ -11,7 +11,7 @@ class Type extends Eloquent implements SluggableInterface
 	use SoftDeletingTrait;
     use SluggableTrait;
     protected $table = 'types';
-    protected $fillable = ['name', 'description', 'slug'];
+    protected $fillable = ['name', 'description', 'slug', 'image_url'];
     protected $dates = ['deleted_at'];
 
     protected $sluggable = array(

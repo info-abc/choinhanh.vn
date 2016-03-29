@@ -18,14 +18,20 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
-				<!-- form start -->
-				{{ Form::open(array('action' => array('GameTypeController@update', $inputType->id), 'method' => 'PUT', 'files' => true)) }}
+			<!-- form start -->
+			{{ Form::open(array('action' => array('GameTypeController@update', $inputType->id), 'method' => 'PUT', 'files' => true)) }}
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="box-body">
 							<div class="form-group">
 								<label for="name">Tên thể loại game</label>
 								{{ Form::text('name', $inputType->name , textParentCategory('Tên thể loại game')) }}
+							</div>
+
+							<div class="form-group">
+								<label for="image_url">Upload ảnh</label>
+								{{ Form::file('image_url') }}
+								<img class="image_fb" src="{{ url(UPLOADIMG . UPLOAD_GAME_TYPE .'/'. $inputType->id . '/' . $inputType->image_url) }}" />
 							</div>
 
 							<hr />
@@ -41,9 +47,8 @@
 				<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 				</div>
-				{{ Form::close() }}
-			</div>
-			<!-- /.box -->
+			{{ Form::close() }}
+		</div>
 	</div>
 </div>
 

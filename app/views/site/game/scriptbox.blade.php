@@ -2,12 +2,12 @@
 {{ HTML::style('assets/css/swiper.min.css') }}
 <style>
 	.boxgame-pagination {
-		border: 1px solid #c8c8c8;
+		border: 1px solid #474747;
 	    border-radius: 5px;
 	    text-align: center;
 	}
 	.boxgame-pagination a {
-		color: #888;
+		color: #474747;
 	    cursor: pointer;
 	    display: inline-block;
 	    font-weight: bold;
@@ -21,9 +21,10 @@
 		float: right;
 	}
 	.boxgame-pagination .boxgame-pagenumber {
-		border-left: 1px solid #c8c8c8;
-	    border-right: 1px solid #c8c8c8;
+		border-left: 1px solid #474747;
+	    border-right: 1px solid #474747;
 	    display: inline-block;
+	    font-weight: bold;
 	    padding: 10px;
 	}
 	.boxgame-pagination span {

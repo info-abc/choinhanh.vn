@@ -41,8 +41,8 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-4">
-				<input type="submit" class="btn btn-primary " value="Gửi" /> &nbsp
-				<input type="button"  class="btn btn-primary " value="Nhập lại" onclick="myFunctionResertText()" />
+				<input type="submit" class="btn btn-primary btn-green" value="Gửi" /> &nbsp
+				<input type="button"  class="btn btn-primary btn-green" value="Nhập lại" onclick="myFunctionResertText()" />
 
 			</div>
 		@include('site.feedback.common')
