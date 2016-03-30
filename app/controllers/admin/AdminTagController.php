@@ -32,7 +32,7 @@ class AdminTagController extends AdminController {
 	public function store()
 	{
 		$rules = array(
-			'name'   => 'required|unique:tags'            
+			'name'   => 'required|unique:tags|check_slug'            
 		);
 		$input = Input::except('_token');
 		$validator = Validator::make($input, $rules);
@@ -86,7 +86,7 @@ class AdminTagController extends AdminController {
 	public function update($id)
 	{
 		$rules = array(
-            'name'   => 'required'
+            'name'   => 'required|check_slug'
         );
         $input = Input::except('_token');
 		$validator = Validator::make($input, $rules);
