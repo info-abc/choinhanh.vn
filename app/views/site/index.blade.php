@@ -53,6 +53,8 @@
 	@endforeach
 </div>
 
+@include('site.common.gameboxmini')
+
 @include('site.game.scriptbox')
 
 @stop
