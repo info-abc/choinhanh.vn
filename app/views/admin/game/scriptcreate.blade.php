@@ -36,8 +36,25 @@
 
 	$(function () {
 		getFormGameOffline();
+		checkTag();
 		
 	});
+
+	function checkTag()
+	{
+		var select = document.getElementById('mysel');
+		select.addEventListener('mousedown', function(e){
+		    var opt = e.target;
+		    if (opt.selected){
+		        opt.removeAttribute('selected');
+		        opt.selected = false;
+		    } else {
+		        opt.setAttribute('selected', '');
+		        opt.selected = true;
+		    }
+		    e.preventDefault();
+		});
+	}
 
 	function checkUploadAction() {
 		if ($('#checkUpload').is(':checked')) {

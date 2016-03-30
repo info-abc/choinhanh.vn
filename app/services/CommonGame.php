@@ -394,8 +394,8 @@ class CommonGame
 				} else {
 					$listGame = Game::whereIn('id', $gameIds)
 						->where('status', ENABLED)
-						->where('start_date', '<=', $now)
-						->whereIn('parent_id', [GAMEHTML5, GAMEFLASH]);
+						->where('start_date', '<=', $now);
+						// ->whereIn('parent_id', [GAMEHTML5, GAMEFLASH]);
 				}
 			}
 			return $listGame;

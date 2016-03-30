@@ -131,7 +131,8 @@ class GameController extends SiteController {
 
 	public function detailGame($type, $slug)
 	{
-		if(Type::findBySlug($type) == null) {
+		$categoryParent = CategoryParent::where('status', ACTIVE)->lists('slug');
+		if(!in_array('game-'.$type, $categoryParent) && Type::findBySlug($type) == null) {
 			if(AdminTag::findBySlug($type) == null) {
 				return CommonLog::logErrors(ERROR_TYPE_404);
 			}
