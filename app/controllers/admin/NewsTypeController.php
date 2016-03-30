@@ -34,17 +34,19 @@ class NewsTypeController extends AdminController {
 	public function store()
 	{
 		$rules = array(
-			'name'   => 'required'            
+			'name'   => 'required|unique:type_news'            
 		);
 		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
+		$validator = Validator::make($input, $rules);
 		if($validator->fails()) {
-			return Redirect::action('NewstypeController@create')
-	            ->withErrors($validator)
-	            ->withInput(Input::except('name'));
+			return Redirect::action('NewsTypeController@create')
+	            ->withErrors($validator);
         } else {
-        	$inputNameTypeNew = Input::only('name');
-			CommonNormal::create($inputNameTypeNew);
+			$id = CommonNormal::create($input);
+
+			// insert seo
+			CommonSeo::createSeo('TypeNew', $id, FOLDER_SEO_NEWS_TYPE);
+
 			return Redirect::action('NewsTypeController@index');
         }
 	}
@@ -71,7 +73,8 @@ class NewsTypeController extends AdminController {
 	public function edit($id)
 	{
 		$inputTypeNew = TypeNew::find($id);
-		return View::make('admin.typenew.edit')->with(compact('inputTypeNew'));
+		$inputSeo = AdminSeo::where('model_id', $id)->where('model_name', 'TypeNew')->first();
+		return View::make('admin.typenew.edit')->with(compact('inputTypeNew', 'inputSeo'));
 	}
 
 
@@ -87,13 +90,15 @@ class NewsTypeController extends AdminController {
             'name'   => 'required'
         );
         $input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
+		$validator = Validator::make($input, $rules);
 		if($validator->fails()) {
 			return Redirect::action('NewsTypeController@edit', $id)
 	            ->withErrors($validator);
         } else {
-        	$inputNameTypeNew = Input::only('name');
-        	CommonNormal::update($id, $inputNameTypeNew);
+        	CommonNormal::update($id, $input);
+
+        	CommonSeo::updateSeo('TypeNew', $id, FOLDER_SEO_NEWS_TYPE);
+
 			return Redirect::action('NewsTypeController@index');
         }
 	}

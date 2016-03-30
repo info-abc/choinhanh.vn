@@ -7,8 +7,18 @@
 	?>
 @else
 	<?php
+		$segment1 = Request::segment(1);
+		$segment1 = substr($segment1, 5);
+		$tag = AdminTag::findBySlug($segment1);
+		if($tag) {
+			$name = $tag->title;
+			$slug = $tag->slug;
+		} else {
+			$name = Type::find($game->type_main)->name;
+			$slug = Type::find($game->type_main)->slug;
+		}
 		$breadcrumb = array(
-			['name' => Type::find($game->type_main)->name, 'link' => url( 'game-' . Type::find($game->type_main)->slug)],
+			['name' => $name, 'link' => url( 'game-' . $slug)],
 			['name' => 'Game ' . $game->name, 'link' => '']
 		);
 	?>

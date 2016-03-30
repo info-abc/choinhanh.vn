@@ -22,6 +22,11 @@
 							</div>
 						</div>
 					</div>
+
+					<hr />
+					<h1>SEO META</h1>
+					@include('admin.common.meta', array('inputSeo' => $inputSeo, 'pathToImageSeo' => UPLOADIMG . '/'.FOLDER_SEO_NEWS_TYPE.'/'. $inputTypeNew->id . '/'))
+					
 				  	<!-- /.box-body -->
 					<div class="box-footer">
 						{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}

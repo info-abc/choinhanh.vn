@@ -42,6 +42,8 @@ define('FOLDER_SEO_GAME', 'fb_game');
 define('FOLDER_SEO_GAMETYPE', 'fb_gametype');
 define('FOLDER_SEO_PARENT', 'fb_parent');
 define('FOLDER_SEO_NEWS', 'fb_news');
+define('FOLDER_SEO_NEWS_TYPE', 'fb_news_type');
+define('FOLDER_SEO_TAG', 'fb_tag');
 define('FOLDER_SEO', 'seo');
 
 //device

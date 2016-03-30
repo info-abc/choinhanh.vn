@@ -637,3 +637,11 @@ function show_date_vn()
     // echo $day . ', ' . date('d/m/Y - h:i') . ' ' . $apm . ' (GMT +7)';
     echo $day . ', ' . date('d/m/Y | h:i') . ' GMT+7';
 }
+
+function selectStatus()
+{
+	return array(
+		ACTIVE => 'Hiện',
+		INACTIVE => 'Ẩn'
+	);
+}

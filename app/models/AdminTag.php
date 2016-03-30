@@ -11,7 +11,7 @@ class AdminTag extends Eloquent implements SluggableInterface
 	use SoftDeletingTrait;
 	use SluggableTrait;
     protected $table = 'tags';
-    protected $fillable = ['name', 'slug', 'status', 'weight_number'];
+    protected $fillable = ['name', 'slug', 'status', 'weight_number', 'title'];
     protected $dates = ['deleted_at'];
 
 

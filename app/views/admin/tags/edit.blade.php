@@ -22,6 +22,29 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="form-group">
+						<label for="name">Tiêu đề hiển thị</label>
+						<div class="row">
+							<div class="col-sm-6">	                  	
+							   {{ Form::text('title', $inputTag->title , textParentCategory('')) }}
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label>Trạng thái</label>
+						<div class="row">
+							<div class="col-sm-6">	  
+								{{ Form::select('status', selectStatus(), $inputTag->status, array('class' => 'form-control')) }}
+							</div>
+						</div>
+					</div>
+
+					<hr />
+					<h1>SEO META</h1>
+					@include('admin.common.meta', array('inputSeo' => $inputSeo, 'pathToImageSeo' => UPLOADIMG . '/'.FOLDER_SEO_TAG.'/'. $inputTag->id . '/'))
+					
 				  	<!-- /.box-body -->
 					<div class="box-footer">
 						{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}

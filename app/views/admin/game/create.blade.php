@@ -153,7 +153,7 @@
 
 						<div class="form-group">
 							<label>Tags</label>
-							{{ Form::select('tag_id[]', AdminTag::orderBy('id', 'desc')->lists('name', 'id'), '', array('class' => 'form-control', 'multiple' => true, 'style' => 'height: 200px;')) }}
+							{{ Form::select('tag_id[]', AdminTag::orderBy('id', 'desc')->lists('name', 'id'), '', array('class' => 'form-control', 'multiple' => true, 'style' => 'height: 200px;', 'onclick' => 'checkTag()')) }}
 						</div>						
 
 						<hr />

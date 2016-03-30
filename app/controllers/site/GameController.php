@@ -98,6 +98,14 @@ class GameController extends SiteController {
             $type = Type::findBySlug($slug);
             Cache::put('type_'.$slug, $type, CACHETIME);
         }
+        if (Cache::has('tag_'.$slug))
+        {
+            $tag = Cache::get('tag_'.$slug);
+        } else {
+            $tag = AdminTag::findBySlug($slug);
+            Cache::put('tag_'.$slug, $tag, CACHETIME);
+        }
+
 		if($categoryParent) {
 			// $games = CommonGame::boxGameByCategoryParent($categoryParent);
 			// $count = ceil(count($games->get())/PAGINATE_BOXGAME);
@@ -110,12 +118,25 @@ class GameController extends SiteController {
 			// return View::make('site.game.type')->with(compact('games', 'type', 'count'));
 			return View::make('site.game.type')->with(compact('type'));
 		}
+		if($tag) {
+			// $games = CommonGame::boxGameByType($type);
+			// $count = ceil(count($games->get())/PAGINATE_BOXGAME);
+			// return View::make('site.game.type')->with(compact('games', 'type', 'count'));
+			return View::make('site.tag.index')->with(compact('tag'));
+		}
+
 		//TODO 404
 		return CommonLog::logErrors(ERROR_TYPE_404);
 	}
 
 	public function detailGame($type, $slug)
 	{
+		if(Type::findBySlug($type) == null) {
+			if(AdminTag::findBySlug($type) == null) {
+				return CommonLog::logErrors(ERROR_TYPE_404);
+			}
+		}
+
 		// http://minigame.de/be-trai/game-ban-ga-hay-va-chan.html
 		if (Cache::has('game_'.$slug))
         {

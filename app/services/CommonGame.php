@@ -363,6 +363,46 @@ class CommonGame
 		return null;
 	}
 
+	public static function boxGameByTag($data, $paginate = null)
+	{
+		$now = Carbon\Carbon::now();
+		$gameIds = AdminTag::find($data->id)->gameTags->lists('game_id');
+		if($gameIds) {
+			if($paginate) {
+				if(getDevice() == MOBILE) {
+					$listGame = Game::whereIn('id', $gameIds)
+						->where('status', ENABLED)
+						->where('parent_id', '=', GAMEHTML5)
+						->where('start_date', '<=', $now)
+						->orderBy('id', 'desc')
+						->paginate(PAGINATE_LISTGAME);
+				} else {
+
+					$listGame = Game::whereIn('id', $gameIds)
+						->where('status', ENABLED)
+						->where('start_date', '<=', $now)
+						->whereIn('parent_id', [GAMEHTML5, GAMEFLASH])
+						->orderBy('id', 'desc')
+						->paginate(PAGINATE_LISTGAME);
+				}
+			} else {
+				if(getDevice() == MOBILE) {
+					$listGame = Game::whereIn('id', $gameIds)
+						->where('status', ENABLED)
+						->where('parent_id', '=', GAMEHTML5)
+						->where('start_date', '<=', $now);
+				} else {
+					$listGame = Game::whereIn('id', $gameIds)
+						->where('status', ENABLED)
+						->where('start_date', '<=', $now)
+						->whereIn('parent_id', [GAMEHTML5, GAMEFLASH]);
+				}
+			}
+			return $listGame;
+		}
+		return null;
+	}
+
 	public static function getUrlGameIndex($game = null)
 	{
 		if($game) {
@@ -384,6 +424,41 @@ class CommonGame
 	public static function getUrlGame($game = null)
 	{
 		if($game) {
+			if (!(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5]))) {
+				if (Cache::has('category'.$game->parent_id))
+				{
+					$category = Cache::get('category'.$game->parent_id);
+				} else {
+					$category = Game::find($game->parent_id);
+					Cache::put('category'.$game->parent_id, $category, CACHETIME);
+				}
+				return $url = url('/' . $category->slug . '/' . $game->slug);
+			}
+			if (Cache::has('type'.$game->type_main))
+			{
+				$type = Cache::get('type'.$game->type_main);
+			} else {
+				$type = Type::find($game->type_main);
+				Cache::put('type'.$game->type_main, $type, CACHETIME);
+			}
+			if($type) {
+				$url = url('game-' . $type->slug . '/' . $game->slug);
+				return $url;
+			} else {
+				dd('Đường dẫn sai');
+			}
+		} else {
+			return url('/');
+		}
+	}
+
+	// url game with slug 
+	public static function getUrlGameSlug($game, $slug = null)
+	{
+		if($game) {
+			if($slug) {
+				return url('game-' . $slug . '/' . $game->slug);
+			}
 			if (!(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5]))) {
 				if (Cache::has('category'.$game->parent_id))
 				{

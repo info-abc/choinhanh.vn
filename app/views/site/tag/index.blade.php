@@ -1,15 +1,19 @@
-@extends('site.layout.default')
+@extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo('AdminTag', $tag->id), 'seoImage' => FOLDER_SEO_TAG . '/' . $tag->id))
 
 @section('title')
-	{{ $title= $tag->name }}
+	@if($title = CommonSite::getMetaSeo('AdminTag', $tag->id)->title_site)
+		{{ $title = $title }}
+	@else
+		{{ $title = $tag->title }}
+	@endif
 @stop
 
 @section('content')
 
 <div class="box">
-	<h1>{{ $tag->name }}</h1>
+	<h1>{{ $tag->title }}</h1>
 	<?php
-		$games = CommonGame::boxGameByType($type);
+		$games = CommonGame::boxGameByTag($tag);
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	 ?>
 	<div class="swiper-container">
@@ -21,7 +25,7 @@
 						$listGame = $games->orderBy('count_play', 'desc')->orderBy('start_date', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
 					?>
 						@foreach($listGame as $game)
-							@include('site.game.gameitem', array('game' => $game))
+							@include('site.game.gameitemslug', array('game' => $game, 'slug' => $tag->slug))
 						@endforeach
 					</div>
 				</div>

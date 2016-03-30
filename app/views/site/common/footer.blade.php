@@ -13,8 +13,10 @@
 </div>
 <div class="tags">
 	<ul>
-	@foreach(AdminTag::all() as $value)
-		<li><a href="{{ url('tag/'.$value->slug) }}">{{ $value->name }}</a></li>
+	@foreach(AdminTag::where('status', ACTIVE)->get() as $value)
+		@if(count($value->games) > 0)
+			<li><a href="{{ url('game-'.$value->slug) }}">{{ $value->name }}</a></li>
+		@endif
 	@endforeach
 	</ul>
 	<div class="clearfix"></div>

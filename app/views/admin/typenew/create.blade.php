@@ -22,6 +22,11 @@
 							</div>
 						</div>
 					</div>
+
+					<hr />
+					<h1>SEO META</h1>
+					@include('admin.common.meta')
+					
 				  	<!-- /.box-body -->
 					<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}

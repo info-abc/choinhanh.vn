@@ -35,16 +35,17 @@ class AdminTagController extends AdminController {
 			'name'   => 'required|unique:tags'            
 		);
 		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
+		$validator = Validator::make($input, $rules);
 		if($validator->fails()) {
 			return Redirect::action('AdminTagController@create')
-	            ->withErrors($validator)
-	            ->withInput(Input::except('name'));
+	            ->withErrors($validator);
         } else {
-        	$inputTag = Input::only('name');
-        	$inputTag['status'] = ACTIVE;
-        	$inputTag['weight_number'] = 0;
-			CommonNormal::create($inputTag);
+        	$input['weight_number'] = 0;
+			$id = CommonNormal::create($input);
+
+			// insert seo
+			CommonSeo::createSeo('AdminTag', $id, FOLDER_SEO_TAG);
+
 			return Redirect::action('AdminTagController@index');
         }
 	}
@@ -71,7 +72,8 @@ class AdminTagController extends AdminController {
 	public function edit($id)
 	{
 		$inputTag = AdminTag::find($id);
-		return View::make('admin.tags.edit')->with(compact('inputTag'));
+		$inputSeo = AdminSeo::where('model_id', $id)->where('model_name', 'AdminTag')->first();
+		return View::make('admin.tags.edit')->with(compact('inputTag', 'inputSeo'));
 	}
 
 
@@ -87,13 +89,15 @@ class AdminTagController extends AdminController {
             'name'   => 'required'
         );
         $input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
+		$validator = Validator::make($input, $rules);
 		if($validator->fails()) {
 			return Redirect::action('AdminTagController@edit', $id)
 	            ->withErrors($validator);
         } else {
-        	$inputTag = Input::only('name');
-        	CommonNormal::update($id, $inputTag);
+        	CommonNormal::update($id, $input);
+
+        	CommonSeo::updateSeo('AdminTag', $id, FOLDER_SEO_TAG);
+
 			return Redirect::action('AdminTagController@index');
         }
 	}
