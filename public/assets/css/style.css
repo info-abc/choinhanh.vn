@@ -1920,3 +1920,52 @@ a.vehicle-text {
     color: #fff;
     text-decoration: none;
 }
+
+
+/*tooltip*/
+.tipContent {
+    display: none;
+}
+div#tipDiv , .tipContent {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #538e3e;
+    width: 300px;
+    height: auto;
+    padding: 3px;
+    font-size: 13px;
+}
+div#tipDiv h2 , .tipContent h2 {
+    background: none repeat scroll 0 0 #538e3e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+}
+div#tipDiv h2 a, .tipContent h2 a {
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+}
+div#tipDiv .tooltip_content , .tipContent .tooltip_content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    overflow: hidden;
+    padding: 5px;
+}
+div#tipDiv .tooltip_content img , .tipContent .tooltip_content img {
+    float: left;
+    height: auto;
+    margin-bottom: 7px;
+    margin-right: 7px;
+    width: 100px;
+}
+div#tipDiv .tooltip_content p , .tipContent .tooltip_content p {
+    font-size: 13px;
+    text-align: justify;
+}
+div#tipDiv .tooltip_content p span, .tipContent .tooltip_content p span {
+    color: #888;
+    display: block;
+    padding-bottom: 0;
+}

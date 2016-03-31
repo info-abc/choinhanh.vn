@@ -3,7 +3,7 @@
 	<h3>Game khác</h3>
 	<div class="row">
 		@foreach($games as $game)
-			@include('site.game.gameitem', array('game' => $game))
+			@include('site.game.gameitem', array('game' => $game, 'slug' => null))
 		@endforeach
 	</div>
 </div>

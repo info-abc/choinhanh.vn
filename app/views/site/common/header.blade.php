@@ -43,6 +43,7 @@
 
 	{{ HTML::script('assets/js/jquery-2.1.4.min.js') }}
 	{{ HTML::script('assets/js/bootstrap.min.js') }}
+	{{ HTML::script('assets/js/dw.js') }}
 	{{ HTML::script('assets/js/script.js') }}
 
 	@if(isset($script))

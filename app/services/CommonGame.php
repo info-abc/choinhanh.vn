@@ -299,8 +299,9 @@ class CommonGame
 					$listGame = DB::table('games')
 						->join('types', 'types.id', '=', 'games.type_main')
 						->join('games as category', 'category.id', '=', 'games.parent_id')
-						->select('games.id', 'games.name', 'games.slug'
+						->select('games.id', 'games.name', 'games.slug', 'games.description'
 								, 'games.parent_id', 'games.type_main', 'games.image_url'
+								, 'games.count_play', 'games.count_download'
 								, 'types.name as type_name', 'types.slug as type_slug'
 								, 'category.slug as category_slug')
 						->distinct()
@@ -327,9 +328,11 @@ class CommonGame
 						$listGame = DB::table('games')
 						->join('types', 'types.id', '=', 'games.type_main')
 						->join('games as category', 'category.id', '=', 'games.parent_id')
-						->select('games.id', 'games.name', 'games.slug'
+						->select('games.id', 'games.name', 'games.slug', 'games.description'
 								, 'games.parent_id', 'games.type_main', 'games.image_url'
-								, 'types.name as type_name', 'types.slug as type_slug', 'games.count_play', 'category.slug as category_slug')
+								, 'games.count_play', 'games.count_download'
+								, 'types.name as type_name', 'types.slug as type_slug'
+								, 'category.slug as category_slug')
 						->distinct()
 						// ->where('games.parent_id', $game->id)
 						->where('games.status', ENABLED)
@@ -339,10 +342,13 @@ class CommonGame
 					}
 					else{
 						$listGame = DB::table('games')
+						->join('types', 'types.id', '=', 'games.type_main')
 						->join('games as category', 'category.id', '=', 'games.parent_id')
-						->select('games.id', 'games.name', 'games.slug'
-								, 'games.parent_id', 'games.image_url'
-								, 'games.count_play', 'category.slug as category_slug')
+						->select('games.id', 'games.name', 'games.slug', 'games.description'
+								, 'games.parent_id', 'games.type_main', 'games.image_url'
+								, 'games.count_play', 'games.count_download'
+								, 'types.name as type_name', 'types.slug as type_slug'
+								, 'category.slug as category_slug')
 						->distinct()
 						->where('games.parent_id', $game->id)
 						->where('games.status', ENABLED)
@@ -403,57 +409,8 @@ class CommonGame
 		return null;
 	}
 
-	public static function getUrlGameIndex($game = null)
-	{
-		if($game) {
-			if (!(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5]))) {
-				return $url = url('/' . $game->category_slug . '/' . $game->slug);
-			}
-			if($game->type_name && $game->type_slug) {
-				$url = url('/game-' . $game->type_slug . '/' . $game->slug);
-				return $url;
-			} else {
-				dd('Đường dẫn sai');
-			}
-		} else {
-			return url('/');
-		}
-	}
-
 	// url game
-	public static function getUrlGame($game = null)
-	{
-		if($game) {
-			if (!(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5]))) {
-				if (Cache::has('category'.$game->parent_id))
-				{
-					$category = Cache::get('category'.$game->parent_id);
-				} else {
-					$category = Game::find($game->parent_id);
-					Cache::put('category'.$game->parent_id, $category, CACHETIME);
-				}
-				return $url = url('/' . $category->slug . '/' . $game->slug);
-			}
-			if (Cache::has('type'.$game->type_main))
-			{
-				$type = Cache::get('type'.$game->type_main);
-			} else {
-				$type = Type::find($game->type_main);
-				Cache::put('type'.$game->type_main, $type, CACHETIME);
-			}
-			if($type) {
-				$url = url('game-' . $type->slug . '/' . $game->slug);
-				return $url;
-			} else {
-				dd('Đường dẫn sai');
-			}
-		} else {
-			return url('/');
-		}
-	}
-
-	// url game with slug 
-	public static function getUrlGameSlug($game, $slug = null)
+	public static function getUrlGame($game, $slug = null)
 	{
 		if($game) {
 			if($slug) {

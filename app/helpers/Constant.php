@@ -141,7 +141,7 @@ define('UPLOAD_USER_AVATAR', '/user_avatar');
 define('ERROR_TYPE_404', 1);
 define('ERROR_TYPE_MISSING', 2);
 //define cache time
-define('CACHETIME', 60);
+define('CACHETIME', 5);
 //define game top
 define('GAMETOP', 30);
 define('GAMETOP_LIMITED', 6);

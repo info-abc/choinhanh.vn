@@ -25,7 +25,7 @@
 						$listGame = $games->orderBy('count_play', 'desc')->orderBy('start_date', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
 					?>
 						@foreach($listGame as $game)
-							@include('site.game.gameitemslug', array('game' => $game, 'slug' => $type->slug))
+							@include('site.game.gameitem', array('game' => $game, 'slug' => $type->slug))
 						@endforeach
 					</div>
 				</div>
@@ -58,7 +58,7 @@
 						$listGame = $games->orderBy('start_date', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
 					?>
 						@foreach($listGame as $game)
-							@include('site.game.gameitemslug', array('game' => $game, 'slug' => $type->slug))
+							@include('site.game.gameitem', array('game' => $game, 'slug' => $type->slug))
 						@endforeach
 					</div>
 				</div>

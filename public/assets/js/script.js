@@ -20,6 +20,11 @@ $(document).ready(function(){
 		}
 	});
 
+	dw_Tooltip.defaultProps = {
+        supportTouch: true, // set false by default
+        content_source: 'class_id' // class holds id of element with tooltip content
+    }
+
 });
 
 function menushow(){

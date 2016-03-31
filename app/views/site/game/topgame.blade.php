@@ -1,7 +1,7 @@
 <div class="topgame">
 	<h3><a href="{{ action('GameController@getListGameplay') }}">GAME HAY NHẤT</a></h3>
 	<ul>
-		@foreach($games as $key => $value)
+		@foreach($games as $value)
 			<?php $url = CommonGame::getUrlGame($value); ?>
 			<li>
 				<div class="topgame-image">
