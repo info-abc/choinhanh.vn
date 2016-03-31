@@ -1588,11 +1588,12 @@ h2.title {
     display: inline-block;
 }
 .breadcrumb ul li a {
-    color: #538e3e;
+    color: #474747;
     font-size: 13px;
+    font-weight: bold;
 }
 .breadcrumb i.fa {
-    color: #538e3e;
+    color: #474747;
     padding-left: 10px;
     padding-right: 5px;
 }
