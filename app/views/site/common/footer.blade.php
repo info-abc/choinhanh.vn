@@ -1,3 +1,13 @@
+<div class="tags">
+	<ul>
+	@foreach(AdminTag::where('status', ACTIVE)->get() as $value)
+		@if(count($value->games) > 0)
+			<li><a href="{{ url('game-'.$value->slug) }}">{{ $value->name }}</a></li>
+		@endif
+	@endforeach
+	</ul>
+	<div class="clearfix"></div>
+</div>
 <div class="footer">
 	<ul>
 	  <li><a href="{{ url('/') }}" {{ checkActive() }}>Home</a></li>
@@ -10,14 +20,4 @@
 		<p>Địa chỉ: P501, Tầng 5, Tòa nhà văn phòng, Số 5B/55, Huỳnh Thúc Kháng, Phường Láng Hạ, Quận Đống Đa, Hà Nội</p>
 		<p>Tel: (84-4) 3.775.4334 - Fax: (84-4) 3512 1804</p> --}}
 	</div>
-</div>
-<div class="tags">
-	<ul>
-	@foreach(AdminTag::where('status', ACTIVE)->get() as $value)
-		@if(count($value->games) > 0)
-			<li><a href="{{ url('game-'.$value->slug) }}">{{ $value->name }}</a></li>
-		@endif
-	@endforeach
-	</ul>
-	<div class="clearfix"></div>
 </div>

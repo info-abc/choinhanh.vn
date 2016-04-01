@@ -10,12 +10,18 @@
 		$segment1 = Request::segment(1);
 		$segment1 = substr($segment1, 5);
 		$tag = AdminTag::findBySlug($segment1);
+		$type = Type::findBySlug($segment1);
 		if($tag) {
-			$name = $tag->title;
+			$name = $tag->name;
 			$slug = $tag->slug;
-		} else {
-			$name = Type::find($game->type_main)->name;
-			$slug = Type::find($game->type_main)->slug;
+		} elseif($type) {
+			$name = $type->name;
+			$slug = $type->slug;
+		}
+		else {
+			$type = Type::find($game->type_main);
+			$name = $type->name;
+			$slug = $type->slug;
 		}
 		$breadcrumb = array(
 			['name' => $name, 'link' => url( 'game-' . $slug)],

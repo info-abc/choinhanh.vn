@@ -8,12 +8,12 @@
 				<div class="col-sm-4">
 					<div class="boxmini">
 						<div class="boxmini-title">
-							<h3>{{ $value['type_name'] }}</h3>
-							<a href="{{ url('game-' . $value['type_slug']) }}">Xem thêm</a>
+							<h3><a href="{{ url('game-' . $value['type_slug']) }}">{{ $value['type_name'] }}</a></h3>
+							<a href="{{ url('game-' . $value['type_slug']) }}" class="boxmini-seemore">Xem thêm</a>
 						</div>
 						<div class="row">
 							@foreach($value['games'] as $v)
-								<?php $url = CommonGame::getUrlGame($v); ?>
+								<?php $url = CommonGame::getUrlGame($v, $value['type_slug']); ?>
 								<div class="col-xs-4">
 									<div class="item">
 									    <div class="item-image">
