@@ -1,7 +1,17 @@
 @if(!in_array( $game->parent_id,[GAMEHTML5, GAMEFLASH]))
 	<?php
+		$segment1 = Request::segment(1);
+		$segment1 = substr($segment1, 5);
+		$tag = AdminTag::findBySlug($segment1);
+		if($tag) {
+			$name = $tag->title;
+			$link = url( 'game-' . $tag->slug);
+		} else {
+			$name = Game::find($game->parent_id)->name;
+			$link = action('GameController@getListGameAndroid');
+		}
 		$breadcrumb = array(
-			['name' => Game::find($game->parent_id)->name, 'link' => action('GameController@getListGameAndroid')],
+			['name' => $name, 'link' => $link],
 			['name' => $game->name, 'link' => '']
 		);
 	?>
@@ -12,7 +22,7 @@
 		$tag = AdminTag::findBySlug($segment1);
 		$type = Type::findBySlug($segment1);
 		if($tag) {
-			$name = $tag->name;
+			$name = $tag->title;
 			$slug = $tag->slug;
 		} elseif($type) {
 			$name = $type->name;
