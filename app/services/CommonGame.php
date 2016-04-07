@@ -301,7 +301,7 @@ class CommonGame
 						->join('games as category', 'category.id', '=', 'games.parent_id')
 						->select('games.id', 'games.name', 'games.slug', 'games.description'
 								, 'games.parent_id', 'games.type_main', 'games.image_url'
-								, 'games.count_play', 'games.count_download'
+								, 'games.count_play', 'games.count_download', 'games.vote_average'
 								, 'types.name as type_name', 'types.slug as type_slug'
 								, 'category.slug as category_slug')
 						->distinct()
@@ -330,7 +330,7 @@ class CommonGame
 						->join('games as category', 'category.id', '=', 'games.parent_id')
 						->select('games.id', 'games.name', 'games.slug', 'games.description'
 								, 'games.parent_id', 'games.type_main', 'games.image_url'
-								, 'games.count_play', 'games.count_download'
+								, 'games.count_play', 'games.count_download', 'games.vote_average'
 								, 'types.name as type_name', 'types.slug as type_slug'
 								, 'category.slug as category_slug')
 						->distinct()
@@ -346,7 +346,7 @@ class CommonGame
 						->join('games as category', 'category.id', '=', 'games.parent_id')
 						->select('games.id', 'games.name', 'games.slug', 'games.description'
 								, 'games.parent_id', 'games.type_main', 'games.image_url'
-								, 'games.count_play', 'games.count_download'
+								, 'games.count_play', 'games.count_download', 'games.vote_average'
 								, 'types.name as type_name', 'types.slug as type_slug'
 								, 'category.slug as category_slug')
 						->distinct()

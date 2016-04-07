@@ -2,10 +2,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="logo">
-				<a href="{{ url('/') }}"><img src="{{ url('/assets/images/logo.png') }}" alt="" /></a>
+				<a href="{{ url('/') }}"><img src="{{ url('/assets/images/logo.png') }}" alt="{{ CHOINHANH_LOGO_ALT }}" /></a>
+				@if(Request::segment(1))
+					<p>{{ CHOINHANH_INDEX_H1 }}</p>
+				@else
+					<h1>{{ CHOINHANH_INDEX_H1 }}</h1>
+				@endif
 			</div>
 			<div class="top-image">
-				<img src="{{ url('assets/images/game-cuc-hay-choi-me-ngay.jpg') }}" />
+				<img src="{{ url('assets/images/game-cuc-hay-choi-me-ngay.jpg') }}" alt="game-cuc-hay-choi-me-ngay" />
 			</div>
 			<div class="top-right">
 				<div class="top-right-login">

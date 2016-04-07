@@ -150,6 +150,8 @@ define('GAME_VERTICAL', 1);
 define('GAME_HORIZONTAL', 2);
 
 define('CHOINHANH', 'choinhanh.vn');
+define('CHOINHANH_LOGO_ALT', 'choinhanh.vn');
+define('CHOINHANH_INDEX_H1', 'game24h | game mobile');
 
 //category parent id for fix url
 // game moi nhat

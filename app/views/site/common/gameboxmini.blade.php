@@ -18,13 +18,14 @@
 									<div class="item">
 									    <div class="item-image">
 											<a href="{{ $url }}">
-												<img src="{{ url(UPLOAD_GAME_AVATAR . '/' .  $v->image_url) }}" alt="{{ $v->name }}" />
+												<img src="{{ url(UPLOAD_GAME_AVATAR . '/' .  $v->image_url) }}" alt="{{ $v->name }}" class="showTip el_{{ $v->id }}" />
 											</a>
 									    </div>
 									    <div class="item-title">
 											<a href="{{ $url }}">{{ $v->name }}</a>
 										</div>
 									</div>
+									@include('site.game.tooltip', array('game' => $v, 'url' => $url))
 								</div>
 							@endforeach
 						</div>

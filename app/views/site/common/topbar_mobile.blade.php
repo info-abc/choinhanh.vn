@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="menu-show"><a onclick="menushow()"><i class="fa fa-navicon"></i></a></div>
 			<div class="logo">
-				<a href="{{ url('/') }}"><img src="{{ url('/assets/images/logo.png') }}" alt="" /></a>
+				<a href="{{ url('/') }}"><img src="{{ url('/assets/images/logo.png') }}" alt="{{ CHOINHANH_LOGO_ALT }}" /></a>
 			</div>
 			
 			<div class="search">

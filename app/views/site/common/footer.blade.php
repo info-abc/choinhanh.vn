@@ -2,7 +2,7 @@
 	<ul>
 	@foreach(AdminTag::where('status', ACTIVE)->get() as $value)
 		@if(count($value->games) > 0)
-			<li><a href="{{ url('game-'.$value->slug) }}">{{ $value->title }}</a></li>
+			<li><a href="{{ url('game-'.$value->slug) }}">{{ $value->title }}</a><span>|</span></li>
 		@endif
 	@endforeach
 	</ul>
