@@ -33,9 +33,17 @@ class CommonSite
     // get advertise
     public static function getAdvertise($position, $modelName = null, $modelId = null)
     {
+        $ad = null;
         // Header & Footer
         if($modelName == null && $modelId == null) {
-            $ad = Advertise::where(array('position' => $position, 'status' => ENABLED))->first();
+
+            if (Cache::has('getAdvertise_'.$position))
+            {
+                $ad = Cache::get('getAdvertise_'.$position);
+            } else {
+                $ad = Advertise::where(array('position' => $position, 'status' => ENABLED))->first();
+                Cache::put('getAdvertise_'.$position, $ad, CACHETIME);
+            }
 			if(isset($ad)) {
 				return $ad;
 			} else {
@@ -44,18 +52,25 @@ class CommonSite
         }
         // Content
         else {
-            //check Common models
-            $common_model = CommonModel::where(array('model_name' => $modelName, 'model_id' => $modelId))->first();
-            if (isset($common_model)) {
-                $common_model_id = $common_model->id;
-				$advertisement_id = AdvertisePosition::where(array('common_model_id' => $common_model_id, 'status' => ENABLED))->first();
-                if(isset($advertisement_id)) {
-					$ad = Advertise::find($advertisement_id->advertisement_id);
-                    return $ad;
+            if (Cache::has('getAdvertise_'.$modelName.'_'.$modelId))
+            {
+                $ad = Cache::get('getAdvertise_'.$modelName.'_'.$modelId);
+            } else {
+
+                //check Common models
+                $common_model = CommonModel::where(array('model_name' => $modelName, 'model_id' => $modelId))->first();
+                if (isset($common_model)) {
+                    $common_model_id = $common_model->id;
+    				$advertisement_id = AdvertisePosition::where(array('common_model_id' => $common_model_id, 'status' => ENABLED))->first();
+                    if(isset($advertisement_id)) {
+    					$ad = Advertise::find($advertisement_id->advertisement_id);
+                    }
                 }
-                return null;
+                Cache::put('getAdvertise_'.$modelName.'_'.$modelId, $ad, CACHETIME);
             }
-            else {
+            if(isset($ad)) {
+                return $ad;
+            } else {
                 return null;
             }
         }
@@ -90,51 +105,60 @@ class CommonSite
         }
     }
 
-    public static function getMetaSeo($modelName, $modelId = null)
+    public static function getMetaSeo($modelName, $modelId = '')
     {
-        if(!$modelId) {
+        $seoMeta = null;
+
+        if (Cache::has('getMetaSeo_'.$modelName.'_'.$modelId))
+        {
+            $seoMeta = Cache::get('getMetaSeo_'.$modelName.'_'.$modelId);
+        } else {
+            if(!$modelId) {
             $seoMeta = AdminSeo::where('model_name', $modelName)
+                        ->first();
+                return $seoMeta;
+            }
+            $seoMeta = AdminSeo::where('model_name', $modelName)
+                    ->where('model_id', $modelId)
                     ->first();
-            return $seoMeta;
+            if($seoMeta) {
+                $meta = $modelName::find($modelId);
+                if($seoMeta->title_site == '') {
+                    if($modelName == 'Game') {
+                        $seoMeta->title_site = 'Chơi game '.$meta->name.' | Choinhanh.vn'; 
+                    } else {
+                        $seoMeta->title_site = $meta->name;
+                    }
+                }
+                if($seoMeta->description_site == '') {
+                    if($modelName == 'Game') {
+                        $seoMeta->description_site = convert_string_vi_to_en($meta->name).' - Trò chơi game '. $meta->name.' chọn lọc hay mới nhất 24h tại choinhanh.vn'; 
+                    } else {
+                        $seoMeta->description_site = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
+                    }
+                }
+                if($seoMeta->keyword_site == '') {
+                    if($modelName == 'Game') {
+                        $seoMeta->keyword_site = 'chơi game '.$meta->name.', tro choi '.convert_string_vi_to_en($meta->name).', game '.convert_string_vi_to_en($meta->name).' hay, '.convert_string_vi_to_en($meta->name).' 24h'; 
+                    } else {
+                        $seoMeta->keyword_site = 'Game '.$meta->name.', trò chơi '.$meta->name.', game cho mobile hay nhất tại choinhanh.vn';
+                    }
+                }
+                if($seoMeta->title_fb == '') {
+                    $seoMeta->title_fb = $meta->name;
+                }
+                if($seoMeta->description_fb == '') {
+                    $seoMeta->description_fb = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
+                }
+                // if($seoMeta->image_url_fb == '') {
+                //     $seoMeta->image_url_fb = url(UPLOAD_GAME_AVATAR . '/' . $meta->image_url);
+                // }
+                // return $seoMeta;
+            }
+            Cache::put('getMetaSeo_'.$modelName.'_'.$modelId, $seoMeta, CACHETIME);
         }
-        $seoMeta = AdminSeo::where('model_name', $modelName)
-                ->where('model_id', $modelId)
-                ->first();
-        if($seoMeta) {
-            $meta = $modelName::find($modelId);
-            if($seoMeta->title_site == '') {
-                if($modelName == 'Game') {
-                    $seoMeta->title_site = 'Chơi game '.$meta->name.' | Choinhanh.vn'; 
-                } else {
-                    $seoMeta->title_site = $meta->name;
-                }
-            }
-            if($seoMeta->description_site == '') {
-                if($modelName == 'Game') {
-                    $seoMeta->description_site = convert_string_vi_to_en($meta->name).' - Trò chơi game '. $meta->name.' chọn lọc hay mới nhất 24h tại choinhanh.vn'; 
-                } else {
-                    $seoMeta->description_site = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
-                }
-            }
-            if($seoMeta->keyword_site == '') {
-                if($modelName == 'Game') {
-                    $seoMeta->keyword_site = 'chơi game '.$meta->name.', tro choi '.convert_string_vi_to_en($meta->name).', game '.convert_string_vi_to_en($meta->name).' hay, '.convert_string_vi_to_en($meta->name).' 24h'; 
-                } else {
-                    $seoMeta->keyword_site = 'Game '.$meta->name.', trò chơi '.$meta->name.', game cho mobile hay nhất tại choinhanh.vn';
-                }
-            }
-            if($seoMeta->title_fb == '') {
-                $seoMeta->title_fb = $meta->name;
-            }
-            if($seoMeta->description_fb == '') {
-                $seoMeta->description_fb = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
-            }
-            // if($seoMeta->image_url_fb == '') {
-            //     $seoMeta->image_url_fb = url(UPLOAD_GAME_AVATAR . '/' . $meta->image_url);
-            // }
-            return $seoMeta;
-        }
-        return null;
+
+        return $seoMeta;
     }
 
     public static function uploadImg($path, $folder, $imageUrl, $imageCurrent = NULL)

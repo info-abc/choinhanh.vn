@@ -1,7 +1,8 @@
-@extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo(SEO_META)))
+<?php $seoMeta = CommonSite::getMetaSeo(SEO_META); ?>
+@extends('site.layout.default', array('seoMeta' => $seoMeta))
 
 @section('title')
-	@if($title = CommonSite::getMetaSeo(SEO_META)->title_site)
+	@if($title = $seoMeta->title_site)
 		{{ $title= $title }}
 	@else
 		{{ $title='Trang chủ' }}

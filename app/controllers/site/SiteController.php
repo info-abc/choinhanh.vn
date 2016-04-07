@@ -11,7 +11,15 @@ class SiteController extends HomeController {
         	$menu = CategoryParent::where('status', ACTIVE)->where('position', CONTENT)->orderBy('weight_number', 'asc')->get();
             Cache::put('menu', $menu, CACHETIME);
         }
-        $menuHeader = CategoryParent::where('status', ACTIVE)->where('position', MENU)->orderBy('weight_number', 'asc')->get();
+        
+        if (Cache::has('menuHeader'))
+        {
+            $menuHeader = Cache::get('menuHeader');
+        } else {
+        	$menuHeader = CategoryParent::where('status', ACTIVE)->where('position', MENU)->orderBy('weight_number', 'asc')->get();
+            Cache::put('menuHeader', $menuHeader, CACHETIME);
+        }
+        
 		if (Cache::has('script'.SEO_SCRIPT))
         {
             $script = Cache::get('script'.SEO_SCRIPT);
@@ -36,6 +44,7 @@ class SiteController extends HomeController {
 			}
             Cache::put('listTags', $listTags, CACHETIME);
         }
+        
     	if (Cache::has('listTypeGameMenu'))
         {
             $listTypeGameMenu = Cache::get('listTypeGameMenu');
