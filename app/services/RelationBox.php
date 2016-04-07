@@ -20,6 +20,9 @@ class RelationBox
 		if($input && $data && $relation) {
 			$data->$relation()->sync($input);
 		}
+		if(!$input) {
+			$data->$relation()->detach();
+		}
 	}
 
 	public static function deleteRelationship($data, $relation)

@@ -662,43 +662,54 @@ class CommonGame
 
 	public static function getGameByType($typeId)
 	{
-		$now = Carbon\Carbon::now();
-		$gameIds = Type::find($typeId)->gametypes->lists('game_id');
-		if($gameIds) {
-			if(getDevice() == MOBILE) {
-				$listGame = Game::whereIn('id', $gameIds)
-					->where('status', ENABLED)
-					->where('parent_id', '=', GAMEHTML5)
-					->where('start_date', '<=', $now);
-			} else {
-				$listGame = Game::whereIn('id', $gameIds)
-					->where('status', ENABLED)
-					->where('start_date', '<=', $now)
-					->whereIn('parent_id', [GAMEHTML5, GAMEFLASH]);
+		if (Cache::has('getGameByType_'.$typeId))
+        {
+            $listGame = Cache::get('getGameByType_'.$typeId);
+        } else {
+        	$now = Carbon\Carbon::now();
+			$gameIds = Type::find($typeId)->gametypes->lists('game_id');
+			if($gameIds) {
+				if(getDevice() == MOBILE) {
+					$listGame = Game::whereIn('id', $gameIds)
+						->where('status', ENABLED)
+						->where('parent_id', '=', GAMEHTML5)
+						->where('start_date', '<=', $now);
+				} else {
+					$listGame = Game::whereIn('id', $gameIds)
+						->where('status', ENABLED)
+						->where('start_date', '<=', $now)
+						->whereIn('parent_id', [GAMEHTML5, GAMEFLASH]);
+				}
+				$listGame = $listGame->orderBy('start_date', 'desc')
+								->limit(6)
+								->get();
+				Cache::put('getGameByType_'.$typeId, $listGame, CACHETIME);
 			}
-			$listGame = $listGame->orderBy('start_date', 'desc')
-							->limit(6)
-							->get();
-			return $listGame;
-		}
-		return null;
+        }
+		return $listGame;
 	}
 
 	public static function getBoxMiniGame()
 	{
-		$result = array();
-		$types = Type::all();
-		if($types) {
-			foreach($types as $key => $value) {
-				$games = self::getGameByType($value->id);
-				$result[$key] = array(
-					'type_id' => $value->id,
-					'type_name' => $value->name,
-					'type_slug' => $value->slug,
-					'games' => $games
-				);
+		if (Cache::has('getBoxMiniGame'))
+        {
+            $result = Cache::get('getBoxMiniGame');
+        } else {
+        	$result = array();
+			$types = Type::all();
+			if($types) {
+				foreach($types as $key => $value) {
+					$games = self::getGameByType($value->id);
+					$result[$key] = array(
+						'type_id' => $value->id,
+						'type_name' => $value->name,
+						'type_slug' => $value->slug,
+						'games' => $games
+					);
+				}
 			}
-		}
+            Cache::put('getBoxMiniGame', $result, CACHETIME);
+        }
 		return $result;
 	}
 

@@ -55,7 +55,7 @@
 
 	<!-- game type has games -->
 	<ul class="nav-type">
-	@foreach(CommonSearch::searchTypeGame() as $value)
+	@foreach($listTypeGameMenu as $value)
 		<li>
 			<img src="{{ UPLOADIMG . UPLOAD_GAME_TYPE . '/' . $value->id . '/' . $value->image_url }}" alt="game-{{ $value->slug }}" />
 			<a href="{{ url('/game-' . $value->slug) }}" {{ checkActive('game-' . $value->slug) }} >

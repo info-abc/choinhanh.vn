@@ -1,7 +1,11 @@
 @extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', 8), 'seoImage' => FOLDER_SEO_PARENT . '/' . 8))
 
 @section('title')
-{{ $title = 'Game Android'}}
+	@if($title = CommonSite::getMetaSeo('CategoryParent', 8)->title_site)
+		{{ $title= $title }}
+	@else
+		{{ $title = 'Game Android' }}
+	@endif
 @stop
 
 @section('content')

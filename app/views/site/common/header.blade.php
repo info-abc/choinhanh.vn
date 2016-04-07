@@ -30,8 +30,6 @@
 		@endif
 	@endif
 
-	{{HTML::style('assets/css/font-awesome.min.css') }}
-	{{HTML::style('assets/css/bootstrap.min.css') }}
 	{{HTML::style('assets/css/style.css') }}
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

@@ -49,7 +49,7 @@
 		        opt.removeAttribute('selected');
 		        opt.selected = false;
 		    } else {
-		        opt.setAttribute('selected', '');
+		        opt.setAttribute('selected');
 		        opt.selected = true;
 		    }
 		    e.preventDefault();

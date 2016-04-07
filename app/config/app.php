@@ -124,7 +124,7 @@ return array(
 		"Chumper\Zipper\ZipperServiceProvider",
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 	    'Edisonthk\GoogleOAuth\GoogleOAuthServiceProvider',
-	   // 'Barryvdh\Debugbar\ServiceProvider',
+	   'Barryvdh\Debugbar\ServiceProvider',
 	   'Jenssegers\Agent\AgentServiceProvider',
 
 	),

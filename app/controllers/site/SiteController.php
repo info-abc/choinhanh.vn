@@ -22,6 +22,30 @@ class SiteController extends HomeController {
 		if($script) {
 			View::share('script', $script);
 		}
+
+        if (Cache::has('listTags'))
+        {
+            $listTags = Cache::get('listTags');
+        } else {
+			$tags = AdminTag::where('status', ACTIVE)->get();
+			$listTags = [];
+			foreach ($tags as $key => $value) {
+				if (count($value->games) > 0) {
+					$listTags[$key] = $value;
+				}
+			}
+            Cache::put('listTags', $listTags, CACHETIME);
+        }
+    	if (Cache::has('listTypeGameMenu'))
+        {
+            $listTypeGameMenu = Cache::get('listTypeGameMenu');
+        } else {
+			$listTypeGameMenu = CommonSearch::searchTypeGame();
+            Cache::put('listTypeGameMenu', $listTypeGameMenu, CACHETIME);
+        }
+
+		View::share('listTypeGameMenu', $listTypeGameMenu);
+		View::share('listTags', $listTags);
 		View::share('menu', $menu);
 		View::share('menuHeader', $menuHeader);
 	}
