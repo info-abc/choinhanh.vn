@@ -5,7 +5,7 @@
         <div class="tooltip_text">
         	Thể loại: 
             <strong>
-                @if(Request::segment(1))
+                @if(Request::segment(1) != NULL)
                     {{ SiteIndex::getTypeTooltip($game->type_main, 'name') }}
                 @else
                     {{ SiteIndex::getFieldByType($game->type_main, 'name') }}
