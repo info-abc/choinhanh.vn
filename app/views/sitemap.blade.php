@@ -13,7 +13,7 @@
 
     @foreach(SiteMap::getGameUrlSiteMap() as $game)
 	    <url>
-	    	<loc>{{ url().'/game-'.Type::find($game->type_main)->slug.'/'.$game->slug }}</loc>
+	    	<loc>{{ CommonGame::getUrlGame($game) }}</loc>
 			<lastmod>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $game->start_date)->format('Y-m-d') }}</lastmod>
 			<changefreq>weekly</changefreq>
 			<priority>0.5</priority>

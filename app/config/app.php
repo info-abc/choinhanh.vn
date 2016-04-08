@@ -125,7 +125,7 @@ return array(
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 	    'Edisonthk\GoogleOAuth\GoogleOAuthServiceProvider',
 	   'Barryvdh\Debugbar\ServiceProvider',
-	   'Jenssegers\Agent\AgentServiceProvider',
+	   // 'Jenssegers\Agent\AgentServiceProvider',
 
 	),
 
