@@ -123,16 +123,25 @@ class CommonSite
                     ->first();
             if($seoMeta) {
                 $meta = $modelName::find($modelId);
+                $type = self::getTypeBySlug();
                 if($seoMeta->title_site == '') {
                     if($modelName == 'Game') {
-                        $seoMeta->title_site = 'Chơi game '.$meta->name.' | Choinhanh.vn'; 
+                        if($type) {
+                            $seoMeta->title_site = 'Chơi game '.$meta->name.' | Game '.$type->name.' | Choinhanh.vn';     
+                        } else {
+                            $seoMeta->title_site = 'Chơi game '.$meta->name.' | Choinhanh.vn';
+                        }
                     } else {
                         $seoMeta->title_site = $meta->name;
                     }
                 }
                 if($seoMeta->description_site == '') {
                     if($modelName == 'Game') {
-                        $seoMeta->description_site = convert_string_vi_to_en($meta->name).' - Trò chơi game '. $meta->name.' chọn lọc hay mới nhất 24h tại choinhanh.vn'; 
+                        if($type) {
+                            $seoMeta->description_site = 'Game '.convert_string_vi_to_en($meta->name).' - Trò chơi '.$type->name.' '.$meta->name.' chọn lọc hay mới nhất 24h tại choinhanh.vn'; 
+                        } else {
+                            $seoMeta->description_site = convert_string_vi_to_en($meta->name).' - Trò chơi game '. $meta->name.' chọn lọc hay mới nhất 24h tại choinhanh.vn'; 
+                        }
                     } else {
                         $seoMeta->description_site = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
                     }
@@ -174,6 +183,14 @@ class CommonSite
         if ($imageCurrent) {
             return $imageCurrent;
         }
+    }
+
+    public static function getTypeBySlug()
+    {
+        $segment1 = Request::segment(1);
+        $slugType = substr($segment1, 5);
+        $type = Type::findBySlug($slugType);
+        return $type;
     }
 
 }

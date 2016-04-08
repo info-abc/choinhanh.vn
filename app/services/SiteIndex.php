@@ -24,4 +24,23 @@ class SiteIndex
         }
         return $result;
     }
+
+    public static function getTypeTooltip($typeId, $field)
+    {
+        // $segment1 = Request::segment(1);
+        // if (Cache::has('getTypeTooltip_'.$typeId.$field))
+        // {
+        //     $result = Cache::get('getTypeTooltip_'.$typeId.$field);
+        // } else {
+            $type = CommonSite::getTypeBySlug();
+            if($type) {
+                $result = $type->$field;    
+            } else {
+                $result = Type::find($typeId)->$field;                  
+            }
+        //     Cache::put('getTypeTooltip_'.$typeId.$field, $result, CACHETIME);
+        // }
+        return $result;
+    }
+
 }
