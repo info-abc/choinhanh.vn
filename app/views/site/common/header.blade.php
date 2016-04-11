@@ -11,6 +11,10 @@
 	<meta http-equiv="content-language" content="vi"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 
+	@if(isset($gameUrl))
+	<link rel='canonical' href='{{ $gameUrl }}'/>
+	@endif
+
 	@if(isset($seoMeta))
 		<meta name="description" content="{{ html_entity_decode($seoMeta->description_site) }}">
 		<meta name="keywords" content="{{ $seoMeta->keyword_site }}">
