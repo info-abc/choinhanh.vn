@@ -132,23 +132,27 @@ class CommonSite
                 if(isset($typeBySlug) && isset($typeByTypeMain)) {
                     if($typeByTypeMain->slug == $typeBySlug->slug) {
                         $type = $typeByTypeMain;
+                        $isTypeMain = 1;
                     } else {
                         $type = $typeBySlug;
+                        $isTypeMain = null;
                     }
                 } else {
                     $type = null;
+                    $isTypeMain = null;
                 }
             } else {
                 $type = null;
+                $isTypeMain = null;
             }
-            self::getMetaSeoData($modelName, $modelId, $seoMeta, $meta, $type);
+            self::getMetaSeoData($modelName, $modelId, $seoMeta, $meta, $type, $isTypeMain);
         }
         return $seoMeta;
     }
 
-    public static function getMetaSeoData($modelName, $modelId, $seoMeta, $meta, $type)
+    public static function getMetaSeoData($modelName, $modelId, $seoMeta, $meta, $type, $isTypeMain = null)
     {
-        if($modelName == 'Game') {
+        if($modelName == 'Game' && $isTypeMain == null) {
             if($type) {
                 $seoMeta->title_site = 'Chơi game '.$meta->name.' | Game '.$type->name.' | Choinhanh.vn';     
             } else {
@@ -159,7 +163,7 @@ class CommonSite
                 $seoMeta->title_site = $meta->name;
             }
         }
-        if($modelName == 'Game') {
+        if($modelName == 'Game' && $isTypeMain == null) {
             if($type) {
                 $seoMeta->description_site = 'Game '.convert_string_vi_to_en($meta->name).' - Trò chơi '.$type->name.' '.$meta->name.' chọn lọc hay mới nhất 24h tại choinhanh.vn'; 
             } else {
@@ -170,8 +174,8 @@ class CommonSite
                 $seoMeta->description_site = limit_text(strip_tags($meta->description), TEXTLENGH_DESCRIPTION);
             }
         }
-        if($modelName == 'Game') {
-            $seoMeta->keyword_site = 'chơi game '.$meta->name.', tro choi '.convert_string_vi_to_en($meta->name).', game '.convert_string_vi_to_en($meta->name).' hay, '.convert_string_vi_to_en($meta->name).' 24h'; 
+        if($modelName == 'Game' && $isTypeMain == null) {
+            $seoMeta->keyword_site = 'chơi game '.$meta->name.', tro choi '.convert_string_vi_to_en($meta->name).', game '.convert_string_vi_to_en($meta->name).' hay, '.convert_string_vi_to_en($meta->name).' 24h';
         } else {
             if($seoMeta->keyword_site == '') {
                 $seoMeta->keyword_site = 'Game '.$meta->name.', trò chơi '.$meta->name.', game cho mobile hay nhất tại choinhanh.vn';
