@@ -11,8 +11,14 @@
 	<meta http-equiv="content-language" content="vi"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 
+	<meta name="facebookexternalhit" content="noindex">
+
 	@if(isset($gameUrl))
-	<link rel='canonical' href='{{ $gameUrl }}'/>
+	<link rel="canonical" href="{{ $gameUrl }}" />
+	@endif
+
+	@if(!empty(Request::segment(1)) && Request::segment(1) == 'home')
+	<link rel="canonical" href="http://choinhanh.vn" />
 	@endif
 
 	@if(isset($seoMeta))
@@ -45,10 +51,10 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-	{{ HTML::script('assets/js/jquery-2.1.4.min.js', array('async' => 'async')) }}
-	{{ HTML::script('assets/js/bootstrap.min.js', array('async' => 'async')) }}
-	{{ HTML::script('assets/js/dw.js', array('async' => 'async')) }}
-	{{ HTML::script('assets/js/script.js', array('async' => 'async')) }}
+	<script src="{{ url('assets/js/jquery-2.1.4.min.js') }}"></script>
+	<script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
+	<script src="{{ url('assets/js/dw.js') }}"></script>
+	<script src="{{ url('assets/js/script.js') }}"></script>
 
 	@if(isset($script))
 		{{ $script->header_script }}

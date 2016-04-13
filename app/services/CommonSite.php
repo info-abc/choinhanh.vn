@@ -108,35 +108,28 @@ class CommonSite
     public static function getMetaSeo($modelName, $modelId = '')
     {
         $seoMeta = null;
+        //seo trang chu - CACHE
         if(!$modelId) {
-            if (Cache::has('getMetaSeo_'.$modelName))
+            if (Cache::has('getMetaSeo_'.$modelName.'_home'))
             {
-                $seoMeta = Cache::get('getMetaSeo_'.$modelName);
+                $seoMeta = Cache::get('getMetaSeo_'.$modelName.'_home');
             } else {
                 $seoMeta = AdminSeo::where('model_name', $modelName)
                         ->first();
-                Cache::put('getMetaSeo_'.$modelName, $seoMeta, CACHETIME);
+                Cache::put('getMetaSeo_'.$modelName.'_home', $seoMeta, CACHETIME);
             }
             return $seoMeta;
         }
-
-        $meta = $modelName::find($modelId);
-        if($modelName == 'Game') {
-            $typeByTypeMain = Type::find($meta->type_main);
-            $typeBySlug = self::getTypeBySlug();
-            $cacheName = 'getMetaSeo_'.$modelName.'_'.$modelId.'_'.$meta->type_main.'_'.$typeBySlug->slug;
-        } else {
-            $cacheName = 'getMetaSeo_'.$modelName.'_'.$modelId;
-        }
-        if (Cache::has($cacheName))
-        {
-            $seoMeta = Cache::get($cacheName);
-        } else {
-            $seoMeta = AdminSeo::where('model_name', $modelName)
-                    ->where('model_id', $modelId)
-                    ->first();
-            if($seoMeta) {
-                if($modelName == 'Game') {
+        //seo cac trang con - NO CACHE
+        $seoMeta = AdminSeo::where('model_name', $modelName)
+                ->where('model_id', $modelId)
+                ->first();
+        if($seoMeta) {
+            $meta = $modelName::find($modelId);
+            if($modelName == 'Game') {
+                $typeByTypeMain = Type::find($meta->type_main);
+                $typeBySlug = self::getTypeBySlug();
+                if(isset($typeBySlug) && isset($typeByTypeMain)) {
                     if($typeByTypeMain->slug == $typeBySlug->slug) {
                         $type = $typeByTypeMain;
                     } else {
@@ -145,9 +138,10 @@ class CommonSite
                 } else {
                     $type = null;
                 }
-                self::getMetaSeoData($modelName, $modelId, $seoMeta, $meta, $type);
+            } else {
+                $type = null;
             }
-            Cache::put($cacheName, $seoMeta, CACHETIME);
+            self::getMetaSeoData($modelName, $modelId, $seoMeta, $meta, $type);
         }
         return $seoMeta;
     }
@@ -212,10 +206,20 @@ class CommonSite
 
     public static function getTypeBySlug()
     {
+        $slugType = self::getSlugTypeByUrl();
+        $type = Type::findBySlug($slugType);
+        if($type) {
+            return $type;
+        } else {
+            return null;
+        }
+    }
+
+    public static function getSlugTypeByUrl()
+    {
         $segment1 = Request::segment(1);
         $slugType = substr($segment1, 5);
-        $type = Type::findBySlug($slugType);
-        return $type;
+        return $slugType;
     }
 
 }
