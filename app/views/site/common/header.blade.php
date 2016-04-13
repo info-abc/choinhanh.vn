@@ -11,8 +11,6 @@
 	<meta http-equiv="content-language" content="vi"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 
-	<meta name="facebookexternalhit" content="noindex">
-
 	@if(isset($gameUrl))
 	<link rel="canonical" href="{{ $gameUrl }}" />
 	@endif
