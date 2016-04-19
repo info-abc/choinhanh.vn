@@ -1,7 +1,7 @@
-@extends('site.layout.default')
+@extends('site.layout.default', array('page404' => 1))
 
 @section('title')
-{{ $title='404 Page not found' }}
+	{{ $title='Bạn đã truy cập trang game báo lỗi 404 vui lòng thử lại' }}
 @stop
 
 @section('content')
