@@ -55,6 +55,9 @@ class CommonLog
 	public static function logErrors($type)
 	{
 		$link = Request::url();
+		if(strpos($link, '/index.php/')) {
+			return Redirect::action('SiteController@returnPage404');
+		}
 		$agent = $_SERVER['HTTP_USER_AGENT'];
 		$referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
 		$error = AdminError::where('link', $link)->first();
