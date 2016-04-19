@@ -210,7 +210,7 @@ Route::get('/home', 'SiteIndexController@home');
 
 Route::resource('/', 'SiteIndexController');
 
-Route::get('/game-{slug}', 'GameController@listgame');
+Route::get('/game-{slug}', 'GameController@listGame');
 
 Route::get('/game-{type}/{slug}', 'GameController@detailGame');
 
