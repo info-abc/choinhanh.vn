@@ -9,7 +9,7 @@
 	@if(isset($page404))
 		<meta name="robots" content="noindex, nofollow" />
 		<link rel="canonical" href="{{ action('SiteController@returnPage404') }}" />
-		<meta name="description" content="Trang bạn xem không tồn tại, vui lòng quay trở lại trang chủ Game Kiến Thức để tìm kiếm game mới hay nhất" />
+		<meta name="description" content="Trang bạn xem không tồn tại, vui lòng quay trở lại trang chủ Chơi nhanh để tìm kiếm game mới hay nhất" />
 	@else
 		<meta name="robots" content="noodp,index,follow" />
 	@endif
