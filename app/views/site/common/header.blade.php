@@ -6,7 +6,13 @@
 	<meta property="fb:admins" content="{{ APP_ADMIN }}"/>
 	<title>@yield('title')</title>
 
-	<meta name="robots" content="noodp,index,follow" />
+	@if(isset($page404))
+		<meta name="robots" content="noindex, nofollow" />
+		<link rel="canonical" href="{{ action('SiteController@returnPage404') }}" />
+		<meta name="description" content="Trang bạn xem không tồn tại, vui lòng quay trở lại trang chủ Chơi nhanh để tìm kiếm game mới hay nhất" />
+	@else
+		<meta name="robots" content="noodp,index,follow" />
+	@endif
 	<meta name='revisit-after' content='1 days' />
 	<meta http-equiv="content-language" content="vi"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
