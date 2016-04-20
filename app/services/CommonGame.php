@@ -713,4 +713,67 @@ class CommonGame
 		return $result;
 	}
 
+	public static function getRelated($game)
+	{
+		$games = '';
+		$now = Carbon\Carbon::now();
+		if(getDevice() == 'MOBILE') {
+			$limit = GAME_RELATED_MOBILE;
+		} else {
+			$limit = GAME_RELATED_WEB;
+		}
+		$tags = GameTag::where('game_id', $game->id)->lists('tag_id');
+		$games = Game::join('game_tags', 'game_tags.game_id', '=', 'games.id')
+			->join('tags', 'tags.id', '=', 'game_tags.tag_id')
+			->select('games.*')
+			->distinct()
+			->where('games.id', '!=', $game->id)
+			->where('games.status', ENABLED)
+			->where('games.start_date', '<=', $now);
+		if(getDevice() == 'MOBILE') {
+			$games = $games->where('games.parent_id', '!=', GAMEFLASH)
+				->whereIn('game_tags.tag_id', $tags)
+				->orderBy(DB::raw('RAND()'))
+				->take($limit)
+				->get();
+		} else {
+			$games = $games->whereIn('game_tags.tag_id', $tags)
+				->orderBy(DB::raw('RAND()'))
+				->take($limit)
+				->get();
+		}
+		$dataListCount = count($games);
+		$dataListGame = self::getDataListGames($dataListCount, $limit, $game, $now, $games);
+		// dd($dataListGame->toArray());
+		return [$games, $dataListGame];
+	}
+
+	public static function getDataListGames($dataListCount, $limit, $game, $now, $games)
+	{
+		$dataListGame = '';
+		if($dataListCount < $limit) {
+			$dataListLimit = $limit - $dataListCount;
+			if(getDevice() == 'MOBILE') {
+				$dataListGame = Game::where('status', ENABLED)
+					->where('parent_id', '!=', GAMEFLASH)
+					->where('start_date', '<=', $now)
+					->where('games.id', '!=', $game->id)
+					->where('type_main', $game->type_main)
+		    		->orderBy('start_date', 'desc')
+		    		->take($dataListLimit)
+		    		->get();
+			} else {
+				$dataListGame = Game::where('status', ENABLED)
+					->where('start_date', '<=', $now)
+					->where('games.id', '!=', $game->id)
+					->where('type_main', $game->type_main)
+					// ->whereNotIn('id', $games->lists('games.id'))
+		    		->orderBy('start_date', 'desc')
+		    		->take($dataListLimit)
+		    		->get();
+			}
+		}
+		return $dataListGame;
+	}
+
 }

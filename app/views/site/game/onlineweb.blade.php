@@ -76,6 +76,5 @@
 	</div>
 </div>
 
-@include('site.game.related', array('parentId' => $game->parent_id, 'limit' => GAME_RELATED_WEB, 'typeId' => $game->type_main))
-
+@include('site.game.related', array('game' => $game))
 @stop
