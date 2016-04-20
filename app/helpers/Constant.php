@@ -161,7 +161,25 @@ define('GAME_ANDROID', 8);
 // game hay nhat (choi nhieu)
 define('GAME_PLAY_MANY', 9);
 
-
-//DEFINE advertisements
-//bar.blade.php
+//define position ad - PC
 define('POSITION_HEADER', 1);
+define('POSITION_FOOTER', 2);
+//Trang chủ
+define('POSITION_HOMEBOX', 3);
+//Trang danh mục: Giữa box hay nhất và mới nhất
+define('POSITION_CATEGORY', 4);
+//Trang bình chọn nhiều: Giữa bình chọn nhiều và hay nhất
+define('POSITION_VOTEMANY', 5);
+//Trang hay nhất: Giữa hay nhất và bình chọn nhiều
+define('POSITION_PLAYMANY', 6);
+//Trang game android: Giữa tải nhiều và mới nhất
+define('POSITION_GAMEANDROID', 7);
+//Trang chi tiết chơi game
+//Preroll 
+define('POSITION_GAMEDETAIL', 8);
+//Trên box game hay nhất ( 300x600 )
+define('POSITION_GAMEDETAIL_GAMETOP', 9);
+
+//define position ad - Mobile
+//Trên nút chơi ngay thứ 2
+define('POSITION_MOBILE_PLAYBUTTON2', 10);
