@@ -956,6 +956,7 @@ a.download i.fa {
         margin-right: 10px;
     }
     a.download {
+        background: #E61219;
         display: block;
     }
     a.download2 {
