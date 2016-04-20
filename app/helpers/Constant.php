@@ -160,3 +160,8 @@ define('GAME_NEW', 7);
 define('GAME_ANDROID', 8);
 // game hay nhat (choi nhieu)
 define('GAME_PLAY_MANY', 9);
+
+
+//DEFINE advertisements
+//bar.blade.php
+define('POSITION_HEADER', 1);
