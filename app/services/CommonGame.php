@@ -380,6 +380,7 @@ class CommonGame
 						->where('status', ENABLED)
 						->where('parent_id', '=', GAMEHTML5)
 						->where('start_date', '<=', $now)
+						->orderBy('start_date', 'desc')
 						->orderBy('id', 'desc')
 						->paginate(PAGINATE_LISTGAME);
 				} else {
@@ -388,6 +389,7 @@ class CommonGame
 						->where('status', ENABLED)
 						->where('start_date', '<=', $now)
 						->whereIn('parent_id', [GAMEHTML5, GAMEFLASH])
+						->orderBy('start_date', 'desc')
 						->orderBy('id', 'desc')
 						->paginate(PAGINATE_LISTGAME);
 				}
