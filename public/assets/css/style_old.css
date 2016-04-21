@@ -2001,3 +2001,10 @@ div#tipDiv .tooltip_content .tooltip_text span, .tipContent .tooltip_content .to
 div#tipDiv .tooltip_content .rate-result-cnt {
     display: inline-block;
 }
+
+.button1,
+.button1:hover,
+.button1:focus {
+    background: #474747;
+    border-color: #474747;
+}
