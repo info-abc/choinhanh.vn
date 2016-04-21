@@ -14,7 +14,7 @@
 	<h1>{{ $tag->title }}</h1>
 	<?php
 		$games = CommonGame::boxGameByTag($tag);
-		$count = ceil(count($games->orderBy('start_date', 'desc')->orderBy('id', 'desc')->get())/PAGINATE_BOXGAME);
+		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	 ?>
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
@@ -22,7 +22,7 @@
 				<div class="swiper-slide boxgame">
 					<div class="row">
 					<?php
-						$listGame = $games->orderBy('count_play', 'desc')->orderBy('start_date', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
+						$listGame = $games->orderBy('start_date', 'desc')->orderBy('id', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
 					?>
 						@foreach($listGame as $game)
 							@include('site.game.gameitem', array('game' => $game, 'slug' => $tag->slug))
