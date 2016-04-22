@@ -34,15 +34,18 @@ class CommonSite
     public static function getAdvertise($position, $modelName = null, $modelId = null)
     {
         $ad = null;
+        $isMobile = self::getDeviceValue();
         // Header & Footer
         if($modelName == null && $modelId == null) {
-
-            if (Cache::has('getAdvertise_'.$position))
+            if (Cache::has('getAdvertise_'.$position.'_'.$isMobile))
             {
-                $ad = Cache::get('getAdvertise_'.$position);
+                $ad = Cache::get('getAdvertise_'.$position.'_'.$isMobile);
             } else {
-                $ad = Advertise::where(array('position' => $position, 'status' => ENABLED))->first();
-                Cache::put('getAdvertise_'.$position, $ad, CACHETIME);
+                $ad = Advertise::where('position', $position)
+                        ->where('status', ENABLED)
+                        ->where('is_mobile', $isMobile)
+                        ->first();
+                Cache::put('getAdvertise_'.$position.'_'.$isMobile, $ad, CACHETIME);
             }
 			if(isset($ad)) {
 				return $ad;
@@ -52,21 +55,29 @@ class CommonSite
         }
         // Content
         else {
-            if (Cache::has('getAdvertise_'.$modelName.'_'.$modelId))
+            if (Cache::has('getAdvertise_'.$modelName.'_'.$modelId.'_'.$isMobile))
             {
-                $ad = Cache::get('getAdvertise_'.$modelName.'_'.$modelId);
+                $ad = Cache::get('getAdvertise_'.$modelName.'_'.$modelId.'_'.$isMobile);
             } else {
+                $ad = CommonModel::join('advertise_positions', 'common_models.id', '=', 'advertise_positions.common_model_id')
+                    ->join('advertisements', 'advertise_positions.advertisement_id', '=', 'advertisements.id')
+                    ->where('common_models.model_name', $modelName)
+                    ->where('common_models.model_id', $modelId)
+                    ->where('advertise_positions.status', ENABLED)
+                    ->where('advertisements.is_mobile', $isMobile)
+                    ->first();
 
                 //check Common models
-                $common_model = CommonModel::where(array('model_name' => $modelName, 'model_id' => $modelId))->first();
-                if (isset($common_model)) {
-                    $common_model_id = $common_model->id;
-    				$advertisement_id = AdvertisePosition::where(array('common_model_id' => $common_model_id, 'status' => ENABLED))->first();
-                    if(isset($advertisement_id)) {
-    					$ad = Advertise::find($advertisement_id->advertisement_id);
-                    }
-                }
-                Cache::put('getAdvertise_'.$modelName.'_'.$modelId, $ad, CACHETIME);
+        //         $common_model = CommonModel::where(array('model_name' => $modelName, 'model_id' => $modelId))->first();
+        //         if (isset($common_model)) {
+        //             $common_model_id = $common_model->id;
+    				// $advertisement_id = AdvertisePosition::where(array('common_model_id' => $common_model_id, 'status' => ENABLED))->first();
+        //             if(isset($advertisement_id)) {
+        //                 $ad = Advertise::find($advertisement_id->advertisement_id);    
+        //             }
+        //         }
+
+                Cache::put('getAdvertise_'.$modelName.'_'.$modelId.'_'.$isMobile, $ad, CACHETIME);
             }
             if(isset($ad)) {
                 return $ad;
@@ -224,6 +235,15 @@ class CommonSite
         $segment1 = Request::segment(1);
         $slugType = substr($segment1, 5);
         return $slugType;
+    }
+
+    public static function getDeviceValue()
+    {
+        if(getDevice() == MOBILE) {
+            return IS_MOBILE;
+        } else {
+            return IS_NOT_MOBILE;
+        }
     }
 
 }

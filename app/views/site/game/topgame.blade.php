@@ -1,3 +1,7 @@
+@if(getDevice() == COMPUTER)
+	@include('site.common.ads', array('adPosition' => POSITION_GAMEDETAIL_GAMETOP))
+@endif
+
 <div class="topgame">
 	<h3><a href="{{ action('GameController@getListGameplay') }}">GAME HAY NHẤT</a></h3>
 	<ul>

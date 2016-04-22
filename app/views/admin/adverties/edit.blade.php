@@ -22,7 +22,7 @@
 					<label for="name">Vị trí</label>
 					<div class="row">
 						<div class="col-sm-6">
-						   {{ Form::select('position', [1 => 'Header', 2 => 'Footer', 4 => 'Content'], $advertise->position) }}
+						   {{ Form::select('position', [1 => 'Header', 2 => 'Footer'], $advertise->position) }}
 						</div>
 					</div>
 				</div>
@@ -61,6 +61,14 @@
 					<div class="row">
 						<div class="col-sm-6">
 							{{ Form::textarea('adsense', $advertise->adsense, textParentCategory('code adsense')) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="name">Thiết bị</label>
+					<div class="row">
+						<div class="col-sm-6">
+						   {{ Form::select('is_mobile', [IS_NOT_MOBILE => 'Desktop', IS_MOBILE => 'Mobile'], $advertise->is_mobile) }}
 						</div>
 					</div>
 				</div>

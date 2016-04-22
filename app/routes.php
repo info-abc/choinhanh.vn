@@ -126,7 +126,8 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/user/search', array('uses' =>  'UserController@search', 'as' => 'admin.user.search'));
 	Route::resource('/user', 'UserController');
 
-	
+	Route::resource('/ad_page_desktop', 'AdPageDesktopController');
+	Route::resource('/ad_page_mobile', 'AdPageMobileController');
 
 });
 

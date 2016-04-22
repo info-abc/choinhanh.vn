@@ -22,8 +22,7 @@
 			<tr>
 			  <th>ID</th>
 			  <th>Vị trí</th>
-			  <th>Link</th>
-			  <th>Image</th>
+			  <th>Thiết bị</th>
 			  <th>Status</th>
 			  <th style="width:200px;">Action</th>
 			</tr>
@@ -31,10 +30,7 @@
 				<tr>
 				  	<td>{{ $value->id }}</td>
 					<td>{{ getPositionAdvertise($value->position) }}</td>
-					<td>{{ $value->image_link }}</td>
-					<td>
-						<img src="{{ url(UPLOAD_ADVERTISE . '/header_footer' .'/' .$value->id . '/' . $value->image_url) }}" ,width="100px", height="100px"  />
-					</td>
+					<td>{{ AdCommon::getDeviceNameAd($value->is_mobile) }}</td>
 					<td>{{ getStatusAdvertise($value->status) }} </td>
 					<td>
 					<a href="{{  action('AdvertiseController@edit', $value->id) }}" class="btn btn-primary">Sửa</a>

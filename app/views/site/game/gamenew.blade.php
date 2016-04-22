@@ -41,7 +41,7 @@
 </div>
 
 {{-- quang cao --}}
-@include('site.common.ad', array('adPosition' => CHILD_PAGE_RELATION))
+
 
 <div class="box">
 	<h3>Game hay nhất</h3>

@@ -42,6 +42,10 @@
 
 			<div class="detail">{{ $game->description }}</div>
 
+			@if(getDevice() == MOBILE)
+				@include('site.common.ads', array('adPosition' => POSITION_MOBILE_PLAYBUTTON2))
+			@endif
+
 			<div class="btn-block-center">
 				<a onclick="countplay()" class="download"><i class="fa fa-play-circle-o"></i> Chơi ngay</a>
 			</div>
