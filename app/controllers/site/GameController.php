@@ -520,7 +520,9 @@ class GameController extends SiteController {
     			//return fail
     		}
     	}
+    	else {
     	//return login site with session gname, gscore
+    	}
     	// return 
     }
 
