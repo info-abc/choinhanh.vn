@@ -516,14 +516,24 @@ class GameController extends SiteController {
 				->where('score_status', SAVESCORE)
 				->first();
     		if($game) {
-    			$game_id = $game->id;
-    			$input = array(
-    				'user_id' => $user_id,
-    				'gname' => $input['gname'],
-    				'game_id' => $game_id,
-    				'gscore' => $input['gscore']
-    				);
-    			Score::create($input);
+    			$gameScore = Score::where('game_id', $game->id)->first();
+    			if ($gameScore) {
+    				$game_id = $game->id;
+	    			$input = array(
+	    				'user_id' => $user_id,
+	    				'gname' => $input['gname'],
+	    				'game_id' => $game_id,
+	    				'gscore' => $input['gscore']
+	    				);
+	    			Score::create($input);
+    			}
+    			else {
+    				Score::update($input);
+    			}
+    			
+    		}
+    		else {
+    			//return fail
     		}
     	}
     	//return login site with session gname, gscore
