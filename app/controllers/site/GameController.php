@@ -490,4 +490,28 @@ class GameController extends SiteController {
         return 'end';
     }
 
+    public function saveScore($slug)
+    {
+    	$input = Input::all();
+    	$gname = Input::get('gname');
+    	$score = Input::get('gscore');
+    	if($user_id = Auth::user()->get()->id) {
+    		$game = Game::where('gname', $gname)
+				->where('score_status', SAVESCORE)
+				->first();
+    		if($game) {
+    			$game_id = $game->id;
+    			$input = array(
+    				'user_id' => $user_id,
+    				'gname' => $input['gname'],
+    				'game_id' => $game_id,
+    				'gscore' => $input['gscore']
+    				);
+    			Score::create($input);
+    		}
+    	}
+    	//return login site with session gname, gscore
+    	// return 
+    }
+
 }

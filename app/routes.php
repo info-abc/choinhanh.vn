@@ -1,5 +1,8 @@
 <?php
+Route::get('/test', function(){
+	dd(1);
 
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -213,6 +216,8 @@ Route::get('/home', 'SiteIndexController@home');
 Route::resource('/', 'SiteIndexController');
 
 Route::get('/game-{slug}', 'GameController@listGame');
+
+Route::post('/game-{slug}/index.php', 'GameController@saveScore');
 
 Route::get('/game-{type}/{slug}', 'GameController@detailGame');
 
