@@ -94,3 +94,11 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('site', function()
+{
+	$url = Request::url();
+	if (strpos($url, 'index.php')){
+		return Redirect::to('http://choinhanh.de/trang-khong-ton-tai');
+	}
+});
