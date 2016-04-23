@@ -21,10 +21,8 @@
 		  <table class="table table-hover">
 			<tr>
 			  <th>ID</th>
-			  <th>Box hiển thị</th>
-			  <th>Link</th>
-			  <th>Image</th>
-			  <th>Adsense</th>
+			  <th>Vị trí</th>
+			  <th>Thiết bị</th>
 			  <th>Status</th>
 			  <th style="width:200px;">Action</th>
 			</tr>
@@ -32,11 +30,7 @@
 				<tr>
 				  	<td>{{ $value->id }}</td>
 				  	<td>{{ CategoryParent::find(CommonModel::find($value->common_model_id)->model_id)->name }}</td>
-					<td>{{ Advertise::find($value->advertisement_id)->image_link }}</td>
-					<td>
-						<img src="{{ url(UPLOAD_ADVERTISE . '/content' .'/' .CommonModel::find($value->common_model_id)->model_id . '/' . Advertise::find($value->advertisement_id)->image_url) }}" max-width="400px" height="100px" />
-					</td>
-					<td>{{ Advertise::find($value->advertisement_id)->adsense }}</td>
+					<td>{{ AdCommon::getDeviceNameAd(Advertise::find($value->advertisement_id)->is_mobile) }} </td>
 					<td>{{ getStatusAdvertise($value->status) }} </td>
 					<td>
 					<a href="{{  action('AdvertiseController@editChild', [$value->advertisement_id, $value->common_model_id]) }}" class="btn btn-primary">Sửa</a>

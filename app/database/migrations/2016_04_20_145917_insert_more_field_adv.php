@@ -13,8 +13,8 @@ class InsertMoreFieldAdv extends Migration {
 	public function up()
 	{
 		Schema::table('advertisements', function(Blueprint $table) {
-            $table->string('model_name', 256)->after('id')->nullable();
-            $table->string('model_id', 256)->after('id')->nullable();
+            $table->integer('is_mobile')->after('id')->default(0)->nullable();
+            $table->string('title', 256)->after('id')->nullable();
         });
 	}
 

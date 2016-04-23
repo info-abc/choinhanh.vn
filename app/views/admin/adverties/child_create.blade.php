@@ -63,6 +63,14 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="name">Thiết bị</label>
+					<div class="row">
+						<div class="col-sm-6">
+						   {{ Form::select('is_mobile', [IS_NOT_MOBILE => 'Desktop', IS_MOBILE => 'Mobile']) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="name">Status</label>
 					<div class="row">
 						<div class="col-sm-6">

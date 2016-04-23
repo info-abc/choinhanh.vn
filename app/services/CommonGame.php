@@ -532,15 +532,116 @@ class CommonGame
 		$width = (isset($game->width) && $game->width != '')?($game->width):'640';
 		$height = (isset($game->height) && $game->height != '')?($game->height):'480';
 
-		if($game->parent_id == GAMEFLASH) {
-			$box = '<embed type="application/x-shockwave-flash" src="' . $link .'" width="'.$width.'" height="'.$height.'" style="undefined" id="game" name="game" quality="high" wmode="direct">';
-			return $box;
+		$ad = AdCommon::getAd(POSITION_GAMEDETAIL);
+		if(!empty($ad)) {
+			$adsense = $ad->adsense;
+		} else {
+			$adsense = '';
 		}
 
-		if($game->parent_id == GAMEHTML5) {
-			//game html5 chạy file game.html trong iframe (bỏ menu)
-			$link = $link . '/game.html';
-			$box = '<div style="margin: 10px auto; width: '.$width.'px; height: '.$height.'px;">
+		if($adsense != '') {
+			if($game->parent_id == GAMEFLASH) {
+				$box = '<div id="game-ad">
+					<object
+						classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+						codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" 
+						width="'.$width.'" height="'.$height.'" 
+						id="preloader" 
+						align="middle">
+						<param name="allowScriptAccess" value="always" />
+						<param name="allowFullScreen" value="false" />
+					    <param name="movie" value="'. url('games-flash/ima3_preloader_1.5.swf') .'" type="application/x-shockwave-flash"></param>
+					    <param name="quality" value="high" />
+					    <param name="bgcolor" value="#ffffff" />
+					    <param name="wmode" value="transparent"></param>
+					    <param name="flashvars" value="'.$adsense.'" />
+					    <embed src="'. url('games-flash/ima3_preloader_1.5.swf') .'" 
+				          	type="application/x-shockwave-flash" 
+							quality="high" bgcolor="#000000" 
+							width="'.$width.'" height="'.$height.'" 
+							name="preloader" 
+				          	align="middle" allowScriptAccess="always" 
+				          	allowFullScreen="false" 
+				          	flashVars="'.$adsense.'" 
+				          	pluginspage="http://www.adobe.com/go/getflashplayer" 
+				          	wmode="direct">
+					    </embed>
+					</object>
+				</div>
+				<div id="game-container" style="display:none;">
+					<object
+						classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+						codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" 
+						width="'.$width.'" height="'.$height.'" 
+						id="preloader" 
+						align="middle">
+						<param name="allowScriptAccess" value="always" />
+						<param name="allowFullScreen" value="false" />
+					    <param name="movie" value="'.$link.'" type="application/x-shockwave-flash"></param>
+					    <param name="quality" value="high" />
+					    <param name="bgcolor" value="#ffffff" />
+					    <param name="wmode" value="transparent"></param>
+					    <param name="flashvars" value="'.$adsense.'" />
+					    <embed src="'.$link.'" 
+				          	type="application/x-shockwave-flash" 
+							quality="high" bgcolor="#000000" 
+							width="'.$width.'" height="'.$height.'" 
+							name="preloader" 
+				          	align="middle" allowScriptAccess="always" 
+				          	allowFullScreen="false" 
+				          	flashVars="'.$adsense.'" 
+				          	pluginspage="http://www.adobe.com/go/getflashplayer" 
+				          	wmode="direct">
+					    </embed>
+					</object>
+				</div>
+				<script type="text/javascript">
+					function removeAdSwf() {
+						console.log(1);
+						document.getElementById("game-ad").innerHTML = "";
+						// document.getElementById("preloader").style.visibility = "hidden";
+						document.getElementById("game-container").style.display="block";
+					}
+					function noAdsReturned() {
+						console.log(2);
+						document.getElementById("game-ad").innerHTML = "";
+						// document.getElementById("preloader").style.visibility = "hidden";
+						document.getElementById("game-container").style.display="block";
+					}
+				</script>';
+				return $box;
+			}
+
+			if($game->parent_id == GAMEHTML5) {
+				$link = $link . '/game.html';
+				$box = '<div id="game-ad">
+					<object
+						classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+						codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" 
+						width="'.$width.'" height="'.$height.'" 
+						id="preloader" 
+						align="middle">
+						<param name="allowScriptAccess" value="always" />
+						<param name="allowFullScreen" value="false" />
+					    <param name="movie" value="'. url('games-flash/ima3_preloader_1.5.swf') .'" type="application/x-shockwave-flash"></param>
+					    <param name="quality" value="high" />
+					    <param name="bgcolor" value="#ffffff" />
+					    <param name="wmode" value="transparent"></param>
+					    <param name="flashvars" value="'.$adsense.'" />
+					    <embed src="'. url('games-flash/ima3_preloader_1.5.swf') .'" 
+				          	type="application/x-shockwave-flash" 
+							quality="high" bgcolor="#000000" 
+							width="'.$width.'" height="'.$height.'" 
+							name="preloader" 
+				          	align="middle" allowScriptAccess="always" 
+				          	allowFullScreen="false" 
+				          	flashVars="'.$adsense.'" 
+				          	pluginspage="http://www.adobe.com/go/getflashplayer" 
+				          	wmode="direct">
+					    </embed>
+					</object>
+				</div>
+				<div id="game-container" style="display:none; margin: 10px auto; width: '.$width.'px; height: '.$height.'px;">
 					<iframe name="my-iframe" id="my-iframe" width="100%" src="'.$link.'" height="100%" scrolling="no" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" webkit-playsinline="true" seamless="seamless" style="-webkit-transform: scale(1, 1);
 					-o-transform: scale(1, 1);
 					-ms-transform: scale(1, 1);
@@ -552,10 +653,50 @@ class CommonGame
 					transform-origin: top left;
 					frameborder: 0px;">
 					</iframe>
-				</div>';
-			// $box = '<iframe seamless id="my-iframe" name="my-iframe"  scrolling="no" frameborder="0" height="'.$height.'" width="'.$width.'" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true" webkit-playsinline="true" src="'.$link.'"></iframe>';
-			return $box;
+				</div>
+				<script type="text/javascript">
+					function removeAdSwf() {
+						console.log(1);
+						document.getElementById("game-ad").innerHTML = "";
+						// document.getElementById("preloader").style.visibility = "hidden";
+						document.getElementById("game-container").style.display="block";
+						document.getElementById("my-iframe").contentWindow.location.reload();
+					}
+					function noAdsReturned() {
+						console.log(2);
+						document.getElementById("game-ad").innerHTML = "";
+						// document.getElementById("preloader").style.visibility = "hidden";
+						document.getElementById("game-container").style.display="block";
+						document.getElementById("my-iframe").contentWindow.location.reload();
+					}
+				</script>';
+				return $box;
+			}
+		} else {
+			if($game->parent_id == GAMEFLASH) {
+				$box = '<embed type="application/x-shockwave-flash" src="' . $link .'" width="'.$width.'" height="'.$height.'" style="undefined" id="game" name="game" quality="high" wmode="direct">';
+				return $box;
+			}
+
+			if($game->parent_id == GAMEHTML5) {
+				$link = $link . '/game.html';
+				$box = '<div style="margin: 10px auto; width: '.$width.'px; height: '.$height.'px;">
+						<iframe name="my-iframe" id="my-iframe" width="100%" src="'.$link.'" height="100%" scrolling="no" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" webkit-playsinline="true" seamless="seamless" style="-webkit-transform: scale(1, 1);
+						-o-transform: scale(1, 1);
+						-ms-transform: scale(1, 1);
+						transform: scale(1, 1);
+						-moz-transform-origin: top left;
+						-webkit-transform-origin: top left;
+						-o-transform-origin: top left;
+						-ms-transform-origin: top left;
+						transform-origin: top left;
+						frameborder: 0px;">
+						</iframe>
+					</div>';
+				return $box;
+			}
 		}
+		
 	}
 
 	//get link play game for games HTML5
@@ -719,7 +860,7 @@ class CommonGame
 	{
 		$games = '';
 		$now = Carbon\Carbon::now();
-		if(getDevice() == 'MOBILE') {
+		if(getDevice() == MOBILE) {
 			$limit = GAME_RELATED_MOBILE;
 		} else {
 			$limit = GAME_RELATED_WEB;
@@ -732,7 +873,7 @@ class CommonGame
 			->where('games.id', '!=', $game->id)
 			->where('games.status', ENABLED)
 			->where('games.start_date', '<=', $now);
-		if(getDevice() == 'MOBILE') {
+		if(getDevice() == MOBILE) {
 			$games = $games->where('games.parent_id', '!=', GAMEFLASH)
 				->whereIn('game_tags.tag_id', $tags)
 				->orderBy(DB::raw('RAND()'))
@@ -755,7 +896,7 @@ class CommonGame
 		$dataListGame = '';
 		if($dataListCount < $limit) {
 			$dataListLimit = $limit - $dataListCount;
-			if(getDevice() == 'MOBILE') {
+			if(getDevice() == MOBILE) {
 				$dataListGame = Game::where('status', ENABLED)
 					->where('parent_id', '!=', GAMEFLASH)
 					->where('start_date', '<=', $now)

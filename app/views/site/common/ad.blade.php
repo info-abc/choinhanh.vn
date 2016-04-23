@@ -1,7 +1,6 @@
 @if($adPosition == HEADER || $adPosition == Footer || $adPosition == CHILD_PAGE_RELATION)
 <?php $ad = CommonSite::getAdvertise($adPosition); ?>
 	@if(isset($ad))
-	
 	<div class="adsense center">
 		@if($ad->adsense)
 			{{ $ad->adsense }}

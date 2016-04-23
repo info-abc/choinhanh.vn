@@ -99,20 +99,29 @@
 		  </li>
 		</ul>
 	  @endif
-	  @if(Admin::isAdmin())
-	  <li>
-		<a href="#">
-			<i class="fa fa-newspaper-o"></i> <span>Quản lý quảng cáo</span>
-			<i class="fa fa-angle-left pull-right"></i>
-		  </a>
-		  <ul class="treeview-menu">
-			<li><a href="{{ action('AdvertiseController@index') }}"><i class="fa fa-circle-o"></i>Header và Footer</a></li>
-			@if(!Admin::isSeo())
-			<li><a href="{{ action('AdvertiseController@indexChild') }}"><i class="fa fa-circle-o"></i>Box hiển thị</a></li>
-			@endif
-		  </ul>
-	  </li>
-	  @endif
+		@if(Admin::isAdmin())
+		<li>
+			<a href="#">
+				<i class="fa fa-newspaper-o"></i> <span>Quản lý quảng cáo</span>
+				<i class="fa fa-angle-left pull-right"></i>
+			</a>
+			<ul class="treeview-menu">
+				<li><a href="{{ action('AdvertiseController@index') }}"><i class="fa fa-circle-o"></i>Header và Footer</a></li>
+				<li><a href="{{ action('AdvertiseController@indexChild') }}"><i class="fa fa-circle-o"></i>Box hiển thị</a></li>
+				<li>
+					<a href="#">
+						<i class="fa fa-newspaper-o"></i> <span>Quảng cáo trang con</span>
+						<i class="fa fa-angle-left pull-right"></i>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="{{ action('AdPageDesktopController@index') }}"><i class="fa fa-circle-o"></i>Trang con desktop</a></li>
+						<li><a href="{{ action('AdPageMobileController@index') }}"><i class="fa fa-circle-o"></i>Trang con mobile</a></li>
+
+					</ul>
+				</li>
+			</ul>
+		</li>
+		@endif
 	  @if(Admin::isAdmin() || Admin::isEditor())
 	  <li>
 		<a href="{{ action('UserController@index') }}">

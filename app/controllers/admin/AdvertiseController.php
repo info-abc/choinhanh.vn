@@ -9,8 +9,8 @@ class AdvertiseController extends AdminController {
 	 */
 	public function index()
 	{
-		$advertise = Advertise::where('position', '!=', CHILD_PAGE)
-								->get();
+		$advertise = Advertise::whereIn('position', [HEADER, Footer])
+						->get();
 		return View::make('admin.adverties.index')->with(compact('advertise'));
 	}
 
@@ -125,6 +125,7 @@ class AdvertiseController extends AdminController {
 		if ($input['ad-select'] == 1) {
 			$inputChild['image_url'] = $input['image_url'];
 			$inputChild['image_link'] = $input['image_link'];
+			$inputChild['is_mobile'] = $input['is_mobile'];
 			$inputChild['position'] = CHILD_PAGE;
 			$id = Advertise::create($inputChild)->id;
 			$commonModelId = CommonModel::create(array('model_name' => 'CategoryParent', 'model_id' => Input::get('model_id')))->id;
@@ -141,6 +142,7 @@ class AdvertiseController extends AdminController {
 		else {
 			$inputChild['adsense'] = Input::get('adsense');
 			$inputChild['position'] = CHILD_PAGE;
+			$inputChild['is_mobile'] = $input['is_mobile'];
 			$id = Advertise::create($inputChild)->id;
 			$commonModelId = CommonModel::create(array('model_name' => 'CategoryParent', 'model_id' => Input::get('model_id')))->id;
 			AdvertisePosition::create(array(

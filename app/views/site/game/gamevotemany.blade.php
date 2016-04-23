@@ -37,7 +37,11 @@
 </div>
 
 {{-- quang cao --}}
-@include('site.common.ad', array('adPosition' => CHILD_PAGE_RELATION))
+@if(getDevice() == COMPUTER)
+	@include('site.common.ads', array('adPosition' => POSITION_VOTEMANY))
+@else
+	@include('site.common.ads', array('adPosition' => POSITION_MOBILE_VOTEMANY))
+@endif
 
 <div class="box">
 	<h3>Game hay nhất</h3>
