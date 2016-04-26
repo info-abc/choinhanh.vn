@@ -1832,7 +1832,8 @@ input.fullscreen {
     text-transform: uppercase;
 }
 .gamecontent-right {
-    margin-left: 35px;
+    margin-left: 0;
+    margin-top: 15px;
 }
 
 .topgame {
