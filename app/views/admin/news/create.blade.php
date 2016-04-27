@@ -34,7 +34,7 @@
 						<label for="name">Thể loại tin</label>
 						<div class="row">
 							<div class="col-sm-6">
-							   {{  Form::select('type_new_id', returnList('TypeNew'),null,array('class' => 'form-control' )) }}
+							   {{  Form::select('type_new_id', returnList('TypeNew'), null, array('class' => 'form-control')) }}
 							</div>
 						</div>
 					</div>
@@ -47,10 +47,18 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="sapo">Mô tả ngắn</label>
+						<div class="row">
+							<div class="col-sm-6">
+								 {{ Form::textarea('sapo', null, array('placeholder' => 'Mô tả ngắn', 'maxlength' => 500, 'rows' => 4, 'class' => 'form-control')) }}
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="description">Nội dung tin</label>
 						<div class="row">
 							<div class="col-sm-12">
-							   {{ Form::textarea('description', '' , array('class' => 'form-control',"rows"=>6, 'id' => 'editor1')) }}
+							   {{ Form::textarea('description', '' , array('class' => 'form-control', "rows"=>6, 'id' => 'editor1')) }}
 							</div>
 						</div>
 					</div>

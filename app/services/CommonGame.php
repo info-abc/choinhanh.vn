@@ -942,4 +942,36 @@ class CommonGame
     	return 0;
 	}
 
+	public static function saveScoresGame($input, $userId)
+	{
+		$game = Game::where('gname', $input['gname'])
+				->where('score_status', SAVESCORE)
+				->first();
+		if($game) {
+			$gameScore = Score::where('game_id', $game->id)
+							->where('user_id', $userId)
+							->first();
+			if ($gameScore) {
+				$inputData = array(
+    				'score' => $input['gscore']
+    				);
+    			$gameScore->update($inputData);
+			}
+			else {
+				$gameId = $game->id;
+    			$inputData = array(
+    				'user_id' => $userId,
+    				'gname' => $input['gname'],
+    				'game_id' => $gameId,
+    				'score' => $input['gscore']
+    				);
+				Score::create($inputData);
+			}
+			return Redirect::action('SiteIndexController@index'); 
+		}
+		else {
+			return Redirect::action('SiteIndexController@index'); 
+		}
+	}
+
 }

@@ -99,6 +99,11 @@ Route::filter('site', function()
 {
 	$url = Request::url();
 	if (strpos($url, 'index.php')){
-		return Redirect::to('http://choinhanh.de/trang-khong-ton-tai');
+		// $method = Request::method();
+		if (Request::isMethod('get'))
+		{
+		    return Redirect::to('http://choinhanh.de/trang-khong-ton-tai');
+		}
+		return;
 	}
 });

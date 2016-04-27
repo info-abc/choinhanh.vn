@@ -493,35 +493,15 @@ class GameController extends SiteController {
     public function saveScore($slug)
     {
     	$input = Input::all();
-    	$gname = Input::get('gname');
-    	$score = Input::get('gscore');
-    	if($user_id = Auth::user()->get()->id) {
-    		$game = Game::where('gname', $gname)
-				->where('score_status', SAVESCORE)
-				->first();
-    		if($game) {
-    			$gameScore = Score::where('game_id', $game->id)->first();
-    			if ($gameScore) {
-    				$game_id = $game->id;
-	    			$input = array(
-	    				'user_id' => $user_id,
-	    				'gname' => $input['gname'],
-	    				'game_id' => $game_id,
-	    				'gscore' => $input['gscore']
-	    				);
-	    			Score::create($input);
-    			}
-    			else {
-    				Score::update($input);
-    			}
-    			
-    		}
-    		else {
-    			//return fail
-    		}
+    	$user = Auth::user()->get();
+    	if(isset($user)) {
+    		return CommonGame::saveScoresGame($input, $user->id);
     	}
     	else {
-    	//return login site with session gname, gscore
+    		//return login site with session gname, gscore
+			Session::put('gname', $input['gname']);
+			Session::put('gscore', $input['gscore']);
+			return Redirect::action('SiteController@login');
     	}
     	// return 
     }

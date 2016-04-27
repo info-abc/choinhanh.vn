@@ -1367,6 +1367,10 @@ h2.title {
     vertical-align: top;
     display: inline-block;
 }
+.sapo {
+    font-weight: bold;
+    margin-top: 10px;
+}
 .detail {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -1631,9 +1635,10 @@ h2.title {
 }
 .related ul li {
     list-style: none;
+    margin-bottom: 5px;
 }
 .related ul li a {
-    line-height: 25px;
+    
 }
 .related ul li a i.fa {
 

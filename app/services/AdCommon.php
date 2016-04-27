@@ -11,6 +11,7 @@ class AdCommon
 					POSITION_MOBILE_PLAYMANY => 'Trang hay nhất mobile', 
 					POSITION_MOBILE_GAMEANDROID => 'Trang game android mobile', 
 					POSITION_MOBILE_PLAYBUTTON2 => 'Trang chi tiết chơi game mobile', 
+					POSITION_MOBILE_NEWS_SAPO => 'Trang chi tiết tin tức - dưới sapo mobile', 
 				];
 		} else {
 			return [
@@ -20,6 +21,8 @@ class AdCommon
 					POSITION_GAMEANDROID => 'Trang game android', 
 					POSITION_GAMEDETAIL => 'Preroll', 
 					POSITION_GAMEDETAIL_GAMETOP => 'Trên box game hay nhất', 
+					POSITION_NEWS_SAPO => 'Trang chi tiết tin tức - dưới sapo', 
+					POSITION_NEWS_RIGHT => 'Trang chi tiết tin tức - dưới tin đáng đọc bên phải', 
 				];
 		}
 	}
@@ -46,12 +49,12 @@ class AdCommon
 
 	public static function getArrayPositionDesktop()
 	{
-		return [POSITION_TYPE, POSITION_VOTEMANY, POSITION_PLAYMANY, POSITION_GAMEANDROID, POSITION_GAMEDETAIL, POSITION_GAMEDETAIL_GAMETOP];
+		return [POSITION_TYPE, POSITION_VOTEMANY, POSITION_PLAYMANY, POSITION_GAMEANDROID, POSITION_GAMEDETAIL, POSITION_GAMEDETAIL_GAMETOP, POSITION_NEWS_SAPO, POSITION_NEWS_RIGHT];
 	}
 
 	public static function getArrayPositionMobile()
 	{
-		return [POSITION_MOBILE_PLAYBUTTON2, POSITION_MOBILE_TYPE, POSITION_MOBILE_VOTEMANY, POSITION_MOBILE_PLAYMANY, POSITION_MOBILE_GAMEANDROID];
+		return [POSITION_MOBILE_PLAYBUTTON2, POSITION_MOBILE_TYPE, POSITION_MOBILE_VOTEMANY, POSITION_MOBILE_PLAYMANY, POSITION_MOBILE_GAMEANDROID, POSITION_MOBILE_NEWS_SAPO];
 	}
 
 	public static function getDeviceNameAd($isMobile = 0)

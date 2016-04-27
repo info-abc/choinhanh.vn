@@ -246,4 +246,13 @@ class CommonSite
         }
     }
 
+    public static function getSapoNews($news)
+    {
+        if(!empty($news->sapo)) {
+            return $news->sapo;
+        } else {
+            return limit_text(strip_tags($news->description), TEXTLENGH_DESCRIPTION);
+        }
+    }
+
 }

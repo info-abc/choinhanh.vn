@@ -63,8 +63,14 @@ class SiteController extends HomeController {
 
 	public function returnPage404()
 	{
-		return View::make('404');
+		// $method = Request::method();
+		if (Request::isMethod('get'))
+		{
+		    return View::make('404');
+		}
+		return;
 	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -174,6 +180,13 @@ class SiteController extends HomeController {
             	}
             	$inputUser = CommonSite::ipDeviceUser();
             	CommonNormal::update(Auth::user()->get()->id, $inputUser, 'User');
+            	//save score
+	        	$userId = Auth::user()->get()->id;
+	        	$input['gname'] = Session::get('gname');
+	        	$input['gscore'] = Session::get('gscore');
+	        	CommonGame::saveScoresGame($input, $userId);
+	        	Session::forget('gname');
+	        	Session::forget('gscore');
         		return Redirect::action('SiteIndexController@index');
             }
             else {

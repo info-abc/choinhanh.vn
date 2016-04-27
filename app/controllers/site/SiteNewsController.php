@@ -50,8 +50,11 @@ class SiteNewsController extends SiteController {
 		$inputNew = AdminNew::findBySlug($slug);
 		$input['count_view'] = getZero($inputNew->count_view) + 1;
 		CommonNormal::update($inputNew->id, $input, 'AdminNew');
+		//tin lien quan
 		$inputRelated = AdminNew::where('type_new_id', $inputNew->type_new_id)->where('start_date', '<=', $now)->orderBy(DB::raw('RAND()'))->limit(PAGINATE_RELATED)->get();
-		return View::make('site.News.showNews')->with(compact('inputNew', 'inputRelated'));
+		//tin dang doc
+		$inputHot = AdminNew::where('type_new_id', $inputNew->type_new_id)->where('start_date', '<=', $now)->orderBy('count_view', 'desc')->limit(PAGINATE_RELATED)->get();
+		return View::make('site.News.showNews')->with(compact('inputNew', 'inputRelated', 'inputHot'));
 	}
 
 	/**

@@ -25,7 +25,7 @@
 						[{{ $value->typeNew->name }}] {{ $value->title }}
 					</a>
 				</h3>
-				<p>{{ limit_text(strip_tags($value->description), TEXTLENGH_DESCRIPTION) }}</p>
+				<p>{{ CommonSite::getSapoNews($value) }}</p>
 			</div>
 		</div>
 	@endforeach
