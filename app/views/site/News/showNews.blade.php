@@ -24,18 +24,21 @@
 	</div>
 	<div class="clearfix"></div>
 
-	@if($inputNew->sapo != '')
-		<p class="sapo">{{ $inputNew->sapo }}</p>
-	@endif
-
-	@if(getDevice() == COMPUTER)
-		@include('site.common.ads', array('adPosition' => POSITION_NEWS_SAPO))
-	@else
-		@include('site.common.ads', array('adPosition' => POSITION_MOBILE_NEWS_SAPO))
-	@endif
+	
 
 	<div class="row">
 		<div class="col-sm-8">
+
+			@if($inputNew->sapo != '')
+				<p class="sapo">{{ $inputNew->sapo }}</p>
+			@endif
+
+			@if(getDevice() == COMPUTER)
+				@include('site.common.ads', array('adPosition' => POSITION_NEWS_SAPO))
+			@else
+				@include('site.common.ads', array('adPosition' => POSITION_MOBILE_NEWS_SAPO))
+			@endif
+
 			<div class="detail">
 				{{ $inputNew->description }}
 			</div>
