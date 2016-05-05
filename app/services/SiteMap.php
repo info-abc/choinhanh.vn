@@ -19,6 +19,7 @@ class SiteMap
 		}
 		$games = Game::where('status', ENABLED)
 				->where('start_date', '<=', $now)
+				->whereNotNull('parent_id')
 				->whereNotIn('parent_id', $parentId)
 				->orderBy('start_date', 'desc')
 				->get();
