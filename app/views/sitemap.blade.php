@@ -16,7 +16,7 @@
 	    	<loc>{{ CommonGame::getUrlGame($game) }}</loc>
 			<lastmod>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $game->start_date)->format('Y-m-d') }}</lastmod>
 			<changefreq>weekly</changefreq>
-			<priority>0.5</priority>
+			<priority>0.8</priority>
 	    </url>
 	@endforeach
 
@@ -25,7 +25,26 @@
 	    	<loc>{{ url().'/'.'tin-tuc'.'/'.$new->slug }}</loc>
 			<lastmod>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $new->start_date)->format('Y-m-d') }}</lastmod>
 			<changefreq>weekly</changefreq>
-			<priority>0.5</priority>
+			<priority>0.7</priority>
 	    </url>
 	@endforeach
+
+	<url>
+		<loc>http://choinhanh.vn/game-binh-chon-nhieu</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+
+	<url>
+		<loc>http://choinhanh.vn/game-hay-nhat</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+
+	<url>
+		<loc>http://choinhanh.vn/game-android</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+
 </urlset>

@@ -95,14 +95,9 @@ class ErrorsController extends AdminController {
 	public function deleteErrors()
 	{
 		$errorId = Input::get('error_id');
-		foreach($errorId as $key => $value) {
-			$data = AdminError::find($value);
-			if($data) {
-				AdminErrorLog::where('error_id', $value)->delete();
-				AdminError::destroy($value);
-			}
-		}
-		dd(1);
+		AdminErrorLog::whereIn('id', $errorId)->delete();
+		AdminError::whereIn('id', $errorId)->delete();
+		return 1;
 	}
 
 	public function deleteAllErrors()

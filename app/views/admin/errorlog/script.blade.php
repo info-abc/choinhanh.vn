@@ -34,12 +34,12 @@
 
 	function callDeleteSelected()
 	{
+		var values1 = $('input:checkbox:checked.error_id').map(function () {
+		  	return this.value;
+		}).get();
+	
 		confirm = confirm('Bạn có chắc chắn muốn xóa?')
 		if(confirm) {
-			var values1 = $('input:checkbox:checked.error_id').map(function () {
-			  	return this.value;
-			}).get();
-
 			$.ajax(
 			{
 				type:'post',
@@ -47,11 +47,9 @@
 				data:{
 					'error_id': values1
 				},
-				success: function(data)
+				success: function()
 				{
-					if(data) {
-						window.location.reload();
-					}
+					window.location.reload();
 				}
 			});
 		} else {
