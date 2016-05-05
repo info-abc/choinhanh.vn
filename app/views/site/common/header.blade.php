@@ -1,3 +1,16 @@
+<?php
+	header("Cache-Control: no-cache, must-revalidate");
+	// $offset = 60 * 60 * 24 * 3;
+	$offset = 60 * CACHETIME;
+	$ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
+	header($ExpStr);
+	if(isset($page404)) {
+		header('HTTP/1.0 404 Not Found');
+		header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+		header("Status: 404 Not Found");
+		$_SERVER['REDIRECT_STATUS'] = 404;
+	}
+?>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +20,9 @@
 	<title>@yield('title')</title>
 
 	@if(isset($page404))
+		<?php
+			header("HTTP/1.0 404 Not Found");
+		?>
 		<meta name="robots" content="noindex, nofollow" />
 		<link rel="canonical" href="{{ action('SiteController@returnPage404') }}" />
 		<meta name="description" content="Trang bạn xem không tồn tại, vui lòng quay trở lại trang chủ Chơi nhanh để tìm kiếm game mới hay nhất" />
