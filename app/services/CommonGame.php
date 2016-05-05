@@ -68,6 +68,9 @@ class CommonGame
 		}
 		$inputGame['parent_id'] = Input::get('parent_id');
 		$inputGame['weight_number'] = Input::get('weight_number');
+		if($inputGame['weight_number'] == '') {
+			$inputGame['weight_number'] = 0;
+		}
 		$inputGame['start_date'] = Input::get('start_date');
 		if($inputGame['start_date'] == '') {
 			$inputGame['start_date'] = Carbon\Carbon::now();
