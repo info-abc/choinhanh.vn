@@ -192,7 +192,7 @@ Route::post('/send-error-game', array('uses' => 'SiteFeedbackController@sendErro
 
 Route::get('/tim-kiem-game', array('uses' => 'SearchGameController@index', 'as' => 'searchGame'));
 
-Route::get('/tin-tuc/{slug}', array('uses' => 'SiteNewsController@show', 'as' =>'showNews'));
+// Route::get('/tin-tuc/{slug}', array('uses' => 'SiteNewsController@show', 'as' =>'showNews'));
 Route::get('/tin-tuc', array('uses' => 'SiteNewsController@index', 'as' => 'listNews'));
 
 Route::put('/comment/{id}', array('uses' => 'SiteCommentController@update'));
@@ -222,3 +222,7 @@ Route::post('/game-{slug}/index.php', 'GameController@saveScore');
 Route::get('/game-{type}/{slug}', 'GameController@detailGame');
 
 Route::get('/{type}/{slug}/{word}', 'GameController@getPage404');
+
+Route::get('/{slug}', 'SlugController@listData');
+
+Route::get('/{type}/{slug}', 'SlugController@detailData');

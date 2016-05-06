@@ -1,7 +1,15 @@
 @extends('site.layout.default')
 
+<?php 
+	if(isset($typeNew)) {
+		$typeNewTitle = $typeNew->name;
+	} else {
+		$typeNewTitle = 'Danh sách tin tức';
+	}
+?>
+
 @section('title')
-{{ $title='Danh sách tin tức' }}
+	{{ $title = $typeNewTitle }}
 @stop
 
 @section('content')
@@ -9,20 +17,26 @@
 <div class="list">
 
 	<div class="title_center">
-		<h1>Danh sách tin tức</h1>
+		<h1>{{ $typeNewTitle }}</h1>
 	</div>
 
 	@foreach($inputListNews as $value)
+		<?php 
+			if(!isset($typeNew)) {
+				$typeNew = TypeNew::find($value->type_new_id);
+			}
+			$url = action('SlugController@detailData', [$typeNew->slug, $value->slug]);
+		?>
 		<div class="list-item">
 			<div class="list-image">
-				<a href="{{ action('SiteNewsController@show', $value->slug) }}">
+				<a href="{{ $url }}">
 					<img class="image_fb" src="{{ url(UPLOADIMG . '/news'.'/'. $value->id . '/' . $value->image_url) }}" />
 				</a>
 			</div>
 			<div class="list-text">
 				<h3>
-					<a href="{{ action('SiteNewsController@show', $value->slug) }}">
-						[{{ $value->typeNew->name }}] {{ $value->title }}
+					<a href="{{ $url }}">
+						{{ $value->title }}
 					</a>
 				</h3>
 				<p>{{ CommonSite::getSapoNews($value) }}</p>

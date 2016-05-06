@@ -12,7 +12,8 @@ class SiteNewsController extends SiteController {
 		$now = date('Y-m-d');
 		$inputListNews = AdminNew::where('start_date', '<=', Carbon\Carbon::now())->orderBy('id', 'desc')
 		->paginate(FRONENDPAGINATE);
-		return View::make('site.News.listNews')->with(compact('inputListNews'));
+		$typeNew = null;
+		return View::make('site.News.listNews')->with(compact('inputListNews', 'typeNew'));
 	}
 
 
@@ -51,9 +52,19 @@ class SiteNewsController extends SiteController {
 		$input['count_view'] = getZero($inputNew->count_view) + 1;
 		CommonNormal::update($inputNew->id, $input, 'AdminNew');
 		//tin lien quan
-		$inputRelated = AdminNew::where('type_new_id', $inputNew->type_new_id)->where('start_date', '<=', $now)->orderBy(DB::raw('RAND()'))->limit(PAGINATE_RELATED)->get();
+		$inputRelated = AdminNew::where('type_new_id', $inputNew->type_new_id)
+			->where('start_date', '<=', $now)
+			->where('start_date', '<=', $inputNew->start_date)
+			->where('id', '!=', $inputNew->id)
+			->orderBy(DB::raw('RAND()'))
+			->limit(PAGINATE_RELATED)
+			->get();
 		//tin dang doc
-		$inputHot = AdminNew::where('type_new_id', $inputNew->type_new_id)->where('start_date', '<=', $now)->orderBy('count_view', 'desc')->limit(PAGINATE_RELATED)->get();
+		$inputHot = AdminNew::where('start_date', '<=', $now)
+			->where('id', '!=', $inputNew->id)
+			->orderBy('start_date', 'desc')
+			->limit(PAGINATE_RELATED)
+			->get();
 		return View::make('site.News.showNews')->with(compact('inputNew', 'inputRelated', 'inputHot'));
 	}
 

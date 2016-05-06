@@ -13,7 +13,7 @@
 <div class="box">
 	<?php
 		$breadcrumb = array(
-			['name' => 'Tin tức', 'link' => action('SiteNewsController@index')],
+			['name' => $typeNew->name, 'link' => action('SlugController@listData', [$typeNew->slug])],
 			['name' => $inputNew->title, 'link' => '']
 		);
 	?>
@@ -23,9 +23,6 @@
 		<h1>{{ $inputNew->title }}</h1>
 	</div>
 	<div class="clearfix"></div>
-
-	
-
 	<div class="row">
 		<div class="col-sm-8">
 
@@ -48,7 +45,7 @@
 				<h3>Tin liên quan</h3>
 				<ul>
 					@foreach($inputRelated as $value)
-					<li><a href="{{ action('SiteNewsController@show', $value->slug) }}" title=""><i class="fa fa-caret-right"></i> [{{ $value->typeNew->name }}] {{ $value->title }}</a></li>
+					<li><a href="{{ action('SlugController@detailData', [$typeNew->slug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
 					@endforeach
 				</ul>
 			</div>
@@ -57,10 +54,10 @@
 		<div class="col-sm-4">
 			@if($inputHot)
 			<div class="related">
-				<h3>Tin đáng đọc</h3>
+				<h3>Tin mới nhất</h3>
 				<ul>
 					@foreach($inputHot as $value)
-					<li><a href="{{ action('SiteNewsController@show', $value->slug) }}" title=""><i class="fa fa-caret-right"></i> [{{ $value->typeNew->name }}] {{ $value->title }}</a></li>
+					<li><a href="{{ action('SlugController@detailData', [$typeNew->slug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
 					@endforeach
 				</ul>
 			</div>
