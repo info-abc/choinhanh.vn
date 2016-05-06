@@ -23,6 +23,7 @@ class AdCommon
 					POSITION_GAMEDETAIL_GAMETOP => 'Trên box game hay nhất', 
 					POSITION_NEWS_SAPO => 'Trang chi tiết tin tức - dưới sapo', 
 					POSITION_NEWS_RIGHT => 'Trang chi tiết tin tức - dưới tin đáng đọc bên phải', 
+					POSITION_NEWS_LIST_RIGHT => 'Trang danh sách tin tức - bên phải', 
 				];
 		}
 	}
@@ -49,7 +50,7 @@ class AdCommon
 
 	public static function getArrayPositionDesktop()
 	{
-		return [POSITION_TYPE, POSITION_VOTEMANY, POSITION_PLAYMANY, POSITION_GAMEANDROID, POSITION_GAMEDETAIL, POSITION_GAMEDETAIL_GAMETOP, POSITION_NEWS_SAPO, POSITION_NEWS_RIGHT];
+		return [POSITION_TYPE, POSITION_VOTEMANY, POSITION_PLAYMANY, POSITION_GAMEANDROID, POSITION_GAMEDETAIL, POSITION_GAMEDETAIL_GAMETOP, POSITION_NEWS_SAPO, POSITION_NEWS_RIGHT, POSITION_NEWS_LIST_RIGHT];
 	}
 
 	public static function getArrayPositionMobile()

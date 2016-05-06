@@ -7,19 +7,19 @@
 @section('content')
 
 @include('site.common.ad', array('adPosition' => CHILD_PAGE, 'modelName' => 'CategoryParent', 'modelId' => 1))
-<div class="list">
+<div class="box">
 	@if(count($inputsearchGame) > 0)
 		<div class="title_left">
-			<h1>Kết quả tìm kiếm theo từ khóa "<span style='color:red;'>{{ $input['search'] }}</span>"</h1>
+			<h1>Kết quả tìm kiếm theo từ khóa "<span style='color:red;'>{{ isset($input['search'])?$input['search']:'' }}</span>"</h1>
 		</div>
 		@foreach($inputsearchGame as $value)
-			<div class="list-item">
-				<div class="list-image">
+			<div class="row list-item">
+				<div class="col-xs-2 list-image">
 					<a href="{{ CommonGame::getUrlGame($value) }}">
 						<img class="image_avata_game" src="{{ url(UPLOADIMG . '/game_avatar'. '/' . $value->image_url) }}" alt="{{ $value->slug }}" />
 					</a>
 				</div>
-				<div class="list-text">
+				<div class="col-xs-10 list-text">
 					<h3>
 						<a href="{{ CommonGame::getUrlGame($value) }}">
 							{{ limit_text($value->name, TEXTLENGH) }}
@@ -35,7 +35,7 @@
 			</div>
 		@endforeach
 	@else
-		@include('site.common.boxgame', array('inputSearch' => $input['search'], 'text' => 'kết quả nào với từ khóa'))
+		@include('site.common.boxgame', array('inputSearch' => isset($input['search'])?$input['search']:'', 'text' => 'kết quả nào với từ khóa'))
 	@endif
 </div>
 

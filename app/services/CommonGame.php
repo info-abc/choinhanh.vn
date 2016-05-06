@@ -977,4 +977,24 @@ class CommonGame
 		}
 	}
 
+	public static function getBoxGameRight($orderBy = null)
+	{
+		$now = Carbon\Carbon::now();
+		if(getDevice() == MOBILE) {
+			$games = Game::where('status', ENABLED)
+						->where('start_date', '<=', $now)
+						->where('parent_id', '!=', GAMEFLASH);
+		} else {
+			$games = Game::where('status', ENABLED)
+						->where('start_date', '<=', $now);
+		}
+		if($orderBy == null) {
+			$games = $games->orderBy(DB::raw('RAND()'));
+		} else {
+			$games = $games->orderBy($orderBy, 'desc');
+		}
+		$games = $games->limit(GAMETOP_LIMITED)->get();
+		return $games;
+	}
+
 }

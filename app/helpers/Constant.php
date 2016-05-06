@@ -203,6 +203,7 @@ define('POSITION_MOBILE_GAMEANDROID', 17);
 define('POSITION_NEWS_SAPO', 18);
 define('POSITION_MOBILE_NEWS_SAPO', 19);
 define('POSITION_NEWS_RIGHT', 20);
+define('POSITION_NEWS_LIST_RIGHT', 21);
 
 //categoryparent status
 //ko hien thi index + khong hien thi trong sitemap

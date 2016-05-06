@@ -151,7 +151,7 @@ class CommonSearch
 			{
 				$query = $query->where('parent_id', '!=', GAMEFLASH);
 			}
-			if($input['search'] != '') {
+			if(isset($input['search']) && $input['search'] != '') {
 				// $condition = array( '%'.$input['search'].'%' );
 				// $query = $query->whereRaw( 'games.name like ?', $condition);
 				$inputSlug = convert_string_vi_to_en($input['search']);

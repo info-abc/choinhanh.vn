@@ -1,8 +1,7 @@
 <div class="row">
 	<div class="col-xs-12 center">
 		<ul class="pagination">
-		<!-- phan trang -->
-		{{ $input->appends(Request::except('page'))->links() }}
-		</ul>
+    		{{ with(new Paginate($input))->render() }}
+    	</ul>
 	</div>
 </div>

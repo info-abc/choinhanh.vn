@@ -1449,19 +1449,15 @@ h2.title {
 
 /*list search + news*/
 .list {
-    padding-left: 15px;
-    padding-right: 15px;
+    
 }
 .list-item {
     margin-top: 15px;
     margin-bottom: 15px;
     display: block;
-    border-bottom: 1px solid #f4f4f4;
-    padding-bottom: 10px;
 }
 .list-image {
     display: inline-block;
-    width: 160px;
     vertical-align: top;
 }
 .list-image img {
@@ -1472,123 +1468,27 @@ h2.title {
 .list-text {
     display: inline-block;
     vertical-align: top;
-    padding-left: 15px;
-    width: 760px;
 }
-.list-text h3 {
+.list-text h3,
+.list-text h2 {
     margin-top: 0;
+    line-height: 16px;
 }
-.list-text h3 a {
-    color: #474747;
+.list-text h3 a,
+.list-text h2 a {
+    color: #333;
+    font-size: 16px;
     font-weight: bold;
-    font-size: 15px;
     text-decoration: none;
 }
-.list-text span {
-    font-size: 13px;
-    color: #474747;
+.list-text h3 a:hover,
+.list-text h3 a:focus,
+.list-text h2 a:hover,
+.list-text h2 a:focus {
+    color: #538e3e;
 }
 .list-text p {
     text-align: justify;
-}
-@media (max-width: 1024px) {
-    .list-text {
-        width: 680px;
-    }
-    .item {
-        height: 160px;
-    }
-    .menu-static ul li {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-}
-@media (max-width: 768px) {
-    .list-text {
-        width: 480px;
-    }
-    .item {
-        height: 160px;
-    }
-    .menu-static ul li {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-}
-@media (max-width: 736px) {
-    .item {
-        height: 200px;
-    }
-}
-@media (max-width: 668px) {
-    .item {
-        height: 180px;
-    }
-}
-@media (max-width: 600px) {
-    .list-text {
-        width: 320px;
-    }
-    .item {
-        height: 160px;
-    }
-    .menu-static ul li {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-    .menu-static ul li a span {
-        padding-left: 10px;
-    }
-    .menu-static ul li a i.fa {
-        vertical-align: middle;
-    }
-}
-@media (max-width: 480px) {
-    .list-image {
-        width: 100px;
-    }
-    .list-text {
-        padding-left: 5px;
-        width: 270px;
-    }
-    .list-text h3 {
-        margin-bottom: 0;
-    }
-    .list-text p {
-        margin-bottom: 0;
-    }
-    .item {
-        height: 140px;
-    }
-    .menu-static ul li a span {
-        display: block;
-        padding-left: 0;
-    }
-    .menu-static ul li {
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
-@media (max-width: 400px) {
-    .list-text {
-        width: 220px;
-    }
-    .col-xs-6 {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-    .item {
-        height: 115px;
-        margin-bottom: 10px;
-    }
-    .menu-static ul li a span {
-        padding-left: 0;
-    }
-}
-@media (max-width: 320px) {
-    .list-text {
-        width: 180px;
-    }
 }
 
 /*breadcrumb*/
@@ -1618,6 +1518,48 @@ h2.title {
     padding-left: 10px;
     padding-right: 5px;
 }
+
+/*page paging*/
+
+.pager .disabled > a, .pager .disabled > a:focus, .pager .disabled > a:hover, .pager .disabled > span {
+    background-color: #538e3e;
+    color: #fff;
+    border: 1px solid #538e3e;
+}
+.pager li > a, .pager li > span {
+    color: #333;
+}
+
+.right {
+    text-align: right;
+}
+.pagination > li:first-child > a, .pagination > li:first-child > span,
+.pagination > li:last-child > a, .pagination > li:last-child > span {
+    border-radius: 0;
+}
+
+ul.pagination {
+    
+}
+ul.pagination li {
+
+}
+ul.pagination li a {
+    border-color: #333;
+    color: #333;
+    margin-left: 5px;
+}
+ul.pagination li.current a {
+    background: #538e3e;
+    color: #fff;
+    border-color: #538e3e;
+}
+.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
+    background-color: #fff;
+    border-color: #333;
+    color: #333;
+}
+
 
 /*related news*/
 .related {
@@ -2013,4 +1955,8 @@ div#tipDiv .tooltip_content .rate-result-cnt {
 .button1:focus {
     background: #474747;
     border-color: #474747;
+}
+
+.boxgamenews {
+    margin-top: 15px;
 }
