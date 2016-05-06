@@ -1,6 +1,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>{{url()}}</loc>
+        <lastmod>2016-03-15</lastmod>
+        <changefreq>always</changefreq>
         <priority>0.5</priority>
     </url>
     @foreach(SiteMap::getTypeUrlSiteMap() as $type)
