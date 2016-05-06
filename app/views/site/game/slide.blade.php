@@ -31,7 +31,7 @@
 	<div id="demo">
 		<div id="owl-demo" class="owl-carousel">
 			@foreach($slide->images as $image)
-				<div class="itemslide"><img src="{{ url(UPLOAD_IMAGE_SLIDE . '/image'. '/' . $slideId . '/' . $image->image_url) }}" alt=""></div>
+				<div class="itemslide"><img src="{{ url(UPLOAD_IMAGE_SLIDE . '/image'. '/' . $slideId . '/' . $image->image_url) }}" alt="{{ getFilename($image->image_url) }}"></div>
 			@endforeach
 		</div>
 	</div>
