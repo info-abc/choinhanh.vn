@@ -26,7 +26,7 @@
 									{{ Form::select('position', [2 => 'Content'], null, array('class' =>'form-control')) }}
 									<div class="form-group">
 										<label for="name">Sắp xếp theo kiểu</label>
-											{{ Form::select('arrange', selectArrange() , null ,  array('class' =>'form-control')) }}
+											{{ Form::select('arrange', selectArrange(), null,  array('class' =>'form-control')) }}
 									</div>
 								@else
 									{{ Form::select('position', [1 => 'Menu'], null, array('class' =>'form-control')) }}
@@ -34,18 +34,23 @@
 							</div>
 							<div class="form-group">
 								<label for="name">Mức ưu tiên</label>
-									{{ Form::select('weight_number', selectWeight_number() , null ,  array('class' =>'form-control')) }}
+									{{ Form::select('weight_number', selectWeight_number(), null,  array('class' =>'form-control')) }}
 							</div>
 							
 							@if(Request::segment(3) == CONTENT_SEGMENT)
 							<div class="form-group">
 								<label for="name">Trạng thái</label>
-									{{ Form::select('status', selectStatusCategoryParent() , null ,  array('class' =>'form-control')) }}
+									{{ Form::select('status', selectStatusCategoryParent(), null,  array('class' =>'form-control')) }}
 							</div>
 							<div class="form-group">
 								<label for="name">Chọn category</label>
-									{{ Form::select('game_id', getListCategory() , null ,  array('class' =>'form-control')) }}
+									{{ Form::select('game_id', getListCategory(), null,  array('class' =>'form-control')) }}
 							</div>
+							@else 
+								<div class="form-group">
+									<label for="name">Trạng thái</label>
+										{{ Form::select('status', selectActive(), null,  array('class' =>'form-control')) }}
+								</div>
 							@endif
 							<hr />
 							<h1>SEO META</h1>

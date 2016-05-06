@@ -35,19 +35,24 @@
 							@if(!Admin::isSeo())
 								<div class="form-group">
 									<label for="name">Mức ưu tiên</label>
-									{{ Form::select('weight_number', selectWeight_number() ,$inputCategory->weight_number ,  array('class' =>'form-control')) }}
+									{{ Form::select('weight_number', selectWeight_number(), $inputCategory->weight_number ,  array('class' =>'form-control')) }}
 								</div>
 							@endif
 							@if(!Admin::isSeo())
 								@if(Request::segment(3) == CONTENT_SEGMENT)
 								<div class="form-group">
 									<label for="name">Trạng thái</label>
-										{{ Form::select('status', selectStatusCategoryParent() , $inputCategory->status ,  array('class' =>'form-control')) }}
+										{{ Form::select('status', selectStatusCategoryParent(), $inputCategory->status ,  array('class' =>'form-control')) }}
 								</div>
 								<div class="form-group">
 									<label for="name">Chọn category</label>
-										{{ Form::select('game_id', getListCategory() , $inputgame_category_parent->game_id ,  array('class' =>'form-control')) }}
+										{{ Form::select('game_id', getListCategory(), $inputgame_category_parent->game_id ,  array('class' =>'form-control')) }}
 								</div>
+								@else 
+									<div class="form-group">
+										<label for="name">Trạng thái</label>
+											{{ Form::select('status', selectActive(), $inputCategory->status,  array('class' =>'form-control')) }}
+									</div>
 								@endif
 							@endif
 							<hr />

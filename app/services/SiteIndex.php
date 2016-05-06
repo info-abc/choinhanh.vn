@@ -43,4 +43,16 @@ class SiteIndex
         return $result;
     }
 
+    public static function getTypeNewMenu()
+    {
+        if (Cache::has('getTypeNewMenu'))
+        {
+            $getTypeNewMenu = Cache::get('getTypeNewMenu');
+        } else {
+            $getTypeNewMenu = TypeNew::all();
+            Cache::put('getTypeNewMenu', $getTypeNewMenu, CACHETIME);
+        }
+        return $getTypeNewMenu;
+    }
+
 }

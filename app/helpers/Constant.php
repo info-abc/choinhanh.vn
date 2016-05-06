@@ -214,3 +214,6 @@ define('CATEGORYPARENT_STATUS_TEXT_1', 'Hiển thị');
 //khong hien thi index + hien thi trong sitemap
 define('CATEGORYPARENT_STATUS_2', 2);
 define('CATEGORYPARENT_STATUS_TEXT_2', 'Không hiển thị - hiện sitemap');
+
+define('MENU_GAME_ANDROID', 1);
+define('MENU_GAME_ONLINE', 18);
