@@ -203,3 +203,14 @@ define('POSITION_MOBILE_GAMEANDROID', 17);
 define('POSITION_NEWS_SAPO', 18);
 define('POSITION_MOBILE_NEWS_SAPO', 19);
 define('POSITION_NEWS_RIGHT', 20);
+
+//categoryparent status
+//ko hien thi index + khong hien thi trong sitemap
+define('CATEGORYPARENT_STATUS_0', 0);
+define('CATEGORYPARENT_STATUS_TEXT_0', 'Không hiển thị');
+//hien thi index + hien thi trong sitemap
+define('CATEGORYPARENT_STATUS_1', 1);
+define('CATEGORYPARENT_STATUS_TEXT_1', 'Hiển thị');
+//khong hien thi index + hien thi trong sitemap
+define('CATEGORYPARENT_STATUS_2', 2);
+define('CATEGORYPARENT_STATUS_TEXT_2', 'Không hiển thị - hiện sitemap');

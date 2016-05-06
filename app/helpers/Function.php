@@ -645,3 +645,18 @@ function selectStatus()
 		INACTIVE => 'Ẩn'
 	);
 }
+
+function selectStatusCategoryParent()
+{
+	return array(
+		CATEGORYPARENT_STATUS_0 => CATEGORYPARENT_STATUS_TEXT_0,
+		CATEGORYPARENT_STATUS_1 => CATEGORYPARENT_STATUS_TEXT_1,
+		CATEGORYPARENT_STATUS_2 => CATEGORYPARENT_STATUS_TEXT_2,
+	);
+}
+
+function getStatusCategoryParent($status)
+{
+	$array = selectStatusCategoryParent();
+	return $array[$status];
+}

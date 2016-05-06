@@ -12,7 +12,7 @@ class SiteMap
     	$parentId = CategoryParent::join('game_category_parents', 'game_category_parents.category_parent_id', '=', 'category_parents.id')
 						// ->select('game_category_parents.game_id')
 						->distinct()
-						->where('category_parents.status', DISABLED)
+						->where('category_parents.status', CATEGORYPARENT_STATUS_0)
 						->lists('game_category_parents.game_id');
 		if(!$parentId) {
 			$parentId = [];

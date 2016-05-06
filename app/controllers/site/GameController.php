@@ -84,13 +84,20 @@ class GameController extends SiteController {
 
 	public function listGame($slug)
 	{
+		if($slug == 'online') {
+			$slug = 'game-online';
+		}
 		if (Cache::has('categoryParent_'.$slug))
         {
             $categoryParent = Cache::get('categoryParent_'.$slug);
         } else {
-            $categoryParent = CategoryParent::findBySlug($slug);
+            // $categoryParent = CategoryParent::findBySlug($slug);
+            $categoryParent = CategoryParent::where('slug', $slug)
+            					->where('status', '!=', CATEGORYPARENT_STATUS_0)
+            					->first();
             Cache::put('categoryParent_'.$slug, $categoryParent, CACHETIME);
         }
+
 		if (Cache::has('type_'.$slug))
         {
             $type = Cache::get('type_'.$slug);
@@ -131,7 +138,7 @@ class GameController extends SiteController {
 
 	public function detailGame($type, $slug)
 	{
-		$categoryParent = CategoryParent::where('status', ACTIVE)->lists('slug');
+		$categoryParent = CategoryParent::where('status', '!=', CATEGORYPARENT_STATUS_0)->lists('slug');
 		if(!in_array('game-'.$type, $categoryParent) && Type::findBySlug($type) == null) {
 			if(AdminTag::findBySlug($type) == null) {
 				return CommonLog::logErrors(ERROR_TYPE_404);

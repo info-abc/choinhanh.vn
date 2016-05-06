@@ -42,7 +42,7 @@
 								@if(Request::segment(3) == CONTENT_SEGMENT)
 								<div class="form-group">
 									<label for="name">Trạng thái</label>
-										{{ Form::select('status', selectActive() , $inputCategory->status ,  array('class' =>'form-control')) }}
+										{{ Form::select('status', selectStatusCategoryParent() , $inputCategory->status ,  array('class' =>'form-control')) }}
 								</div>
 								<div class="form-group">
 									<label for="name">Chọn category</label>

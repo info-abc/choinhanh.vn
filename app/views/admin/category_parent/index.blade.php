@@ -61,7 +61,7 @@
 					
 					<!-- todo -->
 					 @if(!Request::segment(3) != CONTENT_SEGMENT)	
-					 <td>{{ checkActiveUser($categoryParent->status) }}</td>
+					 <td>{{ getStatusCategoryParent($categoryParent->status) }}</td>
 					 <td>{{ countBoxGame($categoryParent->id) }}</td>
 					<td>{{ countBoxView($categoryParent->id) }}</td>
 					<td>{{ countBoxPlay($categoryParent->id) }}</td>
