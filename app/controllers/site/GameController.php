@@ -326,7 +326,7 @@ class GameController extends SiteController {
     	if($game) {
     		$session = GameSession::where('game_id', $id)->first();
     		if(!$session) {
-    			$this->sessionCountDownload();
+    			$this->sessionCountDownload($id, $game);
     		} else {
     			if($session->session_id == Session::getId()) {    				
 	    			$start_time = strtotime($session->start_time);
@@ -370,14 +370,14 @@ class GameController extends SiteController {
 						}
 	    			}
     			} else {
-    				$this->sessionCountDownload();
+    				$this->sessionCountDownload($id, $game);
     			}
 
     		}
     	}
     }
 
-    public function sessionCountDownload()
+    public function sessionCountDownload($id, $game)
     {
     	GameSession::create(array('session_id' => Session::getId(), 'game_id' => $id, 'start_time' => Carbon\Carbon::now()));
 		$count_download = $game->count_download+1;
