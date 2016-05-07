@@ -102,7 +102,10 @@ Route::filter('site', function()
 		// $method = Request::method();
 		if (Request::isMethod('get'))
 		{
-			return Response::view('404', array(), 404);
+			return Redirect::action('SiteController@returnPage404');
+			// $url = str_replace('index.php', '', $url);
+   // 			return Redirect::to($url);
+			// return Response::view('404', array(), 404);
 		    // return Redirect::to('http://choinhanh.vn/trang-khong-ton-tai');
 		}
 		return;
