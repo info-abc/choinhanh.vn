@@ -38,20 +38,24 @@
 							</div>
 							
 							@if(Request::segment(3) == CONTENT_SEGMENT)
-							<div class="form-group">
-								<label for="name">Trạng thái</label>
+								<div class="form-group">
+									<label for="name">Trạng thái</label>
 									{{ Form::select('status', selectStatusCategoryParent(), null,  array('class' =>'form-control')) }}
-							</div>
-							<div class="form-group">
-								<label for="name">Chọn category</label>
+								</div>
+								<div class="form-group">
+									<label for="name">Chọn category</label>
 									{{ Form::select('game_id', getListCategory(), null,  array('class' =>'form-control')) }}
-							</div>
+								</div>
 							@else 
 								<div class="form-group">
 									<label for="name">Trạng thái</label>
-										{{ Form::select('status', selectActive(), null,  array('class' =>'form-control')) }}
+									{{ Form::select('status', selectActive(), null,  array('class' =>'form-control')) }}
 								</div>
 							@endif
+							<div class="form-group">
+								<label>Trạng thái trong trang tải về</label>
+								{{ Form::select('status_child', selectActive(), null,  array('class' =>'form-control')) }}
+							</div>
 							<hr />
 							<h1>SEO META</h1>
 							{{-- include common/meta.blade.php --}}

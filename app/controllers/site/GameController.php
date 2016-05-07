@@ -272,6 +272,15 @@ class GameController extends SiteController {
     {
     	return View::make('site.game.gamenew');
     }
+    // trang tai ve
+    public function downloadPage()
+    {
+    	$boxList = CategoryParent::where('status_child', ACTIVE)
+					->where('position', CONTENT)
+					->orderBy('weight_number', 'asc')
+					->get();
+    	return View::make('site.game.downloadPage')->with(compact('boxList'));
+    }
 
     public function countPlay()
     {

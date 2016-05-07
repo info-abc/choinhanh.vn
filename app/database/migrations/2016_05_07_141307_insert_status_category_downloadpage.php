@@ -13,7 +13,7 @@ class InsertStatusCategoryDownloadpage extends Migration {
 	public function up()
 	{
 		Schema::table('category_parents', function(Blueprint $table) {
-            $table->integer('status_child')->after('id')->nullable();
+            $table->integer('status_child')->after('id')->default(0)->nullable();
         });
 	}
 

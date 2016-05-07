@@ -40,21 +40,25 @@
 							@endif
 							@if(!Admin::isSeo())
 								@if(Request::segment(3) == CONTENT_SEGMENT)
-								<div class="form-group">
-									<label for="name">Trạng thái</label>
-										{{ Form::select('status', selectStatusCategoryParent(), $inputCategory->status ,  array('class' =>'form-control')) }}
-								</div>
-								<div class="form-group">
-									<label for="name">Chọn category</label>
-										{{ Form::select('game_id', getListCategory(), $inputgame_category_parent->game_id ,  array('class' =>'form-control')) }}
-								</div>
-								@else 
 									<div class="form-group">
 										<label for="name">Trạng thái</label>
-											{{ Form::select('status', selectActive(), $inputCategory->status,  array('class' =>'form-control')) }}
+										{{ Form::select('status', selectStatusCategoryParent(), $inputCategory->status ,  array('class' =>'form-control')) }}
+									</div>
+									<div class="form-group">
+										<label for="name">Chọn category</label>
+										{{ Form::select('game_id', getListCategory(), $inputgame_category_parent->game_id ,  array('class' =>'form-control')) }}
+									</div>
+								@else 
+									<div class="form-group">
+										<label>Trạng thái</label>
+										{{ Form::select('status', selectActive(), $inputCategory->status,  array('class' =>'form-control')) }}
 									</div>
 								@endif
 							@endif
+							<div class="form-group">
+								<label for="name">Trạng thái trong trang tải về</label>
+								{{ Form::select('status_child', selectActive(), $inputCategory->status_child,  array('class' =>'form-control')) }}
+							</div>
 							<hr />
 							<h1>SEO META</h1>
 							{{-- include common/meta.blade.php --}}

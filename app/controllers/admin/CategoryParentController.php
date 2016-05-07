@@ -54,7 +54,7 @@ class CategoryParentController extends AdminController {
 	            ->withErrors($validator)
 	            ->withInput(Input::except('password'));
         } else {
-			$inputCategory = Input::only('name', 'position', 'weight_number', 'arrange','status');
+			$inputCategory = Input::only('name', 'position', 'weight_number', 'arrange', 'status', 'status_child');
 			$id = CommonNormal::create($inputCategory);
 			CommonSeo::createSeo('CategoryParent', $id, FOLDER_SEO_PARENT);
 			if ($input['position'] != CONTENT) {
@@ -134,7 +134,7 @@ class CategoryParentController extends AdminController {
         }
         if(!Admin::isSeo())
         {
-			$inputCategory = Input::only('name', 'position', 'weight_number', 'arrange','status');
+			$inputCategory = Input::only('name', 'position', 'weight_number', 'arrange', 'status', 'status_child');
 			CommonNormal::update($id,$inputCategory);
 		}
 		CommonSeo::updateSeo('CategoryParent', $id, FOLDER_SEO_PARENT);

@@ -205,6 +205,8 @@ Route::get('/game-hay-nhat', 'GameController@getListGameplay');
 
 Route::get('/game-moi-nhat', 'GameController@getListGamenew');
 
+Route::get('/tai-game', 'GameController@downloadPage');
+
 Route::post('/import-menu', 'GameController@importMenu');
 Route::post('/import-bxh', 'GameController@importBxh');
 

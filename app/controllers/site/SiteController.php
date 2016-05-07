@@ -66,7 +66,8 @@ class SiteController extends HomeController {
 		// $method = Request::method();
 		if (Request::isMethod('get'))
 		{
-		    return View::make('404');
+			return Response::view('404', array(), 404);
+		    // return View::make('404');
 		}
 		return;
 	}
