@@ -60,6 +60,8 @@ class CommonGame
 		$inputGame['name'] = Input::get('name');
 		$inputGame['description'] = Input::get('description');
 		$inputGame['link_download'] = Input::get('link_download');
+		$inputGame['link_download_ios'] = Input::get('link_download_ios');
+		$inputGame['link_download_winphone'] = Input::get('link_download_winphone');
 		//check link upload game , link_url
 		if(Input::get('link_url')) {
 			$inputGame['link_url'] = Input::get('link_url');
@@ -450,13 +452,25 @@ class CommonGame
 	}
 
 	// url download game
-	public static function getUrlDownload($game = null)
+	public static function getUrlDownload($game = null, $type)
 	{
 		if($game) {
-			if($game->link_download != '') {
-				// return url(UPLOAD_GAMEOFFLINE . '/' . $game->link_upload_game);
-				return url($game->link_download);
+			if($type == 'android') {
+				if($game->link_download != '') {
+					return url($game->link_download);
+				}	
 			}
+			if($type == 'ios') {
+				if($game->link_download_ios != '') {
+					return url($game->link_download_ios);
+				}	
+			}
+			if($type == 'winphone') {
+				if($game->link_download_winphone != '') {
+					return url($game->link_download_winphone);
+				}	
+			}
+			
 			if($game->link_url != '') {
 				return url(UPLOAD_GAMEOFFLINE . '/' . $game->link_url);
 			}

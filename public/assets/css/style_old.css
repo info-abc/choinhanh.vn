@@ -1960,3 +1960,13 @@ div#tipDiv .tooltip_content .rate-result-cnt {
 .boxgamenews {
     margin-top: 15px;
 }
+
+a.download_android {
+    background: #a4c639;    
+}
+a.download_ios {
+    background: #999999;    
+}
+a.download_winphone {
+    background: #00a1f1;    
+}

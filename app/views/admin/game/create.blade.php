@@ -87,7 +87,9 @@
 						<div class="form-group link_download">
 							<label>Link download game</label>
 							<input type="checkbox" id="checkLinkDownload" onclick="checkLinkDownloadAction();" />
-							<input type="text" name="link_download" id="link_download" class="form-control link_download" placeholder="Link download game" />
+							<input type="text" name="link_download" id="link_download" class="form-control link_download" placeholder="Link download game android" />
+							<input type="text" name="link_download_ios" id="link_download_ios" class="form-control link_download" placeholder="Link download game ios" />
+							<input type="text" name="link_download_winphone" id="link_download_winphone" class="form-control link_download" placeholder="Link download game winphone" />
 						</div>
 
 						<div class="form-group">

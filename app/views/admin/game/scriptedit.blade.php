@@ -1,7 +1,7 @@
 <script>
 	function getFormGameOffline() {
 		parentId = $('select[name=parent_id]').val();
-		if (parentId == {{ GAMEOFFLINE }}) {
+		if (parentId != {{ GAMEHTML5 }} && parentId != {{ GAMEFLASH }}) {
 			$('.blockDisabled').prop('disabled', 'disabled');
 			$('.blockDisabled').hide();
 			$('#checkUpload').show();
@@ -14,7 +14,11 @@
 				$('#checkLinkDownload').attr('checked', false);
 				$('#checkLinkDownload').prop('disabled', false);
 				$('#link_download').val('');
+				$('#link_download_ios').val('');
+				$('#link_download_winphone').val('');
 				$('#link_download').prop('disabled', 'disabled');
+				$('#link_download_ios').prop('disabled', 'disabled');
+				$('#link_download_winphone').prop('disabled', 'disabled');
 				$('#link_upload_game').val('{{ $inputGame->link_upload_game }}');
 			}
 			else if('{{ $inputGame->link_download }}') {
@@ -26,6 +30,10 @@
 				$('#checkLinkDownload').prop('disabled', 'disabled');
 				$('#link_download').val('{{ $inputGame->link_download }}');
 				$('#link_download').prop('disabled', false);
+				$('#link_download_ios').val('{{ $inputGame->link_download_ios }}');
+				$('#link_download_ios').prop('disabled', false);
+				$('#link_download_winphone').val('{{ $inputGame->link_download_winphone }}');
+				$('#link_download_winphone').prop('disabled', false);
 				$('#fileNameUpload').html('');
 			}
 			else {
@@ -36,6 +44,10 @@
 				$('#checkLinkDownload').prop('disabled', false);
 				$('#link_download').val('');
 				$('#link_download').prop('disabled', 'disabled');
+				$('#link_download_ios').val('');
+				$('#link_download_ios').prop('disabled', 'disabled');
+				$('#link_download_winphone').val('');
+				$('#link_download_winphone').prop('disabled', 'disabled');
 				$('#link_upload_game').val('');
 			}
 		}
@@ -46,12 +58,16 @@
 			$('#checkLinkDownload').hide();
 			$('.link_download').hide();
 			$('#link_download').prop('disabled', 'disabled');
+			$('#link_download_ios').prop('disabled', 'disabled');
+			$('#link_download_winphone').prop('disabled', 'disabled');
 			$('#checkUpload').prop('disabled', 'disabled');
 			$('#checkUpload').attr('checked', 'checked');
 			$('#link_upload_game').prop('disabled', false);
 			$('#checkLinkDownload').prop('disabled', 'disabled');
 			$('#link_upload_game').val('{{ $inputGame->link_upload_game }}');
 			$('#link_download').val('{{ $inputGame->link_download }}');
+			$('#link_download_ios').val('{{ $inputGame->link_download_ios }}');
+			$('#link_download_winphone').val('{{ $inputGame->link_download_winphone }}');
 		}
 	}
 
@@ -83,7 +99,11 @@
 			$('#link_upload_game').prop('disabled', false);
 			$('#fileNameUpload').html('{{ $inputGame->link_upload_game }}');
 			$('#link_download').prop('disabled', 'disabled');
+			$('#link_download_ios').prop('disabled', 'disabled');
+			$('#link_download_winphone').prop('disabled', 'disabled');
 			$('#link_download').val('');
+			$('#link_download_ios').val('');
+			$('#link_download_winphone').val('');
 			$('#checkLinkDownload').attr('checked', false);
 			$('#checkLinkDownload').prop('disabled', false);
 		} else {
@@ -92,6 +112,8 @@
 			$('#link_upload_game').val('');
 			$('#fileNameUpload').html('');
 			$('#link_download').prop('disabled', false);
+			$('#link_download_ios').prop('disabled', false);
+			$('#link_download_winphone').prop('disabled', false);
 			$('#checkLinkDownload').attr('checked', 'checked');
 		}
 	}
@@ -104,6 +126,10 @@
 			$('#fileNameUpload').html('');
 			$('#link_download').val('{{ $inputGame->link_download }}');
 			$('#link_download').prop('disabled', false);
+			$('#link_download_ios').val('{{ $inputGame->link_download_ios }}');
+			$('#link_download_ios').prop('disabled', false);
+			$('#link_download_winphone').val('{{ $inputGame->link_download_winphone }}');
+			$('#link_download_winphone').prop('disabled', false);
 			$('#checkUpload').attr('checked', false);
 			$('#checkUpload').prop('disabled', false);
 		} else {
@@ -112,6 +138,8 @@
 			$('#link_upload_game').val('{{ $inputGame->link_upload_game }}');
 			$('#fileNameUpload').html('{{ $inputGame->link_upload_game }}');
 			$('#link_download').prop('disabled', 'disabled');
+			$('#link_download_ios').prop('disabled', 'disabled');
+			$('#link_download_winphone').prop('disabled', 'disabled');
 			$('#checkUpload').attr('checked', 'checked');
 		}
 	}

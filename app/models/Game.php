@@ -17,7 +17,7 @@ class Game extends Eloquent implements SluggableInterface
 	     'weight_number', 'score_status', 'start_date', 'status',
          'support_detail', 'gname', 'link_download',
          'link_upload_game', 'slide_id', 'slug', 'type_main','width','height','total_play_download_before_weekly','total_play_download_current_weekly',
-         'total_play_dowload_before_month','total_play_dowload_current_month','update_week', 'screen', 'link_game_redirect'];
+         'total_play_dowload_before_month','total_play_dowload_current_month','update_week', 'screen', 'link_game_redirect', 'link_download_ios', 'link_download_winphone'];
     protected $dates = ['deleted_at'];
 
     protected $sluggable = array(

@@ -95,6 +95,8 @@
 							<label>Link download game</label>
 							<input type="checkbox" id="checkLinkDownload" name="checkLinkDownload" onclick="checkLinkDownloadAction();" @if($inputGame->link_download) checked="checked"  disabled @endif />
 							<input type="text" name="link_download" id="link_download" class="form-control link_download" placeholder="Link download game" value="{{ $inputGame->link_download }}" />
+							<input type="text" name="link_download_ios" id="link_download_ios" class="form-control link_download" placeholder="Link download game ios" value="{{ $inputGame->link_download_ios }}" />
+							<input type="text" name="link_download_winphone" id="link_download_winphone" class="form-control link_download" placeholder="Link download game winphone" value="{{ $inputGame->link_download_winphone }}" />
 						</div>
 
 						<div class="form-group">

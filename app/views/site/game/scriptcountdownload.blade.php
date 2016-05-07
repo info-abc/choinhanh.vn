@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	function countdownload()
+	function countdownload(type)
 	{
 		$.ajax(
 		{
@@ -9,7 +9,22 @@
 				'id': {{ $id }}
 			},
 			success: function(data){
-				window.location = '{{ $url }}';
+				if(type == 'android') {
+					window.open('{{ $url_android }}', '_blank');
+					// location.target = "_blank";
+					// location.href = '{{ $url_android }}';
+				}
+				if(type == 'ios') {
+					window.open('{{ $url_ios }}', '_blank');
+					// location.target = "_blank";
+					// location.href = '{{ $url_ios }}';	
+				}
+				if(type == 'winphone') {
+					window.open('{{ $url_winphone }}', '_blank');
+					// location.target = "_blank";
+					// location.href = '{{ $url_winphone }}';	
+				}
+				return;
 			},
 		});
 	}
