@@ -326,86 +326,95 @@ class GameController extends SiteController {
     	if($game) {
     		$session = GameSession::where('game_id', $id)->first();
     		if(!$session) {
-    			GameSession::create(array('session_id' => Session::getId(), 'game_id' => $id, 'start_time' => Carbon\Carbon::now()));
-    			$count_download = $game->count_download+1;
-				$game->update(array('count_download' => $count_download));
-
-					// cuongnt todo add count week and count month
-					// week
-					$date_week = $game->update_week ;
-					$date_current = date('Y/m/d');
-					$datecountweek = date('w');
-					$month_week = date('m', strtotime($date_week));
-					$month_current = date('m');
-					// $end_date = strtotime("+7 day", $date_week);
-					$arrayupdate = array();
-					if(!$date_week)
-					{
-						$date_week_update = date('Y-m-d', strtotime($date_week. ' -'. $datecountweek + 1 .'days'));
-						$game->update(array('update_week' => $date_week_update));
-					}
-					$date_week = date('Y/m/d', strtotime($date_week. ' + 7 days'));
-					if($date_week >  $date_current)
-					{
-						$game->update(array('total_play_download_current_weekly' => $game->total_play_download_current_weekly + 1));
-					}else
-					{
-						$game->update(array('update_week' => $date_current, 'total_play_download_before_weekly' => $game->total_play_download_current_weekly,
-											'total_play_download_current_weekly' => '0'));
-					}
-					//month
-					if( $month_current == $month_week)
-					{
-						$game->update(array('total_play_dowload_current_month' => $game->total_play_dowload_current_month + 1));
-					}else
-					{
-						$game->update(array('total_play_dowload_before_month' => $game->total_play_dowload_current_month,
-											'total_play_dowload_current_month' => '0'));
-					}
-
+    			$this->sessionCountDownload();
     		} else {
-    			$start_time = strtotime($session->start_time);
-    			$current_time = strtotime(Carbon\Carbon::now());
-    			if($current_time - $start_time > TIMELIMITED) {
-    				$session->update(array('start_time' => Carbon\Carbon::now()));
-	    			$count_download = $game->count_download+1;
-					$game->update(array('count_download' => $count_download));
+    			if($session->session_id == Session::getId()) {    				
+	    			$start_time = strtotime($session->start_time);
+	    			$current_time = strtotime(Carbon\Carbon::now());
+	    			if($current_time - $start_time > TIMELIMITED) {
+	    				$session->update(array('start_time' => Carbon\Carbon::now()));
+		    			$count_download = $game->count_download+1;
+						$game->update(array('count_download' => $count_download));
 
-					// cuongnt todo add count week and count month
-					// week
-					$date_week = $game->update_week ;
-					$date_current = date('Y/m/d');
-					$datecountweek = date('w');
-					$month_week = date('m', strtotime($date_week));
-					$month_current = date('m');
-					// $end_date = strtotime("+7 day", $date_week);
-					$arrayupdate = array();
-					if(!$date_week)
-					{
-						$date_week_update = date('Y-m-d', strtotime($date_week. ' -'. $datecountweek + 1 .'days'));
-						$game->update(array('update_week' => $date_week_update));
-					}
-					$date_week = date('Y/m/d', strtotime($date_week. ' + 7 days'));
-					if($date_week >  $date_current)
-					{
-						$game->update(array('total_play_download_current_weekly' => $game->total_play_download_current_weekly + 1));
-					}else
-					{
-						$game->update(array('update_week' => $date_current, 'total_play_download_before_weekly' => $game->total_play_download_current_weekly,
-											'total_play_download_current_weekly' => '0'));
-					}
-					//month
-					if( $month_current == $month_week)
-					{
-						$game->update(array('total_play_dowload_current_month' => $game->total_play_dowload_current_month + 1));
-					}else
-					{
-						$game->update(array('total_play_dowload_before_month' => $game->total_play_dowload_current_month,
-											'total_play_dowload_current_month' => '0'));
-					}
+						// cuongnt todo add count week and count month
+						// week
+						$date_week = $game->update_week ;
+						$date_current = date('Y/m/d');
+						$datecountweek = date('w');
+						$month_week = date('m', strtotime($date_week));
+						$month_current = date('m');
+						// $end_date = strtotime("+7 day", $date_week);
+						$arrayupdate = array();
+						if(!$date_week)
+						{
+							$date_week_update = date('Y-m-d', strtotime($date_week. ' -'. $datecountweek + 1 .'days'));
+							$game->update(array('update_week' => $date_week_update));
+						}
+						$date_week = date('Y/m/d', strtotime($date_week. ' + 7 days'));
+						if($date_week >  $date_current)
+						{
+							$game->update(array('total_play_download_current_weekly' => $game->total_play_download_current_weekly + 1));
+						}else
+						{
+							$game->update(array('update_week' => $date_current, 'total_play_download_before_weekly' => $game->total_play_download_current_weekly,
+												'total_play_download_current_weekly' => '0'));
+						}
+						//month
+						if( $month_current == $month_week)
+						{
+							$game->update(array('total_play_dowload_current_month' => $game->total_play_dowload_current_month + 1));
+						}else
+						{
+							$game->update(array('total_play_dowload_before_month' => $game->total_play_dowload_current_month,
+												'total_play_dowload_current_month' => '0'));
+						}
+	    			}
+    			} else {
+    				$this->sessionCountDownload();
     			}
+
     		}
     	}
+    }
+
+    public function sessionCountDownload()
+    {
+    	GameSession::create(array('session_id' => Session::getId(), 'game_id' => $id, 'start_time' => Carbon\Carbon::now()));
+		$count_download = $game->count_download+1;
+		$game->update(array('count_download' => $count_download));
+
+		// cuongnt todo add count week and count month
+		// week
+		$date_week = $game->update_week ;
+		$date_current = date('Y/m/d');
+		$datecountweek = date('w');
+		$month_week = date('m', strtotime($date_week));
+		$month_current = date('m');
+		// $end_date = strtotime("+7 day", $date_week);
+		$arrayupdate = array();
+		if(!$date_week)
+		{
+			$date_week_update = date('Y-m-d', strtotime($date_week. ' -'. $datecountweek + 1 .'days'));
+			$game->update(array('update_week' => $date_week_update));
+		}
+		$date_week = date('Y/m/d', strtotime($date_week. ' + 7 days'));
+		if($date_week >  $date_current)
+		{
+			$game->update(array('total_play_download_current_weekly' => $game->total_play_download_current_weekly + 1));
+		}else
+		{
+			$game->update(array('update_week' => $date_current, 'total_play_download_before_weekly' => $game->total_play_download_current_weekly,
+								'total_play_download_current_weekly' => '0'));
+		}
+		//month
+		if( $month_current == $month_week)
+		{
+			$game->update(array('total_play_dowload_current_month' => $game->total_play_dowload_current_month + 1));
+		}else
+		{
+			$game->update(array('total_play_dowload_before_month' => $game->total_play_dowload_current_month,
+								'total_play_dowload_current_month' => '0'));
+		}
     }
 
     public function score()
