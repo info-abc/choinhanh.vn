@@ -452,7 +452,7 @@ class CommonGame
 	}
 
 	// url download game
-	public static function getUrlDownload($game = null, $type)
+	public static function getUrlDownload($game = null, $type = null)
 	{
 		if($game) {
 			if($type == 'android') {

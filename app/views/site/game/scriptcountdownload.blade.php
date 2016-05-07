@@ -14,15 +14,18 @@
 					// location.target = "_blank";
 					// location.href = '{{ $url_android }}';
 				}
-				if(type == 'ios') {
+				else if(type == 'ios') {
 					window.open('{{ $url_ios }}', '_blank');
 					// location.target = "_blank";
 					// location.href = '{{ $url_ios }}';	
 				}
-				if(type == 'winphone') {
+				else if(type == 'winphone') {
 					window.open('{{ $url_winphone }}', '_blank');
 					// location.target = "_blank";
 					// location.href = '{{ $url_winphone }}';	
+				}
+				else {
+					window.open('{{ $url }}', '_blank');
 				}
 				return;
 			},
