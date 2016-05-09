@@ -1000,7 +1000,8 @@ class CommonGame
 						->where('parent_id', '!=', GAMEFLASH);
 		} else {
 			$games = Game::where('status', ENABLED)
-						->where('start_date', '<=', $now);
+						->where('start_date', '<=', $now)
+						->whereIn('parent_id', [GAMEFLASH, GAMEHTML5]);
 		}
 		if($orderBy == null) {
 			$games = $games->orderBy(DB::raw('RAND()'));
