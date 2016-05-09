@@ -17,7 +17,7 @@
     @foreach(SiteMap::getGameUrlSiteMap() as $game)
 	    <url>
 	    	<loc>{{ CommonGame::getUrlGame($game) }}</loc>
-	    	<lastmod>{{ Carbon\Carbon::now()->format('Y-m-d') }}</lastmod>
+	    	<lastmod>{{ date('Y-m-d', strtotime($game->start_date)) }}</lastmod>
 			<changefreq>weekly</changefreq>
 			<priority>0.8</priority>
 	    </url>
@@ -26,7 +26,7 @@
 	@foreach(SiteMap::getNewUrlSiteMap() as $new)
 	    <url>
 	    	<loc>{{ url().'/'.'tin-tuc'.'/'.$new->slug }}</loc>
-	    	<lastmod>{{ Carbon\Carbon::now()->format('Y-m-d') }}</lastmod>
+	    	<lastmod>{{ date('Y-m-d', strtotime($new->start_date)) }}</lastmod>
 			<changefreq>weekly</changefreq>
 			<priority>0.7</priority>
 	    </url>
