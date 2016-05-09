@@ -39,14 +39,14 @@
 						<li><a href="{{ action('GameController@getListGameAndroid') }}" class="color2"><span>{{ $value->name }}</span></a></li>
 					@else
 						<?php
-						if($value->id == MENU_GAME_ONLINE) {
-							$slug = 'game-online';
-						}
-						else {
-							$slug = $value->slug;
-						}
+						// if($value->id == MENU_GAME_ONLINE) {
+						// 	$slug = 'game-online';
+						// }
+						// else {
+						// 	$slug = $value->slug;
+						// }
 						?>
-						<li><a href="{{ url('/' . $slug) }}" class="color2"><span>{{ $value->name }}</span></a></li>
+						<!-- <li><a href="{{-- url('/' . $slug) --}}" class="color2"><span>{{-- $value->name --}}</span></a></li> -->
 					@endif
 				@else
 				<li class='has-sub'><a href= '#' class="color2"><span>{{ $value->name }}</span></a>
@@ -59,14 +59,14 @@
 				@endif
 			@endif
 		@endforeach
-		<li class="has-sub">
+		<!-- <li class="has-sub">
 			<a href="#" class="color2"><span>Tin game</span></a>
 			<ul>
 				@foreach(SiteIndex::getTypeNewMenu() as $kTypeNew => $vTypeNew)
-					<li><a href="{{ url($vTypeNew->slug) }}"><span>{{ $vTypeNew->name }}</span></a></li>
+					<li><a href="{{-- url($vTypeNew->slug) }}"><span>{{ $vTypeNew->name --}}</span></a></li>
 				@endforeach
 			</ul>
-		</li>
+		</li> -->
 	</ul>
 	<div class="menu-hide"><a onclick="menuhide()"><i class="fa fa-times-circle-o"></i> Đóng lại</a></div>
 </div>
