@@ -36,7 +36,7 @@
 			@if($value->position == MENU)
 				@if(count($value->parenttypes) == 0)
 					@if($value->id == MENU_GAME_ANDROID)
-						<!-- <li><a href="{{-- action('GameController@getListGameAndroid') --}}" class="color2"><span>{{-- $value->name --}}</span></a></li> -->
+						<li><a href="{{ action('GameController@getListGameAndroid') }}" class="color2"><span>{{ $value->name }}</span></a></li>
 					@else
 						<?php
 						// if($value->id == MENU_GAME_ONLINE) {

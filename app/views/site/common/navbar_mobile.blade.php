@@ -15,9 +15,9 @@
 						<li><a href="{{ action('GameController@getListGameplay') }}" {{ checkActive('game-choi-nhieu') }}><i class="fa fa-gamepad"></i><span>Hay nhất</span></a></li>
 						<!--<li><a href="{{-- action('SiteNewsController@index') --}}" {{-- checkActive('tin-tuc') --}}><i class="fa fa-newspaper-o"></i><span>Tin tức</span></a></li>-->
 					@if(getDevice() == COMPUTER)
-						<!-- <li><a href="{{-- action('GameController@getListGameAndroid') --}}" {{-- checkActive('game-android') --}}><i class="fa fa-android"></i><span>Game android</span></a></li> -->
+						<li><a href="{{ action('GameController@getListGameAndroid') }}" {{ checkActive('game-android') }}><i class="fa fa-android"></i><span>Game android</span></a></li>
 					@else
-						<!-- <li><a href="{{-- action('GameController@getListGameAndroid') --}}" {{-- checkActive('game-android') --}}><i class="fa fa-android"></i><span>Android</span></a></li> -->
+						<li><a href="{{ action('GameController@getListGameAndroid') }}" {{ checkActive('game-android') }}><i class="fa fa-android"></i><span>Android</span></a></li>
 					@endif
 				</ul>
 				<div class="clearfix"></div>
