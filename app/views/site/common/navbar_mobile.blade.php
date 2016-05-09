@@ -4,7 +4,7 @@
 			<div class="menu-static">
 				<ul>
 					<li>
-						<a onclick="menushow()" class="menu_show_list"><i class="fa fa-navicon"></i></a>
+						<a onclick="menushow()" class="menu_show_list"><i class="fa fa-navicon"></i><span>Danh mục</span></a>
 					</li>
 					<li><a href="{{ url('/') }}" {{ checkActive() }}><i class="fa fa-home"></i><span>Trang chủ</span></a></li>
 					@if(getDevice() == COMPUTER)

@@ -418,10 +418,10 @@ a.menu_show_list {
     cursor: pointer;
     margin-left: 22px;
 }
-.menu-static a.menu_show_list {
+/*.menu-static a.menu_show_list {
     position: relative;
     top: -5px;
-}
+}*/
 /*menu box*/
 .menu-account {
     background: #474747 none repeat scroll 0 0;
@@ -1012,7 +1012,7 @@ a.download i.fa {
         font-size: 16px;
     }
     .ad img {
-    margin-top: -10px;
+        margin-top: -10px;
     }
     .top .menu-show a i.fa {
         color: #fff;
