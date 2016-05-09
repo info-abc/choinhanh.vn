@@ -18,7 +18,7 @@
 						<label for="title">Tiêu đề</label>
 						<div class="row">
 							<div class="col-sm-6">
-							   {{ Form::text('title', null , textParentCategory('Tiêu đề tin')) }}
+							   {{ Form::text('title', null, textParentCategory('Tiêu đề tin')) }}
 							</div>
 						</div>
 					</div>
