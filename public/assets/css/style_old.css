@@ -95,8 +95,11 @@ a:hover {
     top: 0;
     width: 34px;
 }
-#iconseach{
+#iconseach {
     display: none;
+}
+a#iconseach i.fa {
+    font-size: 25px;
 }
 
 a.iconfacebook,
@@ -1075,7 +1078,7 @@ a.download i.fa {
         margin-right: 5px;
     }
     #cssmenu {
-        top: 120px;
+        top: 110px;
         left: 10px;
     }
     .search1 {
