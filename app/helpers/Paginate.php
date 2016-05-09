@@ -74,9 +74,9 @@ class Paginate extends Illuminate\Pagination\BootstrapPresenter {
 			if (getDevice() == COMPUTER) {
 				$html .= $this->getNormalTextWrapper('...');
 			}
-			else {
-				$html .= $this->getNormalTextWrapper('');
-			}
+			// else {
+			// 	$html .= $this->getNormalTextWrapper('');
+			// }
 		}
 		return $html;
 	}
@@ -88,9 +88,9 @@ class Paginate extends Illuminate\Pagination\BootstrapPresenter {
 			if (getDevice() == COMPUTER) {
 		  		$html .= $this->getNormalTextWrapper('...');
 			}
-			else {
-		  		$html .= $this->getNormalTextWrapper('');
-			}
+			// else {
+		 //  		$html .= $this->getNormalTextWrapper('');
+			// }
 		}
 		return $html;
 	}
