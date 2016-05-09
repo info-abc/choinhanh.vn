@@ -153,6 +153,12 @@ class GameController extends SiteController {
             $game = Game::findBySlug($slug);
             Cache::put('game_'.$slug, $game, CACHETIME);
         }
+
+        //an game android / online...
+        if(!in_array($game->parent_id, [GAMEFLASH, GAMEHTML5])) {
+        	return Response::view('404', array(), 404);
+        }
+
 		$play = Input::get('play');
 		if($game) {
 			if(getDevice() == MOBILE) {
