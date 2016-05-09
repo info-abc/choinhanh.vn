@@ -197,7 +197,7 @@ Route::get('/tin-tuc', array('uses' => 'SiteNewsController@index', 'as' => 'list
 
 Route::put('/comment/{id}', array('uses' => 'SiteCommentController@update'));
 
-Route::get('/game-android', 'GameController@getListGameAndroid');
+// Route::get('/game-android', 'GameController@getListGameAndroid');
 
 Route::get('/game-binh-chon-nhieu', 'GameController@getListGameVote');
 
