@@ -418,6 +418,10 @@ a.menu_show_list {
     cursor: pointer;
     margin-left: 22px;
 }
+.menu-static a.menu_show_list {
+    position: relative;
+    top: -5px;
+}
 /*menu box*/
 .menu-account {
     background: #474747 none repeat scroll 0 0;
@@ -1088,7 +1092,7 @@ a.download i.fa {
     }
 
     a.menu_show_list {
-        margin-left: 10px;
+        margin-left: 0;
     }
 
     a.iconfacebook, a.icongoogleplus {

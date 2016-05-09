@@ -40,11 +40,11 @@
 				{{ $inputNew->description }}
 			</div>
 			<div class="clearfix"></div>
-			@if($inputRelated)
+			@if($inputHot)
 			<div class="related">
-				<h3>Tin liên quan</h3>
+				<h3>Tin mới nhất</h3>
 				<ul>
-					@foreach($inputRelated as $value)
+					@foreach($inputHot as $value)
 					<li><a href="{{ action('SlugController@detailData', [$typeNew->slug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
 					@endforeach
 				</ul>
@@ -52,11 +52,11 @@
 			@endif
 		</div>
 		<div class="col-sm-4">
-			@if($inputHot)
+			@if($inputRelated)
 			<div class="related">
-				<h3>Tin mới nhất</h3>
+				<h3>Tin liên quan</h3>
 				<ul>
-					@foreach($inputHot as $value)
+					@foreach($inputRelated as $value)
 					<li><a href="{{ action('SlugController@detailData', [$typeNew->slug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
 					@endforeach
 				</ul>

@@ -14,7 +14,7 @@
 					<input type="submit" value="search" title="submit" />
 				</form>
 				<a id="iconseach" onclick="menushow()" class="menu_show_list"><i class="fa fa-search"></i></a>
-				<a onclick="menushow()" class="menu_show_list"><i class="fa fa-navicon"></i></a>
+				
 
 			</div>
 	 	</div>
