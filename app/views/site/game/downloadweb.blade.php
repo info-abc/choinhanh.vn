@@ -11,15 +11,9 @@
 @section('content')
 
 <div class="box">
-
 	
-	<?php
-		$breadcrumb = array(
-			['name' => 'Game Android', 'link' => action('GameController@getListGameAndroid')],
-			['name' => $game->name, 'link' => '']
-		);
-	?>
-	@include('site.common.breadcrumb', $breadcrumb)
+	@include('site.game.breadcrumbgame', array('game' => $game))
+
 	<!-- WEB -->
 	<div class="web">
 
