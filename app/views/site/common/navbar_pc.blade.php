@@ -35,11 +35,11 @@
 					</a>
 				</li>-->
 			@if(getDevice() == COMPUTER)
-				<!-- <li>
-					<a href="{{-- action('GameController@getListGameAndroid') --}}" {{-- checkActive('game-android') --}}>
+				<li>
+					<a href="{{ action('GameController@getListGameAndroid') }}" {{ checkActive('game-android') }}>
 						<span>Game android</span>
 					</a>
-				</li> -->
+				</li>
 			@else
 				<!-- <li>
 					<a href="{{-- action('GameController@getListGameAndroid') --}}" {{-- checkActive('game-android') --}}>

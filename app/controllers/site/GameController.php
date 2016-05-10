@@ -261,8 +261,8 @@ class GameController extends SiteController {
     */
     public function getListGameAndroid()
     {
-    	return Response::view('404', array(), 404);
-    	// return View::make('site.game.showlistandroid');
+    	// return Response::view('404', array(), 404);
+    	return View::make('site.game.showlistandroid');
     }
     // binh chon nhieu
     public function getListGameVote()
