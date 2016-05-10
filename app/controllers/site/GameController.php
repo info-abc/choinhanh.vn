@@ -155,7 +155,7 @@ class GameController extends SiteController {
         }
 
         //an game android / online...
-        if(!in_array($game->parent_id, [GAMEFLASH, GAMEHTML5])) {
+        if(!in_array($game->parent_id, [GAMEFLASH, GAMEHTML5, GAMEOFFLINE])) {
         	return Response::view('404', array(), 404);
         }
 

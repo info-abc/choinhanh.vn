@@ -16,12 +16,12 @@
 
 	<div class="playgame">
 		<h1>Game {{ $game->name }}</h1>
-		<div class="playbox">
-			{{ CommonGame::getLinkGame($game) }}
+		<!-- <div class="playbox">
+			{{-- CommonGame::getLinkGame($game) --}}
 			<div class="social-box">
 				@include('site.game.socialbox', array('id' => $game->id))
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 	<div class="row">

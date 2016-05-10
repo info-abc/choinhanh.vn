@@ -1,26 +1,31 @@
+<?php 
+	$linkAndroid = $game->link_download;
+	$linkIos = $game->link_download_ios;
+	$linkWinphone = $game->link_download_winphone;
+?>
 @if($game->link_url == '')
 	<div class="row">
-		<div class="col-sm-4">
-			@if($game->link_download != '')
+		@if($linkAndroid != '')
+			<div class="col-sm-4">
 				<div class="btn-block-center">
 					<a onclick="countdownload('android')" class="download download_android" target="_blank"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
 				</div>
-			@endif
-		</div>
-		<div class="col-sm-4">
-			@if($game->link_download_ios != '')
+			</div>
+		@endif
+		@if($linkIos != '')
+			<div class="col-sm-4">
 				<div class="btn-block-center">
 					<a onclick="countdownload('ios')" class="download download_ios" target="_blank"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
 				</div>
-			@endif
-		</div>
-		<div class="col-sm-4">
-			@if($game->link_download_winphone != '')
+			</div>
+		@endif
+		@if($linkWinphone != '')
+			<div class="col-sm-4">
 				<div class="btn-block-center">
 					<a onclick="countdownload('winphone')" class="download download_winphone" target="_blank"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
 				</div>
-			@endif
-		</div>
+			</div>
+		@endif
 	</div>
 @else
 	<div class="btn-block-center">
