@@ -13,7 +13,7 @@
 				</div>
 				<div class="topgame-text">
 					<a href="{{ $url }}">{{ limit_text($value->name, TEXTLENGH) }}</a>
-					<span>{{ getZero($value->count_play) }} lượt chơi</span>
+					<span>{{ getZero($value->count_play) }} lượt xem</span>
 				</div>
 				<div class="clearfix"></div>
 			</li>
