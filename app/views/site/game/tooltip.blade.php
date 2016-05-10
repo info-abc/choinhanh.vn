@@ -13,9 +13,9 @@
             </strong>
         	<span>
         		@if($game->parent_id == GAMEOFFLINE)
-        			{{ getZero($game->count_download) }} lượt tải
+        			{{ getZero($game->count_download) }} lượt xem
         		@else
-					{{ getZero($game->count_play) }} lượt chơi
+					{{ getZero($game->count_play) }} lượt xem
 				@endif
 
                 @include('site.common.rate', array('vote_average' => $game->vote_average))
