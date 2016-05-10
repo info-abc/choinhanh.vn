@@ -1,35 +1,110 @@
 <?php 
-	$linkAndroid = $game->link_download;
-	$linkIos = $game->link_download_ios;
-	$linkWinphone = $game->link_download_winphone;
+	$linkAndroid = isset($game->link_download)?$game->link_download:'';
+	$linkIos = isset($game->link_download_ios)?$game->link_download_ios:'';
+	$linkWinphone = isset($game->link_download_winphone)?$game->link_download_winphone:'';
+	if($linkAndroid != '' && $linkIos != '' && $linkWinphone != '') {
+		$btnCheck = 1;
+	}
+	if($linkAndroid != '' && $linkIos != '' && $linkWinphone == '') {
+		$btnCheck = 2;
+	}
+	if($linkAndroid != '' && $linkIos == '' && $linkWinphone != '') {
+		$btnCheck = 3;
+	}
+	if($linkAndroid == '' && $linkIos != '' && $linkWinphone != '') {
+		$btnCheck = 4;
+	}
+	if($linkAndroid != '' && $linkIos == '' && $linkWinphone == '') {
+		$btnCheck = 5;
+	}
+	if($linkAndroid == '' && $linkIos != '' && $linkWinphone == '') {
+		$btnCheck = 6;
+	}
+	if($linkAndroid == '' && $linkIos == '' && $linkWinphone != '') {
+		$btnCheck = 7;
+	}
+
 ?>
 @if($game->link_url == '')
-	<div class="row">
-		@if($linkAndroid != '')
+	@if($btnCheck == 1)
+		<div class="row">
 			<div class="col-sm-4">
 				<div class="btn-block-center">
-					<a onclick="countdownload('android')" class="download download_android" target="_blank"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
+					<a onclick="countdownload('android')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
 				</div>
 			</div>
-		@endif
-		@if($linkIos != '')
 			<div class="col-sm-4">
 				<div class="btn-block-center">
-					<a onclick="countdownload('ios')" class="download download_ios" target="_blank"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
+					<a onclick="countdownload('ios')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
 				</div>
 			</div>
-		@endif
-		@if($linkWinphone != '')
 			<div class="col-sm-4">
 				<div class="btn-block-center">
-					<a onclick="countdownload('winphone')" class="download download_winphone" target="_blank"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
+					<a onclick="countdownload('winphone')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
 				</div>
 			</div>
-		@endif
-	</div>
+		</div>
+	@endif
+	@if($btnCheck == 2)
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="btn-block-center">
+					<a onclick="countdownload('android')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="btn-block-center">
+					<a onclick="countdownload('ios')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
+				</div>
+			</div>
+		</div>
+	@endif
+	@if($btnCheck == 3)
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="btn-block-center">
+					<a onclick="countdownload('android')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="btn-block-center">
+					<a onclick="countdownload('winphone')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
+				</div>
+			</div>
+		</div>
+	@endif
+	@if($btnCheck == 4)
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="btn-block-center">
+					<a onclick="countdownload('ios')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="btn-block-center">
+					<a onclick="countdownload('winphone')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
+				</div>
+			</div>
+		</div>
+	@endif
+	@if($btnCheck == 5)
+		<div class="btn-block-center">
+			<a onclick="countdownload('android')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
+		</div>
+	@endif
+	@if($btnCheck == 6)
+		<div class="btn-block-center">
+			<a onclick="countdownload('ios')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
+		</div>
+	@endif
+	@if($btnCheck == 7)
+		<div class="btn-block-center">
+			<a onclick="countdownload('winphone')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
+		</div>
+	@endif
 @else
 	<div class="btn-block-center">
-		<a onclick="countdownload()" class="download" target="_blank"><i class="fa fa-download"></i> Tải về</a>
+		<a onclick="countdownload()" class="download"><i class="fa fa-download"></i> Tải về</a>
 	</div>
 @endif
 
