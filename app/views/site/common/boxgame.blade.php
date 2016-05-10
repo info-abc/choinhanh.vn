@@ -17,9 +17,9 @@
 					</a>
 				</h3>
 				@if($value->parent_id == GAMEOFFLINE)
-					<span>{{ getZero($value->count_download) }} lượt tải</span>
+					<span>{{ getZero($value->count_download) }} lượt xem</span>
 				@else
-					<span>{{ getZero($value->count_play) }} lượt chơi</span>
+					<span>{{ getZero($value->count_play) }} lượt xem</span>
 				@endif
 				<p>{{ limit_text(strip_tags($value->description), TEXTLENGH_DESCRIPTION) }}</p>
 			</div>
