@@ -1,5 +1,5 @@
 @if($adPosition == HEADER || $adPosition == Footer || $adPosition == CHILD_PAGE_RELATION)
-<?php $ad = CommonSite::getAdvertise($adPosition); ?>
+<?php $ad = CommonSite::getAdvertise($adPosition, null, null, $device); ?>
 	@if(isset($ad))
 	<div class="adsense center">
 		@if($ad->adsense)
@@ -17,7 +17,7 @@
 	@endif
 @endif
 @if($adPosition == CHILD_PAGE)
-<?php $ad = CommonSite::getAdvertise($adPosition, $modelName, $modelId); ?>
+<?php $ad = CommonSite::getAdvertise($adPosition, $modelName, $modelId, $device); ?>
 	@if(isset($ad))
 	<div class="adsense center">
 		@if($ad->adsense)

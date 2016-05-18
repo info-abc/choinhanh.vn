@@ -290,13 +290,13 @@ class CommonGame
 		return null;
 	}
 
-	public static function boxGameByCategoryParentIndex($data)
+	public static function boxGameByCategoryParentIndex($data, $device = null)
 	{
 		$now = Carbon\Carbon::now();
 		$arrange = getArrange($data->arrange);
 		$game = $data->games->first();
 		if($game) {
-			if(getDevice() == MOBILE) {
+			if(getDevice($device) == MOBILE) {
 				if (Cache::has('listGameMobile'.$game->id.$arrange))
 				{
 					$listGame = Cache::get('listGameMobile'.$game->id.$arrange);

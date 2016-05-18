@@ -31,10 +31,10 @@ class CommonSite
     }
 
     // get advertise
-    public static function getAdvertise($position, $modelName = null, $modelId = null)
+    public static function getAdvertise($position, $modelName = null, $modelId = null, $device = null)
     {
         $ad = null;
-        $isMobile = self::getDeviceValue();
+        $isMobile = self::getDeviceValue($device);
         // Header & Footer
         if($modelName == null && $modelId == null) {
             if (Cache::has('getAdvertise_'.$position.'_'.$isMobile))
@@ -237,9 +237,9 @@ class CommonSite
         return $slugType;
     }
 
-    public static function getDeviceValue()
+    public static function getDeviceValue($device = null)
     {
-        if(getDevice() == MOBILE) {
+        if(getDevice($device) == MOBILE) {
             return IS_MOBILE;
         } else {
             return IS_NOT_MOBILE;

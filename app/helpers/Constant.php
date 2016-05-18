@@ -218,3 +218,5 @@ define('CATEGORYPARENT_STATUS_TEXT_2', 'Không hiển thị - hiện sitemap');
 
 define('MENU_GAME_ANDROID', 1);
 define('MENU_GAME_ONLINE', 18);
+
+define('FOLDER_HTML_CODE', '/htmlpage');

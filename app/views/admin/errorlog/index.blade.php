@@ -23,6 +23,10 @@
 			{{  Form::select('url', [CHOINHANH => CHOINHANH, '' => 'Url khác'], Input::get('url'), array('class' => 'form-control' )) }}
 		</div>
 		<div class="input-group" style="width: 150px; display:inline-block;">
+			<label>Agent</label>
+			{{  Form::text('agent', Input::get('agent'), array('class' => 'form-control' )) }}
+		</div>
+		<div class="input-group" style="width: 150px; display:inline-block;">
 			<label>Từ ngày</label>
 		  	{{ Form::text('start_date', Input::get('start_date'), array('class' => 'form-control', 'id' => 'start_date', 'placeholder' => 'Từ ngày')) }}
 		</div>

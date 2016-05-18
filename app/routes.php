@@ -132,6 +132,8 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::resource('/ad_page_desktop', 'AdPageDesktopController');
 	Route::resource('/ad_page_mobile', 'AdPageMobileController');
 
+
+
 });
 
 // $games = Game::all();
@@ -214,6 +216,8 @@ Route::get('/list_g5', 'GameController@listGameHtml5');
 Route::get('/list_flash', 'GameController@listGameFlash');
 
 Route::get('/home', 'SiteIndexController@home');
+
+Route::get('/exportIndexHtml/{device}', 'GenController@exportIndexHtml');
 
 Route::resource('/', 'SiteIndexController');
 

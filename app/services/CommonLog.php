@@ -87,27 +87,33 @@ class CommonLog
 
 	public static function searchError($input)
 	{
-		$data = AdminError::where(function ($query) use ($input)
+		$data = AdminError::join('error_logs', 'error_logs.error_id', '=', 'errors.id')
+			->select('errors.*')
+			->where(function ($query) use ($input)
 		{
 			if ($input['link'] != '') {
-				$query = $query->where('link', 'like', '%'.$input['link'].'%');
+				$query = $query->where('errors.link', 'like', '%'.$input['link'].'%');
  		    }
 			if ($input['type'] != '') {
-				$query = $query->where('type', $input['type']);
+				$query = $query->where('errors.type', $input['type']);
 			}
 			if ($input['url'] != '') {
-				$query = $query->where('link', 'like', '%'.$input['url'].'%');
+				$query = $query->where('errors.link', 'like', '%'.$input['url'].'%');
  		    } else {
- 		    	$query = $query->where('link', 'like', '%'.$input['url'].'%');
-				$query = $query->where('link', 'not like', '%'.CHOINHANH.'%');
+ 		    	$query = $query->where('errors.link', 'like', '%'.$input['url'].'%');
+				$query = $query->where('errors.link', 'not like', '%'.CHOINHANH.'%');
  		    }
-			if($input['start_date'] != ''){
-				$query = $query->where('created_at', '>=', $input['start_date']);
+			if($input['start_date'] != '') {
+				$query = $query->where('errors.created_at', '>=', $input['start_date']);
 			}
-			if($input['end_date'] != ''){
-				$query = $query->where('created_at', '<=', $input['end_date']);
+			if($input['end_date'] != '') {
+				$query = $query->where('errors.created_at', '<=', $input['end_date']);
 			}
-		})->orderBy('count', 'desc')->paginate(PAGINATE);
+			if ($input['agent'] != '') {
+				$query = $query->where('error_logs.agent', 'like', '%'.$input['agent'].'%');
+ 		    }
+
+		})->orderBy('errors.count', 'desc')->paginate(PAGINATE);
 		return $data;
 	}
 

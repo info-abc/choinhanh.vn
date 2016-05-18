@@ -19,7 +19,7 @@
 
 				<div class="main">
 
-					@if(getDevice() == MOBILE)
+					@if(getDevice($device) == MOBILE)
 						@include('site.common.menu')
 						@include('site.common.topbar_mobile')
 						@include('site.common.navbar_mobile')

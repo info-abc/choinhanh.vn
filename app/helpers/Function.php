@@ -244,8 +244,11 @@ function countTypeDownload($typeId, $parent_id = '')
 	return 0;
 }
 
-function getDevice()
+function getDevice($device = null)
 {
+	if($device) {
+		return $device;
+	}
 	//agent check tablet mobile desktop
 	$agent = new Agent();
 	if($agent->isMobile() || $agent->isTablet()) {

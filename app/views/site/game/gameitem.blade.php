@@ -11,7 +11,7 @@
 		</div>
 	    {{-- @include('site.game.item-play', array('game' => $game)) --}}
 	</div>
-	@if(getDevice() == COMPUTER)
+	@if(getDevice($device) == COMPUTER)
 		@include('site.game.tooltip', array('game' => $game, 'url' => $url))
 	@endif
 </div>

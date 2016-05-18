@@ -1,5 +1,5 @@
 <?php $seoMeta = CommonSite::getMetaSeo(SEO_META); ?>
-@extends('site.layout.default', array('seoMeta' => $seoMeta))
+@extends('site.layout.default', array('seoMeta' => $seoMeta, 'device' => $device))
 
 @section('title')
 	@if($title = $seoMeta->title_site)
@@ -21,7 +21,7 @@
 	@foreach($menu as $value)
 		@if($value->position == CONTENT)
 		<h3><a href="{{ CommonGame::getUrlCategoryParent($value->id) }}">{{ $value->name }}</a></h3>
-			@if($games = CommonGame::boxGameByCategoryParentIndex($value))
+			@if($games = CommonGame::boxGameByCategoryParentIndex($value, $device))
 				<?php $count = ceil(count($games)/PAGINATE_BOXGAME);
 					$count = getCount($count);
 				 ?>
@@ -35,7 +35,7 @@
 									$listGame = array_slice($games, $i * PAGINATE_BOXGAME, PAGINATE_BOXGAME);
 								?>
 									@foreach($listGame as $game)
-										@include('site.game.gameitem', array('game' => $game, 'slug' => null))
+										@include('site.game.gameitem', array('game' => $game, 'slug' => null, 'device' => $device))
 									@endforeach
 								</div>
 							</div>
