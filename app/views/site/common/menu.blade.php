@@ -32,7 +32,7 @@
 	</div>
 	<ul>
 		<li class='active'><a href="{{ url('/') }}" class="color1"><i class="fa fa-home"></i> <span>Trang chủ</span></a></li>
-		@foreach($menuHeader as $key => $value)
+		@foreach($menuHeader = CategoryParent::where('status', ACTIVE)->where('position', MENU)->orderBy('weight_number', 'asc')->get() as $key => $value)
 			@if($value->position == MENU)
 				@if(count($value->parenttypes) == 0)
 					@if($value->id == MENU_GAME_ANDROID)

@@ -43,7 +43,7 @@
 
 	  	<div class="glass"></div>
 
-		@if($script)
+		@if($script = AdminSeo::where('model_name', SEO_SCRIPT)->first())
 			{{ $script->footer_script }}
 		@endif
 

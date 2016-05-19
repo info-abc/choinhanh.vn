@@ -18,7 +18,7 @@
 {{-- @endif --}}
 
 <div class="box">
-	@foreach($menu as $value)
+	@foreach($menu = CategoryParent::where('status', ACTIVE)->where('position', CONTENT)->orderBy('weight_number', 'asc')->get() as $value)
 		@if($value->position == CONTENT)
 		<h3><a href="{{ CommonGame::getUrlCategoryParent($value->id) }}">{{ $value->name }}</a></h3>
 			@if($games = CommonGame::boxGameByCategoryParentIndex($value, $device))

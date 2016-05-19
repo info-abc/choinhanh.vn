@@ -1,6 +1,6 @@
 <div class="tags">
 	<ul>
-	@foreach($listTags as $value)
+	@foreach(CommonSite::listTag() as $value)
 		<li><a href="{{ url('game-'.$value['slug']) }}">{{ $value['title'] }}</a><span>|</span></li>
 	@endforeach
 	</ul>

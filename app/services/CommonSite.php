@@ -10,7 +10,17 @@ class CommonSite
             return false;
         }
     }
-
+    public static function listTag()
+    {
+        $tags = AdminTag::where('status', ACTIVE)->get();
+            $listTags = [];
+            foreach ($tags as $key => $value) {
+                if (count($value->games) > 0) {
+                    $listTags[$key] = $value;
+                }
+            }
+        return $listTags;
+    }
 
     public static function inputRegister()
     {
