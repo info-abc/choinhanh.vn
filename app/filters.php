@@ -103,6 +103,7 @@ Route::filter('site', function()
 		if (Request::isMethod('get'))
 		{
 			return Redirect::url('/');
+			// return Redirect::action('SiteController@returnPage404');
 			// $url = str_replace('index.php', '', $url);
    // 			return Redirect::to($url);
 			// return Response::view('404', array(), 404);
