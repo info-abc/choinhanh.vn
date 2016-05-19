@@ -10,15 +10,16 @@ class SiteIndexController extends SiteController {
 	public function index()
 	{
 		//return View::make('maintance');
-		if(getDevice() == MOBILE) {
-			$path = public_path().FOLDER_HTML_CODE.'/index_mobile.html';
-	    	$text = file_get_contents($path);
-		} else {
-			$path = public_path().FOLDER_HTML_CODE.'/index_pc.html';
-	    	$text = file_get_contents($path);
-		}
-		return $text;
-		// return View::make('site.index');
+		// if(getDevice() == MOBILE) {
+		// 	$path = public_path().FOLDER_HTML_CODE.'/index_mobile.html';
+	 //    	$text = file_get_contents($path);
+		// } else {
+		// 	$path = public_path().FOLDER_HTML_CODE.'/index_pc.html';
+	 //    	$text = file_get_contents($path);
+		// }
+		// return $text;
+		$device = null;
+		return View::make('site.index')->with(compact('device'));
 	}
 
 	public function home()
