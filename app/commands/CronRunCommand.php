@@ -99,9 +99,7 @@ class CronRunCommand extends Command {
     	file_put_contents($filePath, $html);
 
     	// $device = 2;
-    	$html1 = View::make('site.index_pc')->render();
-    	$filePath1 = public_path().FOLDER_HTML_CODE.'/index_pc.html';
-    	file_put_contents($filePath1, $html1);
+    	
 
 		/**
 		 * EXAMPLES
