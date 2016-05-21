@@ -1,5 +1,5 @@
-<?php $seoMeta = CommonSite::getMetaSeo(SEO_META); ?>
-@extends('site.layout.default', array('seoMeta' => $seoMeta, 'device' => $device))
+<?php $seoMeta = CommonSite::getMetaSeo(SEO_META, '', 1); ?>
+@extends('site.layout.default_pc', array('seoMeta' => $seoMeta))
 
 @section('title')
 	@if($title = $seoMeta->title_site)
@@ -11,17 +11,11 @@
 
 @section('content')
 
-{{-- @if($news = CommonSite::getLatestNews()) --}}
-<!-- <div class="box">
-	<a class="homenews" href="{{-- action('SiteNewsController@show', $news->slug) --}}"><i class="fa fa-caret-right"></i> [{{-- $news->typeNew->name --}}] {{-- $news->title --}}</a>
-</div> -->
-{{-- @endif --}}
-
 <div class="box">
 	@foreach($menu = CategoryParent::where('status', ACTIVE)->where('position', CONTENT)->orderBy('weight_number', 'asc')->get() as $value)
 		@if($value->position == CONTENT)
 		<h3><a href="{{ CommonGame::getUrlCategoryParent($value->id) }}">{{ $value->name }}</a></h3>
-			@if($games = CommonGame::boxGameByCategoryParentIndex($value, $device))
+			@if($games = CommonGame::boxGameByCategoryParentIndex3($value))
 				<?php $count = ceil(count($games)/PAGINATE_BOXGAME);
 					$count = getCount($count);
 				 ?>
@@ -35,7 +29,7 @@
 									$listGame = array_slice($games, $i * PAGINATE_BOXGAME, PAGINATE_BOXGAME);
 								?>
 									@foreach($listGame as $game)
-										@include('site.game.gameitem', array('game' => $game, 'slug' => null, 'device' => $device))
+										@include('site.game.gameitem', array('game' => $game, 'slug' => null, 'device' => 2))
 									@endforeach
 								</div>
 							</div>
@@ -49,12 +43,12 @@
 					</div>
 				</div>
 			@endif
-			@include('site.common.ad', array('adPosition' => CHILD_PAGE, 'modelName' => 'CategoryParent', 'modelId' => $value->id))
+			@include('site.common.ad', array('adPosition' => CHILD_PAGE, 'modelName' => 'CategoryParent', 'modelId' => $value->id, 'device' => 2, 'noCache' => 1))
 		@endif
 	@endforeach
 </div>
 
-@include('site.common.gameboxmini')
+@include('site.common.gameboxmini', array('noCache' => 1))
 
 @include('site.game.scriptbox')
 

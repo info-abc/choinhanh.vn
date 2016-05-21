@@ -55,7 +55,7 @@ class CommonLog
 	public static function logErrors($type)
 	{
 		$link = Request::url();
-		if(strpos($link, '/index.php/')) {
+		if(strpos($link, '/index.php/') && Request::isMethod('get')) {
 			return Redirect::action('SiteController@returnPage404');
 		}
 		$agent = $_SERVER['HTTP_USER_AGENT'];
@@ -74,7 +74,11 @@ class CommonLog
 			$errorId = CommonNormal::create($input, 'AdminError');
 			AdminErrorLog::create(array('error_id' => $errorId, 'agent' => $agent, 'referer' => $referer));
 		}
-		return Redirect::action('SiteController@returnPage404');
+		if(Request::isMethod('get')) {
+			return Redirect::action('SiteController@returnPage404');
+		} else {
+			return;
+		}
 	}
 
 	public static function getTypeError($typeId)

@@ -1946,12 +1946,19 @@ div#tipDiv .tooltip_content img , .tipContent .tooltip_content img {
 }
 div#tipDiv .tooltip_content .tooltip_text , .tipContent .tooltip_content .tooltip_text {
     font-size: 13px;
-    text-align: justify;
+    /*text-align: justify;*/
     margin-bottom: 0;
 }
-div#tipDiv .tooltip_content .tooltip_text span, .tipContent .tooltip_content .tooltip_text span {
+div#tipDiv .tooltip_content .tooltip_text strong,
+.tipContent .tooltip_content .tooltip_text strong {
+    display: inline-block;
+}
+div#tipDiv .tooltip_content .tooltip_text span,
+div#tipDiv .tooltip_content .tooltip_text div,
+.tipContent .tooltip_content .tooltip_text span,
+.tipContent .tooltip_content .tooltip_text div {
     color: #888;
-    display: block;
+    display: inline-block;
     padding-bottom: 0;
 }
 div#tipDiv .tooltip_content .rate-result-cnt {

@@ -1,6 +1,6 @@
 {{ HTML::script('assets/js/swiper.min.js') }}
 {{ HTML::style('assets/css/swiper.min.css') }}
-<style>
+<style rel="stylesheet" type="text/css" media="all">
 	.boxgame-pagination {
 		border: 1px solid #474747;
 	    border-radius: 5px;

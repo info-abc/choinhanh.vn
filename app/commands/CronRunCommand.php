@@ -75,31 +75,42 @@ class CronRunCommand extends Command {
 	 *
 	 * @return mixed
 	 */
-	public function fireMobile()
-    {
-    	$device = 1;
-    	$html = View::make('site.index')->with(compact('device'))->render();
-    	$filePath = public_path().FOLDER_HTML_CODE.'/index_mobile.html';
-    	file_put_contents($filePath, $html);
-    }
-    public function firePc()
-    {
-    	$device = 2;
-    	$html = View::make('site.index')->with(compact('device'))->render();
-    	$filePath = public_path().FOLDER_HTML_CODE.'/index_pc.html';
-    	file_put_contents($filePath, $html);
-    	// return 'http://localhost:8000/exportIndexHtml/2';
-    }
+	// public function fireMobile()
+ //    {
+ //    	$device = 1;
+ //    	$html = View::make('site.index')->with(compact('device'))->render();
+ //    	$filePath = public_path().FOLDER_HTML_CODE.'/index_mobile.html';
+ //    	file_put_contents($filePath, $html);
+ //    }
+ //    public function firePc()
+ //    {
+ //    	$device = 2;
+ //    	$html = View::make('site.index')->with(compact('device'))->render();
+ //    	$filePath = public_path().FOLDER_HTML_CODE.'/index_pc.html';
+ //    	file_put_contents($filePath, $html);
+ //    	// return 'http://localhost:8000/exportIndexHtml/2';
+ //    }
 	public function fire()
 	{
+		// $device = 1;
+		// $text = getDevice(1);
+    	$html = View::make('site.index_mobile')->render();
+    	$filePath = public_path().FOLDER_HTML_CODE.'/index_mobile.html';
+    	file_put_contents($filePath, $html);
+
+    	// $device = 2;
+    	$html1 = View::make('site.index_pc')->render();
+    	$filePath1 = public_path().FOLDER_HTML_CODE.'/index_pc.html';
+    	file_put_contents($filePath1, $html1);
+
 		/**
 		 * EXAMPLES
 		 */
 		// You can use any of the available schedules and pass it an anonymous function
-		$this->everyFiveMinutes(function()
-		{
-			$this->firePc();
-			$this->fireMobile();
+		// $this->everyFiveMinutes(function()
+		// {
+			// $this->firePc();
+			// $this->fireMobile();
 			// In the function, you can use anything that you can use everywhere else in Laravel.
 			// Like models:
 			// $affectedRows = User::where('logged_in', true)->update(array('logged_in' => false)); // Not really useful, but possible
@@ -107,7 +118,7 @@ class CronRunCommand extends Command {
 			// Artisan::call('auth:clear-reminders');
 			// // You can append messages to the cron log like so:
 			// $this->messages[] = $affectedRows . ' users logged out';
-		});
+		// });
 		// Another example:
 		// Send the admin an email every day
 		// $this->dailyAt('09:00', function()

@@ -19,20 +19,15 @@
 
 				<div class="main">
 
-					@if(getDevice() == MOBILE)
-						@include('site.common.menu')
-						@include('site.common.topbar_mobile')
-						@include('site.common.navbar_mobile')
-					@else
-						@include('site.common.topbar_pc')
-						@include('site.common.navbar_pc')
-					@endif
-
-					@include('site.common.ad', array('adPosition' => HEADER, 'device' => null))
+					@include('site.common.menu')
+					@include('site.common.topbar_mobile')
+					@include('site.common.navbar_mobile')
+					
+					@include('site.common.ad', array('adPosition' => HEADER, 'device' => 1, 'noCache' => 1))
 
 					@yield('content')
 
-					@include('site.common.ad', array('adPosition' => Footer, 'device' => null))
+					@include('site.common.ad', array('adPosition' => Footer, 'device' => 1, 'noCache' => 1))
 
 				</div>
 
@@ -47,9 +42,7 @@
 			{{ $script->footer_script }}
 		@endif
 
-		@if(getDevice() == MOBILE)
 		<div id="fb-root"></div>
-		@endif
 		<script>(function(d, s, id) {
 			  var js, fjs = d.getElementsByTagName(s)[0];
 			  if (d.getElementById(id)) return;

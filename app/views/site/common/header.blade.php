@@ -1,17 +1,18 @@
-<?php
-	header("Cache-Control: no-cache, must-revalidate");
-	// $offset = 60 * 60 * 24 * 3;
-	$offset = 60 * CACHETIME;
-	$ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
-	header($ExpStr);
-	if(isset($page404)) {
-		header('HTTP/1.0 404 Not Found');
-		header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
-		header("Status: 404 Not Found");
-		$_SERVER['REDIRECT_STATUS'] = 404;
-	}
-?>
 <head>
+	<?php
+		header("Cache-Control: no-cache, must-revalidate");
+		// $offset = 60 * 60 * 24 * 3;
+		$offset = 60 * CACHETIME;
+		$ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
+		header($ExpStr);
+		if(isset($page404)) {
+			header('HTTP/1.0 404 Not Found');
+			header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+			header("Status: 404 Not Found");
+			$_SERVER['REDIRECT_STATUS'] = 404;
+		}
+	?>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,9 +30,9 @@
 	@else
 		<meta name="robots" content="noodp,index,follow" />
 	@endif
-	<meta name='revisit-after' content='1 days' />
-	<meta http-equiv="content-language" content="vi"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<meta name="revisit-after" content="1 days" />
+	<meta http-equiv="content-language" content="vi" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	@if(isset($gameUrl))
 	<link rel="canonical" href="{{ $gameUrl }}" />

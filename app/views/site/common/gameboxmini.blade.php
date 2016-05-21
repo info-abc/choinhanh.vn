@@ -1,4 +1,10 @@
-<?php $data = CommonGame::getBoxMiniGame(); ?>
+<?php 
+	if(isset($noCache)) {
+		$data = CommonGame::getBoxMiniGame($noCache); 
+	} else {
+		$data = CommonGame::getBoxMiniGame(); 
+	}
+?>
 @if(count($data) > 0)
 <div class="box">
 	<h3>Mini Game</h3>

@@ -41,21 +41,28 @@ class CommonSite
     }
 
     // get advertise
-    public static function getAdvertise($position, $modelName = null, $modelId = null, $device = null)
+    public static function getAdvertise($position, $modelName = null, $modelId = null, $device = null, $noCache = null)
     {
         $ad = null;
         $isMobile = self::getDeviceValue($device);
         // Header & Footer
         if($modelName == null && $modelId == null) {
-            if (Cache::has('getAdvertise_'.$position.'_'.$isMobile))
-            {
-                $ad = Cache::get('getAdvertise_'.$position.'_'.$isMobile);
+            if($noCache == null) {
+                if (Cache::has('getAdvertise_'.$position.'_'.$isMobile))
+                {
+                    $ad = Cache::get('getAdvertise_'.$position.'_'.$isMobile);
+                } else {
+                    $ad = Advertise::where('position', $position)
+                            ->where('status', ENABLED)
+                            ->where('is_mobile', $isMobile)
+                            ->first();
+                    Cache::put('getAdvertise_'.$position.'_'.$isMobile, $ad, CACHETIME);
+                }
             } else {
                 $ad = Advertise::where('position', $position)
-                        ->where('status', ENABLED)
-                        ->where('is_mobile', $isMobile)
-                        ->first();
-                Cache::put('getAdvertise_'.$position.'_'.$isMobile, $ad, CACHETIME);
+                            ->where('status', ENABLED)
+                            ->where('is_mobile', $isMobile)
+                            ->first();
             }
 			if(isset($ad)) {
 				return $ad;
@@ -65,29 +72,28 @@ class CommonSite
         }
         // Content
         else {
-            if (Cache::has('getAdvertise_'.$modelName.'_'.$modelId.'_'.$isMobile))
-            {
-                $ad = Cache::get('getAdvertise_'.$modelName.'_'.$modelId.'_'.$isMobile);
+            if($noCache == null) {
+                if (Cache::has('getAdvertise_'.$modelName.'_'.$modelId.'_'.$isMobile))
+                {
+                    $ad = Cache::get('getAdvertise_'.$modelName.'_'.$modelId.'_'.$isMobile);
+                } else {
+                    $ad = CommonModel::join('advertise_positions', 'common_models.id', '=', 'advertise_positions.common_model_id')
+                        ->join('advertisements', 'advertise_positions.advertisement_id', '=', 'advertisements.id')
+                        ->where('common_models.model_name', $modelName)
+                        ->where('common_models.model_id', $modelId)
+                        ->where('advertise_positions.status', ENABLED)
+                        ->where('advertisements.is_mobile', $isMobile)
+                        ->first();
+                    Cache::put('getAdvertise_'.$modelName.'_'.$modelId.'_'.$isMobile, $ad, CACHETIME);
+                }
             } else {
                 $ad = CommonModel::join('advertise_positions', 'common_models.id', '=', 'advertise_positions.common_model_id')
-                    ->join('advertisements', 'advertise_positions.advertisement_id', '=', 'advertisements.id')
-                    ->where('common_models.model_name', $modelName)
-                    ->where('common_models.model_id', $modelId)
-                    ->where('advertise_positions.status', ENABLED)
-                    ->where('advertisements.is_mobile', $isMobile)
-                    ->first();
-
-                //check Common models
-        //         $common_model = CommonModel::where(array('model_name' => $modelName, 'model_id' => $modelId))->first();
-        //         if (isset($common_model)) {
-        //             $common_model_id = $common_model->id;
-    				// $advertisement_id = AdvertisePosition::where(array('common_model_id' => $common_model_id, 'status' => ENABLED))->first();
-        //             if(isset($advertisement_id)) {
-        //                 $ad = Advertise::find($advertisement_id->advertisement_id);    
-        //             }
-        //         }
-
-                Cache::put('getAdvertise_'.$modelName.'_'.$modelId.'_'.$isMobile, $ad, CACHETIME);
+                        ->join('advertisements', 'advertise_positions.advertisement_id', '=', 'advertisements.id')
+                        ->where('common_models.model_name', $modelName)
+                        ->where('common_models.model_id', $modelId)
+                        ->where('advertise_positions.status', ENABLED)
+                        ->where('advertisements.is_mobile', $isMobile)
+                        ->first();
             }
             if(isset($ad)) {
                 return $ad;
@@ -126,18 +132,23 @@ class CommonSite
         }
     }
 
-    public static function getMetaSeo($modelName, $modelId = '')
+    public static function getMetaSeo($modelName, $modelId = '', $noCache = null)
     {
         $seoMeta = null;
-        //seo trang chu - CACHE
+        //seo trang chu - CACHE OR NO CACHE
         if(!$modelId) {
-            if (Cache::has('getMetaSeo_'.$modelName.'_home'))
-            {
-                $seoMeta = Cache::get('getMetaSeo_'.$modelName.'_home');
+            if($noCache == null) {
+                if (Cache::has('getMetaSeo_'.$modelName.'_home'))
+                {
+                    $seoMeta = Cache::get('getMetaSeo_'.$modelName.'_home');
+                } else {
+                    $seoMeta = AdminSeo::where('model_name', $modelName)
+                            ->first();
+                    Cache::put('getMetaSeo_'.$modelName.'_home', $seoMeta, CACHETIME);
+                }
             } else {
                 $seoMeta = AdminSeo::where('model_name', $modelName)
-                        ->first();
-                Cache::put('getMetaSeo_'.$modelName.'_home', $seoMeta, CACHETIME);
+                            ->first();
             }
             return $seoMeta;
         }
@@ -249,7 +260,12 @@ class CommonSite
 
     public static function getDeviceValue($device = null)
     {
-        if(getDevice($device) == MOBILE) {
+        if(isset($device)) {
+            $checkDevice = getDevice($device);
+        } else {
+            $checkDevice = getDevice();
+        }
+        if($checkDevice == MOBILE) {
             return IS_MOBILE;
         } else {
             return IS_NOT_MOBILE;

@@ -4,7 +4,7 @@ class SiteController extends HomeController {
 
 	public function __construct() {
 
-		$this->beforeFilter('site');
+		// $this->beforeFilter('site');
 
 		if (Cache::has('menu'))
         {

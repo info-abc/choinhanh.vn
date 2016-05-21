@@ -820,13 +820,35 @@ class CommonGame
 		return '#';
 	}
 
-	public static function getGameByType($typeId)
+	public static function getGameByType($typeId, $noCache = null)
 	{
-		if (Cache::has('getGameByType_'.$typeId))
-        {
-            $listGame = Cache::get('getGameByType_'.$typeId);
-        } else {
-        	$now = Carbon\Carbon::now();
+		if($noCache == null) {
+			if (Cache::has('getGameByType_'.$typeId))
+	        {
+	            $listGame = Cache::get('getGameByType_'.$typeId);
+	        } else {
+	        	$now = Carbon\Carbon::now();
+				$gameIds = Type::find($typeId)->gametypes->lists('game_id');
+				if($gameIds) {
+					if(getDevice() == MOBILE) {
+						$listGame = Game::whereIn('id', $gameIds)
+							->where('status', ENABLED)
+							->where('parent_id', '=', GAMEHTML5)
+							->where('start_date', '<=', $now);
+					} else {
+						$listGame = Game::whereIn('id', $gameIds)
+							->where('status', ENABLED)
+							->where('start_date', '<=', $now)
+							->whereIn('parent_id', [GAMEHTML5, GAMEFLASH]);
+					}
+					$listGame = $listGame->orderBy('start_date', 'desc')
+									->limit(6)
+									->get();
+					Cache::put('getGameByType_'.$typeId, $listGame, CACHETIME);
+				}
+	        }
+		} else {
+			$now = Carbon\Carbon::now();
 			$gameIds = Type::find($typeId)->gametypes->lists('game_id');
 			if($gameIds) {
 				if(getDevice() == MOBILE) {
@@ -843,23 +865,39 @@ class CommonGame
 				$listGame = $listGame->orderBy('start_date', 'desc')
 								->limit(6)
 								->get();
-				Cache::put('getGameByType_'.$typeId, $listGame, CACHETIME);
 			}
-        }
+		}
 		return $listGame;
 	}
 
-	public static function getBoxMiniGame()
+	public static function getBoxMiniGame($noCache = null)
 	{
-		if (Cache::has('getBoxMiniGame'))
-        {
-            $result = Cache::get('getBoxMiniGame');
-        } else {
-        	$result = array();
+		if($noCache == null) {
+			if (Cache::has('getBoxMiniGame'))
+	        {
+	            $result = Cache::get('getBoxMiniGame');
+	        } else {
+	        	$result = array();
+				$types = Type::all();
+				if($types) {
+					foreach($types as $key => $value) {
+						$games = self::getGameByType($value->id);
+						$result[$key] = array(
+							'type_id' => $value->id,
+							'type_name' => $value->name,
+							'type_slug' => $value->slug,
+							'games' => $games
+						);
+					}
+				}
+	            Cache::put('getBoxMiniGame', $result, CACHETIME);
+	        }
+		} else {
+			$result = array();
 			$types = Type::all();
 			if($types) {
 				foreach($types as $key => $value) {
-					$games = self::getGameByType($value->id);
+					$games = self::getGameByType($value->id, $noCache);
 					$result[$key] = array(
 						'type_id' => $value->id,
 						'type_name' => $value->name,
@@ -868,8 +906,7 @@ class CommonGame
 					);
 				}
 			}
-            Cache::put('getBoxMiniGame', $result, CACHETIME);
-        }
+		}
 		return $result;
 	}
 
@@ -1010,6 +1047,82 @@ class CommonGame
 		}
 		$games = $games->limit(GAMETOP_LIMITED)->get();
 		return $games;
+	}
+
+	public static function boxGameByCategoryParentIndex2($data)
+	{
+		$now = Carbon\Carbon::now();
+		$arrange = getArrange($data->arrange);
+		$game = $data->games->first();
+		if($game) {
+			$listGame = DB::table('games')
+				->join('types', 'types.id', '=', 'games.type_main')
+				->join('games as category', 'category.id', '=', 'games.parent_id')
+				->select('games.id', 'games.name', 'games.slug', 'games.description'
+						, 'games.parent_id', 'games.type_main', 'games.image_url'
+						, 'games.count_play', 'games.count_download', 'games.vote_average'
+						, 'types.name as type_name', 'types.slug as type_slug'
+						, 'category.slug as category_slug')
+				->distinct()
+				->where('games.parent_id', '!=', GAMEFLASH)
+				->where('games.parent_id', $game->id)
+				->where('games.status', ENABLED)
+				->where('games.start_date', '<=', $now)
+				->whereNull('games.deleted_at');
+			if($data->arrange == GAME_NEWEST){
+				$listGame = $listGame->orderBy('games.'.$arrange, 'desc')->get();
+			} else {
+				$listGame = $listGame->orderByRaw(DB::raw("games.weight_number = '0', games.weight_number"))->orderBy('games.'.$arrange, 'desc')->get();
+			}
+			return $listGame;
+		}
+		return null;
+	}
+
+	public static function boxGameByCategoryParentIndex3($data)
+	{
+		$now = Carbon\Carbon::now();
+		$arrange = getArrange($data->arrange);
+		$game = $data->games->first();
+		if($game) {
+			if (in_array($game->id, [GAMEFLASH, GAMEHTML5])) {
+				$listGame = DB::table('games')
+				->join('types', 'types.id', '=', 'games.type_main')
+				->join('games as category', 'category.id', '=', 'games.parent_id')
+				->select('games.id', 'games.name', 'games.slug', 'games.description'
+						, 'games.parent_id', 'games.type_main', 'games.image_url'
+						, 'games.count_play', 'games.count_download', 'games.vote_average'
+						, 'types.name as type_name', 'types.slug as type_slug'
+						, 'category.slug as category_slug')
+				->distinct()
+				->where('games.status', ENABLED)
+				->where('games.start_date', '<=', $now)
+				->whereIn('games.parent_id', [GAMEFLASH, GAMEHTML5])
+				->whereNull('games.deleted_at');
+			}
+			else{
+				$listGame = DB::table('games')
+				->join('types', 'types.id', '=', 'games.type_main')
+				->join('games as category', 'category.id', '=', 'games.parent_id')
+				->select('games.id', 'games.name', 'games.slug', 'games.description'
+						, 'games.parent_id', 'games.type_main', 'games.image_url'
+						, 'games.count_play', 'games.count_download', 'games.vote_average'
+						, 'types.name as type_name', 'types.slug as type_slug'
+						, 'category.slug as category_slug')
+				->distinct()
+				->where('games.parent_id', $game->id)
+				->where('games.status', ENABLED)
+				->where('games.start_date', '<=', $now)
+				->whereNull('games.deleted_at');
+			}
+			if($data->arrange == GAME_NEWEST){
+				$listGame = $listGame->orderBy('games.'.$arrange, 'desc')->get();
+			} else{
+				$listGame = $listGame->orderByRaw(DB::raw("games.weight_number = '0', games.weight_number"))->orderBy('games.'.$arrange, 'desc')->get();
+			}
+			return $listGame;
+		}
+		return null;
 	}
 
 }

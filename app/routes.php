@@ -30,7 +30,7 @@ App::missing(function($exception)
     return CommonLog::logErrors($errorType);
 });
 
-Route::get('/trang-khong-ton-tai', 'SiteController@returnPage404');
+Route::get('/404.html', 'SiteController@returnPage404');
 
 Route::group(['prefix' => 'admin'], function () {
 

@@ -246,7 +246,7 @@ function countTypeDownload($typeId, $parent_id = '')
 
 function getDevice($device = null)
 {
-	if($device) {
+	if(isset($device)) {
 		return $device;
 	}
 	//agent check tablet mobile desktop

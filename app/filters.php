@@ -97,18 +97,19 @@ Route::filter('csrf', function()
 
 Route::filter('site', function()
 {
-	$url = Request::url();
-	if (strpos($url, 'index.php')){
-		// $method = Request::method();
-		if (Request::isMethod('get'))
-		{
-			return Redirect::url('/');
-			// return Redirect::action('SiteController@returnPage404');
-			// $url = str_replace('index.php', '', $url);
-   // 			return Redirect::to($url);
-			// return Response::view('404', array(), 404);
-		    // return Redirect::to('http://choinhanh.vn/trang-khong-ton-tai');
-		}
-		return;
-	}
+	return;
+	// $url = Request::url();
+	// if (strpos($url, 'index.php')){
+	// 	// $method = Request::method();
+	// 	if (Request::isMethod('get'))
+	// 	{
+	// 		return Redirect::url('/');
+	// 		// return Redirect::action('SiteController@returnPage404');
+	// 		// $url = str_replace('index.php', '', $url);
+ //   // 			return Redirect::to($url);
+	// 		// return Response::view('404', array(), 404);
+	// 	    // return Redirect::to('http://choinhanh.vn/trang-khong-ton-tai');
+	// 	}
+	// 	return;
+	// }
 });

@@ -1,5 +1,9 @@
+<?php 
+	$device = isset($device)?$device:null;
+	$noCache = isset($noCache)?$noCache:null;
+?>
 @if($adPosition == HEADER || $adPosition == Footer || $adPosition == CHILD_PAGE_RELATION)
-<?php $ad = CommonSite::getAdvertise($adPosition, null, null, $device); ?>
+<?php $ad = CommonSite::getAdvertise($adPosition, null, null, $device, $noCache); ?>
 	@if(isset($ad))
 	<div class="adsense center">
 		@if($ad->adsense)
@@ -17,7 +21,7 @@
 	@endif
 @endif
 @if($adPosition == CHILD_PAGE)
-<?php $ad = CommonSite::getAdvertise($adPosition, $modelName, $modelId, $device); ?>
+<?php $ad = CommonSite::getAdvertise($adPosition, $modelName, $modelId, $device, $noCache); ?>
 	@if(isset($ad))
 	<div class="adsense center">
 		@if($ad->adsense)
