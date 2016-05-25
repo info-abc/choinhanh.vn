@@ -30,7 +30,7 @@ App::missing(function($exception)
     return CommonLog::logErrors($errorType);
 });
 
-Route::get('/404.html', 'SiteController@returnPage404');
+Route::get('/404', 'SiteController@returnPage404');
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -216,6 +216,8 @@ Route::get('/list_g5', 'GameController@listGameHtml5');
 Route::get('/list_flash', 'GameController@listGameFlash');
 
 Route::get('/home', 'SiteIndexController@home');
+
+Route::get('/hometest', 'SiteIndexController@hometest');
 
 Route::get('/exportIndexHtml/{device}', 'GenController@exportIndexHtml');
 

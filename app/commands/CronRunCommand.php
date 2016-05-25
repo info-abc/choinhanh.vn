@@ -75,31 +75,19 @@ class CronRunCommand extends Command {
 	 *
 	 * @return mixed
 	 */
-	// public function fireMobile()
- //    {
- //    	$device = 1;
- //    	$html = View::make('site.index')->with(compact('device'))->render();
- //    	$filePath = public_path().FOLDER_HTML_CODE.'/index_mobile.html';
- //    	file_put_contents($filePath, $html);
- //    }
- //    public function firePc()
- //    {
- //    	$device = 2;
- //    	$html = View::make('site.index')->with(compact('device'))->render();
- //    	$filePath = public_path().FOLDER_HTML_CODE.'/index_pc.html';
- //    	file_put_contents($filePath, $html);
- //    	// return 'http://localhost:8000/exportIndexHtml/2';
- //    }
 	public function fire()
 	{
-		// $device = 1;
-		// $text = getDevice(1);
+		$viewPath = app_path().'/views/site/htmlpage';
+
     	$html = View::make('site.index_mobile')->render();
-    	$filePath = public_path().FOLDER_HTML_CODE.'/index_mobile.html';
+    	// $filePath = public_path().FOLDER_HTML_CODE.'/index_mobile.php';
+    	$filePath = $viewPath.'/index_mobile.blade.php';
     	file_put_contents($filePath, $html);
 
-    	// $device = 2;
-    	
+    	$html = View::make('site.index_pc')->render();
+    	// $filePath = public_path().FOLDER_HTML_CODE.'/index_pc.php';
+    	$filePath = $viewPath.'/index_pc.blade.php';
+    	file_put_contents($filePath, $html);
 
 		/**
 		 * EXAMPLES

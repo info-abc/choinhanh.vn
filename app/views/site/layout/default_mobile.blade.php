@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	@include('site.common.header')
+	@include('site.common.header_cronjob')
 	<body>
 
 		{{-- HTML::style('assets/css/font-awesome.min.css') --}}
@@ -19,7 +19,7 @@
 
 				<div class="main">
 
-					@include('site.common.menu')
+					@include('site.common.menu_cronjob')
 					@include('site.common.topbar_mobile')
 					@include('site.common.navbar_mobile')
 					

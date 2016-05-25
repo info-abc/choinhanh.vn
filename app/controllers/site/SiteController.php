@@ -66,8 +66,8 @@ class SiteController extends HomeController {
 		// $method = Request::method();
 		if (Request::isMethod('get'))
 		{
-			return Response::view('404', array(), 404);
-		    // return View::make('404');
+			//return Response::view('404', array(), 404);
+		    return View::make('404');
 		}
 		return;
 	}
@@ -188,6 +188,15 @@ class SiteController extends HomeController {
 	        	CommonGame::saveScoresGame($input, $userId);
 	        	Session::forget('gname');
 	        	Session::forget('gscore');
+	        	//create session user
+	        	$user['accountname'] = Auth::user()->get()->user_name.Auth::user()->get()->uname.Auth::user()->get()->google_name;
+	        	if($image_url = Auth::user()->get()->image_url) {
+					$user['avatar'] = UPLOADIMG . UPLOAD_USER_AVATAR . '/' . $image_url;
+				} else {
+					$user['avatar'] = '/assets/images/avatar.jpg';
+				}
+				$user['islogin'] = 1;
+	        	$_SESSION['user'] = $user;
         		return Redirect::action('SiteIndexController@index');
             }
             else {
@@ -201,6 +210,8 @@ class SiteController extends HomeController {
     	$checkLogin = CommonSite::isLogin();
         if($checkLogin) {
         	Auth::user()->logout();
+        	$_SESSION = array();
+        	unset($_SESSION);
 	        //Session::flush();
 	        return Redirect::route('login');
         } else {

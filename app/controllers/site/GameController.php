@@ -164,7 +164,7 @@ class GameController extends SiteController {
 	        }
 	    
 			if(getDevice() == MOBILE) {
-				if($game->parent_id == GAMEFLASH) {
+				if($game->parent_id == GAMEFLASH && $game->link_game_redirect != '') {
 					return Redirect::to($game->link_game_redirect);
 				}
 			}
@@ -215,7 +215,6 @@ class GameController extends SiteController {
 
 	public function getViewGame($parentId = null, $game = null, $play = null)
     {
-
     	if($parentId && $game) {
     		if(getDevice() == MOBILE) {
     			if(!(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5]))) {

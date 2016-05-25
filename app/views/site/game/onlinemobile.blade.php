@@ -32,9 +32,15 @@
 
 	  	<div class="col-xs-12">
 
-	  		<div class="btn-block-center">
-				<a onclick="countplay()" class="download"><i class="fa fa-play-circle-o"></i> Chơi ngay</a>
-			</div>
+	  		@if($game->parent_id != GAMEFLASH)
+	  			<div class="btn-block-center">
+					<a onclick="countplay()" class="download"><i class="fa fa-play-circle-o"></i> Chơi ngay</a>
+				</div>
+			@else
+				<div class="btn-block-center">
+					<p class="no-for-mobile">Game chỉ chơi trên máy tính</p>
+				</div>
+			@endif
 
 			<div class="slideGame">
 				@include('site.game.slide', array('slideId' => $game->slide_id))
@@ -46,13 +52,21 @@
 				@include('site.common.ads', array('adPosition' => POSITION_MOBILE_PLAYBUTTON2))
 			@endif
 
-			<div class="btn-block-center">
-				<a onclick="countplay()" class="download"><i class="fa fa-play-circle-o"></i> Chơi ngay</a>
-			</div>
+			@if($game->parent_id != GAMEFLASH)
+	  			<div class="btn-block-center">
+					<a onclick="countplay()" class="download"><i class="fa fa-play-circle-o"></i> Chơi ngay</a>
+				</div>
+			@else
+				<div class="btn-block-center">
+					<p class="no-for-mobile">Game chỉ chơi trên máy tính</p>
+				</div>
+			@endif
 
 			{{-- @include('site.game.scriptcountplay', array('id' => $game->id, 'url' => Request::url() . '?play=true')) --}}
 
-			@include('site.game.scriptcountplay', array('id' => $game->id, 'url' => CommonGame::getLinkPlayGameHtml5($game)))
+			@if($game->parent_id != GAMEFLASH)
+				@include('site.game.scriptcountplay', array('id' => $game->id, 'url' => CommonGame::getLinkPlayGameHtml5($game)))
+			@endif
 
 			@include('site.game.vote', array('id' => $game->id))
 
