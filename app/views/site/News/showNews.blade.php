@@ -1,4 +1,18 @@
-@extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo('AdminNew', $inputNew->id), 'seoImage' => FOLDER_SEO_NEWS . '/' . $inputNew->id))
+<?php 
+	if(isset($typeNew)) {
+		$typeNewName = $typeNew->name;
+		$typeNewSlug = $typeNew->slug;
+		$typeUrl = action('SlugController@listData', [$typeNew->slug]);
+		$canonical = null;
+	} else {
+		$typeNewName = 'Tin tức';
+		$typeNewSlug = 'tin-tuc';
+		$typeUrl = url('tin-tuc');
+		$typeNew = TypeNew::find($inputNew->type_new_id);
+		$canonical = action('SlugController@detailData', [$typeNew->slug, $inputNew->slug]);
+	}
+?>
+@extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo('AdminNew', $inputNew->id), 'seoImage' => FOLDER_SEO_NEWS . '/' . $inputNew->id, 'canonical' => $canonical))
 
 @section('title')
 	@if($title = CommonSite::getMetaSeo('AdminNew', $inputNew->id)->title_site)
@@ -13,7 +27,7 @@
 <div class="box">
 	<?php
 		$breadcrumb = array(
-			['name' => $typeNew->name, 'link' => action('SlugController@listData', [$typeNew->slug])],
+			['name' => $typeNewName, 'link' => $typeUrl],
 			['name' => $inputNew->title, 'link' => '']
 		);
 	?>
@@ -45,7 +59,7 @@
 				<h3>Tin mới nhất</h3>
 				<ul>
 					@foreach($inputHot as $value)
-					<li><a href="{{ action('SlugController@detailData', [$typeNew->slug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
+					<li><a href="{{ action('SlugController@detailData', [$typeNewSlug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
 					@endforeach
 				</ul>
 			</div>
@@ -57,7 +71,7 @@
 				<h3>Tin liên quan</h3>
 				<ul>
 					@foreach($inputRelated as $value)
-					<li><a href="{{ action('SlugController@detailData', [$typeNew->slug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
+					<li><a href="{{ action('SlugController@detailData', [$typeNewSlug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
 					@endforeach
 				</ul>
 			</div>

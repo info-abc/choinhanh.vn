@@ -34,9 +34,11 @@
 					@foreach($inputListNews as $value)
 					<?php 
 						if(!isset($typeNew)) {
-							$typeNew = TypeNew::find($value->type_new_id);
+							// $typeNew = TypeNew::find($value->type_new_id);
+							$url = action('SlugController@detailData', ['tin-tuc', $value->slug]);
+						} else {
+							$url = action('SlugController@detailData', [$typeNew->slug, $value->slug]);
 						}
-						$url = action('SlugController@detailData', [$typeNew->slug, $value->slug]);
 					?>
 					<div class="row list-item">
 						<div class="col-xs-4 list-image">

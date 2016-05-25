@@ -42,6 +42,10 @@
 	<link rel="canonical" href="http://choinhanh.vn" />
 	@endif
 
+	@if(isset($canonical))
+	<link rel="canonical" href="{{ $canonical }}" />
+	@endif
+
 	@if(isset($seoMeta))
 		<meta name="description" content="{{ html_entity_decode($seoMeta->description_site) }}">
 		<meta name="keywords" content="{{ $seoMeta->keyword_site }}">
