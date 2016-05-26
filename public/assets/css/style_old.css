@@ -1088,10 +1088,6 @@ a.download i.fa {
         margin-left: 3px;
         margin-right: 5px;
     }
-    #cssmenu {
-        top: 110px;
-        left: 10px;
-    }
     .search1 {
         margin-top: 0;
     }
@@ -1143,13 +1139,10 @@ a.download i.fa {
     a.iconfacebook, a.icongoogleplus {
         vertical-align: baseline;
     }
-
+    
 }
-@media (min-width: 670px) and (max-width: 1024px) {
 
-}
 /*star*/
-
 .rating {
     text-align: center;
 }
@@ -1616,6 +1609,8 @@ ul.pagination li.current a {
     }
     #cssmenu {
         width: 200px;
+        top: 140px;
+        left: 20px;
     }
     #cssmenu a {
         padding: 5px 10px;
@@ -1624,6 +1619,23 @@ ul.pagination li.current a {
         width: 96px;
         padding: 5px 1px !important;
     }
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    #cssmenu {
+        top: 135px;
+        left: 30px;
+    }
+
+}
+
+@media (max-width: 500px) {
+    #cssmenu {
+        top: 120px;
+        left: 10px;
+    }
+
 }
 
 .login-facebook {
