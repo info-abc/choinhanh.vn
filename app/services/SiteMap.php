@@ -28,9 +28,12 @@ class SiteMap
 	public static function getNewUrlSiteMap()
 	{
 		$now = Carbon\Carbon::now();
-		$news = AdminNew::where('start_date', '<=', $now)
-				->orderBy('start_date', 'desc')
+		$news = AdminNew::join('type_news', 'type_news.id', '=', 'news.type_new_id')
+				->select('news.*', 'type_news.name as type_name', 'type_news.slug as type_slug')
+				->where('news.start_date', '<=', $now)
+				->orderBy('news.start_date', 'desc')
 				->get();
 		return $news;
 	}
+
 }

@@ -66,6 +66,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/gametype/search', array('uses' => 'GameTypeController@search', 'as' => 'admin.gametype.search'));
 	Route::resource('/gametype', 'GameTypeController');
 
+	Route::get('/gametags/{tagId}', 'AdminTagController@gametags');
 	Route::resource('/tags', 'AdminTagController');
 
 	Route::resource('/newstype', 'NewsTypeController');

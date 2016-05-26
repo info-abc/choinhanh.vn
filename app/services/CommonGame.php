@@ -1125,4 +1125,14 @@ class CommonGame
 		return null;
 	}
 
+	public static function countGameTag($tagId, $gametype)
+	{
+		$gametag = AdminTag::join('game_tags', 'game_tags.tag_id', '=', 'tags.id')
+					->join('games', 'games.id', '=', 'game_tags.game_id')
+					->where('game_tags.tag_id', $tagId)
+					->where('games.parent_id', $gametype)
+					->count();
+		return $gametag;
+	}
+
 }

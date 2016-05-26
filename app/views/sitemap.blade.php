@@ -25,7 +25,7 @@
 
 	@foreach(SiteMap::getNewUrlSiteMap() as $new)
 	    <url>
-	    	<loc>{{ url().'/'.'tin-tuc'.'/'.$new->slug }}</loc>
+	    	<loc>{{ url().'/'.$new->type_slug.'/'.$new->slug }}</loc>
 	    	<lastmod>{{ date('Y-m-d', strtotime($new->start_date)) }}</lastmod>
 			<changefreq>weekly</changefreq>
 			<priority>0.7</priority>

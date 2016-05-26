@@ -65,6 +65,7 @@ define('UNSAVESCORE', 2);
 define('GAMEFLASH', 7);
 define('GAMEHTML5', 2);
 define('GAMEOFFLINE', 3);
+define('GAMEONLINE', 193);
 //history action
 define('CREATE', 'Create');
 define('EDIT', 'Edit');

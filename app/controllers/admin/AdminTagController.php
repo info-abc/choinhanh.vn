@@ -117,5 +117,17 @@ class AdminTagController extends AdminController {
 		return Redirect::action('AdminTagController@index');
 	}
 
+	public function gametags($tagId)
+	{
+		$tagName = AdminTag::find($tagId)->name;
+		$data = AdminTag::join('game_tags', 'game_tags.tag_id', '=', 'tags.id')
+					->join('games', 'games.id', '=', 'game_tags.game_id')
+					->select('games.id', 'games.name', 'games.parent_id', 'games.type_main')
+					->where('game_tags.tag_id', $tagId)
+					->orderBy('games.id', 'desc')
+					->paginate(PAGINATE);
+		return View::make('admin.tags.gametags')->with(compact('data', 'tagName'));
+	}
+
 
 }

@@ -27,17 +27,20 @@
 			<tr>
 			  <th>ID</th>
 			  <th>Tên</th>
-			  <th>Số lượng games</th>
+			  <th>Game HTML5</th>
+			  <th>Game Flash</th>
+			  <!-- <th>Game Android</th> -->
+			  <!-- <th>Game Online</th> -->
 			  <th style="width:200px;">&nbsp;</th>
 			</tr>
 			 @foreach($data as $value)
-			 <?php $gametag = GameTag::where('tag_id', $value->id)->get(); 
-			 	$count = count($gametag);
-			 ?>
 			<tr>
 			  <td>{{ $value->id }}</td>
-			  <td>{{ $value->name }}</td>
-			  <td>{{ $count }}</td>
+			  <td><a href="{{ action('AdminTagController@gametags', $value->id) }}">{{ $value->name }}</a></td>
+			  <td>{{ CommonGame::countGameTag($value->id, GAMEHTML5) }}</td>
+			  <td>{{ CommonGame::countGameTag($value->id, GAMEFLASH) }}</td>
+			  <!-- <td>{{-- CommonGame::countGameTag($value->id, GAMEOFFLINE) --}}</td> -->
+			  <!-- <td>{{-- CommonGame::countGameTag($value->id, GAMEONLINE) --}}</td> -->
 			  <td>
 				<a href="{{ action('AdminTagController@edit', $value->id) }}" class="btn btn-primary">Sửa</a>
 				{{ Form::open(array('method'=>'DELETE', 'action' => array('AdminTagController@destroy', $value->id), 'style' => 'display: inline-block;')) }}
