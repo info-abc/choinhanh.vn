@@ -1021,10 +1021,12 @@ class CommonGame
     				);
 				Score::create($inputData);
 			}
-			return Redirect::action('SiteIndexController@index'); 
+			// return Redirect::action('SiteIndexController@index');
+			return Redirect::to('http://choinhanh.vn');
 		}
 		else {
-			return Redirect::action('SiteIndexController@index'); 
+			// return Redirect::action('SiteIndexController@index');
+			return Redirect::to('http://choinhanh.vn');
 		}
 	}
 

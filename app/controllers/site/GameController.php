@@ -523,7 +523,7 @@ class GameController extends SiteController {
         return 'end';
     }
 
-    public function saveScore($slug)
+    public function saveScore()
     {
     	$input = Input::all();
     	$user = Auth::user()->get();
@@ -534,7 +534,8 @@ class GameController extends SiteController {
     		//return login site with session gname, gscore
 			Session::put('gname', $input['gname']);
 			Session::put('gscore', $input['gscore']);
-			return Redirect::action('SiteController@login');
+			// return Redirect::action('SiteController@login');
+			return Redirect::to('http://choinhanh.vn/dang-nhap');
     	}
     	// return 
     }

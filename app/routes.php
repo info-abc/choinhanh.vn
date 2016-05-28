@@ -222,11 +222,15 @@ Route::get('/hometest', 'SiteIndexController@hometest');
 
 Route::get('/exportIndexHtml/{device}', 'GenController@exportIndexHtml');
 
-Route::resource('/', 'SiteIndexController');
+// Route::resource('/', 'SiteIndexController');
+
+Route::post('/', 'GameController@saveScore');
+
+Route::get('/', 'SiteIndexController@index');
 
 Route::get('/game-{slug}', 'GameController@listGame');
 
-Route::post('/game-{slug}/index.php', 'GameController@saveScore');
+// Route::post('/game-{slug}/index.php', 'GameController@saveScore');
 
 Route::get('/game-{type}/{slug}', 'GameController@detailGame');
 
