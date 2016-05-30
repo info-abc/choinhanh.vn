@@ -49,6 +49,9 @@ class SiteNewsController extends SiteController {
 	{
 		$now = date('Y-m-d');
 		$inputNew = AdminNew::findBySlug($slug);
+		if(!$inputNew) {
+			return CommonLog::logErrors(ERROR_TYPE_404);
+		}
 		$input['count_view'] = getZero($inputNew->count_view) + 1;
 		CommonNormal::update($inputNew->id, $input, 'AdminNew');
 		//tin lien quan

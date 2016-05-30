@@ -1,14 +1,14 @@
 <head>
 	<?php
-		header("Cache-Control: no-cache, must-revalidate");
+		@header("Cache-Control: no-cache, must-revalidate");
 		// $offset = 60 * 60 * 24 * 3;
 		$offset = 60 * CACHETIME;
 		$ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
-		header($ExpStr);
+		@header($ExpStr);
 		if(isset($page404)) {
-			header('HTTP/1.0 404 Not Found');
-			header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
-			header("Status: 404 Not Found");
+			@header('HTTP/1.0 404 Not Found');
+			@header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+			@header("Status: 404 Not Found");
 			$_SERVER['REDIRECT_STATUS'] = 404;
 		}
 	?>
@@ -22,7 +22,7 @@
 
 	@if(isset($page404))
 		<?php
-			header("HTTP/1.0 404 Not Found");
+			@header("HTTP/1.0 404 Not Found");
 		?>
 		<meta name="robots" content="noindex, nofollow" />
 		<link rel="canonical" href="{{ action('SiteController@returnPage404') }}" />
