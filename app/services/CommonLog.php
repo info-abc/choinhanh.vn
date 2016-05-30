@@ -117,7 +117,7 @@ class CommonLog
 				$query = $query->where('error_logs.agent', 'like', '%'.$input['agent'].'%');
  		    }
 
-		})->orderBy('errors.count', 'desc')->paginate(PAGINATE);
+		})->groupBy('errors.id')->orderBy('errors.count', 'desc')->paginate(PAGINATE);
 		return $data;
 	}
 
