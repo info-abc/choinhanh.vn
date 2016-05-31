@@ -29,7 +29,7 @@
 									$listGame = array_slice($games, $i * PAGINATE_BOXGAME, PAGINATE_BOXGAME);
 								?>
 									@foreach($listGame as $game)
-										@include('site.game.gameitem', array('game' => $game, 'slug' => null, 'device' => 1))
+										@include('site.game.gameitem_cronjob', array('game' => $game, 'slug' => null, 'device' => 1))
 									@endforeach
 								</div>
 							</div>

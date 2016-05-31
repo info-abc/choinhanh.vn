@@ -210,14 +210,19 @@ class CommonGame
 
 
 	// get games, orderBy arrange category parent, paging
-	public static function boxGameByCategoryParent($data, $paginate = null)
+	public static function boxGameByCategoryParent($data, $device = null, $paginate = null)
 	{
+		if($device == null) {
+			$device = getDevice();
+		} else {
+			$device = getDevice($device);
+		}
 		$now = Carbon\Carbon::now();
 		$arrange = getArrange($data->arrange);
 		$game = $data->games->first();
 		if($game) {
 			if($paginate) {
-				if(getDevice() == MOBILE) {
+				if($device == MOBILE) {
 					$listGame = Game::where('parent_id', '!=', GAMEFLASH)
 						->where('status', ENABLED)
 						->where('parent_id', $game->id)
@@ -232,7 +237,7 @@ class CommonGame
 						->paginate(PAGINATE_LISTGAME);
 				}
 			} else {
-				if(getDevice() == MOBILE) {
+				if($device == MOBILE) {
 					$listGame = Game::where('parent_id', '!=', GAMEFLASH)
 						->where('status', ENABLED)
 						->where('parent_id', $game->id)
@@ -250,13 +255,18 @@ class CommonGame
 		return null;
 	}
 
-	public static function boxGameByType($data, $paginate = null)
+	public static function boxGameByType($data, $device = null, $paginate = null)
 	{
+		if($device == null) {
+			$device = getDevice();
+		} else {
+			$device = getDevice($device);
+		}
 		$now = Carbon\Carbon::now();
 		$games = Type::find($data->id)->gametypes->lists('game_id');
 		if($games) {
 			if($paginate) {
-				if(getDevice() == MOBILE) {
+				if($device == MOBILE) {
 					$listGame = Game::whereIn('id', $games)
 						->where('status', ENABLED)
 						->where('parent_id', '=', GAMEHTML5)
@@ -273,7 +283,7 @@ class CommonGame
 						->paginate(PAGINATE_LISTGAME);
 				}
 			} else {
-				if(getDevice() == MOBILE) {
+				if($device == MOBILE) {
 					$listGame = Game::whereIn('id', $games)
 						->where('status', ENABLED)
 						->where('parent_id', '=', GAMEHTML5)
@@ -374,13 +384,18 @@ class CommonGame
 		return null;
 	}
 
-	public static function boxGameByTag($data, $paginate = null)
+	public static function boxGameByTag($data, $device = null, $paginate = null)
 	{
+		if($device == null) {
+			$device = getDevice();
+		} else {
+			$device = getDevice($device);
+		}
 		$now = Carbon\Carbon::now();
 		$gameIds = AdminTag::find($data->id)->gameTags->lists('game_id');
 		if($gameIds) {
 			if($paginate) {
-				if(getDevice() == MOBILE) {
+				if($device == MOBILE) {
 					$listGame = Game::whereIn('id', $gameIds)
 						->where('status', ENABLED)
 						->where('parent_id', '=', GAMEHTML5)
@@ -399,7 +414,7 @@ class CommonGame
 						->paginate(PAGINATE_LISTGAME);
 				}
 			} else {
-				if(getDevice() == MOBILE) {
+				if($device == MOBILE) {
 					$listGame = Game::whereIn('id', $gameIds)
 						->where('status', ENABLED)
 						->where('parent_id', '=', GAMEHTML5)
@@ -417,28 +432,36 @@ class CommonGame
 	}
 
 	// url game
-	public static function getUrlGame($game, $slug = null)
+	public static function getUrlGame($game, $slug = null, $noCache = null)
 	{
 		if($game) {
 			if($slug) {
 				return url('game-' . $slug . '/' . $game->slug);
 			}
 			if (!(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5]))) {
-				if (Cache::has('category'.$game->parent_id))
-				{
-					$category = Cache::get('category'.$game->parent_id);
+				if($noCache == null) {
+					if (Cache::has('category'.$game->parent_id))
+					{
+						$category = Cache::get('category'.$game->parent_id);
+					} else {
+						$category = Game::find($game->parent_id);
+						Cache::put('category'.$game->parent_id, $category, CACHETIME);
+					}
 				} else {
 					$category = Game::find($game->parent_id);
-					Cache::put('category'.$game->parent_id, $category, CACHETIME);
 				}
 				return $url = url('/' . $category->slug . '/' . $game->slug);
 			}
-			if (Cache::has('type'.$game->type_main))
-			{
-				$type = Cache::get('type'.$game->type_main);
+			if($noCache == null) {
+				if (Cache::has('type'.$game->type_main))
+				{
+					$type = Cache::get('type'.$game->type_main);
+				} else {
+					$type = Type::find($game->type_main);
+					Cache::put('type'.$game->type_main, $type, CACHETIME);
+				}
 			} else {
 				$type = Type::find($game->type_main);
-				Cache::put('type'.$game->type_main, $type, CACHETIME);
 			}
 			if($type) {
 				$url = url('game-' . $type->slug . '/' . $game->slug);
@@ -781,10 +804,15 @@ class CommonGame
 	* @return list game
 	*
 	*/
-	public static function getListGame($view = null)
+	public static function getListGame($view = null, $device = null)
 	{
+		if($device == null) {
+			$device = getDevice();
+		} else {
+			$device = getDevice($device);
+		}
 		$now = Carbon\Carbon::now();
-		if(getDevice() == MOBILE) {
+		if($device == MOBILE) {
 			$games = Game::whereNotNull('parent_id')
 				->where('status', ENABLED)
 				->where('parent_id', '!=', GAMEFLASH)
@@ -910,11 +938,16 @@ class CommonGame
 		return $result;
 	}
 
-	public static function getRelated($game)
+	public static function getRelated($game, $device = null)
 	{
+		if($device == null) {
+			$device = getDevice();
+		} else {
+			$device = getDevice($device);
+		}
 		$games = '';
 		$now = Carbon\Carbon::now();
-		if(getDevice() == MOBILE) {
+		if($device == MOBILE) {
 			$limit = GAME_RELATED_MOBILE;
 		} else {
 			$limit = GAME_RELATED_WEB;
@@ -927,7 +960,7 @@ class CommonGame
 			->where('games.id', '!=', $game->id)
 			->where('games.status', ENABLED)
 			->where('games.start_date', '<=', $now);
-		if(getDevice() == MOBILE) {
+		if($device == MOBILE) {
 			$games = $games->where('games.parent_id', '!=', GAMEFLASH)
 				->whereIn('game_tags.tag_id', $tags)
 				->orderBy(DB::raw('RAND()'))
@@ -940,17 +973,16 @@ class CommonGame
 				->get();
 		}
 		$dataListCount = count($games);
-		$dataListGame = self::getDataListGames($dataListCount, $limit, $game, $now, $games);
-		// dd($dataListGame->toArray());
+		$dataListGame = self::getDataListGames($dataListCount, $limit, $game, $now, $games, $device);
 		return [$games, $dataListGame];
 	}
 
-	public static function getDataListGames($dataListCount, $limit, $game, $now, $games)
+	public static function getDataListGames($dataListCount, $limit, $game, $now, $games, $device = null)
 	{
 		$dataListGame = '';
 		if($dataListCount < $limit) {
 			$dataListLimit = $limit - $dataListCount;
-			if(getDevice() == MOBILE) {
+			if($device == MOBILE) {
 				$dataListGame = Game::where('status', ENABLED)
 					->where('parent_id', '!=', GAMEFLASH)
 					->where('start_date', '<=', $now)
@@ -1136,5 +1168,21 @@ class CommonGame
 					->count();
 		return $gametag;
 	}
+
+	public static function getListGameTop()
+    {
+    	$now = Carbon\Carbon::now();
+        $games = Game::whereNotNull('parent_id')
+        		->where('start_date','<', $now)
+                ->where('status', ENABLED)
+                ->where('parent_id', GAMEHTML5)
+                ->orWhere('parent_id', GAMEFLASH)
+                ->limit(GAMETOP)
+                ->orderBy(DB::raw('RAND()'))
+                ->orderBy('count_play', 'desc')
+                ->limit(GAMETOP_LIMITED)
+                ->get();
+        return $games;
+    }
 
 }

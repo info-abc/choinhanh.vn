@@ -87,49 +87,35 @@ class GameController extends SiteController {
 		if($slug == 'online') {
 			$slug = 'game-online';
 		}
-		if (Cache::has('categoryParent_'.$slug))
-        {
-            $categoryParent = Cache::get('categoryParent_'.$slug);
-        } else {
-            // $categoryParent = CategoryParent::findBySlug($slug);
-            $categoryParent = CategoryParent::where('slug', $slug)
+
+		$categoryParent = CategoryParent::where('slug', $slug)
             					->where('status', '!=', CATEGORYPARENT_STATUS_0)
             					->first();
-            Cache::put('categoryParent_'.$slug, $categoryParent, CACHETIME);
-        }
-
-		if (Cache::has('type_'.$slug))
-        {
-            $type = Cache::get('type_'.$slug);
-        } else {
-            $type = Type::findBySlug($slug);
-            Cache::put('type_'.$slug, $type, CACHETIME);
-        }
-        if (Cache::has('tag_'.$slug))
-        {
-            $tag = Cache::get('tag_'.$slug);
-        } else {
-            $tag = AdminTag::findBySlug($slug);
-            Cache::put('tag_'.$slug, $tag, CACHETIME);
-        }
-
+		$type = Type::findBySlug($slug);
+		$tag = AdminTag::findBySlug($slug);
 		if($categoryParent) {
-			// $games = CommonGame::boxGameByCategoryParent($categoryParent);
-			// $count = ceil(count($games->get())/PAGINATE_BOXGAME);
-			// return View::make('site.game.category')->with(compact('games', 'categoryParent', 'count'));
-			return View::make('site.game.category')->with(compact('categoryParent'));
+			if(getDevice() == MOBILE) {
+				return View::make('site.htmlpage.categoryParent_'.$slug.'_mobile');
+			} else {
+				return View::make('site.htmlpage.categoryParent_'.$slug.'_pc');
+			}
+			// return View::make('site.game.category')->with(compact('categoryParent'));
 		}
 		if($type) {
-			// $games = CommonGame::boxGameByType($type);
-			// $count = ceil(count($games->get())/PAGINATE_BOXGAME);
-			// return View::make('site.game.type')->with(compact('games', 'type', 'count'));
-			return View::make('site.game.type')->with(compact('type'));
+			if(getDevice() == MOBILE) {
+				return View::make('site.htmlpage.typeGame_game-'.$slug.'_mobile');
+			} else {
+				return View::make('site.htmlpage.typeGame_game-'.$slug.'_pc');
+			}
+			// return View::make('site.game.type')->with(compact('type'));
 		}
 		if($tag) {
-			// $games = CommonGame::boxGameByType($type);
-			// $count = ceil(count($games->get())/PAGINATE_BOXGAME);
-			// return View::make('site.game.type')->with(compact('games', 'type', 'count'));
-			return View::make('site.tag.index')->with(compact('tag'));
+			if(getDevice() == MOBILE) {
+				return View::make('site.htmlpage.tagGame_game-'.$slug.'_mobile');
+			} else {
+				return View::make('site.htmlpage.tagGame_game-'.$slug.'_pc');
+			}
+			// return View::make('site.tag.index')->with(compact('tag'));
 		}
 
 		//TODO 404
@@ -218,23 +204,26 @@ class GameController extends SiteController {
     	if($parentId && $game) {
     		if(getDevice() == MOBILE) {
     			if(!(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5]))) {
-	    			return View::make('site.game.downloadmobile')->with(compact('game'));
+    				return View::make('site.htmlpage.game_download_'.$game->slug.'_mobile')->with(compact('game'));
+	    			// return View::make('site.game.downloadmobile')->with(compact('game'));
 	    		} else {
-	    			if($play == 'true') {
-	    				return View::make('site.game.onlinemobileplay')->with(compact('game'));
-	    			}
-	    			return View::make('site.game.onlinemobile')->with(compact('game'));
+	    			// if($play == 'true') {
+	    			// 	return View::make('site.game.onlinemobileplay')->with(compact('game'));
+	    			// }
+	    			return View::make('site.htmlpage.game_play_'.$game->slug.'_mobile')->with(compact('game'));
+	    			// return View::make('site.game.onlinemobile')->with(compact('game'));
 	    		}
     		} else {
     			if(!(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5]))) {
-	    			return View::make('site.game.downloadweb')->with(compact('game'));
+    				return View::make('site.htmlpage.game_download_'.$game->slug.'_pc')->with(compact('game'));
+	    			// return View::make('site.game.downloadweb')->with(compact('game'));
 	    		} else {
-	    			$gametop = $this->listGameTop();
-	    			if($play == 'true') {
-	    				//return View::make('site.game.onlinemobileplay')->with(compact('game'));
-	    				return View::make('site.game.onlinewebplay')->with(compact('game'));
-	    			}
-	    			return View::make('site.game.onlineweb')->with(compact('game', 'gametop'));
+	    			// $gametop = $this->listGameTop();
+	    			// if($play == 'true') {
+	    			// 	return View::make('site.game.onlinewebplay')->with(compact('game'));
+	    			// }
+	    			return View::make('site.htmlpage.game_play_'.$game->slug.'_pc')->with(compact('game'));
+	    			// return View::make('site.game.onlineweb')->with(compact('game', 'gametop'));
 	    		}
     		}
     	}
@@ -262,32 +251,57 @@ class GameController extends SiteController {
     */
     public function getListGameAndroid()
     {
-    	// return Response::view('404', array(), 404);
-    	return View::make('site.game.showlistandroid');
+    	// return View::make('site.game.showlistandroid');
+    	if(getDevice() == MOBILE) {
+			return View::make('site.htmlpage.page_showlistandroid_mobile');
+		} else {
+			return View::make('site.htmlpage.page_showlistandroid_pc');
+		}
     }
     // binh chon nhieu
     public function getListGameVote()
     {
-    	return View::make('site.game.gamevotemany');
+    	// return View::make('site.game.gamevotemany');
+    	if(getDevice() == MOBILE) {
+			return View::make('site.htmlpage.page_gamevotemany_mobile');
+		} else {
+			return View::make('site.htmlpage.page_gamevotemany_pc');
+		}
     }
     // choi nhieu
     public function getListGameplay()
     {
-    	return View::make('site.game.gameplaymany');
+    	// return View::make('site.game.gameplaymany');
+    	if(getDevice() == MOBILE) {
+			return View::make('site.htmlpage.page_gameplaymany_mobile');
+		} else {
+			return View::make('site.htmlpage.page_gameplaymany_pc');
+		}
     }
     // moi nhat
     public function getListGamenew()
     {
-    	return View::make('site.game.gamenew');
+    	// return View::make('site.game.gamenew');
+    	if(getDevice() == MOBILE) {
+			return View::make('site.htmlpage.page_gamenew_mobile');
+		} else {
+			return View::make('site.htmlpage.page_gamenew_pc');
+		}
     }
     // trang tai ve
     public function downloadPage()
     {
-    	$boxList = CategoryParent::where('status_child', ACTIVE)
-					->where('position', CONTENT)
-					->orderBy('weight_number', 'asc')
-					->get();
-    	return View::make('site.game.downloadPage')->with(compact('boxList'));
+    	// $boxList = CategoryParent::where('status_child', ACTIVE)
+					// ->where('position', CONTENT)
+					// ->orderBy('weight_number', 'asc')
+					// ->get();
+    	// return View::make('site.game.downloadPage')->with(compact('boxList'));
+
+    	if(getDevice() == MOBILE) {
+			return View::make('site.htmlpage.page_downloadPage_mobile');
+		} else {
+			return View::make('site.htmlpage.page_downloadPage_pc');
+		}
     }
 
     public function countPlay()

@@ -1,4 +1,4 @@
-@extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo('Game', $game->id), 'seoImage' => FOLDER_SEO_GAME . '/' . $game->id, 'gameUrl' => CommonGame::getUrlGame($game)))
+@extends('site.layout.default_mobile', array('seoMeta' => CommonSite::getMetaSeo('Game', $game->id), 'seoImage' => FOLDER_SEO_GAME . '/' . $game->id, 'gameUrl' => CommonGame::getUrlGame($game)))
 
 @section('title')
 	@if($title = CommonSite::getMetaSeo('Game', $game->id)->title_site)
@@ -12,7 +12,7 @@
 
 <div class="box">
 
-	@include('site.game.breadcrumbgame', array('game' => $game))
+	<?php echo '@include("site.game.breadcrumbgame_cronjob", array("game" => $game))'; ?>
 
 	<!-- MOBILE <= 500px -->
 	<div class="row mobile">
@@ -48,9 +48,7 @@
 
 			<div class="detail">{{ $game->description }}</div>
 
-			@if(getDevice() == MOBILE)
-				@include('site.common.ads', array('adPosition' => POSITION_MOBILE_PLAYBUTTON2))
-			@endif
+			@include('site.common.ads', array('adPosition' => POSITION_MOBILE_PLAYBUTTON2))
 
 			@if($game->parent_id != GAMEFLASH)
 	  			<div class="btn-block-center">
@@ -76,7 +74,7 @@
 
 	</div>
 
-	@include('site.game.comment')
+	<?php echo '@include("site.game.comment")'; ?>
 
 </div>
 
