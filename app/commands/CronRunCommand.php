@@ -95,7 +95,7 @@ class CronRunCommand extends Command {
 	{
 		$viewPath = app_path().'/views/site/htmlpage';
 
-		echo 'ads';
+		echo 'cronjob start';
 		// trang chu
 		$this->runFile('site.index_mobile', 'site.index_pc', 'index_mobile.blade.php', 'index_pc.blade.php');
 		// trang game android
