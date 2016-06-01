@@ -54,7 +54,7 @@ class SiteNewsController extends SiteController {
 		}
 		$input['count_view'] = getZero($inputNew->count_view) + 1;
 		CommonNormal::update($inputNew->id, $input, 'AdminNew');
-		
+
 		// //tin lien quan
 		// $inputRelated = AdminNew::where('type_new_id', $inputNew->type_new_id)
 		// 	->where('start_date', '<=', $now)

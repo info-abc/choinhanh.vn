@@ -159,7 +159,7 @@ class CronRunCommand extends Command {
 		// }
 		// chi tiet choi game
 		// $gamesPlay = Game::whereIn('parent_id', [GAMEFLASH, GAMEHTML5])->get();
-		// $gamesPlay = Game::whereIn('id', [770, 773])->get();
+		// // $gamesPlay = Game::whereIn('id', [770, 773])->get();
 		// if(count($gamesPlay) > 0) {
 		// 	foreach($gamesPlay as $key => $value) {
 		// 		$game = $value;
@@ -174,7 +174,7 @@ class CronRunCommand extends Command {
 		// }
 		// chi tiet download game
 		// $gamesDownload = Game::whereNotIn('parent_id', [GAMEFLASH, GAMEHTML5])->get();
-		// $gamesDownload = Game::whereIn('id', [174, 199])->get();
+		// // $gamesDownload = Game::whereIn('id', [174, 199])->get();
 		// if(count($gamesDownload) > 0) {
 		// 	foreach($gamesDownload as $key => $value) {
 		// 		$game = $value;
@@ -189,39 +189,47 @@ class CronRunCommand extends Command {
 		// }
 		// TIN TUC
 		// $news = AdminNew::all();
-		$news = AdminNew::whereIn('id', [6,7,10])->get();
+		// $news = AdminNew::whereIn('id', [6,7,10])->get();
 		// chi tiet tin tuc: /tin-tuc/slug-...
-		if(count($news) > 0) {
-			foreach($news as $key => $value) {
-				$inputNew = $value;
-		    	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew'))->render();
-		    	$filePath = $viewPath.'/'.'news_tin-tuc_'.$value->slug.'_mobile.blade.php';
-		    	file_put_contents($filePath, $html);
+		// if(count($news) > 0) {
+		// 	foreach($news as $key => $value) {
+		// 		$inputNew = $value;
+		//     	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew'))->render();
+		//     	$filePath = $viewPath.'/'.'news_tin-tuc_'.$value->slug.'_mobile.blade.php';
+		//     	file_put_contents($filePath, $html);
 
-		    	$html = View::make('site.News.showNews_pc')->with(compact('inputNew'))->render();
-		    	$filePath = $viewPath.'/'.'news_tin-tuc_'.$value->slug.'_pc.blade.php';
-		    	file_put_contents($filePath, $html);
-			}
-		}
-		// chi tiet tin tuc: /the-loai/slug-...
-		if(count($news) > 0) {
-			foreach($news as $key => $value) {
-				$inputNew = $value;
-				$typeNew = TypeNew::find($value->type_new_id);
-		    	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew', 'typeNew'))->render();
-		    	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$value->slug.'_mobile.blade.php';
-		    	file_put_contents($filePath, $html);
+		//     	$html = View::make('site.News.showNews_pc')->with(compact('inputNew'))->render();
+		//     	$filePath = $viewPath.'/'.'news_tin-tuc_'.$value->slug.'_pc.blade.php';
+		//     	file_put_contents($filePath, $html);
+		// 	}
+		// }
+		// // chi tiet tin tuc: /the-loai/slug-...
+		// if(count($news) > 0) {
+		// 	foreach($news as $key => $value) {
+		// 		$inputNew = $value;
+		// 		$typeNew = TypeNew::find($value->type_new_id);
+		//     	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew', 'typeNew'))->render();
+		//     	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$value->slug.'_mobile.blade.php';
+		//     	file_put_contents($filePath, $html);
 
-		    	$html = View::make('site.News.showNews_pc')->with(compact('inputNew', 'typeNew'))->render();
-		    	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$value->slug.'_pc.blade.php';
-		    	file_put_contents($filePath, $html);
-			}
-		}
+		//     	$html = View::make('site.News.showNews_pc')->with(compact('inputNew', 'typeNew'))->render();
+		//     	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$value->slug.'_pc.blade.php';
+		//     	file_put_contents($filePath, $html);
+		// 	}
+		// }
 		// THE LOAI TIN
 		// trang tin-tuc
 		// $listNews = AdminNew::where('start_date', '<=', Carbon\Carbon::now())->orderBy('id', 'desc');
 		// $countListNews = $listNews->count();
-		// $listNews->paginate(FRONENDPAGINATE);
+		// if($countListNews > 0) {
+		// 	$i = 0;
+		// 	$page = 1;
+		// 	while($i > 0) {
+		// 		$inputListNews = $listNews->limit(FRONENDPAGINATE)->offset($page)->get();
+		// 		$page++;
+		// 	}
+		// }
+		// $inputListNews->paginate(FRONENDPAGINATE);
 		// $typeNew = null;
 		// $html = View::make('site.News.listNews_mobile')->with(compact('inputListNews', 'typeNew'))->render();
   //   	$filePath = $viewPath.'/'.'news_tin-tuc_'.$value->slug.'_mobile.blade.php';
