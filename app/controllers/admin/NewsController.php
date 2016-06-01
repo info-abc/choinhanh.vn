@@ -70,6 +70,10 @@ class NewsController extends AdminController {
 			// insert ceo
 			CommonSeo::createSeo('AdminNew', $id, FOLDER_SEO_NEWS);
 
+			// CREATE HTMLPAGE
+			$data = AdminNew::find($id);
+			$this->createHtmlPageNews($data);
+
 			return Redirect::action('NewsController@index');
         }
 	}
@@ -128,8 +132,8 @@ class NewsController extends AdminController {
 				CommonNormal::update($id, $inputNews);
 
 				//update upload image
-				$imageNews = AdminNew::find($id);
-				$input['image_url'] = CommonSeo::uploadImage($id, UPLOADIMG, 'image_url',UPLOAD_NEWS,$imageNews->image_url);
+				$data = AdminNew::find($id);
+				$input['image_url'] = CommonSeo::uploadImage($id, UPLOADIMG, 'image_url', UPLOAD_NEWS, $data->image_url);
 				CommonNormal::update($id, ['image_url' => $input['image_url']] );
 				}
         	}
@@ -141,6 +145,10 @@ class NewsController extends AdminController {
         	//upadte ceo
 
 			CommonSeo::updateSeo('AdminNew', $id, FOLDER_SEO_NEWS);
+
+			// CREATE HTMLPAGE
+			$this->createHtmlPageNews($data);
+
 			return Redirect::action('NewsController@index') ;
 
 	}
@@ -179,6 +187,31 @@ class NewsController extends AdminController {
 			return Redirect::action('NewsController@index')->with('message', 'Xoá lịch sử thành công');
 		}
 		return Redirect::action('NewsController@index');
+	}
+
+	public function createHtmlPageNews($inputNew)
+	{
+		// CREATE HTMLPAGE
+		$viewPath = app_path().'/views/site/htmlpage';
+
+		// tin-tuc/slug-...
+    	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew'))->render();
+    	$filePath = $viewPath.'/'.'news_tin-tuc_'.$inputNew->slug.'_mobile.blade.php';
+    	file_put_contents($filePath, $html);
+
+    	$html = View::make('site.News.showNews_pc')->with(compact('inputNew'))->render();
+    	$filePath = $viewPath.'/'.'news_tin-tuc_'.$inputNew->slug.'_pc.blade.php';
+    	file_put_contents($filePath, $html);
+
+    	// chia-se/slug-...
+    	$typeNew = TypeNew::find($inputNew->type_new_id);
+    	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew', 'typeNew'))->render();
+    	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$inputNew->slug.'_mobile.blade.php';
+    	file_put_contents($filePath, $html);
+
+    	$html = View::make('site.News.showNews_pc')->with(compact('inputNew', 'typeNew'))->render();
+    	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$inputNew->slug.'_pc.blade.php';
+    	file_put_contents($filePath, $html);
 	}
 
 }

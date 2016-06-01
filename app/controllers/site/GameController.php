@@ -125,8 +125,10 @@ class GameController extends SiteController {
 	public function detailGame($type, $slug)
 	{
 		$categoryParent = CategoryParent::where('status', '!=', CATEGORYPARENT_STATUS_0)->lists('slug');
-		if(!in_array('game-'.$type, $categoryParent) && Type::findBySlug($type) == null) {
-			if(AdminTag::findBySlug($type) == null) {
+		$typeData = Type::findBySlug($type);
+		$tagData = AdminTag::findBySlug($type);
+		if(!in_array('game-'.$type, $categoryParent) && $typeData == null) {
+			if($tagData == null) {
 				return CommonLog::logErrors(ERROR_TYPE_404);
 			}
 		}
@@ -154,6 +156,8 @@ class GameController extends SiteController {
 					return Redirect::to($game->link_game_redirect);
 				}
 			}
+
+
 
 			$count_view = $game->count_view+1;
 			$game->update(array('count_view' => $count_view));

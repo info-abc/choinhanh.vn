@@ -87,6 +87,9 @@ class AdminGameController extends AdminController {
 			//SEO
 			CommonSeo::createSeo('Game', $id, FOLDER_SEO_GAME);
 
+			// CREATE HTMLPAGE
+			$this->createHtmlPageGame($data);
+
 			return Redirect::action('AdminGameController@index')->with('message', 'Đã thêm');
         }
 	}
@@ -129,8 +132,6 @@ class AdminGameController extends AdminController {
 	 */
 	public function update($id)
 	{
-		$data = Game::find($id);
-
 		if(!Admin::isSeo()) {
 			$rules = array(
 				'name' => 'required',
@@ -150,13 +151,12 @@ class AdminGameController extends AdminController {
 		}
 
 		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
+		$validator = Validator::make($input, $rules);
 		if($validator->fails()) {
 			return Redirect::action('AdminGameController@edit', $id)
 	            ->withErrors($validator)
 	            ->withInput($input);
         } else {
-        	// $data = Game::find($id);
 
         	//SEO cant update game
         	if(!Admin::isSeo()) {
@@ -167,6 +167,8 @@ class AdminGameController extends AdminController {
 
 	        	//update game
 				CommonNormal::update($id, $inputGame);
+
+				$data = Game::find($id);
 
 				if($data) {
 					RelationBox::updateRelationship($data, 'types', Input::get('type_id'));
@@ -183,6 +185,9 @@ class AdminGameController extends AdminController {
 
 			//SEO
 			CommonSeo::updateSeo('Game', $id, FOLDER_SEO_GAME);
+
+			// CREATE HTMLPAGE
+			$this->createHtmlPageGame($data);
 
 			return Redirect::action('AdminGameController@index')->with('message', 'Đã sửa');
         }
@@ -280,6 +285,32 @@ class AdminGameController extends AdminController {
 		$input = Input::all();
 		$data = CommonGame::searchAdminGame($input);
 		return View::make('admin.game.statistic')->with(compact('data'));
+	}
+
+	public function createHtmlPageGame($game)
+	{
+		// CREATE HTMLPAGE
+		$viewPath = app_path().'/views/site/htmlpage';
+		if(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5])) {
+			// game play
+	    	$html = View::make('site.game.onlinemobile_cronjob')->with(compact('game'))->render();
+	    	$filePath = $viewPath.'/'.'game_play_'.$game->slug.'_mobile.blade.php';
+	    	file_put_contents($filePath, $html);
+
+	    	$html = View::make('site.game.onlineweb_cronjob')->with(compact('game'))->render();
+	    	$filePath = $viewPath.'/'.'game_play_'.$game->slug.'_pc.blade.php';
+	    	file_put_contents($filePath, $html);
+		} else {
+			// game download
+	    	$html = View::make('site.game.downloadmobile_cronjob')->with(compact('game'))->render();
+	    	$filePath = $viewPath.'/'.'game_download_'.$game->slug.'_mobile.blade.php';
+	    	file_put_contents($filePath, $html);
+
+	    	$html = View::make('site.game.downloadweb_cronjob')->with(compact('game'))->render();
+	    	$filePath = $viewPath.'/'.'game_download_'.$game->slug.'_pc.blade.php';
+	    	file_put_contents($filePath, $html);
+		}
+		return;
 	}
 
 
