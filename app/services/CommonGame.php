@@ -116,7 +116,7 @@ class CommonGame
 				$query = $query->where('parent_id', $input['parent_id']);
 			}
 			if($input['parent_id'] == '') {
-				$query = $query->whereNotNUll('parent_id');
+				$query = $query->whereNotNull('parent_id');
 			}
 			// if($input['category_parent_id'] != '') {
 			// 	$list = CategoryParent::find($input['category_parent_id'])->categoryparentrelations->lists('game_id');

@@ -157,43 +157,40 @@ class CronRunCommand extends Command {
 				}
 			}
 		}
-		// chi tiet choi game
-		$gamesPlay = Game::whereIn('parent_id', [GAMEFLASH, GAMEHTML5])->get();
-		// $gamesPlay = Game::whereIn('id', [770, 773])->get();
-		if(count($gamesPlay) > 0) {
-			foreach($gamesPlay as $key => $value) {
+		// GAME DETAIL
+		$gamesList = Game::where('parent_id', '!=', '')->whereNotNull('parent_id')->get();
+		if(count($gamesList) > 0) {
+			foreach($gamesList as $key => $value) {
 				$game = $value;
-		    	$html = View::make('site.game.onlinemobile_cronjob')->with(compact('game'))->render();
-		    	$filePath = $viewPath.'/'.'game_play_'.$value->slug.'_mobile.blade.php';
-		    	file_put_contents($filePath, $html);
+				// chi tiet choi game
+				if(in_array($value->parent_id, [GAMEFLASH, GAMEHTML5])) {
+					$html = View::make('site.game.onlinemobile_cronjob')->with(compact('game'))->render();
+			    	$filePath = $viewPath.'/'.'game_play_'.$value->slug.'_mobile.blade.php';
+			    	file_put_contents($filePath, $html);
 
-		    	$html = View::make('site.game.onlineweb_cronjob')->with(compact('game'))->render();
-		    	$filePath = $viewPath.'/'.'game_play_'.$value->slug.'_pc.blade.php';
-		    	file_put_contents($filePath, $html);
-			}
-		}
-		// chi tiet download game
-		$gamesDownload = Game::whereNotIn('parent_id', [GAMEFLASH, GAMEHTML5])->get();
-		// $gamesDownload = Game::whereIn('id', [174, 199])->get();
-		if(count($gamesDownload) > 0) {
-			foreach($gamesDownload as $key => $value) {
-				$game = $value;
-		    	$html = View::make('site.game.downloadmobile_cronjob')->with(compact('game'))->render();
-		    	$filePath = $viewPath.'/'.'game_download_'.$value->slug.'_mobile.blade.php';
-		    	file_put_contents($filePath, $html);
+			    	$html = View::make('site.game.onlineweb_cronjob')->with(compact('game'))->render();
+			    	$filePath = $viewPath.'/'.'game_play_'.$value->slug.'_pc.blade.php';
+			    	file_put_contents($filePath, $html);
+				}
+				// chi tiet download game
+		    	else {
+		    		$html = View::make('site.game.downloadmobile_cronjob')->with(compact('game'))->render();
+			    	$filePath = $viewPath.'/'.'game_download_'.$value->slug.'_mobile.blade.php';
+			    	file_put_contents($filePath, $html);
 
-		    	$html = View::make('site.game.downloadweb_cronjob')->with(compact('game'))->render();
-		    	$filePath = $viewPath.'/'.'game_download_'.$value->slug.'_pc.blade.php';
-		    	file_put_contents($filePath, $html);
+			    	$html = View::make('site.game.downloadweb_cronjob')->with(compact('game'))->render();
+			    	$filePath = $viewPath.'/'.'game_download_'.$value->slug.'_pc.blade.php';
+			    	file_put_contents($filePath, $html);
+		    	}
 			}
 		}
 		// TIN TUC
 		$news = AdminNew::all();
 		// $news = AdminNew::whereIn('id', [6,7,10])->get();
-		// chi tiet tin tuc: /tin-tuc/slug-...
 		if(count($news) > 0) {
 			foreach($news as $key => $value) {
 				$inputNew = $value;
+				// chi tiet tin tuc: /tin-tuc/slug-...
 		    	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew'))->render();
 		    	$filePath = $viewPath.'/'.'news_tin-tuc_'.$value->slug.'_mobile.blade.php';
 		    	file_put_contents($filePath, $html);
@@ -201,13 +198,9 @@ class CronRunCommand extends Command {
 		    	$html = View::make('site.News.showNews_pc')->with(compact('inputNew'))->render();
 		    	$filePath = $viewPath.'/'.'news_tin-tuc_'.$value->slug.'_pc.blade.php';
 		    	file_put_contents($filePath, $html);
-			}
-		}
-		// chi tiet tin tuc: /the-loai/slug-...
-		if(count($news) > 0) {
-			foreach($news as $key => $value) {
-				$inputNew = $value;
-				$typeNew = TypeNew::find($value->type_new_id);
+
+		    	// chi tiet tin tuc: /the-loai/slug-...
+		    	$typeNew = TypeNew::find($value->type_new_id);
 		    	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew', 'typeNew'))->render();
 		    	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$value->slug.'_mobile.blade.php';
 		    	file_put_contents($filePath, $html);
