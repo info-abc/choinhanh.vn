@@ -125,6 +125,7 @@ class GameController extends SiteController {
 	public function detailGame($type, $slug)
 	{
 		$categoryParent = CategoryParent::where('status', '!=', CATEGORYPARENT_STATUS_0)->lists('slug');
+		$categoryParentData = CategoryParent::findBySlug('game-'.$type);
 		$typeData = Type::findBySlug($type);
 		$tagData = AdminTag::findBySlug($type);
 		if(!in_array('game-'.$type, $categoryParent) && $typeData == null) {
@@ -150,14 +151,41 @@ class GameController extends SiteController {
 	        	// return Response::view('404', array(), 404);
 	        	return CommonLog::logErrors(ERROR_TYPE_404);
 	        }
-	    
+
+	        //check game ton tai trong type hoac tag hoac category hay khong?
+	        $issetGame = 0;
+	        if($categoryParentData) {
+	        	$category = Game::find($game->parent_id);
+	        	if($category->slug == $categoryParentData->slug) {
+	        		$issetGame = 1;
+	        	}
+	        }
+	        if($typeData) {
+	        	$countGameType = GameType::where('game_id', $game->id)
+	        						->where('type_id', $typeData->id)
+	        						->count();
+	        	if($countGameType > 0) {
+	        		$issetGame = 1;
+	        	}
+	        }
+	        if($tagData) {
+	        	$countGameTag = GameTag::where('game_id', $game->id)
+	        						->where('tag_id', $tagData->id)
+	        						->count();
+	        	if($countGameTag > 0) {
+	        		$issetGame = 1;
+	        	}
+	        }
+	        if($issetGame == 0) {
+	        	return CommonLog::logErrors(ERROR_TYPE_404);
+	        }
+
+	    	//check redirect link game flash tren mobile
 			if(getDevice() == MOBILE) {
 				if($game->parent_id == GAMEFLASH && $game->link_game_redirect != '') {
 					return Redirect::to($game->link_game_redirect);
 				}
 			}
-
-
 
 			$count_view = $game->count_view+1;
 			$game->update(array('count_view' => $count_view));
