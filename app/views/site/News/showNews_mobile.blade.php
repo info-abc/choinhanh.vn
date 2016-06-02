@@ -4,12 +4,14 @@
 		$typeNewSlug = $typeNew->slug;
 		$typeUrl = action('SlugController@listData', [$typeNew->slug]);
 		$canonical = null;
+		$ogUrl = url($typeNewSlug.'/'.$inputNew->slug);
 	} else {
 		$typeNewName = 'Tin tức';
 		$typeNewSlug = 'tin-tuc';
 		$typeUrl = url('tin-tuc');
 		$typeNew = TypeNew::find($inputNew->type_new_id);
 		$canonical = action('SlugController@detailData', [$typeNew->slug, $inputNew->slug]);
+		$ogUrl = url('tin-tuc/'.$inputNew->slug);
 	}
 	$now = date('Y-m-d');
 	$inputRelated = AdminNew::where('type_new_id', $inputNew->type_new_id)
@@ -26,7 +28,7 @@
 		->get();
 		
 ?>
-@extends('site.layout.default_mobile', array('seoMeta' => CommonSite::getMetaSeo('AdminNew', $inputNew->id), 'seoImage' => FOLDER_SEO_NEWS . '/' . $inputNew->id, 'canonical' => $canonical))
+@extends('site.layout.default_mobile', array('seoMeta' => CommonSite::getMetaSeo('AdminNew', $inputNew->id), 'seoImage' => FOLDER_SEO_NEWS . '/' . $inputNew->id, 'canonical' => $canonical, 'ogUrl' => $ogUrl))
 
 @section('title')
 	@if($title = CommonSite::getMetaSeo('AdminNew', $inputNew->id)->title_site)

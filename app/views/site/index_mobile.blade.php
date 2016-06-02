@@ -1,5 +1,5 @@
 <?php $seoMeta = CommonSite::getMetaSeo(SEO_META, '', 1); ?>
-@extends('site.layout.default_mobile', array('seoMeta' => $seoMeta))
+@extends('site.layout.default_mobile', array('seoMeta' => $seoMeta, 'ogUrl' => url('/')))
 
 @section('title')
 	@if($title = $seoMeta->title_site)

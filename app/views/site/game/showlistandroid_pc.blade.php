@@ -1,4 +1,4 @@
-@extends('site.layout.default_pc', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', 8), 'seoImage' => FOLDER_SEO_PARENT . '/' . 8))
+@extends('site.layout.default_pc', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', 8), 'seoImage' => FOLDER_SEO_PARENT . '/' . 8, 'ogUrl' => action('GameController@getListGameAndroid')))
 
 @section('title')
 	@if($title = CommonSite::getMetaSeo('CategoryParent', 8)->title_site)

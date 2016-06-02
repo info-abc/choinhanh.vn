@@ -20,6 +20,9 @@
 	<div class="col-xs-12">
 	  <div class="box">
 		<div class="box-header">
+			@if($inputNew)
+			<strong>Tổng số: {{ $inputNew->getTotal() }}</strong><br>
+			@endif
 		  <h3 class="box-title">Danh sách loại tin</h3>
 		</div>
 		<!-- /.box-header -->

@@ -51,7 +51,12 @@
 		<meta name="keywords" content="{{ $seoMeta->keyword_site }}">
 		<meta name="title" content="{{ $seoMeta->title_site }}">
 
-		<meta property="og:url" content="{{ Request::url() }}" />
+		@if(isset($gameUrl))
+			<meta property="og:url" content="{{ $gameUrl }}" />
+		@endif
+		@if(isset($ogUrl))
+			<meta property="og:url" content="{{ $ogUrl }}" />
+		@endif
 		<meta property="og:title" content="{{ $seoMeta->title_fb }}" />
 		<meta property="og:description" content="{{ html_entity_decode($seoMeta->description_fb) }}" />
 		@if(isset($seoImage))

@@ -1,4 +1,4 @@
-@extends('site.layout.default_mobile', array('seoMeta' => CommonSite::getMetaSeo('AdminTag', $tag->id), 'seoImage' => FOLDER_SEO_TAG . '/' . $tag->id))
+@extends('site.layout.default_mobile', array('seoMeta' => CommonSite::getMetaSeo('AdminTag', $tag->id), 'seoImage' => FOLDER_SEO_TAG . '/' . $tag->id, 'ogUrl' => url($tag->slug)))
 
 @section('title')
 	@if($title = CommonSite::getMetaSeo('AdminTag', $tag->id)->title_site)

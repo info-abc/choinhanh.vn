@@ -1,12 +1,14 @@
-@extends('site.layout.default_mobile')
-
 <?php 
 	if(isset($typeNew)) {
 		$typeNewTitle = $typeNew->name;
+		$ogUrl = url($typeNew->slug);
 	} else {
 		$typeNewTitle = 'Tin tức';
+		$ogUrl = url('tin-tuc');
 	}
 ?>
+
+@extends('site.layout.default_mobile', array('ogUrl' => $ogUrl))
 
 @section('title')
 	{{ $title = $typeNewTitle }}

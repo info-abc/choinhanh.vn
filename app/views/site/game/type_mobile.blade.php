@@ -1,4 +1,4 @@
-@extends('site.layout.default_mobile', array('seoMeta' => CommonSite::getMetaSeo('Type', $type->id), 'seoImage' => FOLDER_SEO_GAMETYPE . '/' . $type->id))
+@extends('site.layout.default_mobile', array('seoMeta' => CommonSite::getMetaSeo('Type', $type->id), 'seoImage' => FOLDER_SEO_GAMETYPE . '/' . $type->id, 'ogUrl' => url($type->slug)))
 
 @section('title')
 	@if($title = CommonSite::getMetaSeo('Type', $type->id)->title_site)

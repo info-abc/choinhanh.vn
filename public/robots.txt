@@ -1,7 +1,6 @@
 User-agent: *
 Disallow: /seo/
-Disallow: /*/index.php
-Disallow: /game-flash/index.php
+Disallow: /*/index.php/*
 Disallow: /ban-gai/boi-tinh-yeu
 Disallow: /ban-gai/cuu-nang-bach-tuyet
 Disallow: /ban-gai/giai-cuu-meo-xinh

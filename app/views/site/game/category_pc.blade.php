@@ -1,4 +1,4 @@
-@extends('site.layout.default_pc', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', $categoryParent->id), 'seoImage' => FOLDER_SEO_PARENT . '/' . $categoryParent->id))
+@extends('site.layout.default_pc', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', $categoryParent->id), 'seoImage' => FOLDER_SEO_PARENT . '/' . $categoryParent->id, 'ogUrl' => url($categoryParent->slug)))
 
 @section('title')
 	@if($title = CommonSite::getMetaSeo('CategoryParent', $categoryParent->id)->title_site)
