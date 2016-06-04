@@ -21,6 +21,9 @@ class SlugController extends SiteController {
 		if(!$typeNew) {
 			return CommonLog::logErrors(ERROR_TYPE_404);
 		}
+		if($inputNew->type_new_id != $typeNew->id){
+            return CommonLog::logErrors(ERROR_TYPE_404);
+        }
 		if($inputNew) {
 			return self::showDetail($typeNew, $inputNew);
 		}
