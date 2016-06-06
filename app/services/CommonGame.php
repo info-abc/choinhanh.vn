@@ -774,7 +774,13 @@ class CommonGame
 			$filename = getFilename($game->link_upload_game);
 			if($game->parent_id == GAMEHTML5) {
 				if($game->link_url != '') {
-					$link = url(UPLOAD_GAME . '/' . $game->link_url);
+					$checkHttp = strpos($game->link_url, 'http://');
+					$checkHttps = strpos($game->link_url, 'https://');
+					if($checkHttp !== false || $checkHttps !== false) {
+						$link = $game->link_url;
+					} else {
+						$link = url(UPLOAD_GAME . '/' . $game->link_url);	
+					}
 				} else {
 					$link = url(UPLOAD_GAME . '/' . $filename);
 				}
