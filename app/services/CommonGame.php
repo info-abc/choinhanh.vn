@@ -481,21 +481,26 @@ class CommonGame
 			if($type == 'android') {
 				if($game->link_download != '') {
 					return url($game->link_download);
-				}	
+				}
 			}
 			if($type == 'ios') {
 				if($game->link_download_ios != '') {
 					return url($game->link_download_ios);
-				}	
+				}
 			}
 			if($type == 'winphone') {
 				if($game->link_download_winphone != '') {
 					return url($game->link_download_winphone);
-				}	
+				}
 			}
-			
 			if($game->link_url != '') {
-				return url(UPLOAD_GAMEOFFLINE . '/' . $game->link_url);
+				$checkHttp = strpos($game->link_url, 'http://');
+				$checkHttps = strpos($game->link_url, 'https://');
+				if($checkHttp !== false || $checkHttps !== false) {
+					return $game->link_url;
+				} else {
+					return url(UPLOAD_GAMEOFFLINE . '/' . $game->link_url);
+				}
 			}
 		}
 		return '#';
@@ -547,7 +552,13 @@ class CommonGame
 			$filename = getFilename($game->link_upload_game);
 			if($game->parent_id == GAMEFLASH) {
 				if($game->link_url != '') {
-					$link = url(UPLOAD_FLASH . '/' . $game->link_url); // . '.swf'
+					$checkHttp = strpos($game->link_url, 'http://');
+					$checkHttps = strpos($game->link_url, 'https://');
+					if($checkHttp !== false || $checkHttps !== false) {
+						$link = $game->link_url;
+					} else {
+						$link = url(UPLOAD_FLASH . '/' . $game->link_url); // . '.swf'
+					}
 				} else {
 					$link = url(UPLOAD_FLASH . '/' . $game->link_upload_game);
 				}
@@ -556,18 +567,27 @@ class CommonGame
 			}
 			if($game->parent_id == GAMEHTML5) {
 				if($game->link_url != '') {
-					$link = url(UPLOAD_GAME . '/' . $game->link_url);
+					$checkHttp = strpos($game->link_url, 'http://');
+					$checkHttps = strpos($game->link_url, 'https://');
+					if($checkHttp !== false || $checkHttps !== false) {
+						$link = $game->link_url;
+						$linkGameHtml = $game->link_url;
+					} else {
+						$link = url(UPLOAD_GAME . '/' . $game->link_url);
+						$linkGameHtml = $link . '/game.html';
+					}
 				} else {
 					$link = url(UPLOAD_GAME . '/' . $filename);
+					$linkGameHtml = $link . '/game.html';
 				}
-				$box = self::getBoxGame($link, $game);
+				$box = self::getBoxGame($link, $game, $linkGameHtml);
 				return $box;
 			}
 		}
 		return null;
 	}
 
-	public static function getBoxGame($link, $game)
+	public static function getBoxGame($link, $game, $linkGameHtml = '')
 	{
 		$width = (isset($game->width) && $game->width != '')?($game->width):'640';
 		$height = (isset($game->height) && $game->height != '')?($game->height):'480';
@@ -653,7 +673,11 @@ class CommonGame
 			}
 
 			if($game->parent_id == GAMEHTML5) {
-				$link = $link . '/game.html';
+				if($linkGameHtml != '') {
+					$link = $linkGameHtml;
+				} else {
+					$link = $link . '/game.html';
+				}
 				$box = '<div id="game-ad">
 					<object
 						classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
@@ -719,7 +743,11 @@ class CommonGame
 			}
 
 			if($game->parent_id == GAMEHTML5) {
-				$link = $link . '/game.html';
+				if($linkGameHtml != '') {
+					$link = $linkGameHtml;
+				} else {
+					$link = $link . '/game.html';
+				}
 				$box = '<div style="margin: 10px auto; width: '.$width.'px; height: '.$height.'px;">
 						<iframe name="my-iframe" id="my-iframe" width="100%" src="'.$link.'" height="100%" scrolling="no" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" webkit-playsinline="true" seamless="seamless" style="-webkit-transform: scale(1, 1);
 						-o-transform: scale(1, 1);
