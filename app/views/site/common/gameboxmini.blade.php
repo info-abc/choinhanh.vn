@@ -1,14 +1,14 @@
 <?php 
-	if(isset($noCache)) {
-		$data = CommonGame::getBoxMiniGame($noCache); 
-	} else {
-		$data = CommonGame::getBoxMiniGame(); 
-	}
-	 if(isset($device)) {
+	if(isset($device)) {
         $device = getDevice($device);
     } else {
         $device = getDevice();
     }
+	if(isset($noCache)) {
+		$data = CommonGame::getBoxMiniGame($noCache, $device); 
+	} else {
+		$data = CommonGame::getBoxMiniGame(); 
+	}
 ?>
 @if(count($data) > 0)
 <div class="box">

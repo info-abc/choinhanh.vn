@@ -882,8 +882,13 @@ class CommonGame
 		return '#';
 	}
 
-	public static function getGameByType($typeId, $noCache = null)
+	public static function getGameByType($typeId, $noCache = null, $device = null)
 	{
+		if($device == null) {
+			$device = getDevice();
+		} else {
+			$device = getDevice($device);
+		}
 		if($noCache == null) {
 			if (Cache::has('getGameByType_'.$typeId))
 	        {
@@ -892,7 +897,7 @@ class CommonGame
 	        	$now = Carbon\Carbon::now();
 				$gameIds = Type::find($typeId)->gametypes->lists('game_id');
 				if($gameIds) {
-					if(getDevice() == MOBILE) {
+					if($device == MOBILE) {
 						$listGame = Game::whereIn('id', $gameIds)
 							->where('status', ENABLED)
 							->where('parent_id', '=', GAMEHTML5)
@@ -913,7 +918,7 @@ class CommonGame
 			$now = Carbon\Carbon::now();
 			$gameIds = Type::find($typeId)->gametypes->lists('game_id');
 			if($gameIds) {
-				if(getDevice() == MOBILE) {
+				if($device == MOBILE) {
 					$listGame = Game::whereIn('id', $gameIds)
 						->where('status', ENABLED)
 						->where('parent_id', '=', GAMEHTML5)
@@ -932,7 +937,7 @@ class CommonGame
 		return $listGame;
 	}
 
-	public static function getBoxMiniGame($noCache = null)
+	public static function getBoxMiniGame($noCache = null, $device = null)
 	{
 		if($noCache == null) {
 			if (Cache::has('getBoxMiniGame'))
@@ -959,7 +964,7 @@ class CommonGame
 			$types = Type::all();
 			if($types) {
 				foreach($types as $key => $value) {
-					$games = self::getGameByType($value->id, $noCache);
+					$games = self::getGameByType($value->id, $noCache, $device);
 					$result[$key] = array(
 						'type_id' => $value->id,
 						'type_name' => $value->name,
@@ -1218,5 +1223,42 @@ class CommonGame
                 ->get();
         return $games;
     }
+
+    public static function getLinkGameDirect($game = null)
+	{
+		if($game) {
+			// $ext = getExtension($game->link_upload_game);
+			$filename = getFilename($game->link_upload_game);
+			if($game->parent_id == GAMEFLASH) {
+				if($game->link_url != '') {
+					$checkHttp = strpos($game->link_url, 'http://');
+					$checkHttps = strpos($game->link_url, 'https://');
+					if($checkHttp !== false || $checkHttps !== false) {
+						$link = $game->link_url;
+					} else {
+						$link = url(UPLOAD_FLASH . '/' . $game->link_url); // . '.swf'
+					}
+				} else {
+					$link = url(UPLOAD_FLASH . '/' . $game->link_upload_game);
+				}
+			}
+			if($game->parent_id == GAMEHTML5) {
+				if($game->link_url != '') {
+					$checkHttp = strpos($game->link_url, 'http://');
+					$checkHttps = strpos($game->link_url, 'https://');
+					if($checkHttp !== false || $checkHttps !== false) {
+						$link = $game->link_url;
+					} else {
+						$link = url(UPLOAD_GAME . '/' . $game->link_url);
+						$link = $link . '/game.html';
+					}
+				} else {
+					$link = url(UPLOAD_GAME . '/' . $filename);
+					$link = $link . '/game.html';
+				}
+			}
+		}
+		return $link;
+	}
 
 }
