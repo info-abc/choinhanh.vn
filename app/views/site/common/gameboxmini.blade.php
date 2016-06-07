@@ -4,6 +4,11 @@
 	} else {
 		$data = CommonGame::getBoxMiniGame(); 
 	}
+	 if(isset($device)) {
+        $device = getDevice($device);
+    } else {
+        $device = getDevice();
+    }
 ?>
 @if(count($data) > 0)
 <div class="box">
@@ -31,7 +36,9 @@
 											<a href="{{ $url }}">{{ $v->name }}</a>
 										</div>
 									</div>
-									@include('site.game.tooltip', array('game' => $v, 'url' => $url))
+									@if($device == COMPUTER)
+										@include('site.game.tooltip', array('game' => $v, 'url' => $url, 'device' => 2))
+									@endif
 								</div>
 							@endforeach
 						</div>

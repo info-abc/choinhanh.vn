@@ -48,7 +48,7 @@
 	@endforeach
 </div>
 
-@include('site.common.gameboxmini', array('noCache' => 1))
+@include('site.common.gameboxmini', array('device' => 1, 'noCache' => 1))
 
 @include('site.game.scriptbox')
 
