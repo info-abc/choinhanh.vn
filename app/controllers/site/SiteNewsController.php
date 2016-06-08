@@ -72,9 +72,10 @@ class SiteNewsController extends SiteController {
 		// return View::make('site.News.showNews')->with(compact('inputNew', 'inputRelated', 'inputHot'));
 
 		if(getDevice() == MOBILE) {
-			return View::make('site.htmlpage.news_tin-tuc_'.$slug.'_mobile');
+			return View::make('site.htmlpage.news_tin-tuc_'.$inputNew->slug.'_mobile');
 		} else {
-			return View::make('site.htmlpage.news_tin-tuc_'.$slug.'_pc');
+
+			return View::make('site.htmlpage.news_tin-tuc_'.$inputNew->slug.'_pc');
 		}
 	}
 
