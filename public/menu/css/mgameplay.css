@@ -3,10 +3,10 @@
 *{font-family:Arial, Helvetica, sans-serif !important;} 
 body{margin:0 !important;}
 body {overflow-y:scroll !important;}
-.container{margin:0 auto !important;;background:#fff !important;;max-width:500px !important;}
+.mnContainer{margin:0 auto !important;background:#fff !important;max-width:500px !important;}
 .content{padding:20px !important;}
-img{border:0 !important;}
-a{text-decoration:none !important;}
+.mnContainer img{border:0 !important;}
+.mnContainer a{text-decoration:none !important;}
 .clear{clear:both !important;}
 
 /*HEADER*/
@@ -24,7 +24,7 @@ a{text-decoration:none !important;}
 .menuRight{position:absolute !important;top:0 !important;right:0 !important;z-index:999999 !important;background:#fff !important;box-shadow:#000 5px 0px 10px 5px !important;}
 ul.mnRight{margin:0 !important;padding:0 !important;}
 ul.mnRight li{display:block !important;border-bottom:#ebebeb solid 1px !important;list-style:none !important;}
-ul.mnRight li a{padding:8px 15px !important;color:#636363 !important;display:block !important;}
+ul.mnRight li a{padding:8px 15px !important;color:#636363 !important;display:block !important;text-align: left;}
 ul.mnRight li a.active{color:#77b43d !important}
 ul.mnRight li a img{vertical-align:middle !important;margin-right:10px !important;width:30px !important;height:30px !important;}
 ul.mnRight li a.green{color:#78b43d !important}
@@ -84,53 +84,3 @@ ul.mnRight li a.logout{color:#c2c2c2 !important;background:#636363 !important;bo
 	-o-animation-name: fadeInRight !important;
 	animation-name: fadeInRight !important;
 }
-/* end lucnd bổ xung */
-
-
-#luu_diem{
-	position: absolute !important;
-	top: -10% !important;
-	left: 0% !important;
-	margin: auto !important;
-	z-index: 999999 !important;
-}​
-
-/*----------Start Duclv bổ xung bảng thành tích--------------------------*/
-/*.swiper_wrapper_ds_bang_diem .swiper-slide {
-	width: 27%;
-}*/
-.swiper_slide_ds_bang_diem table {
-	width: 70%;
-	margin-top: 30%;
-	margin-left: 7%;
-	overflow-y: scroll;
-}
-.swiper_slide_ds_bang_diem table .row-header td, .swiper_slide_ds_bang_diem table .row-w td{
-	font-size: 12px;
-	padding: 5px;
-}
-.swiper_slide_ds_bang_diem table tbody tr.row-w:nth-of-type(1) td {
-	color: red;
-	height: 20px;
-	line-height: 20px;
-}
-/*
-.swiper_slide_ds_bang_diem table tbody tr.row-w:nth-of-type(1) td:after {
-	content: "";
-	background: red url(/menu/images/sprites-small.png) no-repeat 4px -877px !important;
-	display: block;
-	width: 25px;
-	height: 25px;
-	float: right;
-}
-*/
-.swiper_slide_ds_bang_diem table tbody tr.row-w:nth-of-type(2) td a:nth-of-type(1) {
-	font-weight: bold;
-	font-size: 14px;
-	display: inline-block;
-}
-.swiper_slide_ds_bang_diem table tbody tr.row-w:nth-of-type(2) td a:nth-of-type(2) {
-	float: right;
-	display: inline-block;
-}
-/*----------End Duclv bổ xung bảng thành tích--------------------------*/

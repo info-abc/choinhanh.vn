@@ -1,4 +1,11 @@
-@extends('site.layout.default_mobile', array('seoMeta' => CommonSite::getMetaSeo('Game', $game->id), 'seoImage' => FOLDER_SEO_GAME . '/' . $game->id, 'gameUrl' => CommonGame::getUrlGame($game)))
+<?php 
+	if(isset($game)) {
+		$gameUrl = CommonGame::getUrlGame($game);
+	} else {
+		$gameUrl = null;
+	}
+?>
+@extends('site.layout.default_mobile', array('seoMeta' => CommonSite::getMetaSeo('Game', $game->id), 'seoImage' => FOLDER_SEO_GAME . '/' . $game->id, 'gameUrl' => $gameUrl))
 
 @section('title')
 	@if($title = CommonSite::getMetaSeo('Game', $game->id)->title_site)
@@ -63,7 +70,7 @@
 			{{-- @include('site.game.scriptcountplay', array('id' => $game->id, 'url' => Request::url() . '?play=true')) --}}
 
 			@if($game->parent_id != GAMEFLASH)
-				@include('site.game.scriptcountplay', array('id' => $game->id, 'url' => CommonGame::getLinkPlayGameHtml5($game)))
+				@include('site.game.scriptcountplay', array('id' => $game->id, 'url' => CommonGame::getLinkPlayGameHtml5($game, $gameUrl, 1)))
 			@endif
 
 			@include('site.game.vote', array('id' => $game->id))

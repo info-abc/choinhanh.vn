@@ -43,23 +43,23 @@ body { margin:0;padding:0;width:100%;height:100%;overflow:hidden;background-colo
 .similargames_title{
 	height:40px; background-color:#056194; width:100%;
 }
-	.similargames_title_home{padding:0 0 0 5px;font-size:18px;color:#FFFFFF;line-height:40px;}
-	.similargames_title_home img{padding:5px 0 0 0;}
-	.similargames_title_home a{color:#FFFFFF;}
-	.similargames_title_logo{text-align:center;}
-	.similargames_title_icons{padding:0px 10px 0 0;}
-	#CloseSimilarGamesImg{cursor:pointer;}
-	#VoteGameDiv{
-		float:center;
-		overflow:hidden;
-		color:#FFF;
-		line-height:40px;
-	}
-	#VoteGameDiv img{
-		padding-top:8px;
-		width:24px;
-		height:24px;
-	}
+.similargames_title_home{padding:0 0 0 5px;font-size:18px;color:#FFFFFF;line-height:40px;}
+.similargames_title_home img{padding:5px 0 0 0;}
+.similargames_title_home a{color:#FFFFFF;}
+.similargames_title_logo{text-align:center;}
+.similargames_title_icons{padding:0px 10px 0 0;}
+#CloseSimilarGamesImg{cursor:pointer;}
+#VoteGameDiv{
+	float:center;
+	overflow:hidden;
+	color:#FFF;
+	line-height:40px;
+}
+#VoteGameDiv img{
+	padding-top:8px;
+	width:24px;
+	height:24px;
+}
 #similargames_content{
 	height:40px; background-color:#00547c;text-align:center;
 }

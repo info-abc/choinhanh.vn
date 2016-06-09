@@ -216,13 +216,3 @@ function UpdateThumbSize(){
 	$(".thumb img").css("width",TheThumbWidth+"px");
 	$(".thumb img").css("height",TheThumbHeight+"px");
 }
-
-function RateGame(id,v){
-	$.ajax({  
-			url: "/ajax_vote.php?id=" + id +"&v=" + v,
-			success: function(msg){
-				
-		   }
-	});
-	$('#VoteGameDiv').html("Thank You!");
-}

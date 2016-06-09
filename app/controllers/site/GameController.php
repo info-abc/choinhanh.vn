@@ -239,11 +239,11 @@ class GameController extends SiteController {
     				return View::make('site.htmlpage.game_download_'.$game->slug.'_mobile')->with(compact('game'));
 	    			// return View::make('site.game.downloadmobile')->with(compact('game'));
 	    		} else {
-	    			// if($play == 'true') {
-	    			// 	return View::make('site.game.onlinemobileplay')->with(compact('game'));
-	    			// }
-	    			return View::make('site.htmlpage.game_play_'.$game->slug.'_mobile')->with(compact('game'));
-	    			// return View::make('site.game.onlinemobile')->with(compact('game'));
+	    			if($play == 'true') {
+	    				return View::make('site.game.onlinemobileplay')->with(compact('game'));
+	    			}
+	    			// return View::make('site.htmlpage.game_play_'.$game->slug.'_mobile')->with(compact('game'));
+	    			return View::make('site.game.onlinemobile')->with(compact('game'));
 	    		}
     		} else {
     			if(!(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5]))) {

@@ -1,0 +1,77 @@
+@charset "utf-8";
+/* CSS Document */
+*{font-family:Arial, Helvetica, sans-serif !important;}
+body{margin: 0px; padding:0; font-size:12px; color:#FFFFFF; font-family:Verdana, Geneva, sans-serif;}
+dl,dt,dd,ul,li,h1,h2,form,input,textarea,p,td,h4,h3{padding:0;margin:0;}
+ul,dl{list-style:none;}
+img{ vertical-align:top;border:0;}
+.clear{clear:both}
+.left{float:left}
+.right{float:right;}
+a {text-decoration:none;}
+#TheGameDiv{
+	position:absolute;
+	z-index:10;
+	top:0;
+	width:100%;
+	height:100%;
+	margin:auto;
+}
+#similargames_container{
+	background-color:#ebebeb;
+	box-shadow: 0 1px 3px #888;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	display:none;
+	z-index:1000;
+	text-align:center;
+}
+#similargames{
+	width:800px;
+	margin:auto;
+}
+.similargames_title{
+	height:40px; background-color:#4B7D2A; width:100%;
+}
+.similargames_title_home{padding:0 0 0 5px;font-size:18px;color:#FFFFFF;line-height:40px;}
+.similargames_title_home img{padding:5px 0 0 0;}
+.similargames_title_home a{color:#FFFFFF;}
+.similargames_title_logo{text-align:center;}
+.similargames_title_logo img {height: 36px;max-width: 100%;}
+.similargames_title_icons{padding:0px 10px 0 0;}
+#settingImg{position:absolute; cursor:pointer;top:0;left:0;z-index:100;}
+#CloseSimilarGamesImg{cursor:pointer;}
+#similargames_content{
+	height:40px;text-align:center;
+}
+/* MENU */
+.menuRight{position:absolute !important;top:0 !important;right:0 !important;z-index:999999 !important;background:#fff !important;box-shadow:#000 5px 0px 10px 5px !important;}
+ul.mnRight{margin:0 !important;padding:0 !important;}
+ul.mnRight li{display:block !important;border-bottom:#ebebeb solid 1px !important;list-style:none !important;}
+ul.mnRight li a{padding:5px 15px !important;color:#636363 !important;display:block !important;text-align: left;}
+ul.mnRight li a.active{color:#77b43d !important}
+ul.mnRight li a img{vertical-align:middle !important;margin-right:10px !important;width:30px !important;height:30px !important;}
+ul.mnRight li a.green{color:#78b43d !important}
+ul.mnRight li a.orange{color:#f28007 !important}
+ul.mnRight li a.blue{color:#57a6f1 !important}
+ul.mnRight li ul{margin:0 !important;padding:0 !important;background:#ebebeb !important;}
+ul.mnRight li ul li{display:block !important;border-bottom:#ebebeb solid 1px !important;}
+ul.mnRight li ul li.last{border:0 !important}
+ul.mnRight li a.user{color:#fff !important;font-weight:bold !important;background:#464646 !important;}
+ul.mnRight li a.user-chitiet{color:#fff !important;background:#636363 !important;}
+ul.mnRight li a.logout{color:#c2c2c2 !important;background:#636363 !important;border-top:#464646 solid 1px !important;}
+
+.searchBox{border-bottom:#ebebeb solid 1px !important;padding:10px !important;position:relative !important;}
+.searchTextBox{background:#fff !important;border:#d7d7d7 solid 1px !important;padding:5px 15px !important;width:240px !important;height:30px !important;font-size:14px !important;color:#666666 !important;float:left !important;border-radius:3px !important;}  
+.searchTextBox-auto{background:#fff !important;border:#d7d7d7 solid 1px !important;padding:5px 15px !important;width:80% !important;height:30px !important;font-size:14px !important;color:#666666 !important;float:left !important;border-radius:3px !important;}  
+.searchBtn{display:block !important;width:30px !important;height:30px !important;position:absolute !important;top:10px !important;right:15px !important;float:right !important;background-size:20px !important}
+.enable_scroll{
+	overflow-y: scroll !important;
+	height: auto !important;
+	min-height: 300px !important;
+	max-height: 100% !important;
+	-webkit-overflow-scrolling: touch !important;
+}

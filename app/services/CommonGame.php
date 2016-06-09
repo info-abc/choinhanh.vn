@@ -768,8 +768,11 @@ class CommonGame
 	}
 
 	//get link play game for games HTML5
-	public static function getLinkPlayGameHtml5($game = null)
+	public static function getLinkPlayGameHtml5($game = null, $gameUrl = null, $play = null)
 	{
+		if(isset($play) && isset($gameUrl)) {
+			return $gameUrl.'?play=true';
+		}
 		if($game) {
 			$filename = getFilename($game->link_upload_game);
 			if($game->parent_id == GAMEHTML5) {
@@ -779,7 +782,7 @@ class CommonGame
 					if($checkHttp !== false || $checkHttps !== false) {
 						$link = $game->link_url;
 					} else {
-						$link = url(UPLOAD_GAME . '/' . $game->link_url);	
+						$link = url(UPLOAD_GAME . '/' . $game->link_url);
 					}
 				} else {
 					$link = url(UPLOAD_GAME . '/' . $filename);
