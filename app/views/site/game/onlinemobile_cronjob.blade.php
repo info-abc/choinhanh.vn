@@ -31,9 +31,9 @@
 
 			<h1 class="title mobile-title">{{ $game->name }}</h1>
 
-			@include('site.common.rate', array('vote_average' => $game->vote_average))
+			<?php echo '@include("site.common.rate", array("vote_average" => $game->vote_average))'; ?>
 
-			<p>{{ getZero($game->count_play) }} lượt xem</p>
+			<p><?php echo '{{ getZero($game->count_play) }}'; ?> lượt xem</p>
 
 		</div>
 
