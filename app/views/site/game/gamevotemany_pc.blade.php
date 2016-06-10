@@ -10,7 +10,8 @@
 	<h1>Game bình chọn nhiều</h1>
 	<?php
 		$games = CommonGame::getListGame('vote', 2);
-		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
+		// $count = ceil(count($games->get())/PAGINATE_BOXGAME);
+		$count = 5;
 	?>
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
@@ -47,7 +48,8 @@
 	<h3>Game hay nhất</h3>
 	<?php
 		$games = CommonGame::getListGame('vote', 2);
-		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
+		// $count = ceil(count($games->get())/PAGINATE_BOXGAME);
+		$count = 5;
 	?>
 	<div class="swiper-container">
 		<div class="swiper-wrapper">

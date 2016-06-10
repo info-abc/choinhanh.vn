@@ -1,3 +1,13 @@
+<?php 
+	$checkHttp = strpos($game->link_url, 'http://');
+	$checkHttps = strpos($game->link_url, 'https://');
+	if($checkHttp !== false || $checkHttps !== false) {
+?>
+@if(isset($script))
+	{{ $script->header_script }}
+@endif
+<iframe id='game_frame' webkitallowfullscreen='true' mozallowfullscreen='true' allowfullscreen='true' webkit-playsinline='true' scrolling='no' seamless frameborder='0' style='display:block;overflow:hidden;width:100%;height:100%' src='{{ CommonGame::getLinkGameDirect($game) }}'></iframe>
+<?php } else { ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +23,7 @@
 	<meta http-equiv="content-language" content="vi" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="noodp,index,follow" />
+
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" name="viewport">
     
@@ -53,7 +64,6 @@ var thegame_height=0;
 var thegame_minwidth=0;
 var thegame_minheight=0;
 </script>
-
 <img src='{{ url("/assets/images/menu/setting.png") }}' id="settingImg" style="display: block;">
 <div id="TheGameDiv" style="width:100%; height:100%;">
 	<iframe id='game_frame' webkitallowfullscreen='true' mozallowfullscreen='true' allowfullscreen='true' webkit-playsinline='true' scrolling='no' seamless frameborder='0' style='display:block;overflow:hidden;width:100%;height:100%' src='{{ CommonGame::getLinkGameDirect($game) }}'></iframe>
@@ -145,3 +155,5 @@ var thegame_minheight=0;
 
 </body>
 </html>
+
+<?php } ?>
