@@ -857,13 +857,13 @@ class CommonGame
 			$games = Game::whereNotNull('parent_id')
 				->where('status', ENABLED)
 				->where('start_date', '<=', $now)
-				// ->where('parent_id', '!=', GAMEFLASH)
-				->where('parent_id', GAMEHTML5)
-				->orWhere(function($games)
-	            {
-	            	$games->where('parent_id', GAMEFLASH);
-	            	$games->where('link_game_redirect', '!=', '');
-	            });
+				->whereIn('parent_id', [GAMEFLASH, GAMEHTML5]);
+				// ->where('parent_id', GAMEHTML5)
+				// ->orWhere(function($games)
+	   //          {
+	   //          	$games->where('parent_id', GAMEFLASH);
+	   //          	$games->where('link_game_redirect', '!=', '');
+	   //          });
 		} else {
 			$games = Game::whereNotNull('parent_id')
 				->where('status', ENABLED)
@@ -875,7 +875,7 @@ class CommonGame
 		}
 		//to do: vote, play for gamehtml5 only
 		if($view == 'vote' || $view == 'play') {
-			$games = $games;
+			$games = $games->whereIn('parent_id', [GAMEFLASH, GAMEHTML5]);
 		}
 		return $games;
 	}
