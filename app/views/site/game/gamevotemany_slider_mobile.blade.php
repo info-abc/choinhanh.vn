@@ -1,20 +1,17 @@
-@extends('site.layout.default_mobile', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', 8), 'seoImage' => FOLDER_SEO_PARENT . '/' . 8, 'ogUrl' => action('GameController@getListGameAndroid')))
+@extends('site.layout.default_mobile')
 
 @section('title')
-	@if($title = CommonSite::getMetaSeo('CategoryParent', 8)->title_site)
-		{{ $title= $title }}
-	@else
-		{{ $title = 'Game Android' }}
-	@endif
+{{ $title = 'Game bình chọn nhiều'}}
 @stop
 
 @section('content')
 
 <div class="box">
-	<h1>Game Android tải nhiều</h1>
+	<h1>Game bình chọn nhiều</h1>
 	<?php
-		$games = CommonGame::getListGame('android', 1);
-		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
+		$games = CommonGame::getListGame('vote', 1);
+		// $count = ceil(count($games->get())/PAGINATE_BOXGAME);
+		$count = 5;
 	?>
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
@@ -22,7 +19,7 @@
 				<div class="swiper-slide boxgame">
 					<div class="row">
 					<?php
-						$listGame = $games->orderBy('count_download', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
+						$listGame = $games->orderBy('vote_average', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
 					?>
 						@foreach($listGame as $game)
 							@include('site.game.gameitem_cronjob', array('game' => $game, 'slug' => null, 'device' => 1))
@@ -41,13 +38,14 @@
 </div>
 
 {{-- quang cao --}}
-@include('site.common.ads', array('adPosition' => POSITION_MOBILE_GAMEANDROID))
+@include('site.common.ads', array('adPosition' => POSITION_MOBILE_VOTEMANY))
 
 <div class="box">
-	<h3>Game Android mới nhất</h3>
+	<h3>Game hay nhất</h3>
 	<?php
-		$games = CommonGame::getListGame('android', 1);
-		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
+		$games = CommonGame::getListGame('vote', 1);
+		// $count = ceil(count($games->get())/PAGINATE_BOXGAME);
+		$count = 5;
 	?>
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
@@ -55,7 +53,7 @@
 				<div class="swiper-slide boxgame">
 					<div class="row">
 					<?php
-						$listGame = $games->orderBy('id', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
+						$listGame = $games->orderBy('count_play', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
 					?>
 						@foreach($listGame as $game)
 							@include('site.game.gameitem_cronjob', array('game' => $game, 'slug' => null, 'device' => 1))

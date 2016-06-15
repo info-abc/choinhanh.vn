@@ -782,9 +782,9 @@ class CommonGame
 					if($checkHttp !== false || $checkHttps !== false) {
 						$link = $game->link_url;
 						//play game
-						// if(isset($play) && isset($gameUrl)) {
-						// 	return $gameUrl.'?play=true';
-						// }
+						if(isset($play) && isset($gameUrl)) {
+							return $gameUrl.'?play=true';
+						}
 					} else {
 						$link = url(UPLOAD_GAME . '/' . $game->link_url);
 					}
@@ -1272,6 +1272,60 @@ class CommonGame
 			}
 		}
 		return $link;
+	}
+
+	public static function loadGameBoxQuery($view, $orderBy, $device=null)
+	{
+		if($device == null) {
+			$device = getDevice();
+		} else {
+			$device = getDevice($device);
+		}
+		$now = Carbon\Carbon::now();
+		if($device == MOBILE) {
+			$listGame = Game::whereNotNull('parent_id')
+				->where('status', ENABLED)
+				->where('start_date', '<=', $now)
+				->whereIn('parent_id', [GAMEFLASH, GAMEHTML5]);
+		} else {
+			$listGame = Game::whereNotNull('parent_id')
+				->where('status', ENABLED)
+				->where('start_date', '<=', $now);
+		}
+		//check game category
+		if($view == 'android') {
+			$listGame = $listGame->where('parent_id', GAMEOFFLINE);
+		}
+		//to do: vote, play for gamehtml5 only
+		if($view == 'vote' || $view == 'play') {
+			$listGame = $listGame->whereIn('parent_id', [GAMEFLASH, GAMEHTML5]);
+		}
+		return $listGame;
+	}
+
+	public static function loadGameBox($view, $orderBy, $device=null, $i=0)
+	{
+		$view = (Input::get('view'))?Input::get('view'):$view;
+		$orderBy = (Input::get('orderBy'))?Input::get('orderBy'):$orderBy;
+		$device = (Input::get('device'))?Input::get('device'):$device;
+		if(Input::get('i')) {
+			$i = Input::get('i');
+			$i--;
+		}
+		$listGame = self::loadGameBoxQuery($view, $orderBy, $device);
+		$listGame = $listGame->orderBy($orderBy, 'desc')
+					->take(PAGINATE_BOXGAME)
+					->skip($i * PAGINATE_BOXGAME)
+					->get();
+		// return View::make('site.game.gamebox')->with(compact('listGame'));
+		return View::make('site.game.gamebox_cronjob')->with(compact('listGame', 'device'));
+	}
+
+	public static function countGameBox($view, $orderBy)
+	{
+		$listGame = self::loadGameBoxQuery($view, $orderBy);
+		$count = ceil(count($listGame->get())/PAGINATE_BOXGAME);
+		return $count;
 	}
 
 }

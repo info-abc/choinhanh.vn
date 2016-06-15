@@ -41,11 +41,7 @@
 </div>
 
 {{-- quang cao --}}
-@if(getDevice() == COMPUTER)
-	@include('site.common.ads', array('adPosition' => POSITION_TYPE))
-@else
-	@include('site.common.ads', array('adPosition' => POSITION_MOBILE_TYPE))
-@endif
+@include('site.common.ads', array('adPosition' => POSITION_MOBILE_TYPE))
 
 <div class="box">
 	<h3>Game {{ $type->name }} mới nhất</h3>

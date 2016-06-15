@@ -586,4 +586,14 @@ class GameController extends SiteController {
     	// return 
     }
 
+    public function loadGameBox()
+    {
+    	$view = Input::get('view');
+		$orderBy = Input::get('orderBy');
+		$device = Input::get('device');
+		$i = Input::get('i');
+		$i--;
+    	return CommonGame::loadGameBox($view, $orderBy, $device, $i);
+    }
+
 }

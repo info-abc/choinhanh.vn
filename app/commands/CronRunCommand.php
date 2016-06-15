@@ -97,66 +97,66 @@ class CronRunCommand extends Command {
 
 		echo 'cronjob start';
 		// trang chu
-		$this->runFile('site.index_mobile', 'site.index_pc', 'index_mobile.blade.php', 'index_pc.blade.php');
+		// $this->runFile('site.index_mobile', 'site.index_pc', 'index_mobile.blade.php', 'index_pc.blade.php');
 		// trang game android
-		$this->runFile('site.game.showlistandroid_mobile', 'site.game.showlistandroid_pc', 'page_showlistandroid_mobile.blade.php', 'page_showlistandroid_pc.blade.php');
+		// $this->runFile('site.game.showlistandroid_mobile', 'site.game.showlistandroid_pc', 'page_showlistandroid_mobile.blade.php', 'page_showlistandroid_pc.blade.php');
 		// trang game binh chon nhieu
 		$this->runFile('site.game.gamevotemany_mobile', 'site.game.gamevotemany_pc', 'page_gamevotemany_mobile.blade.php', 'page_gamevotemany_pc.blade.php');
 		// trang game hay nhat
 		$this->runFile('site.game.gameplaymany_mobile', 'site.game.gameplaymany_pc', 'page_gameplaymany_mobile.blade.php', 'page_gameplaymany_pc.blade.php');
 		// trang game moi nhat
-		$this->runFile('site.game.gamenew_mobile', 'site.game.gamenew_pc', 'page_gamenew_mobile.blade.php', 'page_gamenew_pc.blade.php');
+		// $this->runFile('site.game.gamenew_mobile', 'site.game.gamenew_pc', 'page_gamenew_mobile.blade.php', 'page_gamenew_pc.blade.php');
 		// trang tai game
-		$this->runFile('site.game.downloadPage_mobile', 'site.game.downloadPage_pc', 'page_downloadPage_mobile.blade.php', 'page_downloadPage_pc.blade.php');
+		// $this->runFile('site.game.downloadPage_mobile', 'site.game.downloadPage_pc', 'page_downloadPage_mobile.blade.php', 'page_downloadPage_pc.blade.php');
 
 		// trang the loai game
-		$typeGame = Type::all();
-		if(count($typeGame) > 0) {
-			foreach($typeGame as $key => $value) {
-				if (count($value->games) > 0) {
-					$type = $value;
-			    	$html = View::make('site.game.type_mobile')->with(compact('type'))->render();
-			    	$filePath = $viewPath.'/'.'typeGame_game-'.$value->slug.'_mobile.blade.php';
-			    	file_put_contents($filePath, $html);
+		// $typeGame = Type::all();
+		// if(count($typeGame) > 0) {
+		// 	foreach($typeGame as $key => $value) {
+		// 		if (count($value->games) > 0) {
+		// 			$type = $value;
+		// 	    	$html = View::make('site.game.type_mobile')->with(compact('type'))->render();
+		// 	    	$filePath = $viewPath.'/'.'typeGame_game-'.$value->slug.'_mobile.blade.php';
+		// 	    	file_put_contents($filePath, $html);
 
-			    	$html = View::make('site.game.type_pc')->with(compact('type'))->render();
-			    	$filePath = $viewPath.'/'.'typeGame_game-'.$value->slug.'_pc.blade.php';
-			    	file_put_contents($filePath, $html);
-				}
-			}
-		}
+		// 	    	$html = View::make('site.game.type_pc')->with(compact('type'))->render();
+		// 	    	$filePath = $viewPath.'/'.'typeGame_game-'.$value->slug.'_pc.blade.php';
+		// 	    	file_put_contents($filePath, $html);
+		// 		}
+		// 	}
+		// }
 		// danh sach tag
-		$tagGame = AdminTag::all();
-		if(count($tagGame) > 0) {
-	        foreach ($tagGame as $key => $value) {
-	            if (count($value->games) > 0) {
-	                $tag = $value;
-			    	$html = View::make('site.tag.tag_mobile')->with(compact('tag'))->render();
-			    	$filePath = $viewPath.'/'.'tagGame_game-'.$value->slug.'_mobile.blade.php';
-			    	file_put_contents($filePath, $html);
+		// $tagGame = AdminTag::all();
+		// if(count($tagGame) > 0) {
+	 //        foreach ($tagGame as $key => $value) {
+	 //            if (count($value->games) > 0) {
+	 //                $tag = $value;
+		// 	    	$html = View::make('site.tag.tag_mobile')->with(compact('tag'))->render();
+		// 	    	$filePath = $viewPath.'/'.'tagGame_game-'.$value->slug.'_mobile.blade.php';
+		// 	    	file_put_contents($filePath, $html);
 
-			    	$html = View::make('site.tag.tag_pc')->with(compact('tag'))->render();
-			    	$filePath = $viewPath.'/'.'tagGame_game-'.$value->slug.'_pc.blade.php';
-			    	file_put_contents($filePath, $html);
-	            }
-	        }
-        }
+		// 	    	$html = View::make('site.tag.tag_pc')->with(compact('tag'))->render();
+		// 	    	$filePath = $viewPath.'/'.'tagGame_game-'.$value->slug.'_pc.blade.php';
+		// 	    	file_put_contents($filePath, $html);
+	 //            }
+	 //        }
+  //       }
 		// danh sach category
-		$categoryParentGame = CategoryParent::all();
-		if(count($categoryParentGame) > 0) {
-			foreach($categoryParentGame as $key => $value) {
-				if (count($value->games) > 0) {
-					$categoryParent = $value;
-			    	$html = View::make('site.game.category_mobile')->with(compact('categoryParent'))->render();
-			    	$filePath = $viewPath.'/'.'categoryParent_'.$value->slug.'_mobile.blade.php';
-			    	file_put_contents($filePath, $html);
+		// $categoryParentGame = CategoryParent::all();
+		// if(count($categoryParentGame) > 0) {
+		// 	foreach($categoryParentGame as $key => $value) {
+		// 		if (count($value->games) > 0) {
+		// 			$categoryParent = $value;
+		// 	    	$html = View::make('site.game.category_mobile')->with(compact('categoryParent'))->render();
+		// 	    	$filePath = $viewPath.'/'.'categoryParent_'.$value->slug.'_mobile.blade.php';
+		// 	    	file_put_contents($filePath, $html);
 
-			    	$html = View::make('site.game.category_pc')->with(compact('categoryParent'))->render();
-			    	$filePath = $viewPath.'/'.'categoryParent_'.$value->slug.'_pc.blade.php';
-			    	file_put_contents($filePath, $html);
-				}
-			}
-		}
+		// 	    	$html = View::make('site.game.category_pc')->with(compact('categoryParent'))->render();
+		// 	    	$filePath = $viewPath.'/'.'categoryParent_'.$value->slug.'_pc.blade.php';
+		// 	    	file_put_contents($filePath, $html);
+		// 		}
+		// 	}
+		// }
 		// GAME DETAIL
 		// $gamesList = Game::where('parent_id', '!=', '')
 		// 				->whereNotNull('parent_id')

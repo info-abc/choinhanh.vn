@@ -8,73 +8,35 @@
 
 <div class="box">
 	<h1>Game bình chọn nhiều</h1>
-	<?php
-		$games = CommonGame::getListGame('vote', 1);
-		// $count = ceil(count($games->get())/PAGINATE_BOXGAME);
-		$count = 5;
-	?>
-	<div class="swiper-container">
-		<div class="swiper-wrapper">
-			@for($i = 0; $i < $count ; $i ++)
-				<div class="swiper-slide boxgame">
-					<div class="row">
-					<?php
-						$listGame = $games->orderBy('vote_average', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
-					?>
-						@foreach($listGame as $game)
-							@include('site.game.gameitem_cronjob', array('game' => $game, 'slug' => null, 'device' => 1))
-						@endforeach
-					</div>
-				</div>
-			@endfor
+	<div class="boxgame-container">
+		<div class="boxgame-wrapper" id="boxgame-wrapper-1">
+			{{ CommonGame::loadGameBox('vote', 'vote_average', 1) }}
 		</div>
-		<div class="swiper-pagination"></div>
 		<div class="boxgame-pagination">
-			<a class="prev"><i class="fa fa-caret-left"></i> Trang trước</a>
-			<div class="boxgame-pagenumber"><span class="numberPage">1</span>/{{ $count }}</div>
-			<a class="next">Trang sau <i class="fa fa-caret-right"></i></a>
+			<a class="prev" onclick="loadGamePrev(1, 'vote', 'vote_average', 1)"><i class="fa fa-caret-left"></i> Trang trước</a>
+			<div class="boxgame-pagenumber"><span class="numberPage1">1</span>/<span class="totalNumberPage1">{{ CommonGame::countGameBox('vote', 'vote_average', 1) }}</span></div>
+			<a class="next" onclick="loadGameNext(1, 'vote', 'vote_average', 1)">Trang sau <i class="fa fa-caret-right"></i></a>
 		</div>
 	</div>
 </div>
 
 {{-- quang cao --}}
-@if(getDevice() == COMPUTER)
-	@include('site.common.ads', array('adPosition' => POSITION_VOTEMANY))
-@else
-	@include('site.common.ads', array('adPosition' => POSITION_MOBILE_VOTEMANY))
-@endif
+@include('site.common.ads', array('adPosition' => POSITION_MOBILE_VOTEMANY))
 
 <div class="box">
 	<h3>Game hay nhất</h3>
-	<?php
-		$games = CommonGame::getListGame('vote', 1);
-		// $count = ceil(count($games->get())/PAGINATE_BOXGAME);
-		$count = 5;
-	?>
-	<div class="swiper-container">
-		<div class="swiper-wrapper">
-			@for($i = 0; $i < $count ; $i ++)
-				<div class="swiper-slide boxgame">
-					<div class="row">
-					<?php
-						$listGame = $games->orderBy('count_play', 'desc')->take(PAGINATE_BOXGAME)->skip($i * PAGINATE_BOXGAME)->get();
-					?>
-						@foreach($listGame as $game)
-							@include('site.game.gameitem_cronjob', array('game' => $game, 'slug' => null, 'device' => 1))
-						@endforeach
-					</div>
-				</div>
-			@endfor
+	<div class="boxgame-container">
+		<div class="boxgame-wrapper" id="boxgame-wrapper-2">
+			{{ CommonGame::loadGameBox('vote', 'count_play', 1) }}
 		</div>
-		<div class="swiper-pagination"></div>
 		<div class="boxgame-pagination">
-			<a class="prev"><i class="fa fa-caret-left"></i> Trang trước</a>
-			<div class="boxgame-pagenumber"><span class="numberPage">1</span>/{{ $count }}</div>
-			<a class="next">Trang sau <i class="fa fa-caret-right"></i></a>
+			<a class="prev" onclick="loadGamePrev(2, 'vote', 'count_play', 1)"><i class="fa fa-caret-left"></i> Trang trước</a>
+			<div class="boxgame-pagenumber"><span class="numberPage2">1</span>/<span class="totalNumberPage2">{{ CommonGame::countGameBox('vote', 'count_play', 1) }}</span></div>
+			<a class="next" onclick="loadGameNext(2, 'vote', 'count_play', 1)">Trang sau <i class="fa fa-caret-right"></i></a>
 		</div>
 	</div>
 </div>
 
-@include('site.game.scriptbox')
+@include('site.game.scriptboxgame')
 
 @stop

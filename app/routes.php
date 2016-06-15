@@ -222,6 +222,9 @@ Route::get('/hometest', 'SiteIndexController@hometest');
 
 Route::get('/exportIndexHtml/{device}', 'GenController@exportIndexHtml');
 
+//ajax load game box
+Route::post('/loadGameBox', 'GameController@loadGameBox');
+
 // Route::resource('/', 'SiteIndexController');
 
 Route::post('/', 'GameController@saveScore');
