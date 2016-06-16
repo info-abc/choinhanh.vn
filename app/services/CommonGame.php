@@ -856,8 +856,10 @@ class CommonGame
 		if($device == MOBILE) {
 			$games = Game::whereNotNull('parent_id')
 				->where('status', ENABLED)
-				->where('start_date', '<=', $now)
-				->whereIn('parent_id', [GAMEFLASH, GAMEHTML5]);
+				->where('start_date', '<=', $now);
+			if($view != 'android') {
+				$games = $games->whereIn('parent_id', [GAMEFLASH, GAMEHTML5]);
+			}
 				// ->where('parent_id', GAMEHTML5)
 				// ->orWhere(function($games)
 	   //          {
