@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'gamemini',
+			'database'  => 'testchoinhanh',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
