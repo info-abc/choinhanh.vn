@@ -47,6 +47,8 @@
 	        },
 			preventClicks: false,
 	        preventClicksPropagation: false,
+	        // preloadImages: false,
+	        // lazyLoading: true
         })
         swiper[index].on('slideChangeStart', function (){
 		    abc = $el.find('.swiper-pagination-bullet-active').text();
