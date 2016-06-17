@@ -55,28 +55,28 @@ class SiteNewsController extends SiteController {
 		$input['count_view'] = getZero($inputNew->count_view) + 1;
 		CommonNormal::update($inputNew->id, $input, 'AdminNew');
 
-		// //tin lien quan
-		// $inputRelated = AdminNew::where('type_new_id', $inputNew->type_new_id)
-		// 	->where('start_date', '<=', $now)
-		// 	->where('start_date', '<=', $inputNew->start_date)
-		// 	->where('id', '!=', $inputNew->id)
-		// 	->orderBy(DB::raw('RAND()'))
-		// 	->limit(PAGINATE_RELATED)
-		// 	->get();
-		// //tin dang doc
-		// $inputHot = AdminNew::where('start_date', '<=', $now)
-		// 	->where('id', '!=', $inputNew->id)
-		// 	->orderBy('start_date', 'desc')
-		// 	->limit(PAGINATE_RELATED)
-		// 	->get();
-		// return View::make('site.News.showNews')->with(compact('inputNew', 'inputRelated', 'inputHot'));
+		//tin lien quan
+		$inputRelated = AdminNew::where('type_new_id', $inputNew->type_new_id)
+			->where('start_date', '<=', $now)
+			->where('start_date', '<=', $inputNew->start_date)
+			->where('id', '!=', $inputNew->id)
+			->orderBy(DB::raw('RAND()'))
+			->limit(PAGINATE_RELATED)
+			->get();
+		//tin dang doc
+		$inputHot = AdminNew::where('start_date', '<=', $now)
+			->where('id', '!=', $inputNew->id)
+			->orderBy('start_date', 'desc')
+			->limit(PAGINATE_RELATED)
+			->get();
+		return View::make('site.News.showNews')->with(compact('inputNew', 'inputRelated', 'inputHot'));
 
-		if(getDevice() == MOBILE) {
-			return View::make('site.htmlpage.news_tin-tuc_'.$inputNew->slug.'_mobile');
-		} else {
+		// if(getDevice() == MOBILE) {
+		// 	return View::make('site.htmlpage.news_tin-tuc_'.$inputNew->slug.'_mobile');
+		// } else {
 
-			return View::make('site.htmlpage.news_tin-tuc_'.$inputNew->slug.'_pc');
-		}
+		// 	return View::make('site.htmlpage.news_tin-tuc_'.$inputNew->slug.'_pc');
+		// }
 	}
 
 	/**
