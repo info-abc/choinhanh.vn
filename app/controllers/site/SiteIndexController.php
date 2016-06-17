@@ -10,13 +10,13 @@ class SiteIndexController extends SiteController {
 	public function index()
 	{
 		//return View::make('maintance');
-		// if(getDevice() == MOBILE) {
-		// 	return View::make('site.htmlpage.index_mobile');
-		// } else {
-		// 	return View::make('site.htmlpage.index_pc');
-		// }
-		$device = null;
-		return View::make('site.index')->with(compact('device'));
+		if(getDevice() == MOBILE) {
+			return View::make('site.htmlpage.index_mobile');
+		} else {
+			return View::make('site.htmlpage.index_pc');
+		}
+		// $device = null;
+		// return View::make('site.index')->with(compact('device'));
 	}
 
 	public function hometest()
