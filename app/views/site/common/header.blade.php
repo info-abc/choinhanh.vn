@@ -32,7 +32,6 @@
 	@endif
 	<meta name="revisit-after" content="1 days" />
 	<meta http-equiv="content-language" content="vi" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	@if(isset($gameUrl))
 	<link rel="canonical" href="{{ $gameUrl }}" />
