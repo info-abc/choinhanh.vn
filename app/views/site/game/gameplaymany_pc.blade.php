@@ -1,7 +1,7 @@
-@extends('site.layout.default_pc', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', 9), 'seoImage' => FOLDER_SEO_PARENT . '/' . 9, 'ogUrl' => action('GameController@getListGameplay')))
+@extends('site.layout.default_pc', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', GAME_PLAY_MANY), 'seoImage' => FOLDER_SEO_PARENT . '/' . GAME_PLAY_MANY, 'ogUrl' => action('GameController@getListGameplay')))
 
 @section('title')
-	@if($title = CommonSite::getMetaSeo('CategoryParent', 9)->title_site)
+	@if(CommonSite::getMetaSeo('CategoryParent', GAME_PLAY_MANY) && $title = CommonSite::getMetaSeo('CategoryParent', GAME_PLAY_MANY)->title_site)
 		{{ $title = $title }}
 	@else
 		{{ $title = 'Game hay nhất' }}

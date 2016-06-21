@@ -105,9 +105,9 @@ class CronRunCommand extends Command {
 		// trang game hay nhat
 		$this->runFile('site.game.gameplaymany_mobile', 'site.game.gameplaymany_pc', 'page_gameplaymany_mobile.blade.php', 'page_gameplaymany_pc.blade.php');
 		// trang game moi nhat
-		$this->runFile('site.game.gamenew_mobile', 'site.game.gamenew_pc', 'page_gamenew_mobile.blade.php', 'page_gamenew_pc.blade.php');
+		// $this->runFile('site.game.gamenew_mobile', 'site.game.gamenew_pc', 'page_gamenew_mobile.blade.php', 'page_gamenew_pc.blade.php');
 		// trang tai game
-		$this->runFile('site.game.downloadPage_mobile', 'site.game.downloadPage_pc', 'page_downloadPage_mobile.blade.php', 'page_downloadPage_pc.blade.php');
+		// $this->runFile('site.game.downloadPage_mobile', 'site.game.downloadPage_pc', 'page_downloadPage_mobile.blade.php', 'page_downloadPage_pc.blade.php');
 
 		// trang the loai game
 		$typeGame = Type::all();
