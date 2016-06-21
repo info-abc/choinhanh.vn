@@ -188,8 +188,8 @@ class CronRunCommand extends Command {
 			}
 		}
 		// TIN TUC
+
 		$news = AdminNew::all();
-		// $news = AdminNew::whereIn('id', [6,7,10])->get();
 		if(count($news) > 0) {
 			foreach($news as $key => $value) {
 				$inputNew = $value;
