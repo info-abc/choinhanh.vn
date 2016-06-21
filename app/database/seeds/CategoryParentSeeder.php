@@ -9,30 +9,35 @@ class CategoryParentSeeder extends Seeder {
 			'name'=> 'Game Android',
 			'description' => 'This is game android of menu',
 			'weight_number' => 1,
+			'status' => ENABLED,
 		]);
 		CategoryParent::create([
 			'position'=> 1,
 			'name'=> 'Game Online',
 			'description' => 'This is game online of menu',
 			'weight_number' => 2,
+			'status' => ENABLED,
 		]);
 		CategoryParent::create([
 			'position'=> 2,
 			'name'=> 'Game Hot',
 			'description' => 'This is game of content',
 			'weight_number' => 1,
+			'status' => ENABLED,
 		]);
 		CategoryParent::create([
 			'position'=> 2,
 			'name'=> 'Game chơi nhiều',
 			'description' => 'This is game of content',
 			'weight_number' => 2,
+			'status' => ENABLED,
 		]);
 		CategoryParent::create([
 			'position'=> 2,
 			'name'=> 'Game bình chọn nhiều',
 			'description' => 'This is game of content',
 			'weight_number' => 3,
+			'status' => ENABLED,
 		]);
 
 	}
