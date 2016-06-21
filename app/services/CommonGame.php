@@ -899,6 +899,7 @@ class CommonGame
 
 	public static function getGameByType($typeId, $noCache = null, $device = null)
 	{
+		$listGame = null;
 		if($device == null) {
 			$device = getDevice();
 		} else {
