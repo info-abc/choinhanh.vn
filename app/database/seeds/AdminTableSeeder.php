@@ -9,6 +9,7 @@ class AdminTableSeeder extends Seeder {
 				'email'=>'trantunghn196@gmail.com',
 				'password'=>Hash::make('123456'),
 				'username'=> 'tung1984',
+				'status' => '1',
 			]);
 	}
 
