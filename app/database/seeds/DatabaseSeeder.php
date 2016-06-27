@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder {
 		$this->call('GameCategoryParent');
 		$this->call('AdminSeoSeeder');
 		$this->call('TypeNewTableSeeder');
-		$this->call('CommentTalbeSeeder');
-		$this->call('ScoreTableSeeder');
-		$this->call('FeedbackTableSeeder');
-		$this->call('FeedbackGameTableSeeder');
+		//$this->call('CommentTalbeSeeder');
+		//$this->call('ScoreTableSeeder');
+		//$this->call('FeedbackTableSeeder');
+		//$this->call('FeedbackGameTableSeeder');
 		$this->call('UserTableSeeder');
 	}
 
