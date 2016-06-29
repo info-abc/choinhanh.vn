@@ -45,7 +45,7 @@
 
 							<?php echo '@include("site.common.rate", array("vote_average" => $game->vote_average))'; ?>
 
-							<p><?php echo '{{ getZero($game->count_play) }}'; ?> lượt xem</p>
+							<p><?php echo '{{ getZero($game->count_play) }}'; ?> lượt chơi</p>
 
 						</div>
 

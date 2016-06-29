@@ -3,8 +3,11 @@
 	<div class="item">
 	    <div class="item-image">
 			<a href="{{ $url }}">
-				<!-- <img src="{{-- url(UPLOAD_GAME_AVATAR . '/' .  $game->image_url) --}}" alt="{{-- $game->slug --}}" class="showTip el_{{-- $game->id --}}" /> -->
-				<img data-src="{{ url(UPLOAD_GAME_AVATAR . '/' .  $game->image_url) }}" alt="{{ $game->slug }}" class="swiper-lazy showTip el_{{ $game->id }}" />
+				@if(isset($noLazy))
+					<img src="{{ url(UPLOAD_GAME_AVATAR . '/' .  $game->image_url) }}" alt="{{ $game->slug }}" class="showTip el_{{ $game->id }}" />
+				@else
+					<img data-src="{{ url(UPLOAD_GAME_AVATAR . '/' .  $game->image_url) }}" alt="{{ $game->slug }}" class="swiper-lazy showTip el_{{ $game->id }}" />
+				@endif
 			</a>
 	    </div>
 	    <div class="item-title">

@@ -33,7 +33,7 @@
 
 			@include('site.common.rate', array('vote_average' => $game->vote_average))
 
-			<p>{{ getZero($game->count_play) }} lượt xem</p>
+			<p>{{ getZero($game->count_play) }} lượt chơi</p>
 
 		</div>
 

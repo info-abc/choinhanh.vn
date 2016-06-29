@@ -105,9 +105,9 @@ class CronRunCommand extends Command {
 		// trang game hay nhat
 		$this->runFile('site.game.gameplaymany_mobile', 'site.game.gameplaymany_pc', 'page_gameplaymany_mobile.blade.php', 'page_gameplaymany_pc.blade.php');
 		// trang game moi nhat
-		// $this->runFile('site.game.gamenew_mobile', 'site.game.gamenew_pc', 'page_gamenew_mobile.blade.php', 'page_gamenew_pc.blade.php');
+		$this->runFile('site.game.gamenew_mobile', 'site.game.gamenew_pc', 'page_gamenew_mobile.blade.php', 'page_gamenew_pc.blade.php');
 		// trang tai game
-		// $this->runFile('site.game.downloadPage_mobile', 'site.game.downloadPage_pc', 'page_downloadPage_mobile.blade.php', 'page_downloadPage_pc.blade.php');
+		$this->runFile('site.game.downloadPage_mobile', 'site.game.downloadPage_pc', 'page_downloadPage_mobile.blade.php', 'page_downloadPage_pc.blade.php');
 
 		// trang the loai game
 		$typeGame = Type::all();
@@ -158,61 +158,60 @@ class CronRunCommand extends Command {
 			}
 		}
 		// GAME DETAIL
-		$gamesList = Game::where('parent_id', '!=', '')
-						->whereNotNull('parent_id')
-						->orderBy('start_date', 'desc')
-						->get();
-		if(count($gamesList) > 0) {
-			foreach($gamesList as $key => $value) {
-				$game = $value;
-				// chi tiet choi game
-				if(in_array($value->parent_id, [GAMEFLASH, GAMEHTML5])) {
-					$html = View::make('site.game.onlinemobile_cronjob')->with(compact('game'))->render();
-			    	$filePath = $viewPath.'/'.'game_play_'.$value->slug.'_mobile.blade.php';
-			    	file_put_contents($filePath, $html);
+		// $gamesList = Game::where('parent_id', '!=', '')
+		// 				->whereNotNull('parent_id')
+		// 				->orderBy('start_date', 'desc')
+		// 				->get();
+		// if(count($gamesList) > 0) {
+		// 	foreach($gamesList as $key => $value) {
+		// 		$game = $value;
+		// 		// chi tiet choi game
+		// 		if(in_array($value->parent_id, [GAMEFLASH, GAMEHTML5])) {
+		// 			$html = View::make('site.game.onlinemobile_cronjob')->with(compact('game'))->render();
+		// 	    	$filePath = $viewPath.'/'.'game_play_'.$value->slug.'_mobile.blade.php';
+		// 	    	file_put_contents($filePath, $html);
 
-			    	$html = View::make('site.game.onlineweb_cronjob')->with(compact('game'))->render();
-			    	$filePath = $viewPath.'/'.'game_play_'.$value->slug.'_pc.blade.php';
-			    	file_put_contents($filePath, $html);
-				}
-				// chi tiet download game
-		    	else {
-		    		$html = View::make('site.game.downloadmobile_cronjob')->with(compact('game'))->render();
-			    	$filePath = $viewPath.'/'.'game_download_'.$value->slug.'_mobile.blade.php';
-			    	file_put_contents($filePath, $html);
+		// 	    	$html = View::make('site.game.onlineweb_cronjob')->with(compact('game'))->render();
+		// 	    	$filePath = $viewPath.'/'.'game_play_'.$value->slug.'_pc.blade.php';
+		// 	    	file_put_contents($filePath, $html);
+		// 		}
+		// 		// chi tiet download game
+		//     	else {
+		//     		$html = View::make('site.game.downloadmobile_cronjob')->with(compact('game'))->render();
+		// 	    	$filePath = $viewPath.'/'.'game_download_'.$value->slug.'_mobile.blade.php';
+		// 	    	file_put_contents($filePath, $html);
 
-			    	$html = View::make('site.game.downloadweb_cronjob')->with(compact('game'))->render();
-			    	$filePath = $viewPath.'/'.'game_download_'.$value->slug.'_pc.blade.php';
-			    	file_put_contents($filePath, $html);
-		    	}
-			}
-		}
+		// 	    	$html = View::make('site.game.downloadweb_cronjob')->with(compact('game'))->render();
+		// 	    	$filePath = $viewPath.'/'.'game_download_'.$value->slug.'_pc.blade.php';
+		// 	    	file_put_contents($filePath, $html);
+		//     	}
+		// 	}
+		// }
 		// TIN TUC
+		// $news = AdminNew::all();
+		// if(count($news) > 0) {
+		// 	foreach($news as $key => $value) {
+		// 		$inputNew = $value;
+		// 		// chi tiet tin tuc: /tin-tuc/slug-...
+		//     	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew'))->render();
+		//     	$filePath = $viewPath.'/'.'news_tin-tuc_'.$value->slug.'_mobile.blade.php';
+		//     	file_put_contents($filePath, $html);
 
-		$news = AdminNew::all();
-		if(count($news) > 0) {
-			foreach($news as $key => $value) {
-				$inputNew = $value;
-				// chi tiet tin tuc: /tin-tuc/slug-...
-		    	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew'))->render();
-		    	$filePath = $viewPath.'/'.'news_tin-tuc_'.$value->slug.'_mobile.blade.php';
-		    	file_put_contents($filePath, $html);
+		//     	$html = View::make('site.News.showNews_pc')->with(compact('inputNew'))->render();
+		//     	$filePath = $viewPath.'/'.'news_tin-tuc_'.$value->slug.'_pc.blade.php';
+		//     	file_put_contents($filePath, $html);
 
-		    	$html = View::make('site.News.showNews_pc')->with(compact('inputNew'))->render();
-		    	$filePath = $viewPath.'/'.'news_tin-tuc_'.$value->slug.'_pc.blade.php';
-		    	file_put_contents($filePath, $html);
+		//     	// chi tiet tin tuc: /the-loai/slug-...
+		//     	$typeNew = TypeNew::find($value->type_new_id);
+		//     	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew', 'typeNew'))->render();
+		//     	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$value->slug.'_mobile.blade.php';
+		//     	file_put_contents($filePath, $html);
 
-		    	// chi tiet tin tuc: /the-loai/slug-...
-		    	$typeNew = TypeNew::find($value->type_new_id);
-		    	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew', 'typeNew'))->render();
-		    	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$value->slug.'_mobile.blade.php';
-		    	file_put_contents($filePath, $html);
-
-		    	$html = View::make('site.News.showNews_pc')->with(compact('inputNew', 'typeNew'))->render();
-		    	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$value->slug.'_pc.blade.php';
-		    	file_put_contents($filePath, $html);
-			}
-		}
+		//     	$html = View::make('site.News.showNews_pc')->with(compact('inputNew', 'typeNew'))->render();
+		//     	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$value->slug.'_pc.blade.php';
+		//     	file_put_contents($filePath, $html);
+		// 	}
+		// }
 		// THE LOAI TIN
 		// trang tin-tuc
 		

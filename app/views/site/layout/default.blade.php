@@ -43,9 +43,15 @@
 
 	  	<div class="glass"></div>
 
-		@if($script = AdminSeo::where('model_name', SEO_SCRIPT)->first())
-			{{ $script->footer_script }}
-		@endif
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 center">
+					@if($script = AdminSeo::where('model_name', SEO_SCRIPT)->first())
+						{{ $script->footer_script }}
+					@endif
+				</div>
+			</div>
+		</div>
 
 		@if(getDevice() == MOBILE)
 		<div id="fb-root"></div>

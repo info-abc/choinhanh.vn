@@ -26,7 +26,7 @@
 
 			@include('site.common.rate', array('vote_average' => $game->vote_average))
 
-			<p>{{ getZero($game->count_download) }} lượt xem</p>
+			<p>{{ getZero($game->count_download) }} lượt chơi</p>
 
 		</div>
 
