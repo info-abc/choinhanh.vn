@@ -32,7 +32,7 @@
 
 		<div class="col-xs-12">
 
-			@include('site.game.download_button', array('game' => $game))
+			<?php echo '@include("site.game.download_button", array("game" => $game))'; ?>
 
 			<div class="slideGame">
 				@include('site.game.slide', array('slideId' => $game->slide_id))
@@ -42,7 +42,7 @@
 				{{ $game->description }}
 			</div>
 
-			@include('site.game.download_button', array('game' => $game))
+			<?php echo '@include("site.game.download_button", array("game" => $game))'; ?>
 
 			@include('site.game.vote', array('id' => $game->id))
 
