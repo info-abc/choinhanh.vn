@@ -1,7 +1,7 @@
-@extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', 7), 'seoImage' => FOLDER_SEO_PARENT . '/' . 7))
+@extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', GAME_NEW), 'seoImage' => FOLDER_SEO_PARENT . '/' . GAME_NEW))
 
 @section('title')
-	@if($title = CommonSite::getMetaSeo('CategoryParent', 7)->title_site)
+	@if($title = CommonSite::getMetaSeo('CategoryParent', GAME_NEW)->title_site)
 		{{ $title= $title }}
 	@else
 		{{ $title = 'Game mới nhất' }}
@@ -10,10 +10,13 @@
 
 @section('content')
 
+<?php
+	$games = CommonGame::getListGame('play');
+?>
 <div class="box">
 	<h1>Game mới nhất</h1>
+	@if($games)
 	<?php
-		$games = CommonGame::getListGame('play');
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	?>
 	<div class="swiper-container">
@@ -38,15 +41,18 @@
 			<a class="next">Trang sau <i class="fa fa-caret-right"></i></a>
 		</div>
 	</div>
+	@endif
 </div>
 
 {{-- quang cao --}}
 
-
+<?php
+	$games = CommonGame::getListGame('play');
+?>
 <div class="box">
 	<h3>Game hay nhất</h3>
+	@if($games)
 	<?php
-		$games = CommonGame::getListGame('play');
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	?>
 	<div class="swiper-container">
@@ -71,6 +77,7 @@
 			<a class="next">Trang sau <i class="fa fa-caret-right"></i></a>
 		</div>
 	</div>
+	@endif
 </div>
 
 @include('site.game.scriptbox')

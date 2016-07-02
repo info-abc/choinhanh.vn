@@ -116,5 +116,4 @@ class NewsTypeController extends AdminController {
 		return Redirect::action('NewsTypeController@index');
 	}
 
-
 }

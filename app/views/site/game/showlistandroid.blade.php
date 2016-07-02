@@ -1,7 +1,7 @@
-@extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', 8), 'seoImage' => FOLDER_SEO_PARENT . '/' . 8))
+@extends('site.layout.default', array('seoMeta' => CommonSite::getMetaSeo('CategoryParent', GAME_ANDROID), 'seoImage' => FOLDER_SEO_PARENT . '/' . GAME_ANDROID))
 
 @section('title')
-	@if($title = CommonSite::getMetaSeo('CategoryParent', 8)->title_site)
+	@if($title = CommonSite::getMetaSeo('CategoryParent', GAME_ANDROID)->title_site)
 		{{ $title= $title }}
 	@else
 		{{ $title = 'Game Android' }}
@@ -10,10 +10,13 @@
 
 @section('content')
 
+<?php
+	$games = CommonGame::getListGame('android');
+?>
 <div class="box">
 	<h1>Game Android tải nhiều</h1>
+	@if($games)
 	<?php
-		$games = CommonGame::getListGame('android');
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	?>
 	<div class="swiper-container">
@@ -38,6 +41,7 @@
 			<a class="next">Trang sau <i class="fa fa-caret-right"></i></a>
 		</div>
 	</div>
+	@endif
 </div>
 
 {{-- quang cao --}}
@@ -47,10 +51,13 @@
 	@include('site.common.ads', array('adPosition' => POSITION_MOBILE_GAMEANDROID))
 @endif
 
+<?php
+	$games = CommonGame::getListGame('android');
+?>
 <div class="box">
 	<h3>Game Android mới nhất</h3>
+	@if($games)
 	<?php
-		$games = CommonGame::getListGame('android');
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	?>
 	<div class="swiper-container">
@@ -75,6 +82,7 @@
 			<a class="next">Trang sau <i class="fa fa-caret-right"></i></a>
 		</div>
 	</div>
+	@endif
 </div>
 
 @include('site.game.scriptbox')

@@ -10,10 +10,13 @@
 
 @section('content')
 
+<?php
+	$games = CommonGame::boxGameByType($type);
+ ?>
 <div class="box">
 	<h1>Game {{ $type->name }} hay nhất</h1>
+	@if($games)
 	<?php
-		$games = CommonGame::boxGameByType($type);
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	 ?>
 	<div class="swiper-container">
@@ -38,6 +41,7 @@
 			<a class="next">Trang sau <i class="fa fa-caret-right"></i></a>
 		</div>
 	</div>
+	@endif
 </div>
 
 {{-- quang cao --}}
@@ -47,10 +51,13 @@
 	@include('site.common.ads', array('adPosition' => POSITION_MOBILE_TYPE))
 @endif
 
+<?php
+	$games = CommonGame::boxGameByType($type);
+ ?>
 <div class="box">
 	<h3>Game {{ $type->name }} mới nhất</h3>
+	@if($games)
 	<?php
-		$games = CommonGame::boxGameByType($type);
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	 ?>
 	<div class="swiper-container">
@@ -75,6 +82,7 @@
 			<a class="next">Trang sau <i class="fa fa-caret-right"></i></a>
 		</div>
 	</div>
+	@endif
 </div>
 
 @include('site.game.scriptbox')

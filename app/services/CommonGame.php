@@ -847,6 +847,7 @@ class CommonGame
 	*/
 	public static function getListGame($view = null, $device = null)
 	{
+		$games = null;
 		if($device == null) {
 			$device = getDevice();
 		} else {

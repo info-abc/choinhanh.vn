@@ -53,6 +53,10 @@ class GameTypeController extends AdminController {
 
 			CommonSeo::createSeo('Type', $id, FOLDER_SEO_GAMETYPE);
 
+			// CREATE HTMLPAGE
+			$type = Type::find($id);
+			$this->createHtmlPage($type);
+
 			return Redirect::action('GameTypeController@index') ;
         }
 	}
@@ -105,20 +109,19 @@ class GameTypeController extends AdminController {
 			return Redirect::action('GameTypeController@edit', $id)
 	            ->withErrors($validator);
         } else {
-
+        	$type = Type::find($id);
         	//SEO cant update
         	if(!Admin::isSeo()) {
 				$inputCategory = Input::only('name');
 				CommonNormal::update($id,$inputCategory);
-
-				//update upload image
-				$imageType = Type::find($id);
-				$input['image_url'] = CommonSeo::uploadImage($id, UPLOADIMG, 'image_url', UPLOAD_GAME_TYPE, $imageType->image_url);
+				$input['image_url'] = CommonSeo::uploadImage($id, UPLOADIMG, 'image_url', UPLOAD_GAME_TYPE, $type->image_url);
 				CommonNormal::update($id, ['image_url' => $input['image_url']] );
-				
 			}
 
 			CommonSeo::updateSeo('Type', $id, FOLDER_SEO_GAMETYPE);
+
+			// CREATE HTMLPAGE
+			$this->createHtmlPage($type);
 
 			return Redirect::action('GameTypeController@index') ;
         }
@@ -153,6 +156,19 @@ class GameTypeController extends AdminController {
 		$input  = Input::except('_token');
 		$data = CommonSearch::searchTypeGame($input);
 		return View::make('admin.gametype.index')->with(compact('data'));
+	}
+
+	public function createHtmlPage($type)
+	{
+		// CREATE HTMLPAGE
+		$viewPath = app_path().'/views/site/htmlpage';
+		$html = View::make('site.game.type_mobile')->with(compact('type'))->render();
+    	$filePath = $viewPath.'/'.'typeGame_game-'.$type->slug.'_mobile.blade.php';
+    	file_put_contents($filePath, $html);
+    	$html = View::make('site.game.type_pc')->with(compact('type'))->render();
+    	$filePath = $viewPath.'/'.'typeGame_game-'.$type->slug.'_pc.blade.php';
+    	file_put_contents($filePath, $html);
+    	return;
 	}
 
 }

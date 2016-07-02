@@ -59,14 +59,15 @@ class CategoryParentController extends AdminController {
 			CommonSeo::createSeo('CategoryParent', $id, FOLDER_SEO_PARENT);
 			if ($input['position'] != CONTENT) {
 				AdminManager::createParentType(Input::get('type_id'),Input::get('weight_number_gametype'),$id, 'ParentType');
-			
-
 				return Redirect::action('CategoryParentController@index') ;
 			}else{
 				//insert data to game category parent
 				$game_category_parent['category_parent_id']= $id;
 				$game_category_parent['game_id']= Input::get('game_id');				
 				CommonNormal::create($game_category_parent,'GameRelation');
+
+				// CREATE HTMLPAGE
+				$this->createHtmlPage($id);
 			}
 			return Redirect::action('CategoryParentController@contentIndex') ;
 		}
@@ -146,6 +147,9 @@ class CategoryParentController extends AdminController {
 				$game_category_parent['category_parent_id']= $id;
 				$game_category_parent['game_id']= Input::get('game_id');				
 				GameRelation::where('category_parent_id', $id)->update($game_category_parent);
+
+				// CREATE HTMLPAGE
+				$this->createHtmlPage($id);
 			}
 		return Redirect::action('CategoryParentController@contentIndex') ;
 		
@@ -180,4 +184,48 @@ class CategoryParentController extends AdminController {
 		} 
        
 	}
+
+	public function createHtmlPage($id)
+	{
+		// CREATE HTMLPAGE
+		$viewPath = app_path().'/views/site/htmlpage';
+		switch($id) {
+			case GAME_NEW:
+				$viewMobile = 'site.game.gamenew_mobile';
+				$fileMobile = 'page_gamenew_mobile.blade.php';
+				$viewPc = 'site.game.gamenew_pc';
+				$filePc = 'page_gamenew_pc.blade.php';
+				break;
+			case GAME_ANDROID:
+				$viewMobile = 'site.game.showlistandroid_mobile';
+				$fileMobile = 'page_showlistandroid_mobile.blade.php';
+				$viewPc = 'site.game.showlistandroid_pc';
+				$filePc = 'page_showlistandroid_pc.blade.php';
+				break;
+			case GAME_PLAY_MANY:
+				$viewMobile = 'site.game.gameplaymany_mobile';
+				$fileMobile = 'page_gameplaymany_mobile.blade.php';
+				$viewPc = 'site.game.gameplaymany_pc';
+				$filePc = 'page_gameplaymany_pc.blade.php';
+				break;
+			default:
+				$categoryParent = CategoryParent::find($id);
+				$html = View::make('site.game.category_mobile')->with(compact('categoryParent'))->render();
+		    	$filePath = $viewPath.'/'.'categoryParent_'.$categoryParent->slug.'_mobile.blade.php';
+		    	file_put_contents($filePath, $html);
+		    	$html = View::make('site.game.category_pc')->with(compact('categoryParent'))->render();
+		    	$filePath = $viewPath.'/'.'categoryParent_'.$categoryParent->slug.'_pc.blade.php';
+		    	file_put_contents($filePath, $html);
+		    	return;
+				break;
+		}
+    	$html = View::make($viewMobile)->render();
+    	$filePath = $viewPath.'/'.$fileMobile;
+    	file_put_contents($filePath, $html);
+    	$html = View::make($viewPc)->render();
+    	$filePath = $viewPath.'/'.$filePc;
+    	file_put_contents($filePath, $html);
+    	return;
+	}
+
 }

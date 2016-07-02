@@ -46,6 +46,10 @@ class AdminTagController extends AdminController {
 			// insert seo
 			CommonSeo::createSeo('AdminTag', $id, FOLDER_SEO_TAG);
 
+			// CREATE HTMLPAGE
+        	$tag = AdminTag::find($id);
+			$this->createHtmlPage($tag);
+
 			return Redirect::action('AdminTagController@index');
         }
 	}
@@ -98,6 +102,10 @@ class AdminTagController extends AdminController {
 
         	CommonSeo::updateSeo('AdminTag', $id, FOLDER_SEO_TAG);
 
+        	// CREATE HTMLPAGE
+        	$tag = AdminTag::find($id);
+			$this->createHtmlPage($tag);
+
 			return Redirect::action('AdminTagController@index');
         }
 	}
@@ -129,5 +137,17 @@ class AdminTagController extends AdminController {
 		return View::make('admin.tags.gametags')->with(compact('data', 'tagName'));
 	}
 
+	public function createHtmlPage($tag)
+	{
+		// CREATE HTMLPAGE
+		$viewPath = app_path().'/views/site/htmlpage';
+		$html = View::make('site.tag.tag_mobile')->with(compact('tag'))->render();
+    	$filePath = $viewPath.'/'.'tagGame_game-'.$tag->slug.'_mobile.blade.php';
+    	file_put_contents($filePath, $html);
+    	$html = View::make('site.tag.tag_pc')->with(compact('tag'))->render();
+    	$filePath = $viewPath.'/'.'tagGame_game-'.$tag->slug.'_pc.blade.php';
+    	file_put_contents($filePath, $html);
+    	return;
+	}
 
 }

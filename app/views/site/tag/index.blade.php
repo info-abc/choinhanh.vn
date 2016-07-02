@@ -10,12 +10,15 @@
 
 @section('content')
 
+<?php
+	$games = CommonGame::boxGameByTag($tag);
+?>
 <div class="box">
 	<h1>{{ $tag->title }}</h1>
+	@if($games)
 	<?php
-		$games = CommonGame::boxGameByTag($tag);
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
-	 ?>
+	?>
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
 			@for($i = 0; $i < $count ; $i ++)
@@ -38,8 +41,11 @@
 			<a class="next">Trang sau <i class="fa fa-caret-right"></i></a>
 		</div>
 	</div>
+	@endif
 </div>
 
+@if($games)
 @include('site.game.scriptbox')
+@endif
 
 @stop

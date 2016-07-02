@@ -10,10 +10,13 @@
 
 @section('content')
 
+<?php
+	$games = CommonGame::getListGame('android', 2);
+?>
 <div class="box">
 	<h1>Game Android tải nhiều</h1>
+	@if($games)
 	<?php
-		$games = CommonGame::getListGame('android', 2);
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	?>
 	<div class="swiper-container">
@@ -38,15 +41,19 @@
 			<a class="next">Trang sau <i class="fa fa-caret-right"></i></a>
 		</div>
 	</div>
+	@endif
 </div>
 
 {{-- quang cao --}}
 @include('site.common.ads', array('adPosition' => POSITION_GAMEANDROID))
 
+<?php
+	$games = CommonGame::getListGame('android', 2);
+?>
 <div class="box">
 	<h3>Game Android mới nhất</h3>
+	@if($games)
 	<?php
-		$games = CommonGame::getListGame('android', 2);
 		$count = ceil(count($games->get())/PAGINATE_BOXGAME);
 	?>
 	<div class="swiper-container">
@@ -71,6 +78,7 @@
 			<a class="next">Trang sau <i class="fa fa-caret-right"></i></a>
 		</div>
 	</div>
+	@endif
 </div>
 
 @include('site.game.scriptbox')
