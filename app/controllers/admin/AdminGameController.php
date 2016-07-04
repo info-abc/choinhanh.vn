@@ -271,6 +271,9 @@ class AdminGameController extends AdminController {
 				'count_play' => $count_play[$key]
 				);
 			CommonNormal::update($value, $input);
+			$data = Game::find($value);
+			// CREATE HTMLPAGE
+			$this->createHtmlPageGame($data);
 		}
 		dd(1);
 	}
