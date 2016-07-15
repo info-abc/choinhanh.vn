@@ -367,8 +367,8 @@ i.play {
 }
 .menu-static ul li {
     display: inline-block;
-    padding-left: 35px;
-    padding-right: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .menu-static ul li a {
@@ -386,7 +386,7 @@ i.play {
     text-decoration: none;
 }
 .menu-static ul li a i.fa {
-    font-size: 24px;
+    font-size: 16px;
 }
 .menu-static ul li a span {
     display: inline-block;

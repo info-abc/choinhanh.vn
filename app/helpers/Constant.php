@@ -161,6 +161,8 @@ define('GAME_NEW', 7);
 define('GAME_ANDROID', 8);
 // game hay nhat (choi nhieu)
 define('GAME_PLAY_MANY', 9);
+// game online
+define('GAME_ONLINE', 17);
 
 //define mobile
 define('IS_MOBILE', 1);

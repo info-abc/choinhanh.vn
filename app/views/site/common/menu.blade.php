@@ -35,19 +35,18 @@
 		@foreach($menuHeader = CategoryParent::where('status', ACTIVE)->where('position', MENU)->orderBy('weight_number', 'asc')->get() as $key => $value)
 			@if($value->position == MENU)
 				@if(count($value->parenttypes) == 0)
-					@if($value->id == MENU_GAME_ANDROID)
-						<li><a href="{{ action('GameController@getListGameAndroid') }}" class="color2"><span>{{ $value->name }}</span></a></li>
-					@else
-						<?php
-						// if($value->id == MENU_GAME_ONLINE) {
-						// 	$slug = 'game-online';
-						// }
-						// else {
-						// 	$slug = $value->slug;
-						// }
-						?>
-						<!-- <li><a href="{{-- url('/' . $slug) --}}" class="color2"><span>{{-- $value->name --}}</span></a></li> -->
-					@endif
+					<?php
+						if($value->id == MENU_GAME_ANDROID) {
+							$url = action('GameController@getListGameAndroid');
+						}
+						elseif($value->id == MENU_GAME_ONLINE) {
+							$url = url('game-online');
+						}
+						else {
+							$url = url($value->slug);
+						}
+					?>
+					<li><a href="{{ $url }}" class="color2"><span>{{ $value->name }}</span></a></li>
 				@else
 				<li class='has-sub'><a href= '#' class="color2"><span>{{ $value->name }}</span></a>
 					<ul>
@@ -59,6 +58,7 @@
 				@endif
 			@endif
 		@endforeach
+		<li><a href="{{ action('SiteNewsController@index') }}" class="color2"><span>Tin tức</span></a></li>
 		<!-- <li class="has-sub">
 			<a href="#" class="color2"><span>Tin game</span></a>
 			<ul>

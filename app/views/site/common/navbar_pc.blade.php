@@ -3,27 +3,27 @@
 		<ul>
 			<li>
 				<a href="{{ url('/') }}" {{ checkActive() }}>
-					<span>Trang chủ</span>
+					<i class="fa fa-home"></i><span>Trang chủ</span>
 				</a>
 			</li>
 			<li>
 				<a href="{{ action('GameController@getListGameVote') }}" {{ checkActive('game-binh-chon-nhieu') }}>
-					<span>Bình chọn nhiều</span>
+					<i class="fa fa-star"></i><span>Bình chọn nhiều</span>
 				</a>
 			</li>
 			<li>
 				<a href="{{ action('GameController@getListGameplay') }}" {{ checkActive('game-choi-nhieu') }}>
-					<span>Hay nhất</span>
+					<i class="fa fa-gamepad"></i><span>Hay nhất</span>
 				</a>
 			</li>
-			<!--<li>
-				<a href="{{-- action('SiteNewsController@index') --}}" {{-- checkActive('tin-tuc') --}}>
-					<span>Tin tức</span>
+			<li>
+				<a href="{{ action('SiteNewsController@index') }}" {{ checkActive('tin-tuc') }}>
+					<i class="fa fa-newspaper-o"></i><span>Tin tức</span>
 				</a>
-			</li>-->
+			</li>
 			<li>
 				<a href="{{ action('GameController@getListGameAndroid') }}" {{ checkActive('game-android') }}>
-					<span>Game android</span>
+					<i class="fa fa-android"></i><span>Game android</span>
 				</a>
 			</li>
 		</ul>
