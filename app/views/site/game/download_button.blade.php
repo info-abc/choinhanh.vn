@@ -1,4 +1,5 @@
 <?php 
+	$btnCheck = 0;
 	$linkAndroid = isset($game->link_download)?$game->link_download:'';
 	$linkIos = isset($game->link_download_ios)?$game->link_download_ios:'';
 	$linkWinphone = isset($game->link_download_winphone)?$game->link_download_winphone:'';
@@ -101,6 +102,11 @@
 		<div class="btn-block-center">
 			<a onclick="countdownload('winphone')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
 		</div>
+	@endif
+	@if($btnCheck == 0)
+	<div class="btn-block-center">
+		<a onclick="countdownload()" class="download"><i class="fa fa-download"></i> Tải về</a>
+	</div>
 	@endif
 @else
 	<div class="btn-block-center">

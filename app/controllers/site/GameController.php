@@ -89,6 +89,7 @@ class GameController extends SiteController {
 		}
 
 		$categoryParent = CategoryParent::where('slug', $slug)
+								->where('position', CONTENT)
             					->where('status', '!=', CATEGORYPARENT_STATUS_0)
             					->first();
 		$type = Type::findBySlug($slug);
@@ -124,7 +125,7 @@ class GameController extends SiteController {
 
 	public function detailGame($type, $slug)
 	{
-		$categoryParent = CategoryParent::where('status', '!=', CATEGORYPARENT_STATUS_0)->lists('slug');
+		$categoryParent = CategoryParent::where('position', CONTENT)->where('status', '!=', CATEGORYPARENT_STATUS_0)->lists('slug');
 		$categoryParentData = CategoryParent::findBySlug('game-'.$type);
 		$typeData = Type::findBySlug($type);
 		$tagData = AdminTag::findBySlug($type);
@@ -133,7 +134,6 @@ class GameController extends SiteController {
 				return CommonLog::logErrors(ERROR_TYPE_404);
 			}
 		}
-
 		// http://minigame.de/be-trai/game-ban-ga-hay-va-chan.html
 		if (Cache::has('game_'.$slug))
         {
@@ -142,19 +142,16 @@ class GameController extends SiteController {
             $game = Game::findBySlug($slug);
             Cache::put('game_'.$slug, $game, CACHETIME);
         }
-
 		$play = Input::get('play');
-		if($game) {
-
+		if(isset($game)) {
 			//an game android / online...
-	        if(!in_array($game->parent_id, [GAMEFLASH, GAMEHTML5, GAMEOFFLINE])) {
+	        if(!in_array($game->parent_id, [GAMEFLASH, GAMEHTML5, GAMEOFFLINE, GAMEONLINE])) {
 	        	// return Response::view('404', array(), 404);
 	        	return CommonLog::logErrors(ERROR_TYPE_404);
 	        }
-
 	        //check game ton tai trong type hoac tag hoac category hay khong?
 	        $issetGame = 0;
-	        if($categoryParentData) {
+	        if(count($categoryParentData) > 0) {
 	        	$category = Game::find($game->parent_id);
 	        	if($category->slug == $categoryParentData->slug) {
 	        		$issetGame = 1;
