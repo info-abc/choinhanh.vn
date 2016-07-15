@@ -142,7 +142,7 @@ class CronRunCommand extends Command {
 	        }
         }
 		// danh sach category
-		$categoryParentGame = CategoryParent::all();
+		$categoryParentGame = CategoryParent::where('position', CONTENT)->get();
 		if(count($categoryParentGame) > 0) {
 			foreach($categoryParentGame as $key => $value) {
 				if (count($value->games) > 0) {
@@ -161,6 +161,8 @@ class CronRunCommand extends Command {
 		// $gamesList = Game::where('parent_id', '!=', '')
 		// 				->whereNotNull('parent_id')
 		// 				->orderBy('start_date', 'desc')
+		// 				// ->skip(200)
+		// 				->take(200)
 		// 				->get();
 		// if(count($gamesList) > 0) {
 		// 	foreach($gamesList as $key => $value) {
@@ -188,7 +190,9 @@ class CronRunCommand extends Command {
 		// 	}
 		// }
 		// TIN TUC
-		// $news = AdminNew::all();
+		// $news = AdminNew::orderBy('id', 'desc')
+		// 	//->skip(100)
+		// 	->take(100)->get();
 		// if(count($news) > 0) {
 		// 	foreach($news as $key => $value) {
 		// 		$inputNew = $value;

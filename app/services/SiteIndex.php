@@ -19,7 +19,12 @@ class SiteIndex
         {
             $result = Cache::get('type_'.$typeId.$field);
         } else {
-            $result = Type::find($typeId)->$field;
+            $result = Type::find($typeId);
+            if($result) {
+                $result = $result->$field;
+            } else {
+                $result = '';
+            }
             Cache::put('type_'.$typeId.$field, $result, CACHETIME);
         }
         return $result;
@@ -36,7 +41,12 @@ class SiteIndex
             if($type) {
                 $result = $type->$field;    
             } else {
-                $result = Type::find($typeId)->$field;                  
+                $result = Type::find($typeId);
+                if($result) {
+                    $result = $result->$field;
+                } else {
+                    $result = '';
+                }
             }
         //     Cache::put('getTypeTooltip_'.$typeId.$field, $result, CACHETIME);
         // }
