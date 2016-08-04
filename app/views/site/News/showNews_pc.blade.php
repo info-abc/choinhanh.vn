@@ -71,7 +71,15 @@
 				<h3>Tin mới nhất</h3>
 				<ul>
 					@foreach($inputHot as $value)
-					<li><a href="{{ action('SlugController@detailData', [$typeNewSlug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
+					<?php 
+						$inputHot_typeNew = TypeNew::find($value->type_new_id);
+						if(count($inputHot_typeNew) > 0) {
+							$inputHot_typeNew_slug = $inputHot_typeNew->slug;
+						} else {
+							$inputHot_typeNew_slug = 'tin-tuc';
+						}
+					?>
+					<li><a href="{{ action('SlugController@detailData', [$inputHot_typeNew_slug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
 					@endforeach
 				</ul>
 			</div>
@@ -83,7 +91,15 @@
 				<h3>Tin liên quan</h3>
 				<ul>
 					@foreach($inputRelated as $value)
-					<li><a href="{{ action('SlugController@detailData', [$typeNewSlug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
+					<?php 
+						$inputRelated_typeNew = TypeNew::find($value->type_new_id);
+						if(count($inputRelated_typeNew) > 0) {
+							$inputRelated_typeNew_slug = $inputRelated_typeNew->slug;
+						} else {
+							$inputRelated_typeNew_slug = 'tin-tuc';
+						}
+					?>
+					<li><a href="{{ action('SlugController@detailData', [$inputRelated_typeNew_slug, $value->slug]) }}" title=""><i class="fa fa-caret-right"></i> {{ $value->title }}</a></li>
 					@endforeach
 				</ul>
 			</div>
