@@ -170,8 +170,13 @@ class CommonSite
                         $isTypeMain = null;
                     }
                 } else {
-                    $type = null;
-                    $isTypeMain = null;
+                    if(isset($typeByTypeMain)) {
+                        $type = $typeByTypeMain;
+                        $isTypeMain = null;
+                    } else {
+                        $type = null;
+                        $isTypeMain = null;    
+                    }
                 }
             } else {
                 $type = null;

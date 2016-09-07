@@ -3,6 +3,7 @@ node_modules/
 
 # Laravel 4 specific
 bootstrap/compiled.php
+app/views/site/htmlpage/
 app/storage/
 public/games/
 public/games-flash/
