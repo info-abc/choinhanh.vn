@@ -124,8 +124,7 @@ return array(
 		"Chumper\Zipper\ZipperServiceProvider",
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 	    'Edisonthk\GoogleOAuth\GoogleOAuthServiceProvider',
-	   // 'Barryvdh\Debugbar\ServiceProvider',
-	   'Jenssegers\Agent\AgentServiceProvider',
+//	    'Barryvdh\Debugbar\ServiceProvider',
 
 	),
 
@@ -196,7 +195,6 @@ return array(
 		'Zipper' 		  => 'Chumper\Zipper\Zipper',
 		'GoogleOAuth'     => 'Edisonthk\GoogleOAuth\Facade\GoogleOAuth',
 	//	'Debugbar' 	      => 'Barryvdh\Debugbar\Facade',
-		'Agent' 		  => 'Jenssegers\Agent\Facades\Agent',
 
 	),
 

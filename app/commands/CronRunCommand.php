@@ -191,7 +191,7 @@ class CronRunCommand extends Command {
 		// }
 		// TIN TUC
 		// $news = AdminNew::orderBy('id', 'desc')
-		// 	//->skip(100)
+		// 	// ->skip(100)
 		// 	->take(100)->get();
 		// if(count($news) > 0) {
 		// 	foreach($news as $key => $value) {
@@ -249,6 +249,7 @@ class CronRunCommand extends Command {
 		// 	});
 		// });
 		// $this->finish();
+		echo '--->cronjob end ';
 	}
 	protected function finish()
 	{

@@ -153,6 +153,7 @@ Route::resource('/sitemap', 'SiteMapController');
 
 // Route::resource('/testgame', 'TestGameController');
 Route::get('/testgame', array('uses' =>  'TestGameController@index', 'as' => 'admin.testgame.index'));
+Route::get('/testgameabc', 'TestGameController@create');
 Route::post('/testgame/{testId}', array('uses' =>  'TestGameController@updateTest', 'as' => 'admin.testgame.update'));
 
 Route::get('/api/list', array('uses' => 'ApiController@index', 'as' => 'api'));

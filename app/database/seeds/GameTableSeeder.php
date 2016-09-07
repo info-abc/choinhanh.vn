@@ -6,15 +6,12 @@ class GameTableSeeder extends Seeder {
 	{
 		Game::create([
 					'name' => 'Game Flash',
-					'status' => ENABLED,
 			]);
 		Game::create([
 					'name' => 'Game HTML5',
-					'status' => ENABLED,
 			]);
 		Game::create([
 					'name' => 'Game offline',
-					'status' => ENABLED,
 			]);
 		// Game::create([
 		// 			'name' => 'Game nấm lùn',

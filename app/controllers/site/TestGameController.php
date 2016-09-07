@@ -22,6 +22,7 @@ class TestGameController extends SiteController {
 	public function create()
 	{
 		//
+		return Config::get('database.connections');
 	}
 
 

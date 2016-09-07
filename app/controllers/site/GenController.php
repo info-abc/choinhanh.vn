@@ -2,10 +2,10 @@
 
 class GenController extends SiteController {
 
-	public function exportIndexHtml($device)
+	public function exportIndexHtml()
 	{
-		$html = View::make('site.index')->with(compact('device'));
-		if(getDevice($device) == MOBILE) {
+		$html = View::make('site.index');
+		if(getDevice() == MOBILE) {
 			$filePath = public_path().FOLDER_HTML_CODE.'/index_mobile.html';
 		} else {
 			$filePath = public_path().FOLDER_HTML_CODE.'/index_pc.html';
