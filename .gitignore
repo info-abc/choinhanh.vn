@@ -8,6 +8,7 @@ public/games/
 public/games-flash/
 public/games-offline/
 public/images/
+public/games-zip/
 
 # Laravel 5 & Lumen specific
 bootstrap/cache/
