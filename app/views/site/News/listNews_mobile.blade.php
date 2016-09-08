@@ -1,14 +1,22 @@
 <?php 
 	if(isset($typeNew)) {
-		$typeNewTitle = $typeNew->name;
+		$seoMeta = CommonSite::getMetaSeo('TypeNew', $typeNew->id);
+		$typeNewTitle = (isset($seoMeta) && !empty($seoMeta->title_site))?$seoMeta->title_site:$typeNew->name;
 		$ogUrl = url($typeNew->slug);
 	} else {
-		$typeNewTitle = 'Tin tức';
+		$seoMeta = new stdClass();
+		$seoMeta->title_site = 'Tin tức';
+		$seoMeta->description_site = '';
+		$seoMeta->keyword_site = '';
+		$seoMeta->title_fb = '';
+		$seoMeta->description_fb = '';
+		$seoMeta->image_url_fb = '';
+		$typeNewTitle = $seoMeta->title_site;
 		$ogUrl = url('tin-tuc');
 	}
 ?>
 
-@extends('site.layout.default_mobile', array('ogUrl' => $ogUrl))
+@extends('site.layout.default_mobile', array('ogUrl' => $ogUrl, 'seoMeta' => $seoMeta))
 
 @section('title')
 	{{ $title = $typeNewTitle }}

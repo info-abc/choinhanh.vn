@@ -81,4 +81,20 @@ class CommonSeo
 		return $input;
 	}
 
+	public static function pageSeoObject($seoMeta) 
+	{
+		$prefix = '';
+		$page = Input::get('page');
+		if(isset($page) && $page > 1) {
+			$prefix = '|Trang '.$page;
+		}
+		if($seoMeta) {
+			$seoMeta->title_site .= $prefix;
+			$seoMeta->description_site .= $prefix;
+			$seoMeta->title_fb .= $prefix;
+			$seoMeta->description_fb .= $prefix;
+		}	
+		return $seoMeta;
+	}
+
 }

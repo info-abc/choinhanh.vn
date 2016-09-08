@@ -1,12 +1,22 @@
-@extends('site.layout.default')
-
 <?php 
 	if(isset($typeNew)) {
-		$typeNewTitle = $typeNew->name;
+		$seoMeta = CommonSite::getMetaSeo('TypeNew', $typeNew->id);
+		$seoMeta = CommonSeo::pageSeoObject($seoMeta);
+		$typeNewTitle = (isset($seoMeta) && !empty($seoMeta->title_site))?$seoMeta->title_site:$typeNew->name;
 	} else {
-		$typeNewTitle = 'Tin tức';
+		$seoMeta = new stdClass();
+		$seoMeta->title_site = 'Tin tức';
+		$seoMeta->description_site = '';
+		$seoMeta->keyword_site = '';
+		$seoMeta->title_fb = '';
+		$seoMeta->description_fb = '';
+		$seoMeta->image_url_fb = '';
+		$seoMeta = CommonSeo::pageSeoObject($seoMeta);
+		$typeNewTitle = $seoMeta->title_site;
 	}
 ?>
+
+@extends('site.layout.default', array('seoMeta' => $seoMeta))
 
 @section('title')
 	{{ $title = $typeNewTitle }}
