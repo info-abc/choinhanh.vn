@@ -859,7 +859,11 @@ class CommonGame
 				->where('status', ENABLED)
 				->where('start_date', '<=', $now);
 			if($view != 'android') {
-				$games = $games->whereIn('parent_id', [GAMEFLASH, GAMEHTML5]);
+				if($device == MOBILE) {
+					$games = $games->whereIn('parent_id', [GAMEHTML5]);
+				} else {
+					$games = $games->whereIn('parent_id', [GAMEFLASH, GAMEHTML5]);
+				}
 			}
 				// ->where('parent_id', GAMEHTML5)
 				// ->orWhere(function($games)
@@ -878,7 +882,11 @@ class CommonGame
 		}
 		//to do: vote, play for gamehtml5 only
 		if($view == 'vote' || $view == 'play') {
-			$games = $games->whereIn('parent_id', [GAMEFLASH, GAMEHTML5]);
+			if($device == MOBILE) {
+				$games = $games->whereIn('parent_id', [GAMEHTML5]);
+			} else {
+				$games = $games->whereIn('parent_id', [GAMEFLASH, GAMEHTML5]);
+			}
 		}
 		return $games;
 	}
