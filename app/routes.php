@@ -217,7 +217,7 @@ Route::post('/import-bxh', 'GameController@importBxh');
 Route::get('/list_g5', 'GameController@listGameHtml5');
 Route::get('/list_flash', 'GameController@listGameFlash');
 
-Route::get('/home', 'SiteIndexController@home');
+// Route::get('/home', 'SiteIndexController@home');
 
 Route::get('/hometest', 'SiteIndexController@hometest');
 
