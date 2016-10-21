@@ -219,7 +219,7 @@ Route::get('/list_flash', 'GameController@listGameFlash');
 
 // Route::get('/home', 'SiteIndexController@home');
 
-Route::get('/hometest', 'SiteIndexController@hometest');
+// Route::get('/hometest', 'SiteIndexController@hometest');
 
 Route::get('/exportIndexHtml/{device}', 'GenController@exportIndexHtml');
 
