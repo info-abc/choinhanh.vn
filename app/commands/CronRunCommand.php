@@ -93,6 +93,11 @@ class CronRunCommand extends Command {
 	 */
 	public function fire()
 	{
+		//views clear
+		echo 'views->clear -- ';
+		Artisan::call('views:clear');
+		echo 'views:clear->ok -- ';
+
 		$viewPath = app_path().'/views/site/htmlpage';
 
 		echo 'cronjob start';
