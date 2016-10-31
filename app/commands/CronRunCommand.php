@@ -166,8 +166,8 @@ class CronRunCommand extends Command {
 		// $gamesList = Game::where('parent_id', '!=', '')
 		// 				->whereNotNull('parent_id')
 		// 				->orderBy('start_date', 'desc')
-		// 				// ->skip(200)
-		// 				->take(200)
+		// 				// ->skip(300)
+		// 				->take(300)
 		// 				->get();
 		// if(count($gamesList) > 0) {
 		// 	foreach($gamesList as $key => $value) {
@@ -197,7 +197,7 @@ class CronRunCommand extends Command {
 		// TIN TUC
 		// $news = AdminNew::orderBy('id', 'desc')
 		// 	// ->skip(100)
-		// 	->take(100)->get();
+		// 	->take(300)->get();
 		// if(count($news) > 0) {
 		// 	foreach($news as $key => $value) {
 		// 		$inputNew = $value;
