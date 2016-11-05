@@ -77,14 +77,14 @@ class Paginate extends Illuminate\Pagination\BootstrapPresenter {
 	public function getLinks()
 	{
 		$html = '';
-		if ($this->currentPage >= 3) {
-			if (getDevice() == COMPUTER) {
-				$html .= $this->getNormalTextWrapper('...');
-			}
+		// if ($this->currentPage >= 3) {
+		// 	if (getDevice() == COMPUTER) {
+		// 		$html .= $this->getNormalTextWrapper('...');
+		// 	}
 			// else {
 			// 	$html .= $this->getNormalTextWrapper('');
 			// }
-		}
+		// }
 		return $html;
 	}
 
