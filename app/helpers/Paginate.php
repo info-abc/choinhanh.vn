@@ -49,6 +49,10 @@ class Paginate extends Illuminate\Pagination\BootstrapPresenter {
 		else
 		{
 			$url = $this->paginator->getUrl(1);
+			$para = $_GET['search'];
+			if(isset($para)) {
+				$url .= '&search='.$para;
+			}
 			return $this->getPageLinkWrapper($url, $text);
 		}
 	}
@@ -62,7 +66,10 @@ class Paginate extends Illuminate\Pagination\BootstrapPresenter {
 		else
 		{
 			$url = $this->paginator->getUrl($this->lastPage);
-
+			$para = $_GET['search'];
+			if(isset($para)) {
+				$url .= '&search='.$para;
+			}
 			return $this->getPageLinkWrapper($url, $text);
 		}
 	}
@@ -84,14 +91,60 @@ class Paginate extends Illuminate\Pagination\BootstrapPresenter {
 	public function getLastLinks()
 	{
 		$html = '';
-		if ($this->currentPage <= $this->lastPage - 2) {
-			if (getDevice() == COMPUTER) {
-		  		$html .= $this->getNormalTextWrapper('...');
-			}
+		// if ($this->currentPage <= $this->lastPage - 2) {
+		// 	if (getDevice() == COMPUTER) {
+		//   		$html .= $this->getNormalTextWrapper('...');
+		// 	}
 			// else {
 		 //  		$html .= $this->getNormalTextWrapper('');
 			// }
-		}
+		// }
 		return $html;
+	}
+
+	public function getPrevious($text = '&laquo;')
+	{
+		// If the current page is less than or equal to one, it means we can't go any
+		// further back in the pages, so we will render a disabled previous button
+		// when that is the case. Otherwise, we will give it an active "status".
+		if ($this->currentPage <= 1)
+		{
+			return $this->getDisabledTextWrapper($text);
+		}
+
+		$url = $this->paginator->getUrl($this->currentPage - 1);
+		$para = $_GET['search'];
+		if(isset($para)) {
+			$url .= '&search='.$para;
+		}
+		return $this->getPageLinkWrapper($url, $text, 'prev');
+	}
+
+	public function getLink($page)
+	{
+		$url = $this->paginator->getUrl($page);
+		$para = $_GET['search'];
+		if(isset($para)) {
+			$url .= '&search='.$para;
+		}
+		return $this->getPageLinkWrapper($url, $page);
+	}
+
+	public function getNext($text = '&raquo;')
+	{
+		// If the current page is greater than or equal to the last page, it means we
+		// can't go any further into the pages, as we're already on this last page
+		// that is available, so we will make it the "next" link style disabled.
+		if ($this->currentPage >= $this->lastPage)
+		{
+			return $this->getDisabledTextWrapper($text);
+		}
+
+		$url = $this->paginator->getUrl($this->currentPage + 1);
+		$para = $_GET['search'];
+		if(isset($para)) {
+			$url .= '&search='.$para;
+		}
+		return $this->getPageLinkWrapper($url, $text, 'next');
 	}
 }
