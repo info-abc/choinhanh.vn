@@ -49,9 +49,8 @@ class Paginate extends Illuminate\Pagination\BootstrapPresenter {
 		else
 		{
 			$url = $this->paginator->getUrl(1);
-			$para = $_GET['search'];
-			if(isset($para)) {
-				$url .= '&search='.$para;
+			if(isset($_GET['search'])) {
+				$url .= '&search='.$_GET['search'];
 			}
 			return $this->getPageLinkWrapper($url, $text);
 		}
@@ -66,9 +65,8 @@ class Paginate extends Illuminate\Pagination\BootstrapPresenter {
 		else
 		{
 			$url = $this->paginator->getUrl($this->lastPage);
-			$para = $_GET['search'];
-			if(isset($para)) {
-				$url .= '&search='.$para;
+			if(isset($_GET['search'])) {
+				$url .= '&search='.$_GET['search'];
 			}
 			return $this->getPageLinkWrapper($url, $text);
 		}
@@ -113,9 +111,8 @@ class Paginate extends Illuminate\Pagination\BootstrapPresenter {
 		}
 
 		$url = $this->paginator->getUrl($this->currentPage - 1);
-		$para = $_GET['search'];
-		if(isset($para)) {
-			$url .= '&search='.$para;
+		if(isset($_GET['search'])) {
+			$url .= '&search='.$_GET['search'];
 		}
 		return $this->getPageLinkWrapper($url, $text, 'prev');
 	}
@@ -123,9 +120,8 @@ class Paginate extends Illuminate\Pagination\BootstrapPresenter {
 	public function getLink($page)
 	{
 		$url = $this->paginator->getUrl($page);
-		$para = $_GET['search'];
-		if(isset($para)) {
-			$url .= '&search='.$para;
+		if(isset($_GET['search'])) {
+			$url .= '&search='.$_GET['search'];
 		}
 		return $this->getPageLinkWrapper($url, $page);
 	}
@@ -141,9 +137,8 @@ class Paginate extends Illuminate\Pagination\BootstrapPresenter {
 		}
 
 		$url = $this->paginator->getUrl($this->currentPage + 1);
-		$para = $_GET['search'];
-		if(isset($para)) {
-			$url .= '&search='.$para;
+		if(isset($_GET['search'])) {
+			$url .= '&search='.$_GET['search'];
 		}
 		return $this->getPageLinkWrapper($url, $text, 'next');
 	}
