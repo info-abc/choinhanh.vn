@@ -190,10 +190,14 @@ class CommonSite
     public static function getMetaSeoData($modelName, $modelId, $seoMeta, $meta, $type, $isTypeMain = null)
     {
         if($modelName == 'Game' && $isTypeMain == null) {
-            if($type) {
-                $seoMeta->title_site = 'Chơi game '.$meta->name.' | Game '.$type->name.' | Choinhanh.vn';     
+            if(isset($type)) {
+                if($seoMeta->title_site == '') {
+                    $seoMeta->title_site = 'Chơi game '.$meta->name.' | Game '.$type->name.' | Choinhanh.vn';
+                }
             } else {
-                $seoMeta->title_site = 'Chơi game '.$meta->name.' | Choinhanh.vn';
+                if($seoMeta->title_site == '') {
+                    $seoMeta->title_site = 'Chơi game '.$meta->name.' | Choinhanh.vn';    
+                }
             }
         } else {
             if($seoMeta->title_site == '') {
@@ -201,10 +205,14 @@ class CommonSite
             }
         }
         if($modelName == 'Game' && $isTypeMain == null) {
-            if($type) {
-                $seoMeta->description_site = 'Game '.convert_string_vi_to_en($meta->name).' - Trò chơi '.$type->name.' '.$meta->name.' chọn lọc hay mới nhất 24h tại choinhanh.vn'; 
+            if(isset($type)) {
+                if($seoMeta->description_site == '') {
+                    $seoMeta->description_site = 'Game '.convert_string_vi_to_en($meta->name).' - Trò chơi '.$type->name.' '.$meta->name.' chọn lọc hay mới nhất 24h tại choinhanh.vn';
+                }
             } else {
-                $seoMeta->description_site = convert_string_vi_to_en($meta->name).' - Trò chơi game '. $meta->name.' chọn lọc hay mới nhất 24h tại choinhanh.vn'; 
+                if($seoMeta->description_site == '') {
+                    $seoMeta->description_site = convert_string_vi_to_en($meta->name).' - Trò chơi game '. $meta->name.' chọn lọc hay mới nhất 24h tại choinhanh.vn';
+                }
             }
         } else {
             if($seoMeta->description_site == '') {
@@ -212,7 +220,9 @@ class CommonSite
             }
         }
         if($modelName == 'Game' && $isTypeMain == null) {
-            $seoMeta->keyword_site = 'chơi game '.$meta->name.', tro choi '.convert_string_vi_to_en($meta->name).', game '.convert_string_vi_to_en($meta->name).' hay, '.convert_string_vi_to_en($meta->name).' 24h';
+            if($seoMeta->keyword_site == '') {
+                $seoMeta->keyword_site = 'chơi game '.$meta->name.', tro choi '.convert_string_vi_to_en($meta->name).', game '.convert_string_vi_to_en($meta->name).' hay, '.convert_string_vi_to_en($meta->name).' 24h';
+            }
         } else {
             if($seoMeta->keyword_site == '') {
                 $seoMeta->keyword_site = 'Game '.$meta->name.', trò chơi '.$meta->name.', game cho mobile hay nhất tại choinhanh.vn';

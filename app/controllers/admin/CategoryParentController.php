@@ -212,18 +212,30 @@ class CategoryParentController extends AdminController {
 				$categoryParent = CategoryParent::find($id);
 				$html = View::make('site.game.category_mobile')->with(compact('categoryParent'))->render();
 		    	$filePath = $viewPath.'/'.'categoryParent_'.$categoryParent->slug.'_mobile.blade.php';
+		    	if(file_exists($filePath)) {
+		    		chmod($filePath, 0777);
+		    	}
 		    	file_put_contents($filePath, $html);
 		    	$html = View::make('site.game.category_pc')->with(compact('categoryParent'))->render();
 		    	$filePath = $viewPath.'/'.'categoryParent_'.$categoryParent->slug.'_pc.blade.php';
+		    	if(file_exists($filePath)) {
+		    		chmod($filePath, 0777);
+		    	}
 		    	file_put_contents($filePath, $html);
 		    	return;
 				break;
 		}
     	$html = View::make($viewMobile)->render();
     	$filePath = $viewPath.'/'.$fileMobile;
+    	if(file_exists($filePath)) {
+    		chmod($filePath, 0777);
+    	}
     	file_put_contents($filePath, $html);
     	$html = View::make($viewPc)->render();
     	$filePath = $viewPath.'/'.$filePc;
+    	if(file_exists($filePath)) {
+    		chmod($filePath, 0777);
+    	}
     	file_put_contents($filePath, $html);
     	return;
 	}

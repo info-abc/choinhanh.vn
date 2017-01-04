@@ -298,19 +298,31 @@ class AdminGameController extends AdminController {
 			// game play
 	    	$html = View::make('site.game.onlinemobile_cronjob')->with(compact('game'))->render();
 	    	$filePath = $viewPath.'/'.'game_play_'.$game->slug.'_mobile.blade.php';
+	    	if(file_exists($filePath)) {
+	    		chmod($filePath, 0777);
+	    	}
 	    	file_put_contents($filePath, $html);
 
 	    	$html = View::make('site.game.onlineweb_cronjob')->with(compact('game'))->render();
 	    	$filePath = $viewPath.'/'.'game_play_'.$game->slug.'_pc.blade.php';
+	    	if(file_exists($filePath)) {
+	    		chmod($filePath, 0777);
+	    	}
 	    	file_put_contents($filePath, $html);
 		} else {
 			// game download
 	    	$html = View::make('site.game.downloadmobile_cronjob')->with(compact('game'))->render();
 	    	$filePath = $viewPath.'/'.'game_download_'.$game->slug.'_mobile.blade.php';
+	    	if(file_exists($filePath)) {
+	    		chmod($filePath, 0777);
+	    	}
 	    	file_put_contents($filePath, $html);
 
 	    	$html = View::make('site.game.downloadweb_cronjob')->with(compact('game'))->render();
 	    	$filePath = $viewPath.'/'.'game_download_'.$game->slug.'_pc.blade.php';
+	    	if(file_exists($filePath)) {
+	    		chmod($filePath, 0777);
+	    	}
 	    	file_put_contents($filePath, $html);
 		}
 		return;
