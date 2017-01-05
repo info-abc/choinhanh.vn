@@ -198,14 +198,14 @@ class NewsController extends AdminController {
     	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew'))->render();
     	$filePath = $viewPath.'/'.'news_tin-tuc_'.$inputNew->slug.'_mobile.blade.php';
     	if(file_exists($filePath)) {
-    		chmod($filePath, 0777);
+    		@chmod($filePath, 0777);
     	}
     	file_put_contents($filePath, $html);
 
     	$html = View::make('site.News.showNews_pc')->with(compact('inputNew'))->render();
     	$filePath = $viewPath.'/'.'news_tin-tuc_'.$inputNew->slug.'_pc.blade.php';
     	if(file_exists($filePath)) {
-    		chmod($filePath, 0777);
+    		@chmod($filePath, 0777);
     	}
     	file_put_contents($filePath, $html);
 
@@ -214,14 +214,14 @@ class NewsController extends AdminController {
     	$html = View::make('site.News.showNews_mobile')->with(compact('inputNew', 'typeNew'))->render();
     	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$inputNew->slug.'_mobile.blade.php';
     	if(file_exists($filePath)) {
-    		chmod($filePath, 0777);
+    		@chmod($filePath, 0777);
     	}
     	file_put_contents($filePath, $html);
 
     	$html = View::make('site.News.showNews_pc')->with(compact('inputNew', 'typeNew'))->render();
     	$filePath = $viewPath.'/'.'news_'.$typeNew->slug.'_'.$inputNew->slug.'_pc.blade.php';
     	if(file_exists($filePath)) {
-    		chmod($filePath, 0777);
+    		@chmod($filePath, 0777);
     	}
     	file_put_contents($filePath, $html);
 	}

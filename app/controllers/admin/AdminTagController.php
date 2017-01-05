@@ -144,13 +144,13 @@ class AdminTagController extends AdminController {
 		$html = View::make('site.tag.tag_mobile')->with(compact('tag'))->render();
     	$filePath = $viewPath.'/'.'tagGame_game-'.$tag->slug.'_mobile.blade.php';
     	if(file_exists($filePath)) {
-    		chmod($filePath, 0777);
+    		@chmod($filePath, 0777);
     	}
     	file_put_contents($filePath, $html);
     	$html = View::make('site.tag.tag_pc')->with(compact('tag'))->render();
     	$filePath = $viewPath.'/'.'tagGame_game-'.$tag->slug.'_pc.blade.php';
     	if(file_exists($filePath)) {
-    		chmod($filePath, 0777);
+    		@chmod($filePath, 0777);
     	}
     	file_put_contents($filePath, $html);
     	return;

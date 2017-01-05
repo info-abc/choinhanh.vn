@@ -165,13 +165,13 @@ class GameTypeController extends AdminController {
 		$html = View::make('site.game.type_mobile')->with(compact('type'))->render();
     	$filePath = $viewPath.'/'.'typeGame_game-'.$type->slug.'_mobile.blade.php';
     	if(file_exists($filePath)) {
-    		chmod($filePath, 0777);
+    		@chmod($filePath, 0777);
     	}
     	file_put_contents($filePath, $html);
     	$html = View::make('site.game.type_pc')->with(compact('type'))->render();
     	$filePath = $viewPath.'/'.'typeGame_game-'.$type->slug.'_pc.blade.php';
     	if(file_exists($filePath)) {
-    		chmod($filePath, 0777);
+    		@chmod($filePath, 0777);
     	}
     	file_put_contents($filePath, $html);
     	return;
