@@ -166,8 +166,8 @@ class CronRunCommand extends Command {
 		// $gamesList = Game::where('parent_id', '!=', '')
 		// 				->whereNotNull('parent_id')
 		// 				->orderBy('start_date', 'desc')
-		// 				// ->skip(300)
-		// 				->take(300)
+		// 				// ->skip(500)
+		// 				->take(500)
 		// 				->get();
 		// if(count($gamesList) > 0) {
 		// 	foreach($gamesList as $key => $value) {
