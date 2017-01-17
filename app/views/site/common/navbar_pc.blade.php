@@ -32,7 +32,7 @@
 
 	<!-- game type has games -->
 	<ul class="nav-type">
-	@foreach(CommonSearch::searchTypeGame() as $value)
+	@foreach(CommonSearch::searchTypeGame(null, 2) as $value)
 		<li>
 			<img src="{{ UPLOADIMG . UPLOAD_GAME_TYPE . '/' . $value->id . '/' . $value->image_url }}" alt="game-{{ $value->slug }}" />
 			<a href="{{ url('/game-' . $value->slug) }}" {{ checkActive('game-' . $value->slug) }} >

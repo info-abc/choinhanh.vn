@@ -3,13 +3,7 @@ class SiteIndex
 {
 	public static function getTypeOfParent($parentId)
 	{
-		if (Cache::has('listTypeId'.$parentId))
-        {
-            $listTypeId = Cache::get('listTypeId'.$parentId);
-        } else {
-        	$listTypeId = ParentType::where('category_parent_id', $parentId)->orderBy('weight_number', 'asc')->lists('type_id');
-            Cache::put('listTypeId'.$parentId, $listTypeId, CACHETIME);
-        }
+        $listTypeId = ParentType::where('category_parent_id', $parentId)->orderBy('weight_number', 'asc')->lists('type_id');
 		return $listTypeId;
 	}
 
@@ -32,24 +26,17 @@ class SiteIndex
 
     public static function getTypeTooltip($typeId, $field)
     {
-        // $segment1 = Request::segment(1);
-        // if (Cache::has('getTypeTooltip_'.$typeId.$field))
-        // {
-        //     $result = Cache::get('getTypeTooltip_'.$typeId.$field);
-        // } else {
-            $type = CommonSite::getTypeBySlug();
-            if($type) {
-                $result = $type->$field;    
+        $type = CommonSite::getTypeBySlug();
+        if($type) {
+            $result = $type->$field;    
+        } else {
+            $result = Type::find($typeId);
+            if($result) {
+                $result = $result->$field;
             } else {
-                $result = Type::find($typeId);
-                if($result) {
-                    $result = $result->$field;
-                } else {
-                    $result = '';
-                }
+                $result = '';
             }
-        //     Cache::put('getTypeTooltip_'.$typeId.$field, $result, CACHETIME);
-        // }
+        }
         return $result;
     }
 

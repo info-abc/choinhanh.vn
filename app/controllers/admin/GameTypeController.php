@@ -112,7 +112,7 @@ class GameTypeController extends AdminController {
         	$type = Type::find($id);
         	//SEO cant update
         	if(!Admin::isSeo()) {
-				$inputCategory = Input::only('name');
+				$inputCategory = Input::only('name', 'status');
 				CommonNormal::update($id,$inputCategory);
 				$input['image_url'] = CommonSeo::uploadImage($id, UPLOADIMG, 'image_url', UPLOAD_GAME_TYPE, $type->image_url);
 				CommonNormal::update($id, ['image_url' => $input['image_url']] );

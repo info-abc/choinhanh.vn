@@ -20,7 +20,7 @@
 				<div class="main">
 
 					@include('site.common.topbar_pc_cronjob')
-					@include('site.common.navbar_pc')
+					<?php echo '@include("site.common.navbar_pc")'; ?>
 
 					@include('site.common.ad', array('adPosition' => HEADER, 'device' => 2, 'noCache' => 1))
 

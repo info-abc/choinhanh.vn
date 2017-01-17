@@ -19,7 +19,7 @@
 
 				<div class="main">
 
-					@include('site.common.menu_cronjob')
+					<?php echo '@include("site.common.menu")'; ?>
 					@include('site.common.topbar_mobile')
 					@include('site.common.navbar_mobile')
 					

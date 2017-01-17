@@ -34,6 +34,11 @@
 								<img class="image_fb" src="{{ url(UPLOADIMG . UPLOAD_GAME_TYPE .'/'. $inputType->id . '/' . $inputType->image_url) }}" />
 							</div>
 
+							<div class="form-group">
+				                <label>Trạng thái</label>
+				                {{ Form::select('status', selectStatusGame(), $inputType->status, array('class' => 'form-control')) }}
+			              	</div>
+
 							<hr />
 							<h1>SEO META</h1>
 							{{-- include common/meta.blade.php --}}

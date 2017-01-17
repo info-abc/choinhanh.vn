@@ -30,6 +30,11 @@
 								{{ Form::file('image_url') }}
 							</div>
 
+							<div class="form-group">
+								<label>Trạng thái</label>
+								{{ Form::select('status', selectStatusGame(), '', array('class' => 'form-control')) }}
+							</div>
+
 							<hr />
 							<h1>SEO META</h1>
 							{{-- include common/meta.blade.php --}}

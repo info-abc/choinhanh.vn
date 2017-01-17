@@ -32,6 +32,7 @@
 			  <th>Tổng số view</th>
 			  <th>Tổng số play</th>
 			  <th>Tổng số download</th>
+			  <th>Trạng thái</th>
 			  <th>Trạng thái Seo</th>
 			  <th style="width:200px;">&nbsp;</th>
 			</tr>
@@ -43,6 +44,7 @@
 				  <td>{{ $value->count_view }}</td>
 				  <td>{{ $value->count_play }}</td>
 				  <td>{{ $value->count_download }}</td>
+				  <td>{{ getStatusGame($value->status) }}</td>
 				  <td>{{ getStatusSeoParent($value, 'Type') }}</td>
 				  <td>
 				  	{{-- <a href="#" class="btn btn-success">Xem</a> --}}
