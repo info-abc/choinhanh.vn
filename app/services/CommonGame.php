@@ -738,7 +738,7 @@ class CommonGame
 			}
 		} else {
 			if($game->parent_id == GAMEFLASH) {
-				$box = '<embed type="application/x-shockwave-flash" src="' . $link .'" width="'.$width.'" height="'.$height.'" style="undefined" id="game" name="game" quality="high" wmode="direct">';
+				$box = '<embed type="application/x-shockwave-flash" src="' . $link .'" width="'.$width.'" height="'.$height.'" style="undefined" id="game" name="game" quality="high" align="middle" allowscriptaccess="always" wmode="direct">';
 				return $box;
 			}
 
