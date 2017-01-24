@@ -31,6 +31,7 @@
 			  <th>Game Flash</th>
 			  <!-- <th>Game Android</th> -->
 			  <!-- <th>Game Online</th> -->
+			  <th>Hiện trong danh sách tag cuối trang</th>
 			  <th style="width:200px;">&nbsp;</th>
 			</tr>
 			 @foreach($data as $value)
@@ -41,6 +42,7 @@
 			  <td>{{ CommonGame::countGameTag($value->id, GAMEFLASH) }}</td>
 			  <!-- <td>{{-- CommonGame::countGameTag($value->id, GAMEOFFLINE) --}}</td> -->
 			  <!-- <td>{{-- CommonGame::countGameTag($value->id, GAMEONLINE) --}}</td> -->
+			  <td>{{ getStatusGame($value->status) }}</td>
 			  <td>
 				<a href="{{ action('AdminTagController@edit', $value->id) }}" class="btn btn-primary">Sửa</a>
 				{{ Form::open(array('method'=>'DELETE', 'action' => array('AdminTagController@destroy', $value->id), 'style' => 'display: inline-block;')) }}
