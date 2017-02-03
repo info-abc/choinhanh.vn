@@ -196,8 +196,8 @@ class CronRunCommand extends Command {
 		// }
 		// TIN TUC
 		// $news = AdminNew::orderBy('id', 'desc')
-		// 	// ->skip(100)
-		// 	->take(300)->get();
+		// 	// ->skip(500)
+		// 	->take(500)->get();
 		// if(count($news) > 0) {
 		// 	foreach($news as $key => $value) {
 		// 		$inputNew = $value;

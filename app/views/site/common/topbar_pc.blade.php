@@ -33,7 +33,7 @@
 							<div class="g-plusone" data-size="medium" data-width="50" data-href="https://plus.google.com/113571525283953455277/"></div>
 				        </div>
 				        <div class="sharing_tab sharing_f">
-				            <div class="fb-like" data-href="https://www.facebook.com/Choinhanhvn-563511837144725" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+				            <div class="fb-like" data-href="https://www.facebook.com/choinhanhvnn/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
 				        </div>
 				        <div id="fb-root"></div>
 						<script>(function(d, s, id) {

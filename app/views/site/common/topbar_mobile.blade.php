@@ -7,7 +7,7 @@
 			</div>
 			
 			<div class="search">
-				<a class="iconfacebook" href="https://www.facebook.com/Choinhanhvn-563511837144725/"><i class="fa fa-facebook"></i></a>
+				<a class="iconfacebook" href="https://www.facebook.com/choinhanhvnn/"><i class="fa fa-facebook"></i></a>
 				<a class="icongoogleplus" href="https://plus.google.com/113571525283953455277/" ><i class="fa fa-google-plus"></i></a>
 				<form action="{{ action('SearchGameController@index') }}">
 					<input type="text" name="search" value="" title="search" placeholder="Tìm kiếm game" />

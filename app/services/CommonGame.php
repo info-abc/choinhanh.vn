@@ -970,7 +970,7 @@ class CommonGame
 	            $result = Cache::get('getBoxMiniGame');
 	        } else {
 	        	$result = array();
-				$types = Type::all();
+				$types = Type::where('status', ENABLED)->get();
 				if($types) {
 					foreach($types as $key => $value) {
 						$games = self::getGameByType($value->id);
@@ -986,7 +986,7 @@ class CommonGame
 	        }
 		} else {
 			$result = array();
-			$types = Type::all();
+			$types = Type::where('status', ENABLED)->get();
 			if($types) {
 				foreach($types as $key => $value) {
 					$games = self::getGameByType($value->id, $noCache, $device);
