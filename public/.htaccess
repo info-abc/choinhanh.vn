@@ -24,9 +24,9 @@
 	RewriteCond %{HTTP_HOST} ^www.choinhanh.vn$ [NC]
 	RewriteRule ^(.*)$ http://choinhanh.vn/ [R=301,L]
 	
+	Redirect /chien-thuat http://choinhanh.vn/game-chien-thuat
 	Redirect /ban-gai http://choinhanh.vn/game-ban-gai
 	Redirect /ban-sung http://choinhanh.vn/game-ban-sung
-	Redirect /chien-thuat http://choinhanh.vn/gam-chien-thuat
 	Redirect /dua-xe http://choinhanh.vn/game-dua-xe
 	Redirect /hanh-dong http://choinhanh.vn/game-hanh-dong
 	Redirect /nau-an http://choinhanh.vn/game-nau-an
@@ -104,7 +104,6 @@
 	Redirect /ban-gai http://choinhanh.vn/game-ban-gai
 	Redirect /the-thao/bac-thay-bi-a http://choinhanh.vn/game-the-thao/bac-thay-bi-a
 	Redirect /vui-nhon/truy-tim-manh-ghep http://choinhanh.vn/game-vui-nhon/truy-tim-manh-ghep
-	Redirect /chien-thuat http://choinhanh.vn/game-chien-thuat
 	Redirect /ban-gai/nha-si-cua-sao http://choinhanh.vn/game-ban-gai/nha-si-cua-sao
 	Redirect /thoi-trang/thoi-trang-tam-bien http://choinhanh.vn/game-thoi-trang/game-thoi-trang-tam-bien
 	Redirect /dua-xe/do-xe-dung-cach http://choinhanh.vn/game-dua-xe/do-xe-dung-cach
@@ -253,7 +252,82 @@
 	Redirect /danh-gia/hau-truong-nhung-canh-quay-cuc-hoanh-trang-phim-hollywood http://choinhanh.vn/tin-tuc/hau-truong-nhung-canh-quay-cuc-hoanh-trang-phim-hollywood
 	Redirect /tin-moi/gay-tu-suong-voi-nhung-phien-ban-cuc-kho-do http://choinhanh.vn/tin-tuc/gay-tu-suong-voi-nhung-phien-ban-cuc-kho-do
 	Redirect /danh-gia/cong-chua-ho-thien-nga-tu-tin-khoe-vong-1-nong-bong http://choinhanh.vn/tin-tuc/cong-chua-ho-thien-nga-tu-tin-khoe-vong-1-nong-bong
+
+	Redirect /chien-thuat/danh-bom-zombie http://choinhanh.vn/game-chien-thuat/danh-bom-zombie
+	Redirect /tin-moi/hau-due-mat-troi-phien-ban-gmo-gay-sot-cong-dong-mang http://choinhanh.vn/tin-tuc/hau-due-mat-troi-phien-ban-gmo-gay-sot-cong-dong-mang
+	Redirect /danh-gia/12-trang-bi-cuc-hot-trong-ban-lmht-69-cac-game-thu-nen-biet http://choinhanh.vn/tin-tuc/12-trang-bi-cuc-hot-trong-ban-lmht-69-cac-game-thu-nen-biet
+	Redirect /danh-gia/nhung-game-online-cuc-dinh-dang-duoc-ngong-cho-ngay-ra-mat http://choinhanh.vn/tin-tuc/nhung-game-online-cuc-dinh-dang-duoc-ngong-cho-ngay-ra-mat
+	Redirect /tin-moi/hau-truong-nhung-canh-quay-cuc-hoanh-trang-phim-hollywood http://choinhanh.vn/tin-tuc/hau-truong-nhung-canh-quay-cuc-hoanh-trang-phim-hollywood
+	Redirect /danh-gia/battleborn-tap-game-ban-sung-khong-the-khong-choi http://choinhanh.vn/tin-tuc/battleborn-tap-game-ban-sung-khong-the-khong-choi
+	Redirect /game-thoi-tra http://choinhanh.vn/game-thoi-trang
 	
+	Redirect /tin-moi/may-choi-game-tomahawk-f1-cua-fuze-vua-trinh-lang-da-tro-thanh-con-ghe http://choinhanh.vn/tin-tuc/may-choi-game-tomahawk-f1-cua-fuze-vua-trinh-lang-da-tro-thanh-con-ghe
+	Redirect /tin-moi/5-loai-card-man-hinh-sieu-khung-khien-game-thu-phat-sot http://choinhanh.vn/tin-tuc/5-loai-card-man-hinh-sieu-khung-khien-game-thu-phat-sot
+	Redirect /tin-moi/day-la-li-do-ban-nen-choi-game-moi-ngay http://choinhanh.vn/tin-tuc/day-la-li-do-ban-nen-choi-game-moi-ngay
+	Redirect /tin-moi/top-4-game-online-khien-ban-phat-dien-vi-sieu-kho http://choinhanh.vn/tin-tuc/top-4-game-online-khien-ban-phat-dien-vi-sieu-kho
+	Redirect /danh-gia/may-choi-game-tomahawk-f1-cua-fuze-vua-trinh-lang-da-tro-thanh-con-ghe http://choinhanh.vn/tin-tuc/may-choi-game-tomahawk-f1-cua-fuze-vua-trinh-lang-da-tro-thanh-con-ghe
+	Redirect /tin-moi/cu-dan-mang-phat-sot-truoc-cuoc-binh-chon-thuy-to-trong-kiem-hiep-kim-dung http://choinhanh.vn/tin-tuc/cu-dan-mang-phat-sot-truoc-cuoc-binh-chon-thuy-to-trong-kiem-hiep-kim-dung
+	Redirect /danh-gia/co-gai-bong-noi-nhu-con-vi-cuc-giong-nhan-vat-game http://choinhanh.vn/tin-tuc/co-gai-bong-noi-nhu-con-vi-cuc-giong-nhan-vat-game
+	Redirect /tin-moi/co-gai-bong-noi-nhu-con-vi-cuc-giong-nhan-vat-game http://choinhanh.vn/tin-tuc/co-gai-bong-noi-nhu-con-vi-cuc-giong-nhan-vat-game
+	Redirect /danh-gia/phat-sot-truoc-ve-dep-nong-bong-cua-dai-su-king-online-diep-tu-huyen http://choinhanh.vn/tin-tuc/phat-sot-truoc-ve-dep-nong-bong-cua-dai-su-king-online-diep-tu-huyen
+	Redirect /game-tri-tue/huyen-thoai-anh-hung-2 http://choinhanh.vn/game-hanh-dong/huyen-thoai-anh-hung-2
+	Redirect /danh-gia/top-3-tuong-nu-nong-bong-kho-cuong-trong-lien-minh-huyen-thoai http://choinhanh.vn/tin-tuc/top-3-tuong-nu-nong-bong-kho-cuong-trong-lien-minh-huyen-thoai
+	Redirect /danh-gia/top-5-game-online-khong-chien-hot-nhat-he-2016 http://choinhanh.vn/tin-tuc/top-5-game-online-khong-chien-hot-nhat-he-2016
+	Redirect /tin-moi/top-4-game-online-chat-choi-nhat-2016 http://choinhanh.vn/tin-tuc/top-4-game-online-chat-choi-nhat-2016
+	Redirect /danh-gia/top-5-vi-tuong-cuc-ky-nguy-hiem-trong-lmht-69 http://choinhanh.vn/tin-tuc/top-5-vi-tuong-cuc-ky-nguy-hiem-trong-lmht-69
+	Redirect /tin-moi/top-4-vi-tuong-sieu-manh-nhung-bi-hat-hui-trong-lmht http://choinhanh.vn/tin-tuc/top-4-vi-tuong-sieu-manh-nhung-bi-hat-hui-trong-lmht
+	Redirect /tin-moi/3-bai-hoc-dat-gia-chi-gamer-final-fantasy-x-moi-biet http://choinhanh.vn/tin-tuc/3-bai-hoc-dat-gia-chi-gamer-final-fantasy-x-moi-biet
+	Redirect /danh-gia/bo-lo-4-game-mobile-nay-ban-khong-con-la-gamer-chan-chinh http://choinhanh.vn/tin-tuc/bo-lo-4-game-mobile-nay-ban-khong-con-la-gamer-chan-chinh
+	Redirect /danh-gia/nhung-dieu-can-biet-khi-gia-nhap-fantasy-go http://choinhanh.vn/tin-tuc/nhung-dieu-can-biet-khi-gia-nhap-fantasy-go
+	Redirect /game-chien-thuat/anh-hung-duong-pho http://choinhanh.vn/game-dua-xe/anh-hung-duong-pho
+	Redirect /danh-gia/4-bi-kip-vo-cong-dinh-nhat-trong-kiem-hiep-kim-dung http://choinhanh.vn/tin-tuc/4-bi-kip-vo-cong-dinh-nhat-trong-kiem-hiep-kim-dung
+	Redirect /danh-gia/3-bi-kip-giup-ban-dung-top-server-ma-khong-ton-1-xu http://choinhanh.vn/tin-tuc/3-bi-kip-giup-ban-dung-top-server-ma-khong-ton-1-xu
+	Redirect /chia-se/7-dieu-ve-one-piece-ma-co-the-ban-chua-biet http://choinhanh.vn/tin-tuc/7-dieu-ve-one-piece-ma-co-the-ban-chua-biet
+	Redirect /danh-gia/grandblue-fantasy-gia-135-trieu-qua-dat-cho-mot-nhan-vat-ao http://choinhanh.vn/tin-tuc/grandblue-fantasy-gia-135-trieu-qua-dat-cho-mot-nhan-vat-ao
+	Redirect /danh-gia/tong-hop-dap-an-game-duoi-hinh-bat-chu-moi-nhat-day-du-nhat http://choinhanh.vn/tin-tuc/tong-hop-dap-an-game-duoi-hinh-bat-chu-moi-nhat-day-du-nhat
+	Redirect /game-vui-nhon/giai-cuu-meo-xinh http://choinhanh.vn/game-ban-gai/giai-cuu-meo-xinh
+	Redirect /tin-moi/nhung-cau-noi-hay-ve-cach-song-khong-nen-bo-qua-khi-con-tre http://choinhanh.vn/tin-tuc/nhung-cau-noi-hay-ve-cach-song-khong-nen-bo-qua-khi-con-tre
+	Redirect /danh-gia/the-elder-scrolls-legends-tua-game-the-bai-hot-nhat-hien-nay http://choinhanh.vn/tin-tuc/the-elder-scrolls-legends-tua-game-the-bai-hot-nhat-hien-nay
+	Redirect /danh-gia/su-khac-biet-chuan-khong-can-chinh-giua-con-trai-va-con-gai http://choinhanh.vn/tin-tuc/su-khac-biet-chuan-khong-can-chinh-giua-con-trai-va-con-gai
+	Redirect /tin-moi/ban-se-xit-mau-mui-khi-choi-5-tua-game-nhat-ban-hap-dan-nay http://choinhanh.vn/tin-tuc/ban-se-xit-mau-mui-khi-choi-5-tua-game-nhat-ban-hap-dan-nay
+	Redirect /tin-moi/loat-anh-so-sanh-cua-sao-viet-voi-dong-vat-khien-ban-cuoi-chay-nuoc-mat http://choinhanh.vn/tin-tuc/loat-anh-so-sanh-cua-sao-viet-voi-dong-vat-khien-ban-cuoi-chay-nuoc-mat
+	Redirect /danh-gia/cosplay-ahri-sieu-dang-yeu-theo-phong-cach-snsd http://choinhanh.vn/tin-tuc/cosplay-ahri-sieu-dang-yeu-theo-phong-cach-snsd
+	Redirect /game-trang-diem/hello-kitty-nail-salon http://choinhanh.vn/game-android/hello-kitty-nail-salon
+	Redirect /game-lam-banh/bake-cupcakes-cooking http://choinhanh.vn/game-android/bake-cupcakes-cooking
+	Redirect /game-the-thao/truot-nuoc-kinh-hoang http://choinhanh.vn/game-hanh-dong/truot-nuoc-kinh-hoang
+	Redirect /games-offline/queen-bee-high-school-beauty http://choinhanh.vn/game-android/queen-bee-high-school-beauty
+	Redirect /game-xep-hinh/xep-hinh-tri-uan http://choinhanh.vn/game-android/xep-hinh-tri-uan
+	Redirect /game-tri-tue/dat-bom-toc-do http://choinhanh.vn/game-vui-nhon/dat-bom-toc-do
+	Redirect /game-hanh-dong/cung-thu-luyen-banchoi http://choinhanh.vn/game-hanh-dong/cung-thu-luyen-ban
+	Redirect /game-xep-hinh/dua-xe-dien-cuong http://choinhanh.vn/game-dua-xe/dua-xe-dien-cuong
+	Redirect /game-chien-thuat/phu-thuy-quyen-nang-1 http://choinhanh.vn/game-tri-tue/phu-thuy-quyen-nang-1
+
+	Redirect /game-vui-nhon/suu-tap-da-quy http://choinhanh.vn/game-tri-tue/suu-tap-da-quy
+	Redirect /tin-moi/top-10-co-nang-nong-bong-nhat-comic-dc http://choinhanh.vn/chia-se/top-10-co-nang-nong-bong-nhat-comic-dc
+	Redirect /danh-gia/xuong-doc-khong-phanh-game-online-client-khong-the-ngoc-dau-len-duoc http://choinhanh.vn/chia-se/xuong-doc-khong-phanh-game-online-client-khong-the-ngoc-dau-len-duoc
+	Redirect /games-offline/candy-party-coin-carnival http://choinhanh.vn/game-android/candy-party-coin-carnival
+	Redirect /danh-gia/thanh-giong-se-xuat-hien-dep-me-hon-trong-game-moi http://choinhanh.vn/chia-se/thanh-giong-se-xuat-hien-dep-me-hon-trong-game-moi
+	Redirect /game-hanh-dong/quan-doi-tinh-nhue http://choinhanh.vn/game-chien-thuat/quan-doi-tinh-nhue
+	Redirect /danh-gia/cuoi-phat-do-voi-chieu-tro-cua-thanh-sieu-troll http://choinhanh.vn/chia-se/cuoi-phat-do-voi-chieu-tro-cua-thanh-sieu-troll
+	Redirect /game-vui-nhon/dao-vang-bien-donggame http://choinhanh.vn/game-vui-nhon/dao-vang-bien-dong
+	Redirect /game-chien-thuat/vung-dat-keo-ngot-4 http://choinhanh.vn/game-tri-tue/vung-dat-keo-ngot-4
+
+	Redirect /game-tri-tue/2048 http://choinhanh.vn/game-tri-tue/2048-mobile
+	
+	Redirect /game-nau-an/hoc-lam-italiano-pizza http://choinhanh.vn/game-nau-an/hoc-lam-pizza-y
+	Redirect /tin-moi/nhung-map-hap-dan-ma-game-thu-tap-kich-nen-biet http://choinhanh.vn/chia-se/nhung-map-hap-dan-ma-game-thu-tap-kich-nen-biet
+	Redirect /game-vui-nhon/tom-jerry-tran-chien-bong-tuyet http://choinhanh.vn/game-vui-nhon/tomjerry-tran-chien-bong-tuyet
+	Redirect /game-chien-thuat/bong-do-va-bong-xanh-2 http://choinhanh.vn/game-vui-nhon/bong-do-bong-xanh-2
+	Redirect /game-chien-thuat/san-dau-zombie http://choinhanh.vn/game-zombie/san-dau-zombie
+	Redirect /game-tri-tue/khu-rung-da-quy-2 http://choinhanh.vn/game-chien-thuat/khu-rung-da-quy-2
+	Redirect /game-vui-nhon/xep-bai-solitaire-3 http://choinhanh.vn/game-tri-tue/xep-bai-solitaire-3
+	Redirect /games-offline/angel-tarot-free-reading http://choinhanh.vn/game-android/angel-tarot-free-reading
+	Redirect /tin-moi/xuong-doc-khong-phanh-game-online-client-khong-the-ngoc-dau-len-duoc http://choinhanh.vn/chia-se/xuong-doc-khong-phanh-game-online-client-khong-the-ngoc-dau-len-duoc
+	Redirect /game-kim-cuong/cuoc-chien-bong-mau http://choinhanh.vn/game-chien-thuat/cuoc-chien-bong-mau
+	Redirect /game-vui-nhon/angela-nho-long-mui http://choinhanh.vn/game-ban-gai/angela-nho-long-mui
+	Redirect /game-vui-nhon/khu-rung-da-quy-2 http://choinhanh.vn/game-chien-thuat/khu-rung-da-quy-2
+	Redirect /games-offline/love-tester http://choinhanh.vn/game-android/love-tester
+
 
 </IfModule>
 
