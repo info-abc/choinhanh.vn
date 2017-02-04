@@ -31,17 +31,17 @@
 		<div class="row">
 			<div class="col-sm-4">
 				<div class="btn-block-center">
-					<a onclick="countdownload('android')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
+					<a onclick="countdownload('android', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="btn-block-center">
-					<a onclick="countdownload('ios')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
+					<a onclick="countdownload('ios', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="btn-block-center">
-					<a onclick="countdownload('winphone')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
+					<a onclick="countdownload('winphone', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
 				</div>
 			</div>
 		</div>
@@ -50,12 +50,12 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="btn-block-center">
-					<a onclick="countdownload('android')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
+					<a onclick="countdownload('android', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
 				</div>
 			</div>
 			<div class="col-sm-6">
 				<div class="btn-block-center">
-					<a onclick="countdownload('ios')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
+					<a onclick="countdownload('ios', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
 				</div>
 			</div>
 		</div>
@@ -64,12 +64,12 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="btn-block-center">
-					<a onclick="countdownload('android')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
+					<a onclick="countdownload('android', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
 				</div>
 			</div>
 			<div class="col-sm-6">
 				<div class="btn-block-center">
-					<a onclick="countdownload('winphone')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
+					<a onclick="countdownload('winphone', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
 				</div>
 			</div>
 		</div>
@@ -78,40 +78,40 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="btn-block-center">
-					<a onclick="countdownload('ios')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
+					<a onclick="countdownload('ios', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
 				</div>
 			</div>
 			<div class="col-sm-6">
 				<div class="btn-block-center">
-					<a onclick="countdownload('winphone')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
+					<a onclick="countdownload('winphone', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
 				</div>
 			</div>
 		</div>
 	@endif
 	@if($btnCheck == 5)
 		<div class="btn-block-center">
-			<a onclick="countdownload('android')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
+			<a onclick="countdownload('android', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_android"><i class="fa fa-download"></i> Tải về phiên bản Android</a>
 		</div>
 	@endif
 	@if($btnCheck == 6)
 		<div class="btn-block-center">
-			<a onclick="countdownload('ios')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
+			<a onclick="countdownload('ios', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_ios"><i class="fa fa-download"></i> Tải về phiên bản IOS</a>
 		</div>
 	@endif
 	@if($btnCheck == 7)
 		<div class="btn-block-center">
-			<a onclick="countdownload('winphone')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
+			<a onclick="countdownload('winphone', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download download_winphone"><i class="fa fa-download"></i> Tải về phiên bản Windowphone</a>
 		</div>
 	@endif
 	@if($btnCheck == 0)
 	<div class="btn-block-center">
-		<a onclick="countdownload()" class="download"><i class="fa fa-download"></i> Tải về</a>
+		<a onclick="countdownload('direct', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download"><i class="fa fa-download"></i> Tải về</a>
 	</div>
 	@endif
 @else
 	<div class="btn-block-center">
-		<a onclick="countdownload()" class="download"><i class="fa fa-download"></i> Tải về</a>
+		<a onclick="countdownload('direct', {{ $game->id }}, '{{ CommonGame::getUrlDownload($game) }}', '{{ CommonGame::getUrlDownload($game, 'android') }}', '{{ CommonGame::getUrlDownload($game, 'ios') }}', '{{ CommonGame::getUrlDownload($game, 'winphone') }}')" class="download"><i class="fa fa-download"></i> Tải về</a>
 	</div>
 @endif
 
-@include('site.game.scriptcountdownload', array('id' => $game->id, 'url' => url(CommonGame::getUrlDownload($game)), 'url_android' => url(CommonGame::getUrlDownload($game, 'android')), 'url_ios' => url(CommonGame::getUrlDownload($game, 'ios')), 'url_winphone' => url(CommonGame::getUrlDownload($game, 'winphone')) ))
+<script src="{{ url('assets/js/scriptcountdownload.js') }}"></script>

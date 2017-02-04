@@ -338,7 +338,7 @@ class GameController extends SiteController {
     	$id = Input::get('id');
     	$game = Game::find($id);
     	if($game) {
-    		if(!(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5]))) {
+    		if(in_array($game->parent_id, [GAMEFLASH, GAMEHTML5])) {
     			$count_play = $game->count_play+1;
 				$game->update(array('count_play' => $count_play));
 
